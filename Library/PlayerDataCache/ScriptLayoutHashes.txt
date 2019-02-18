@@ -3,7 +3,7 @@ PlayerPath?
 C:/Users/abbaslawal/Documents/GitHub/GamesProgramming/test.exe
 SceneListBegin?
 Assets/Scenes/MainMenu.unity
-Assets/Scenes/Manager Creation.unity
+Assets/Scenes/TeamSetup.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 4b12dd839b2293f8457cd67cc3610b85 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -227,6 +227,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 5023cc9e2f9e5129a74a910e2194edfc Assembly-CSharp.dll:.SelectOnInput
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 5465eae51985f0cb194548215d2133ec Assembly-CSharp.dll:.ScrollDetailTexture
+39acda2c18584ea6deb8d831aaba9eea Assembly-CSharp.dll:.ManagerManagement
 26215f135eeb48d8fa1189498c107f6c Vuforia.UnityExtensions.dll:Vuforia.AnchorBehaviour
 0561521e336e270e6e5a9c61387cb838 Vuforia.UnityExtensions.dll:Vuforia.AnchorInputListenerBehaviour
 2e0fd93f459db951da0e2e94e2e33fb7 Vuforia.UnityExtensions.dll:Vuforia.AnchorStageBehaviour
