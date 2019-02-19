@@ -33,6 +33,7 @@ public class Manager : MonoBehaviour {
         }
 
 
+
     public void ManagerCreate()
     {
         name = NameInpuField.text;
