@@ -9,7 +9,7 @@ public class Team : MonoBehaviour {
     public Text BudgetText;
     public Text AttackText;
     public Text DefenceText;
-    public Text Groundtext;
+    public Text GroundText;
 
   
 
@@ -25,17 +25,17 @@ public class Team : MonoBehaviour {
 
     int index = 0;
 
-
-   /* public Team(string Name ,int Reputation, int Budget, int Attack, int Defence, string Ground, int ManagementDiff, bool PlayerManaged)
+    /*
+    public Team(string Name ,int Reputation, int Budget, int Attack, int Defence, string Ground, int ManagementDiff, bool PlayerManaged)
     {
 
         Name = " ";
         Reputation = 25;
-       Budget = 1000;
+        Budget = 1000;
         Attack = 75;
         Defence = 75;
         Ground = "";
-       ManagementDiff = 50;
+        ManagementDiff = 50;
         PlayerManaged = false;
 
 
@@ -44,20 +44,43 @@ public class Team : MonoBehaviour {
 
 
     }
+ 
+
+
+
     */
 
-    Team DundeeRovers = new Team();
 
 
     //"Dundee", 80, 800, 75, 70, "Balgay Park", 90, false
 
-    public void TeamSelect(int index)
+
+
+
+
+
+    Team DundeeRovers = new Team
+    {
+        Name = "Dundee Rovers",
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+    public void TeamSelect()
     {
 
-        if (index == 0)
-        {
-            NameText.text = ("TESTName:" + DundeeRovers.Name);
-        }
+   
+           
+ 
 
 
 
@@ -73,8 +96,8 @@ public class Team : MonoBehaviour {
 
     void Start()
     {
-
-        TeamSelect(0);
+        NameText.text = " ";
+        
         
 
 
