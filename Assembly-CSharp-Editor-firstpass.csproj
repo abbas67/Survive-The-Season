@@ -63,6 +63,9 @@
   <ItemGroup>
     <Compile Include="Assets\Plugins\MHLab\AutoSaver\Editor\AutoSaver.cs" />
     <Compile Include="Assets\Plugins\MHLab\AutoSaver\Editor\AutoSaverEditor.cs" />
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>C:/Users/abbaslawal/Documents/GitHub/GamesProgramming/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/abbaslawal/Documents/GitHub/GamesProgramming/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -71,9 +74,6 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:/Users/abbaslawal/Documents/GitHub/GamesProgramming/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/abbaslawal/Documents/GitHub/GamesProgramming/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity2018/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -17,39 +17,6 @@ public class Team : MonoBehaviour
     public int ManagementDiff;
     public bool PlayerManaged;
 
-
-
-
-
-    /*
-    public Team(string Name, int Reputation, int Budget, int Attack, int Defence, string Ground, int ManagementDiff, bool PlayerManaged)
-    {
-
-        Name = " ";
-        Reputation = 25;
-        Budget = 1000;
-        Attack = 75;
-        Defence = 75;
-        Ground = "";
-        ManagementDiff = 50;
-        PlayerManaged = false;
-
-
-
-
-
-
-    }
-
-    */
-
-
-
-
-
-
-
-
 }
 
 
@@ -74,11 +41,16 @@ public class TeamBehaviour : MonoBehaviour
     public Text GroundText;
     Team DundeeRovers;
     Team LondonKings;
+    Team LiverpoolRed;
 
     public void Start()
     {
         DundeeRovers = new Team();
         LondonKings = new Team();
+        LiverpoolRed = new Team();
+
+
+
         NameText = GameObject.Find("NameText").GetComponent<Text>();
         ReputationText = GameObject.Find("ReputationText").GetComponent<Text>();
         BudgetText = GameObject.Find("BudgetText").GetComponent<Text>();
@@ -106,6 +78,14 @@ public class TeamBehaviour : MonoBehaviour
         LondonKings.Defence = 99;
         LondonKings.Ground = "Stamford Park";
 
+        LiverpoolRed.Name = "Liverpool Red";
+        LiverpoolRed.Reputation = 80;
+        LiverpoolRed.Budget = 15000;
+        LiverpoolRed.Attack = 80;
+        LiverpoolRed.Defence = 67;
+        LiverpoolRed.Ground = "AnnPitch";
+
+
         if (index == 0)
             {
             
@@ -126,7 +106,15 @@ public class TeamBehaviour : MonoBehaviour
             GroundText.text = ("Ground: " + LondonKings.Ground);
         }
 
+        if (index == 2)
+        {
 
+            NameText.text = ("Name: " + LiverpoolRed.Name);
+            ReputationText.text = ("Reputation: " + LiverpoolRed.Reputation);
+            BudgetText.text = ("Budget: " + LiverpoolRed.Budget);
+            AttackDefenceText.text = ("Attack/Defence: " + LiverpoolRed.Attack + "/" + LiverpoolRed.Defence);
+            GroundText.text = ("Ground: " + LiverpoolRed.Ground);
+        }
 
     }
 

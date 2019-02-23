@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour {
 
     public Button SubmitBtn;
-    public int index = 1;
 
+    public int index = 0;
 
     TeamBehaviour teambehaviour = new TeamBehaviour();
   
@@ -26,13 +26,23 @@ public class Menu : MonoBehaviour {
 
 
 
-    public void changeTeam(int index)
+
+
+
+
+    public void changeTeam()
     {
 
-     
-        teambehaviour.TeamSelect(index);
-
-        
+        if (index <= 2)
+        {
+            index++;
+            teambehaviour.TeamSelect(index);
+        }
+        else
+        {
+            index = 0;
+            teambehaviour.TeamSelect(index);
+        }
 
 
 
