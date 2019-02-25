@@ -22,13 +22,7 @@ public class Menu : MonoBehaviour {
 
 
     }
-
-
-
-
-
-
-
+    
 
     public void changeTeam()
     {
@@ -48,6 +42,24 @@ public class Menu : MonoBehaviour {
 
 
     }
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
 
 
 

@@ -11,24 +11,24 @@ public class Manager : MonoBehaviour {
 
 
 
-    int age;
-    string nationality;
-    string name;
-    string team;
-    bool employed;
-    int stresslevel;
-    int reputation;
+    public int ManAge;
+    public string ManNationality;
+    public string ManName;
+    public string ManTeam;
+    public bool ManEmployed;
+    public int ManStress;
+    public int ManReputation;
 
     //constructor
     public Manager(int age, string nationality, string name, string team, bool emplyed, int stresslevel, int reputation)
         {
 
-        age = 21;
-        name = "Manager McManager";
-        team = "team mcteamface";
-        employed = false;
-        stresslevel = 20;
-        reputation = 25; 
+        ManAge = 21;
+        ManName = "Manager McManager";
+        ManTeam = "team mcteamface";
+        ManEmployed = false;
+        ManStress = 20;
+        ManReputation = 25; 
 
         }
 
@@ -36,11 +36,12 @@ public class Manager : MonoBehaviour {
 
     public void ManagerCreate()
     {
+
         name = NameInpuField.text;
 
-        nationality = NationalityInputField.text;
+        ManNationality = NationalityInputField.text;
         
-        Debug.Log("Welcome " + name + " from " + nationality);
+        Debug.Log("Welcome " + ManName + " from " + ManNationality);
 
 
 
