@@ -420,8 +420,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194540175}
-  - component: {fileID: 194540174}
   - component: {fileID: 194540176}
+  - component: {fileID: 194540174}
   m_Layer: 5
   m_Name: TeamDisplay
   m_TagString: Untagged
@@ -437,11 +437,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 194540173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e68d402a43b5043bee637bff7f8c10, type: 3}
+  m_Script: {fileID: 11500000, guid: 28e23b9f43b12ce41bffbc087ffdf958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SubmitBtn: {fileID: 0}
-  index: 0
 --- !u!224 &194540175
 RectTransform:
   m_ObjectHideFlags: 0
@@ -468,11 +466,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 194540173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e68d402a43b5043bee637bff7f8c10, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e96904677d2d3c49a8de6ee4e00b6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SubmitBtn: {fileID: 338034306}
-  index: 0
+  MyManager: {fileID: 0}
+  NameText: {fileID: 1897579539}
+  ReputationText: {fileID: 332539572}
+  BudgetText: {fileID: 2052605656}
+  AttackDefenceText: {fileID: 1220963516}
+  GroundText: {fileID: 1966724492}
 --- !u!1 &233017967
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,8 +644,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.5, y: -85.95714}
-  m_SizeDelta: {x: 185, y: 23.971428}
+  m_AnchoredPosition: {x: 167.5, y: -85.95714}
+  m_SizeDelta: {x: 155, y: 23.971428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &332539572
 MonoBehaviour:
@@ -719,8 +721,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.5, y: -178.34286}
-  m_SizeDelta: {x: 185, y: 16.971428}
+  m_AnchoredPosition: {x: 167.5, y: -178.34286}
+  m_SizeDelta: {x: 155, y: 16.971428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338034306
 MonoBehaviour:
@@ -761,8 +763,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 194540174}
-        m_MethodName: changeTeam
+      - m_Target: {fileID: 194540176}
+        m_MethodName: change
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -842,8 +844,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.5, y: -195.3143}
-  m_SizeDelta: {x: 185, y: 16.971428}
+  m_AnchoredPosition: {x: 167.5, y: -195.3143}
+  m_SizeDelta: {x: 155, y: 16.971428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &385510509
 MonoBehaviour:
@@ -883,7 +885,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 385510510}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 194540176}
+        m_MethodName: chooseTeam
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 194540174}
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &385510510
@@ -1395,8 +1419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.5, y: -133.9}
-  m_SizeDelta: {x: 185, y: 23.971428}
+  m_AnchoredPosition: {x: 167.5, y: -133.9}
+  m_SizeDelta: {x: 155, y: 23.971428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1220963516
 MonoBehaviour:
@@ -2097,8 +2121,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.5, y: -61.985714}
-  m_SizeDelta: {x: 185, y: 23.971428}
+  m_AnchoredPosition: {x: 167.5, y: -61.985714}
+  m_SizeDelta: {x: 155, y: 23.971428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897579539
 MonoBehaviour:
@@ -2484,8 +2508,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.5, y: -157.87143}
-  m_SizeDelta: {x: 185, y: 23.971428}
+  m_AnchoredPosition: {x: 167.5, y: -157.87143}
+  m_SizeDelta: {x: 155, y: 23.971428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966724492
 MonoBehaviour:
@@ -2644,8 +2668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.5, y: -109.92857}
-  m_SizeDelta: {x: 185, y: 23.971428}
+  m_AnchoredPosition: {x: 167.5, y: -109.92857}
+  m_SizeDelta: {x: 155, y: 23.971428}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052605656
 MonoBehaviour:

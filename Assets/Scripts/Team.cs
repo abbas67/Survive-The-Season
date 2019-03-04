@@ -4,32 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Team : MonoBehaviour
 {
+    
+    public List<TeamInfo> teaminfo = new List<TeamInfo>();
 
-
-
-
-    public string Name;
-    public int Reputation;
-    public int Budget;
-    public int Attack;
-    public int Defence;
-    public string Ground;
-    public int ManagementDiff;
-    public bool PlayerManaged;
-
-}
-
-
-
-
-
-
-public class TeamBehaviour : MonoBehaviour
-{
- 
-
-
-
+    int index = 0; 
 
 
 
@@ -37,84 +15,106 @@ public class TeamBehaviour : MonoBehaviour
     public Text ReputationText;
     public Text BudgetText;
     public Text AttackDefenceText;
-    public Text DefenceText;
     public Text GroundText;
-    Team DundeeRovers;
-    Team LondonKings;
-    Team LiverpoolRed;
+
+
 
     public void Start()
     {
-        DundeeRovers = new Team();
-        LondonKings = new Team();
-        LiverpoolRed = new Team();
-
-
-
         NameText = GameObject.Find("NameText").GetComponent<Text>();
         ReputationText = GameObject.Find("ReputationText").GetComponent<Text>();
         BudgetText = GameObject.Find("BudgetText").GetComponent<Text>();
         AttackDefenceText = GameObject.Find("AttackDefenceText").GetComponent<Text>();
         GroundText = GameObject.Find("GroundText").GetComponent<Text>();
+
+        TextAsset TeamData = Resources.Load<TextAsset>("TeamData");
+
+
+
+        string[] teamdata = TeamData.text.Split(new char[] { '\n' });
+        Debug.Log(teamdata.Length);
+
+        for (int i = 1; i < teamdata.Length; i++)
+        {
+            string[] row = teamdata[i].Split(new char[] { ',' });
+
+            if (row[1] != "")
+            {
+                TeamInfo t = new TeamInfo();
+
+                int.TryParse(row[0], out t.ID);
+                t.Name = row[1];
+                int.TryParse(row[2], out t.Rep);
+                int.TryParse(row[3], out t.Budget);
+                int.TryParse(row[4], out t.Attack);
+                int.TryParse(row[5], out t.Defence);
+                t.Ground = row[6];
+                int.TryParse(row[7], out t.Scored);
+                int.TryParse(row[8], out t.Conceded);
+                int.TryParse(row[9], out t.Wins);
+                int.TryParse(row[10], out t.Losses);
+                int.TryParse(row[11], out t.Draws);
+                int.TryParse(row[12], out t.Points);
+                int.TryParse(row[13], out t.BoardDiff);
+                int.TryParse(row[14], out t.FanDiff);
+
+                teaminfo.Add(t);
+            }
+
+
+
+        }
+
+        TeamSelect(0);
+      
+
+
     }
+
+    public void change()
+    {
+        if (index < 11)
+        {
+           index++;
+           TeamSelect(index);
+        }
+        else
+        {
+            index = 0;
+            TeamSelect(index);
+        }
+
+
+
+
+    }
+
+
+    public void chooseTeam()
+    {
+        Manager MyManager = new Manager();
+        MyManager.ManTeamID = index;
+
+    }
+
+
 
 
     public void TeamSelect(int index)
     {
-        
 
-        DundeeRovers.Name = "Dundee Rovers";
-        DundeeRovers.Reputation = 50;
-        DundeeRovers.Budget = 1000;
-        DundeeRovers.Attack = 75;
-        DundeeRovers.Defence = 80;
-        DundeeRovers.Ground = "Lochee Park";
-
-
-        LondonKings.Name = "London Kings";
-        LondonKings.Reputation = 99;
-        LondonKings.Budget = 10000;
-        LondonKings.Attack = 99;
-        LondonKings.Defence = 99;
-        LondonKings.Ground = "Stamford Park";
-
-        LiverpoolRed.Name = "Liverpool Red";
-        LiverpoolRed.Reputation = 80;
-        LiverpoolRed.Budget = 15000;
-        LiverpoolRed.Attack = 80;
-        LiverpoolRed.Defence = 67;
-        LiverpoolRed.Ground = "AnnPitch";
-
-
-        if (index == 0)
-            {
-            
-            NameText.text = ("Name: " + DundeeRovers.Name);
-            ReputationText.text = ("Reputation: " + DundeeRovers.Reputation);
-            BudgetText.text = ("Budget: " + DundeeRovers.Budget);
-            AttackDefenceText.text = ("Attack/Defence: " + DundeeRovers.Attack + "/" + DundeeRovers.Defence);         
-            GroundText.text = ("Ground: " + DundeeRovers.Ground);
-           }
-
-        if (index == 1)
-        {
-
-            NameText.text = ("Name: " + LondonKings.Name);
-            ReputationText.text = ("Reputation: " + LondonKings.Reputation);
-            BudgetText.text = ("Budget: " + LondonKings.Budget);
-            AttackDefenceText.text = ("Attack/Defence: " + LondonKings.Attack + "/" + LondonKings.Defence);
-            GroundText.text = ("Ground: " + LondonKings.Ground);
+            NameText.text = ("Name: " + teaminfo[index].Name);
+            ReputationText.text = ("Reputation: " + teaminfo[index].Rep);
+            BudgetText.text = ("Budget: " + teaminfo[index].Budget);
+            AttackDefenceText.text = ("Attack/Defence: " + teaminfo[index].Attack + "/" + +teaminfo[index].Defence);
+            GroundText.text = ("Ground: " + teaminfo[index].Ground);
         }
 
-        if (index == 2)
-        {
 
-            NameText.text = ("Name: " + LiverpoolRed.Name);
-            ReputationText.text = ("Reputation: " + LiverpoolRed.Reputation);
-            BudgetText.text = ("Budget: " + LiverpoolRed.Budget);
-            AttackDefenceText.text = ("Attack/Defence: " + LiverpoolRed.Attack + "/" + LiverpoolRed.Defence);
-            GroundText.text = ("Ground: " + LiverpoolRed.Ground);
-        }
+
+
+
+
 
     }
 
@@ -126,4 +126,4 @@ public class TeamBehaviour : MonoBehaviour
 
 
 
-}
+
