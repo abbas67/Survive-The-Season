@@ -7,9 +7,9 @@ public class Team : MonoBehaviour
     
     public List<TeamInfo> teaminfo = new List<TeamInfo>();
 
-    int index = 0; 
+    int index = 0;
 
-
+    
 
     public Text NameText;
     public Text ReputationText;
@@ -17,15 +17,23 @@ public class Team : MonoBehaviour
     public Text AttackDefenceText;
     public Text GroundText;
 
+    
+
 
 
     public void Start()
     {
-        NameText = GameObject.Find("NameText").GetComponent<Text>();
-        ReputationText = GameObject.Find("ReputationText").GetComponent<Text>();
-        BudgetText = GameObject.Find("BudgetText").GetComponent<Text>();
-        AttackDefenceText = GameObject.Find("AttackDefenceText").GetComponent<Text>();
-        GroundText = GameObject.Find("GroundText").GetComponent<Text>();
+
+
+
+        TeamSelect(0);
+      
+
+
+    }
+
+    public void loadData()
+    {
 
         TextAsset TeamData = Resources.Load<TextAsset>("TeamData");
 
@@ -65,48 +73,25 @@ public class Team : MonoBehaviour
 
         }
 
-        TeamSelect(0);
-      
-
-
-    }
-
-    public void change()
-    {
-        if (index < 11)
-        {
-           index++;
-           TeamSelect(index);
-        }
-        else
-        {
-            index = 0;
-            TeamSelect(index);
-        }
-
 
 
 
     }
-
-
-    public void chooseTeam()
-    {
-        Manager MyManager = new Manager();
-        MyManager.ManTeamID = index;
-
-    }
-
 
 
 
     public void TeamSelect(int index)
     {
+        NameText = GameObject.Find("NameText").GetComponent<Text>();
+        ReputationText = GameObject.Find("ReputationText").GetComponent<Text>();
+        BudgetText = GameObject.Find("BudgetText").GetComponent<Text>();
+        AttackDefenceText = GameObject.Find("AttackDefenceText").GetComponent<Text>();
+        GroundText = GameObject.Find("GroundText").GetComponent<Text>();
 
             NameText.text = ("Name: " + teaminfo[index].Name);
             ReputationText.text = ("Reputation: " + teaminfo[index].Rep);
             BudgetText.text = ("Budget: " + teaminfo[index].Budget);
-            AttackDefenceText.text = ("Attack/Defence: " + teaminfo[index].Attack + "/" + +teaminfo[index].Defence);
+            AttackDefenceText.text = ("Attack/Defence: " + teaminfo[index].Attack + "/" + teaminfo[index].Defence);
             GroundText.text = ("Ground: " + teaminfo[index].Ground);
         }
 
