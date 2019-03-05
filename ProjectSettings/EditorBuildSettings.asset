@@ -9,5 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ef2c534c52fb95448ab1f50f4428b705
   - enabled: 1
-    path: Assets/Scenes/Manager Creation.unity
-    guid: 2122089447b9f53428886d6a9ffe3d8f
+    path: Assets/Scenes/TeamSetup.unity
+    guid: debc4364330ca2b4dbc0982bedbf03f8
+  - enabled: 1
+    path: Assets/Scenes/mainInGameMenu.unity
+    guid: 0c9b0b81df5b2b340ba2da78489b4be4
+  m_configObjects: {}

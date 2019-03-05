@@ -248,6 +248,7 @@
     <Compile Include="Assets\Scripts\ManagerManagement.cs" />
     <Compile Include="Assets\Scripts\QuitOnClick.cs" />
     <Compile Include="Assets\Scripts\SelectOnInput.cs" />
+    <Compile Include="Assets\Scripts\Team.cs" />
     <Compile Include="Assets\Unity UI sample\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\Unity UI sample\Scripts\ApplicationManager.cs" />
     <Compile Include="Assets\Unity UI sample\Scripts\ChangeColor.cs" />

@@ -3,38 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManagerManagement : MonoBehaviour {
-
-    public InputField NameInputBox;
-    public InputField NationalityInputBox;
-    public InputField AgeInputBox;
-
-    int age;
-    string nationality;
-    string name;
-    string team;
-    bool employed;
-    int stresslevel;
-    int reputation;
+public class Manager : MonoBehaviour {
 
 
-    public ManagerManagement(int age, string nationality, string name, string team, bool emplyed, int stresslevel, int reputation)
-        {
+    public InputField NameInpuField;
+    public InputField NationalityInputField;
 
-        age = 21;
-        name = "Manager McManager";
-        team = "team mcteamface";
-        employed = false;
-        stresslevel = 20;
-        reputation = 25; 
 
-        }
+
+    public int ManAge;
+    public string ManNationality;
+    public string ManName;
+
+    public bool ManEmployed;
+    public int ManStress;
+    public int ManReputation;
+    public int ManTeamID;
+    
 
 
     public void ManagerCreate()
     {
 
-    
+        name = NameInpuField.text;
+
+        ManNationality = NationalityInputField.text;
+        
+        Debug.Log("Welcome " + ManName + " from " + ManNationality);
+
 
 
     }
