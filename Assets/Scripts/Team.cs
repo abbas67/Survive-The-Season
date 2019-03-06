@@ -9,38 +9,18 @@ public class Team : MonoBehaviour
 
     int index = 0;
 
-    
+    public TextAsset TeamData;
 
-    public Text NameText;
-    public Text ReputationText;
-    public Text BudgetText;
-    public Text AttackDefenceText;
-    public Text GroundText;
-
-    
-
-
-
-    public void Start()
-    {
-
-
-
-        TeamSelect(0);
-      
-
-
-    }
 
     public void loadData()
     {
 
-        TextAsset TeamData = Resources.Load<TextAsset>("TeamData");
+         TeamData = Resources.Load<TextAsset>("TeamData");
 
 
 
         string[] teamdata = TeamData.text.Split(new char[] { '\n' });
-        Debug.Log(teamdata.Length);
+ 
 
         for (int i = 1; i < teamdata.Length; i++)
         {
@@ -80,20 +60,10 @@ public class Team : MonoBehaviour
 
 
 
-    public void TeamSelect(int index)
-    {
-        NameText = GameObject.Find("NameText").GetComponent<Text>();
-        ReputationText = GameObject.Find("ReputationText").GetComponent<Text>();
-        BudgetText = GameObject.Find("BudgetText").GetComponent<Text>();
-        AttackDefenceText = GameObject.Find("AttackDefenceText").GetComponent<Text>();
-        GroundText = GameObject.Find("GroundText").GetComponent<Text>();
 
-            NameText.text = ("Name: " + teaminfo[index].Name);
-            ReputationText.text = ("Reputation: " + teaminfo[index].Rep);
-            BudgetText.text = ("Budget: " + teaminfo[index].Budget);
-            AttackDefenceText.text = ("Attack/Defence: " + teaminfo[index].Attack + "/" + teaminfo[index].Defence);
-            GroundText.text = ("Ground: " + teaminfo[index].Ground);
-        }
+
+
+
 
 
 

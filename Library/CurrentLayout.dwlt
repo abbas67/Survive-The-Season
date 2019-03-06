@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 424}
   m_MaxSize: {x: 22006, y: 10024}
   vertical: 0
-  controlID: 169
+  controlID: 15589
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 424}
   m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 265
+  controlID: 15590
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -462,7 +462,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d4fbffff
+      m_ExpandedIDs: da97fffffe97ffff3499ffffb099ffff2e9affff7e9bffffb49bffff7e9dffffb49dffffa4a6ffffdaa6ffffcca8fffff0a8ffff26aaffffa4aaffff24abffff18adffff3eadffff62adffff14afffff92afffff9eafffff14b6ffff70b6ffff94b6ffff9eb6ffff18b7ffff92b7ffff08b8ffff2cb8ffff62b9ffffdeb9ffff60bafffffcbcffff28bdffffb2c1ffffaec2ffffd2c2ffff08c4ffff82c4ffff02c5ffff3ec8ffff62c8ffff98c9ffff12caffff92caffff38d2ffff6ae0ffff76ebffff66eeffff70f7fffff82f0000b8300000e4300000ea43000066440000cc4b0000e04c000034680000b0680000048c00008cf100004cf2000078f200000c0e0100200f0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -524,20 +524,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Music
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Music
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Abbas\Documents\GitHub\GamesProgramming
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 4e0b0000
-    m_LastClickedID: 2894
-    m_ExpandedIDs: 0000000088090000340b0000580c000000ca9a3b
+    m_SelectedIDs: 383d0100
+    m_LastClickedID: 81208
+    m_ExpandedIDs: 000000000e2d0000902e00008e2f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -565,7 +565,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000088090000340b0000580c000000ca9a3b
+    m_ExpandedIDs: 000000000e2d0000902e00008e2f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
