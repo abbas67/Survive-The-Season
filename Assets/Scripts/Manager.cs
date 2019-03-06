@@ -19,13 +19,22 @@ public class Manager : MonoBehaviour {
     int ManStress;
     int ManReputation;
     int ManTeamID;
-    
+
+
+    public void Start()
+    {
+
+        NameInpuField = GameObject.Find("NameInputField").GetComponent<InputField>();
+        NationalityInputField = GameObject.Find("NationalityInputField").GetComponent<InputField>();
+
+
+
+    }
 
 
     public void ManagerCreate()
     {
-        NameInpuField = GameObject.Find("NameInpuField").GetComponent<InputField>();
-        NationalityInputField = GameObject.Find("NationalityInputField").GetComponent<InputField>();
+
 
 
 
