@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Team : MonoBehaviour
 {
     
-    public List<TeamInfo> teaminfo = new List<TeamInfo>();
+   public List<TeamInfo> teaminfo = new List<TeamInfo>();
 
     int index = 0;
 
