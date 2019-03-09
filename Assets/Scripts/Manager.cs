@@ -15,10 +15,10 @@ public class Manager : MonoBehaviour {
     string ManNationality;
     string ManName;
 
-    bool ManEmployed;
-    int ManStress;
-    int ManReputation;
-    int ManTeamID;
+   
+    static public int ManStress = 50;
+    static public int ManReputation = 50;
+
 
 
     public void Start()

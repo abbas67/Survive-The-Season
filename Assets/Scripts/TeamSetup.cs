@@ -17,24 +17,11 @@ public class TeamSetup : MonoBehaviour
 
 
     int index = 0;
-    private int TeamManagedID;
+    static public int TeamManagedID;
 
 
-    public int teammanagedid
-    {
-        get
-        {
-            return TeamManagedID;
-        }
-        set
-        {
-            TeamManagedID = value;
-        }
-    }
-
-
-
-
+ 
+   
     public void TeamSelect(int index)
     {
        NameText = GameObject.Find("NameText").GetComponent<Text>();
@@ -79,11 +66,11 @@ public class TeamSetup : MonoBehaviour
 
     public void chooseTeam()
     {
-
+       
         TeamManagedID = index;
 
 
-        Debug.Log(TeamManagedID);
+        
 
        
 
