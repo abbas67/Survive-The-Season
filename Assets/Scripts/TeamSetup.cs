@@ -7,14 +7,17 @@ public class TeamSetup : MonoBehaviour
 
 
     Team myteam = new Team();
+    Player myplayer = new Player();
 
      Text NameText;
     public Text ReputationText;
     public Text BudgetText;
     public Text AttackDefenceText;
     public Text GroundText;
-
-
+    int i;
+    int j;
+    int AttackCount;
+    int DefenceCount;
 
     int index = 0;
     static public int TeamManagedID;
@@ -76,10 +79,46 @@ public class TeamSetup : MonoBehaviour
 
     }
 
+    /*
+    public void updateOverall()
+    {
+        for (i = 1; i <= myteam.teaminfo.Count; i++)
+        {
+            int count = 0;
+
+            for (j = 1; j <= myplayer.playerinfo.Count; j++)
+            {
+                if (myplayer.playerinfo[j].Position == "CB")
+                {
+                    AttackCount = AttackCount + myplayer.playerinfo[j].Tackling;
+                    count++;
+                }
+
+                else if (myplayer.playerinfo[j].Position == "LB")
+                {
+                    AttackCount = AttackCount + myplayer.playerinfo[j].Tackling;
+                    count++;
+                }
+
+                else if (myplayer.playerinfo[j].Position == "RB")
+                {
+                    AttackCount = AttackCount + myplayer.playerinfo[j].Tackling;
+                    count++;
+                }
 
 
 
 
+                myteam.teaminfo[i].Attack = myplayer.
+            }
+
+
+        }
+
+    }
+
+
+    */
 
 
     // Start is called before the first frame update
