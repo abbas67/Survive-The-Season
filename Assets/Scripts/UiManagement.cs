@@ -33,6 +33,7 @@ public class UiManagement : MonoBehaviour
     int DrawsCounter;
 
     Team myteam = new Team();
+    Player myplayer = new Player();
     TeamSetup myTeamSetup = new TeamSetup();
 
     List<Text> Tlist = new List<Text>();
@@ -81,7 +82,7 @@ public class UiManagement : MonoBehaviour
 
     public void updateFaith()
     {   // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 3;
+        TeamSetup.TeamManagedID = 0;
         BoardText.text = ("Board Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].BoardDiff));
         FanText.text = ("Fan Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].FanDiff));
         ManagerText.text = ("Your Stress Level: " + Manager.ManStress + " Your Reputation: " + Manager.ManReputation);
@@ -93,6 +94,8 @@ public class UiManagement : MonoBehaviour
     void Start()
     {
         myteam.loadData();
+        myplayer.loadPlayerData();
+        myplayer.updateOverall();
 
         BoardText = GameObject.Find("BoardText").GetComponent<Text>();
         FanText = GameObject.Find("FanText").GetComponent<Text>();
