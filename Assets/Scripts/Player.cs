@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     public void updateOverall()
     {
 
-        for (i = 0; i <= 22; i++)
+        for (i = 0; i <= 45; i++)
         {
             if (playerinfo[i].Position == "GK")
             {
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
 
             }
 
-            Debug.Log(playerinfo[i].Name + " " + playerinfo[i].Position + " " + playerinfo[i].Overall);
+           // Debug.Log(playerinfo[i].Name + " " + playerinfo[i].Position + " " + playerinfo[i].Overall);
 
 
         }
