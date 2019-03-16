@@ -8,6 +8,8 @@ using System.Linq;
 
 public class UiManagement : MonoBehaviour
 {
+    public Button NextBtn;
+    public Button BackBtn;
 
     public Text BoardText;
     public Text FanText;
@@ -153,30 +155,7 @@ public class UiManagement : MonoBehaviour
 
     public void PointsUpdater()
     {
-        Pos0 = GameObject.Find("Pos0").GetComponent<Text>();
-        Tlist.Add(Pos0);
-        Pos1 = GameObject.Find("Pos1").GetComponent<Text>();
-        Tlist.Add(Pos1);
-        Pos2 = GameObject.Find("Pos2").GetComponent<Text>();
-        Tlist.Add(Pos2);
-        Pos3 = GameObject.Find("Pos3").GetComponent<Text>();
-        Tlist.Add(Pos3);
-        Pos4 = GameObject.Find("Pos4").GetComponent<Text>();
-        Tlist.Add(Pos4);
-        Pos5 = GameObject.Find("Pos5").GetComponent<Text>();
-        Tlist.Add(Pos5);
-        Pos6 = GameObject.Find("Pos6").GetComponent<Text>();
-        Tlist.Add(Pos6);
-        Pos7 = GameObject.Find("Pos7").GetComponent<Text>();
-        Tlist.Add(Pos7);
-        Pos8 = GameObject.Find("Pos8").GetComponent<Text>();
-        Tlist.Add(Pos8);
-        Pos9 = GameObject.Find("Pos9").GetComponent<Text>();
-        Tlist.Add(Pos9);
-        Pos10 = GameObject.Find("Pos10").GetComponent<Text>();
-        Tlist.Add(Pos10);
-        Pos11 = GameObject.Find("Pos11").GetComponent<Text>();
-        Tlist.Add(Pos11);
+
 
         // updates the points each team has based on wins and losses 
         for (i = 0; i <= 11; i++)
@@ -202,18 +181,23 @@ public class UiManagement : MonoBehaviour
 
 
 
-        for (i = 0; i <= 11; i++)
-        {
-            Tlist[i].text = (SortedTeams[i].Name + "            " + SortedTeams[i].Wins + "             " + SortedTeams[i].Losses + "           " + SortedTeams[i].Draws + "            " + SortedTeams[i].Points);
-
-        }
-
-
-
-
-
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void selectSquad()
     {
@@ -235,9 +219,83 @@ public class UiManagement : MonoBehaviour
 
     }
 
+    public void NextSquadPage()
+    {
+
+        for (i = 12; i <= 22; i++)
+        {
+
+            SquadNameList[i - 12].text = SelectedSquad[i].Name;
+            SquadPositionList[i - 12].text = SelectedSquad[i].Position;
+            SquadOverallList[i - 12].text = SelectedSquad[i].Overall.ToString();
+            SquadAgeList[i - 12].text = SelectedSquad[i].Age.ToString();
+            SquadFormList[i - 12].text = SelectedSquad[i].Form.ToString();
+            SquadMoraleList[i - 12].text = SelectedSquad[i].Morale.ToString();
+
+            Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
+
+        }
+
+        SquadNameList[11].gameObject.SetActive(false);
+        SquadPositionList[11].gameObject.SetActive(false);
+        SquadOverallList[11].gameObject.SetActive(false);
+        SquadAgeList[11].gameObject.SetActive(false);
+        SquadFormList[11].gameObject.SetActive(false);
+        SquadMoraleList[11].gameObject.SetActive(false);
+        MoreInfoBtn12.gameObject.SetActive(false);
+
+
+    }
+
+
+
+
+    public void BackSquadPage()
+    {
+
+        SquadNameList[11].gameObject.SetActive(true);
+        SquadPositionList[11].gameObject.SetActive(true);
+        SquadOverallList[11].gameObject.SetActive(true);
+        SquadAgeList[11].gameObject.SetActive(true);
+        SquadFormList[11].gameObject.SetActive(true);
+        SquadMoraleList[11].gameObject.SetActive(true);
+        MoreInfoBtn12.gameObject.SetActive(true);
+
+
+
+
+        for (i = 0; i <= 11; i++)
+        {
+
+            SquadNameList[i].text = SelectedSquad[i].Name;
+            SquadPositionList[i].text = SelectedSquad[i].Position;
+            SquadOverallList[i].text = SelectedSquad[i].Overall.ToString();
+            SquadAgeList[i].text = SelectedSquad[i].Age.ToString();
+            SquadFormList[i].text = SelectedSquad[i].Form.ToString();
+            SquadMoraleList[i].text = SelectedSquad[i].Morale.ToString();
+
+            Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     public void populateSquad()
     {
+        NextBtn = GameObject.Find("NextBtn").GetComponent<Button>();
+        BackBtn = GameObject.Find("BackBtn").GetComponent<Button>();
 
 
         NameHeader = GameObject.Find("NameHeader").GetComponent<Text>();
@@ -463,6 +521,7 @@ public class UiManagement : MonoBehaviour
         MoreInfoBtn12 = GameObject.Find("MoreInfoBtn (12)").GetComponent<Button>();
 
 
+
         SquadNameList.Add(NameHeader12);
         SquadPositionList.Add(PositionHeader12);
         SquadOverallList.Add(OverallHeader12);
@@ -471,7 +530,7 @@ public class UiManagement : MonoBehaviour
         SquadAgeList.Add(AgeHeader12);
 
 
-        for (i = 0; i <= 12; i++)
+        for (i = 0; i <= 11; i++)
         {
 
             SquadNameList[i].text = SelectedSquad[i].Name;
@@ -506,13 +565,11 @@ public class UiManagement : MonoBehaviour
     void Start()
     {
         // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 1;
+       TeamSetup.TeamManagedID = 1;
 
         myteam.loadData();
         myplayer.loadPlayerData();
         myplayer.updateOverall();
-        selectSquad();
-        populateSquad();
 
         BoardText = GameObject.Find("BoardText").GetComponent<Text>();
         FanText = GameObject.Find("FanText").GetComponent<Text>();
@@ -521,8 +578,8 @@ public class UiManagement : MonoBehaviour
 
 
 
-       // updateFaith();
-       // PointsUpdater();
+        updateFaith();
+        PointsUpdater();
        
     }
 
