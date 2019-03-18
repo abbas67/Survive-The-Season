@@ -134,6 +134,95 @@ public class UiManagement : MonoBehaviour
     public Text FormHeader12;
     public Button MoreInfoBtn12;
 
+
+
+
+    public Text Team0;
+    public Text Wins0;
+    public Text Losses0;
+    public Text Draws0;
+    public Text Points0;
+
+    public Text Team1;
+    public Text Wins1;
+    public Text Losses1;
+    public Text Draws1;
+    public Text Points1;
+
+    public Text Team2;
+    public Text Wins2;
+    public Text Losses2;
+    public Text Draws2;
+    public Text Points2;
+
+    public Text Team3;
+    public Text Wins3;
+    public Text Losses3;
+    public Text Draws3;
+    public Text Points3;
+
+    public Text Team4;
+    public Text Wins4;
+    public Text Losses4;
+    public Text Draws4;
+    public Text Points4;
+
+    public Text Team5;
+    public Text Wins5;
+    public Text Losses5;
+    public Text Draws5;
+    public Text Points5;
+
+    public Text Team6;
+    public Text Wins6;
+    public Text Losses6;
+    public Text Draws6;
+    public Text Points6;
+
+    public Text Team7;
+    public Text Wins7;
+    public Text Losses7;
+    public Text Draws7;
+    public Text Points7;
+
+    public Text Team8;
+    public Text Wins8;
+    public Text Losses8;
+    public Text Draws8;
+    public Text Points8;
+
+    public Text Team9;
+    public Text Wins9;
+    public Text Losses9;
+    public Text Draws9;
+    public Text Points9;
+
+    public Text Team10;
+    public Text Wins10;
+    public Text Losses10;
+    public Text Draws10;
+    public Text Points10;
+
+    public Text Team11;
+    public Text Wins11;
+    public Text Losses11;
+    public Text Draws11;
+    public Text Points11;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     int i = 0;
     int WinsCounter;
     int DrawsCounter;
@@ -150,7 +239,193 @@ public class UiManagement : MonoBehaviour
     List<Text> SquadPositionList = new List<Text>();
     List<Text> SquadNameList = new List<Text>();
 
+    List<Text> LeagueTeamList = new List<Text>();
+    List<Text> LeagueWinsList = new List<Text>();
+    List<Text> LeagueLossesList = new List<Text>();
+    List<Text> LeagueDrawsList = new List<Text>();
+    List<Text> LeaguePointsList = new List<Text>();
+
+
     public List<PlayerInfo> SelectedSquad = new List<PlayerInfo>();
+
+    public List<TeamInfo> SortedTeams = new List<TeamInfo>();
+
+
+
+
+
+    public void PopulateTable()
+    {
+
+        Team0 = GameObject.Find("Team (0)").GetComponent<Text>();
+        Wins0 = GameObject.Find("Wins (0)").GetComponent<Text>();
+        Losses0 = GameObject.Find("Losses (0)").GetComponent<Text>();
+        Draws0 = GameObject.Find("Draws (0)").GetComponent<Text>();
+        Points0 = GameObject.Find("Points (0)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team0);
+        LeagueWinsList.Add(Wins0);
+        LeagueLossesList.Add(Losses0);
+        LeagueDrawsList.Add(Draws0);
+        LeaguePointsList.Add(Points0);
+
+
+        Team1 = GameObject.Find("Team (1)").GetComponent<Text>();
+        Wins1 = GameObject.Find("Wins (1)").GetComponent<Text>();
+        Losses1 = GameObject.Find("Losses (1)").GetComponent<Text>();
+        Draws1 = GameObject.Find("Draws (1)").GetComponent<Text>();
+        Points1 = GameObject.Find("Points (1)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team1);
+        LeagueWinsList.Add(Wins1);
+        LeagueLossesList.Add(Losses1);
+        LeagueDrawsList.Add(Draws1);
+        LeaguePointsList.Add(Points1);
+
+
+
+
+
+        Team2 = GameObject.Find("Team (2)").GetComponent<Text>();
+        Wins2 = GameObject.Find("Wins (2)").GetComponent<Text>();
+        Losses2 = GameObject.Find("Losses (2)").GetComponent<Text>();
+        Draws2 = GameObject.Find("Draws (2)").GetComponent<Text>();
+        Points2 = GameObject.Find("Points (2)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team2);
+        LeagueWinsList.Add(Wins2);
+        LeagueLossesList.Add(Losses2);
+        LeagueDrawsList.Add(Draws2);
+        LeaguePointsList.Add(Points2);
+
+
+        Team3 = GameObject.Find("Team (3)").GetComponent<Text>();
+        Wins3 = GameObject.Find("Wins (3)").GetComponent<Text>();
+        Losses3 = GameObject.Find("Losses (3)").GetComponent<Text>();
+        Draws3 = GameObject.Find("Draws (3)").GetComponent<Text>();
+        Points3 = GameObject.Find("Points (3)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team3);
+        LeagueWinsList.Add(Wins3);
+        LeagueLossesList.Add(Losses3);
+        LeagueDrawsList.Add(Draws3);
+        LeaguePointsList.Add(Points3);
+
+
+        Team4 = GameObject.Find("Team (4)").GetComponent<Text>();
+        Wins4 = GameObject.Find("Wins (4)").GetComponent<Text>();
+        Losses4 = GameObject.Find("Losses (4)").GetComponent<Text>();
+        Draws4 = GameObject.Find("Draws (4)").GetComponent<Text>();
+        Points4 = GameObject.Find("Points (4)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team4);
+        LeagueWinsList.Add(Wins4);
+        LeagueLossesList.Add(Losses4);
+        LeagueDrawsList.Add(Draws4);
+        LeaguePointsList.Add(Points4);
+
+        Team5 = GameObject.Find("Team (5)").GetComponent<Text>();
+        Wins5 = GameObject.Find("Wins (5)").GetComponent<Text>();
+        Losses5 = GameObject.Find("Losses (5)").GetComponent<Text>();
+        Draws5 = GameObject.Find("Draws (5)").GetComponent<Text>();
+        Points5 = GameObject.Find("Points (5)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team5);
+        LeagueWinsList.Add(Wins5);
+        LeagueLossesList.Add(Losses5);
+        LeagueDrawsList.Add(Draws5);
+        LeaguePointsList.Add(Points5);
+
+        Team6 = GameObject.Find("Team (6)").GetComponent<Text>();
+        Wins6 = GameObject.Find("Wins (6)").GetComponent<Text>();
+        Losses6 = GameObject.Find("Losses (6)").GetComponent<Text>();
+        Draws6 = GameObject.Find("Draws (6)").GetComponent<Text>();
+        Points6 = GameObject.Find("Points (6)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team6);
+        LeagueWinsList.Add(Wins6);
+        LeagueLossesList.Add(Losses6);
+        LeagueDrawsList.Add(Draws6);
+        LeaguePointsList.Add(Points6);
+
+        Team7 = GameObject.Find("Team (7)").GetComponent<Text>();
+        Wins7 = GameObject.Find("Wins (7)").GetComponent<Text>();
+        Losses7 = GameObject.Find("Losses (7)").GetComponent<Text>();
+        Draws7 = GameObject.Find("Draws (7)").GetComponent<Text>();
+        Points7 = GameObject.Find("Points (7)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team7);
+        LeagueWinsList.Add(Wins7);
+        LeagueLossesList.Add(Losses7);
+        LeagueDrawsList.Add(Draws7);
+        LeaguePointsList.Add(Points7);
+
+        Team8 = GameObject.Find("Team (8)").GetComponent<Text>();
+        Wins8 = GameObject.Find("Wins (8)").GetComponent<Text>();
+        Losses8 = GameObject.Find("Losses (8)").GetComponent<Text>();
+        Draws8 = GameObject.Find("Draws (8)").GetComponent<Text>();
+        Points8 = GameObject.Find("Points (8)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team8);
+        LeagueWinsList.Add(Wins8);
+        LeagueLossesList.Add(Losses8);
+        LeagueDrawsList.Add(Draws8);
+        LeaguePointsList.Add(Points8);
+
+        Team9 = GameObject.Find("Team (9)").GetComponent<Text>();
+        Wins9 = GameObject.Find("Wins (9)").GetComponent<Text>();
+        Losses9 = GameObject.Find("Losses (9)").GetComponent<Text>();
+        Draws9 = GameObject.Find("Draws (9)").GetComponent<Text>();
+        Points9 = GameObject.Find("Points (9)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team9);
+        LeagueWinsList.Add(Wins9);
+        LeagueLossesList.Add(Losses9);
+        LeagueDrawsList.Add(Draws9);
+        LeaguePointsList.Add(Points9);
+
+        Team10 = GameObject.Find("Team (10)").GetComponent<Text>();
+        Wins10 = GameObject.Find("Wins (10)").GetComponent<Text>();
+        Losses10 = GameObject.Find("Losses (10)").GetComponent<Text>();
+        Draws10 = GameObject.Find("Draws (10)").GetComponent<Text>();
+        Points10 = GameObject.Find("Points (10)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team10);
+        LeagueWinsList.Add(Wins10);
+        LeagueLossesList.Add(Losses10);
+        LeagueDrawsList.Add(Draws10);
+        LeaguePointsList.Add(Points10);
+
+
+        Team11 = GameObject.Find("Team (11)").GetComponent<Text>();
+        Wins11 = GameObject.Find("Wins (11)").GetComponent<Text>();
+        Losses11 = GameObject.Find("Losses (11)").GetComponent<Text>();
+        Draws11 = GameObject.Find("Draws (11)").GetComponent<Text>();
+        Points11 = GameObject.Find("Points (11)").GetComponent<Text>();
+
+        LeagueTeamList.Add(Team11);
+        LeagueWinsList.Add(Wins11);
+        LeagueLossesList.Add(Losses11);
+        LeagueDrawsList.Add(Draws11);
+        LeaguePointsList.Add(Points11);
+
+
+        for (i = 0; i <= 11; i++)
+        {
+
+            LeagueTeamList[i].text = SortedTeams[i].Name;
+            LeagueWinsList[i].text = SortedTeams[i].Wins.ToString();
+            LeagueLossesList[i].text = SortedTeams[i].Losses.ToString();
+            LeagueDrawsList[i].text = SortedTeams[i].Draws.ToString();
+            LeaguePointsList[i].text = SortedTeams[i].Points.ToString();
+
+        }
+
+
+    }
+
+
+
 
 
     public void PointsUpdater()
@@ -176,7 +451,7 @@ public class UiManagement : MonoBehaviour
         }
 
         //sorting the list
-        List<TeamInfo> SortedTeams = myteam.teaminfo.OrderByDescending(x => x.Points).ToList();
+         SortedTeams = myteam.teaminfo.OrderByDescending(x => x.Points).ToList();
 
 
 
@@ -580,6 +855,7 @@ public class UiManagement : MonoBehaviour
 
         updateFaith();
         PointsUpdater();
+        PopulateTable();
        
     }
 
