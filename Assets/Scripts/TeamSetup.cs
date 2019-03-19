@@ -79,46 +79,7 @@ public class TeamSetup : MonoBehaviour
 
     }
 
-    /*
-    public void updateOverall()
-    {
-        for (i = 1; i <= myteam.teaminfo.Count; i++)
-        {
-            int count = 0;
 
-            for (j = 1; j <= myplayer.playerinfo.Count; j++)
-            {
-                if (myplayer.playerinfo[j].Position == "CB")
-                {
-                    AttackCount = AttackCount + myplayer.playerinfo[j].Tackling;
-                    count++;
-                }
-
-                else if (myplayer.playerinfo[j].Position == "LB")
-                {
-                    AttackCount = AttackCount + myplayer.playerinfo[j].Tackling;
-                    count++;
-                }
-
-                else if (myplayer.playerinfo[j].Position == "RB")
-                {
-                    AttackCount = AttackCount + myplayer.playerinfo[j].Tackling;
-                    count++;
-                }
-
-
-
-
-                myteam.teaminfo[i].Attack = myplayer.
-            }
-
-
-        }
-
-    }
-
-
-    */
 
 
     // Start is called before the first frame update
