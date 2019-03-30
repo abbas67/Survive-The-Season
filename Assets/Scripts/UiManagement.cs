@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 
 
 public class UiManagement : MonoBehaviour
 {
+
+
+
+
+
+
+
     public Button NextBtn;
     public Button BackBtn;
 
@@ -25,7 +33,7 @@ public class UiManagement : MonoBehaviour
     public Text Pos7;
     public Text Pos8;
     public Text Pos9;
-    public Text Pos10;
+    public Text Pos10; 
     public Text Pos11;
 
 
@@ -823,7 +831,16 @@ public class UiManagement : MonoBehaviour
 
     }
 
+    public void PopulateSquadChoice()
+    {
 
+
+
+
+
+
+
+    }
 
 
 
@@ -831,7 +848,7 @@ public class UiManagement : MonoBehaviour
     {   
         BoardText.text = ("Board Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].BoardDiff));
         FanText.text = ("Fan Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].FanDiff));
-        ManagerText.text = ("Your Stress Level: " + Manager.ManStress + " Your Reputation: " + Manager.ManReputation);
+        ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
 
     }
 
