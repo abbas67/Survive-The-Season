@@ -10,6 +10,42 @@ using UnityEngine.EventSystems;
 public class UiManagement : MonoBehaviour
 {
 
+    public Text TeamOverallText;
+    public Text TablePositionText;
+    public Text AttackingThreatText;
+    public Text DefensiveThreatText;
+    public Text CurrentGameplanText;
+    public Text GameplanCapabilityText;
+    public Button PressureBtn;
+    public Button CounterBtn;
+    public Button PossesionBtn;
+
+
+
+
+    public Text Playerinfo0;
+    public Text Playerinfo1;
+    public Text Playerinfo2;
+    public Text Playerinfo3;
+    public Text Playerinfo4;
+    public Text Playerinfo5;
+    public Text Playerinfo6;
+    public Text Playerinfo7;
+    public Text Playerinfo8;
+    public Text Playerinfo9;
+    public Text Playerinfo10;
+    public Text Playerinfo11;
+    public Text Playerinfo12;
+    public Text Playerinfo13;
+    public Text Playerinfo14;
+    public Text Playerinfo15;
+    public Text Playerinfo16;
+    public Text Playerinfo17;
+    public Text Playerinfo18;
+    public Text Playerinfo19;
+    public Text Playerinfo20;
+    public Text Playerinfo21;
+    public Text Playerinfo22;
 
 
 
@@ -258,6 +294,142 @@ public class UiManagement : MonoBehaviour
 
     public List<TeamInfo> SortedTeams = new List<TeamInfo>();
 
+    public List<Text> SquadChoice;
+
+
+    static public int CurrentTeamOverall;
+
+    public void DisplaySquadChoice()
+    {
+
+       
+        
+        AttackingThreatText = GameObject.Find("AttackingThreatText").GetComponent<Text>();
+        DefensiveThreatText = GameObject.Find("DefensiveThreatText").GetComponent<Text>();
+        CurrentGameplanText = GameObject.Find("CurrentGameplanText").GetComponent<Text>();
+        GameplanCapabilityText = GameObject.Find("GameplanCapabilityText").GetComponent<Text>();
+        PressureBtn = GameObject.Find("PressureBtn").GetComponent<Button>();
+        CounterBtn = GameObject.Find("CounterBtn").GetComponent<Button>();
+        PossesionBtn  = GameObject.Find("PossesionBtn").GetComponent<Button>();
+
+
+        Playerinfo0 = GameObject.Find("PlayerInfo (0)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo0);
+
+        Playerinfo1 = GameObject.Find("PlayerInfo (1)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo1);
+
+        Playerinfo2 = GameObject.Find("PlayerInfo (2)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo2);
+
+        Playerinfo3 = GameObject.Find("PlayerInfo (3)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo3);
+
+        Playerinfo4 = GameObject.Find("PlayerInfo (4)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo4);
+
+        Playerinfo5 = GameObject.Find("PlayerInfo (5)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo5);
+
+
+        Playerinfo6 = GameObject.Find("PlayerInfo (6)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo6);
+
+        Playerinfo7 = GameObject.Find("PlayerInfo (7)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo7);
+
+        Playerinfo8 = GameObject.Find("PlayerInfo (8)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo8);
+
+
+        Playerinfo9 = GameObject.Find("PlayerInfo (9)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo9);
+
+        Playerinfo10 = GameObject.Find("PlayerInfo (10)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo10);
+
+        Playerinfo11 = GameObject.Find("PlayerInfo (11)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo11);
+
+        Playerinfo12 = GameObject.Find("PlayerInfo (12)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo12);
+
+
+        Playerinfo13 = GameObject.Find("PlayerInfo (13)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo13);
+
+
+        Playerinfo14 = GameObject.Find("PlayerInfo (14)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo14);
+
+
+        Playerinfo15 = GameObject.Find("PlayerInfo (15)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo15);
+
+        Playerinfo16 = GameObject.Find("PlayerInfo (16)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo16);
+
+
+        Playerinfo17 = GameObject.Find("PlayerInfo (17)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo17);
+
+        Playerinfo18 = GameObject.Find("PlayerInfo (18)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo18);
+
+        Playerinfo19 = GameObject.Find("PlayerInfo (19)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo19);
+
+        Playerinfo20 = GameObject.Find("PlayerInfo (20)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo20);
+
+        Playerinfo21 = GameObject.Find("PlayerInfo (21)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo21);
+
+        Playerinfo22 = GameObject.Find("PlayerInfo (22)").GetComponent<Text>();
+        SquadChoice.Add(Playerinfo22);
+
+
+
+
+        for (i = 0; i <= 22; i++)
+        {
+            SquadChoice[i].text = (SelectedSquad[i].Name +"\n"+ SelectedSquad[i].Position + "\n" + SelectedSquad[i].Overall);
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+    }
+
+
+    public void CalculateCurrOverall()
+    {
+        TeamOverallText = GameObject.Find("TeamOverallText").GetComponent<Text>();
+        int total = 0;
+        //CurrentTeamOverall
+        for (i = 0; i <= 22; i++)
+        {
+             total = total + SelectedSquad[i].Overall;
+
+
+
+        }
+
+        CurrentTeamOverall = total / 23;
+
+        Debug.Log(CurrentTeamOverall);
+        TeamOverallText.text = ("Team Overall: " + CurrentTeamOverall);
+
+    }
+
 
 
 
@@ -432,7 +604,130 @@ public class UiManagement : MonoBehaviour
 
     }
 
+    public void RetrievePos()
+    {
+        TablePositionText = GameObject.Find("TablePositionText").GetComponent<Text>();
+        int i = 0;
+        bool found = false;
 
+        while (found == false)
+        {
+
+            if (SortedTeams[i].ID == TeamSetup.TeamManagedID)
+            {
+
+                found = true;
+            }
+            else
+            {
+                i++; 
+
+
+            }
+
+        }
+
+        if (i == 0)
+        {
+
+            TablePositionText.text = "Table Position: 1st";
+
+
+        }
+
+        if (i == 1)
+        {
+
+            TablePositionText.text = "Table Position: 2nd";
+
+
+        }
+
+        if (i == 2)
+        {
+
+            TablePositionText.text = "Table Position: 3rd";
+
+
+        }
+
+
+        if (i == 3)
+        {
+
+            TablePositionText.text = "Table Position: 4th";
+
+
+        }
+
+        if (i == 4)
+        {
+
+            TablePositionText.text = "Table Position: 5th";
+
+
+        }
+
+
+
+        if (i == 5)
+        {
+
+            TablePositionText.text = "Table Position: 6th";
+
+
+        }
+
+        if (i == 6)
+        {
+
+            TablePositionText.text = "Table Position: 7th";
+
+
+        }
+
+        if (i == 7)
+        {
+
+            TablePositionText.text = "Table Position: 8th";
+
+
+        }
+
+        if (i == 8)
+        {
+
+            TablePositionText.text = "Table Position: 9th";
+
+
+        }
+
+
+        if (i == 9)
+        {
+
+            TablePositionText.text = "Table Position: 10th";
+
+
+        }
+
+        if (i == 10)
+        {
+
+            TablePositionText.text = "Table Position: 11th";
+
+
+        }
+
+        if (i == 11)
+        {
+
+            TablePositionText.text = "Table Position: 12th";
+
+
+        }
+
+    }
 
 
 
@@ -831,49 +1126,45 @@ public class UiManagement : MonoBehaviour
 
     }
 
-    public void PopulateSquadChoice()
-    {
-
-
-
-
-
-
-
-    }
 
 
 
     public void updateFaith()
-    {   
-        BoardText.text = ("Board Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].BoardDiff));
-        FanText.text = ("Fan Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].FanDiff));
-        ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
-
-    }
-
-
-
-    void Start()
     {
-        // for test purposes pre chosen team.
-       TeamSetup.TeamManagedID = 1;
-
-        myteam.loadData();
-        myplayer.loadPlayerData();
-        myplayer.updateOverall();
-
         BoardText = GameObject.Find("BoardText").GetComponent<Text>();
         FanText = GameObject.Find("FanText").GetComponent<Text>();
         ManagerText = GameObject.Find("ManagerText").GetComponent<Text>();
 
 
 
+        BoardText.text = ("Board Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].BoardDiff));
+        FanText.text = ("Fan Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].FanDiff));
+        ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
 
-        updateFaith();
+    }
+
+    
+
+    void Start()
+    {
+        // for test purposes pre chosen team.
+       TeamSetup.TeamManagedID = 0;
+
+        myteam.loadData();
+        myplayer.loadPlayerData();
+        myplayer.updateOverall();
+
+
+
+
+        selectSquad();
+
+       // updateFaith();
         PointsUpdater();
-        PopulateTable();
-       
+       // PopulateTable();
+        DisplaySquadChoice();
+        CalculateCurrOverall();
+        RetrievePos();
     }
 
 
