@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mainInGameMenu.unity
     guid: 0c9b0b81df5b2b340ba2da78489b4be4
+  - enabled: 1
+    path: Assets/Scenes/Matchday.unity
+    guid: 03b871ebc7bf151428395d172f58db83
   m_configObjects: {}

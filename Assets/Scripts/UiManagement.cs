@@ -934,13 +934,13 @@ public class UiManagement : MonoBehaviour
     public void selectSquad()
     {
 
-        for (i = 0; i <= 45; i++)
+        for (int i = 0; i < 69; i++)
         {
             if (myplayer.playerinfo[i].TeamID == TeamSetup.TeamManagedID)
             {
-
+                Debug.Log(i);
                 SelectedSquad.Add(myplayer.playerinfo[i]);
-
+                Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
 
             }
 
@@ -1026,6 +1026,8 @@ public class UiManagement : MonoBehaviour
 
     public void populateSquad()
     {
+       
+
         NextBtn = GameObject.Find("NextBtn").GetComponent<Button>();
         BackBtn = GameObject.Find("BackBtn").GetComponent<Button>();
 
@@ -1261,6 +1263,7 @@ public class UiManagement : MonoBehaviour
         SquadMoraleList.Add(MoraleHeader12);
         SquadAgeList.Add(AgeHeader12);
 
+        Debug.Log("populate");
 
         for (i = 0; i <= 11; i++)
         {
@@ -1272,7 +1275,7 @@ public class UiManagement : MonoBehaviour
             SquadFormList[i].text = SelectedSquad[i].Form.ToString();
             SquadMoraleList[i].text = SelectedSquad[i].Morale.ToString();
 
-            Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
+          
 
         }
 
@@ -1451,9 +1454,13 @@ public class UiManagement : MonoBehaviour
 
     public void teamInfoDisplay()
     {
+       
         DisplaySquadChoice();
+        
         CalculateCurrOverall();
+       
         RetrievePos();
+       
         CalculateThreat();
 
 
@@ -1461,7 +1468,7 @@ public class UiManagement : MonoBehaviour
     void Start()
     {
         // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 0;
+        TeamSetup.TeamManagedID = 2;
 
         myteam.loadData();
         myplayer.loadPlayerData();
@@ -1472,9 +1479,9 @@ public class UiManagement : MonoBehaviour
 
         selectSquad();
 
-        updateFaith();
-        PointsUpdater();
-         PopulateTable();
+        //updateFaith();
+        //PointsUpdater();
+        //PopulateTable();
 
     }
 
