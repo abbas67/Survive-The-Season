@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public void loadPlayerData()
     {
 
-        PlayerData = Resources.Load<TextAsset>("PlayerData");
+        PlayerData = Resources.Load<TextAsset>("PlayerDataPresets");
 
 
 
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     public void updateOverall()
     {
 
-        for (i = 0; i <= 45; i++)
+        for (i = 0; i <= 275; i++)
         {
             if (playerinfo[i].Position == "GK")
             {
@@ -127,15 +127,51 @@ public class Player : MonoBehaviour
             }
             else if (playerinfo[i].Position == "ST")
             {
-                playerinfo[i].Overall = (playerinfo[i].Dribbling + playerinfo[i].Passing + playerinfo[i].Shooting + playerinfo[i].Pace + playerinfo[i].Physical) / 4;
+                playerinfo[i].Overall = (playerinfo[i].Dribbling + playerinfo[i].Passing + playerinfo[i].Shooting + playerinfo[i].Pace + playerinfo[i].Physical) / 5;
 
             }
 
-           // Debug.Log(playerinfo[i].Name + " " + playerinfo[i].Position + " " + playerinfo[i].Overall);
+       
 
 
         }
-     
+
+
+
+
+
+
+
+
+
+
+
+
+
+        for (i = 0; i <= 275; i++)
+        {
+
+            if (playerinfo[i].Overall >= 85)
+            {
+                playerinfo[i].Star = 100;
+                playerinfo[i].Confidence = 80;
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 

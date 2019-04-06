@@ -289,12 +289,14 @@ public class UiManagement : MonoBehaviour
     List<Text> LeagueDrawsList = new List<Text>();
     List<Text> LeaguePointsList = new List<Text>();
 
+    public List<OppositionInfo> oppinfo = new List<OppositionInfo>();
 
     public List<PlayerInfo> SelectedSquad = new List<PlayerInfo>();
 
     public List<TeamInfo> SortedTeams = new List<TeamInfo>();
 
     public List<Text> SquadChoice;
+
 
 
     static public int CurrentTeamOverall;
@@ -579,7 +581,7 @@ public class UiManagement : MonoBehaviour
 
         CurrentTeamOverall = total / 23;
 
-        Debug.Log(CurrentTeamOverall);
+
         TeamOverallText.text = ("Team Overall: " + CurrentTeamOverall);
 
     }
@@ -934,13 +936,14 @@ public class UiManagement : MonoBehaviour
     public void selectSquad()
     {
 
-        for (int i = 0; i < 69; i++)
+        for (int i = 0; i <= 275; i++)
         {
             if (myplayer.playerinfo[i].TeamID == TeamSetup.TeamManagedID)
             {
-                Debug.Log(i);
+
                 SelectedSquad.Add(myplayer.playerinfo[i]);
-                Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
+
+      
 
             }
 
@@ -1299,69 +1302,129 @@ public class UiManagement : MonoBehaviour
         ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
 
     }
-
-    public void CalculateThreat()
+    public void CalculateCurrentThreat()
     {
+
         AttackingThreatText = GameObject.Find("AttackingThreatText").GetComponent<Text>();
         DefensiveThreatText = GameObject.Find("DefensiveThreatText").GetComponent<Text>();
 
+
+
+        int attackTracker = OppositionAttackThreat(SelectedSquad, TeamSetup.TeamManagedID);
+
+        int defenceTracker = OppositionDefenceThreat(SelectedSquad, TeamSetup.TeamManagedID);
+
+        AttackingThreatText.text = ("Attacking Threat: " + attackTracker.ToString());
+        DefensiveThreatText.text = ("Defensive Strength: " + defenceTracker.ToString());
+
+
+
+
+    }
+
+    public void teamInfoDisplay()
+    {
+        
+        DisplaySquadChoice();
+       
+        CalculateCurrOverall();
+        
+        RetrievePos();
+ 
+        CalculateCurrentThreat();
+ 
+
+    }
+
+    public void OppositionTeamInfo()
+    {
+        List<PlayerInfo> TempSelectedSquad = new List<PlayerInfo>();
+
+        for (int i = 0; i <= 11; i++)
+        {
+            TempSelectedSquad.Clear();
+                for (int j = 0; j <= 275; j++)
+                {
+                    if (myplayer.playerinfo[j].TeamID == i)
+                    {
+                        TempSelectedSquad.Add(myplayer.playerinfo[j]);
+                        Debug.Log(myplayer.playerinfo[j].Name + " team ID:" + i );
+                    }
+
+
+                }
+
+
+            myteam.teaminfo[i].Attack = OppositionAttackThreat(TempSelectedSquad, i);
+            myteam.teaminfo[i].Defence = OppositionAttackThreat(TempSelectedSquad, i);
+        }
+
+
+
+    }
+
+
+    public int OppositionAttackThreat(List<PlayerInfo> OppThreat, int teamid)
+    {
+
         int attacktotal = 0;
         int attackcounter = 0;
-
+        CurrentTeamThreat = 0;
+        CurrentTeamDefence = 0;
         List<int> AttackAverage = new List<int>();
 
         //CurrentTeamOverall
         for (i = 0; i <= 22; i++)
         {
-            if (SelectedSquad[i].Position == "ST")
+            if (OppThreat[i].Position == "ST")
             {
                 attacktotal = 0;
-                attacktotal = attacktotal + SelectedSquad[i].Shooting;
-                attacktotal = attacktotal + SelectedSquad[i].Dribbling;
-                attacktotal = attacktotal + SelectedSquad[i].Passing;
+                attacktotal = attacktotal + OppThreat[i].Shooting;
+                attacktotal = attacktotal + OppThreat[i].Dribbling;
+                attacktotal = attacktotal + OppThreat[i].Passing;
 
                 AttackAverage.Add(attacktotal / 3);
 
 
             }
 
-            if (SelectedSquad[i].Position == "LM")
+            if (OppThreat[i].Position == "LM")
             {
                 attacktotal = 0;
-                attacktotal = attacktotal + SelectedSquad[i].Shooting;
-                attacktotal = attacktotal + SelectedSquad[i].Dribbling;
-                attacktotal = attacktotal + SelectedSquad[i].Passing;
+                attacktotal = attacktotal + OppThreat[i].Shooting;
+                attacktotal = attacktotal + OppThreat[i].Dribbling;
+                attacktotal = attacktotal + OppThreat[i].Passing;
                 AttackAverage.Add(attacktotal / 3);
 
             }
 
 
-            if (SelectedSquad[i].Position == "RM")
+            if (OppThreat[i].Position == "RM")
             {
                 attacktotal = 0;
-                attacktotal = attacktotal + SelectedSquad[i].Shooting;
-                attacktotal = attacktotal + SelectedSquad[i].Dribbling;
-                attacktotal = attacktotal + SelectedSquad[i].Passing;
+                attacktotal = attacktotal + OppThreat[i].Shooting;
+                attacktotal = attacktotal + OppThreat[i].Dribbling;
+                attacktotal = attacktotal + OppThreat[i].Passing;
                 AttackAverage.Add(attacktotal / 3);
 
             }
 
-            if (SelectedSquad[i].Position == "CAM")
+            if (OppThreat[i].Position == "CAM")
             {
                 attacktotal = 0;
-                attacktotal = attacktotal + SelectedSquad[i].Shooting;
-                attacktotal = attacktotal + SelectedSquad[i].Dribbling;
-                attacktotal = attacktotal + SelectedSquad[i].Passing;
+                attacktotal = attacktotal + OppThreat[i].Shooting;
+                attacktotal = attacktotal + OppThreat[i].Dribbling;
+                attacktotal = attacktotal + OppThreat[i].Passing;
                 AttackAverage.Add(attacktotal / 3);
 
             }
 
-            if (SelectedSquad[i].Position == "CM")
+            if (OppThreat[i].Position == "CM")
             {
                 attacktotal = 0;
-                attacktotal = attacktotal + SelectedSquad[i].Shooting;
-                attacktotal = attacktotal + SelectedSquad[i].Dribbling;
-                attacktotal = attacktotal + SelectedSquad[i].Passing;
+                attacktotal = attacktotal + OppThreat[i].Shooting;
+                attacktotal = attacktotal + OppThreat[i].Dribbling;
+                attacktotal = attacktotal + OppThreat[i].Passing;
                 AttackAverage.Add(attacktotal / 3);
 
             }
@@ -1378,8 +1441,19 @@ public class UiManagement : MonoBehaviour
 
         CurrentTeamThreat = attackcounter / AttackAverage.Count();
 
+        Debug.Log("New Attack is" + CurrentTeamThreat);
+        return CurrentTeamThreat;
+        
 
-        AttackingThreatText.text = ("Attacking Threat: " + CurrentTeamThreat);
+
+
+
+    }
+
+
+
+    public int OppositionDefenceThreat(List<PlayerInfo> OppThreat, int teamid)
+    {
 
 
         int DefenceTotal = 0;
@@ -1388,48 +1462,48 @@ public class UiManagement : MonoBehaviour
         List<int> DefenceAverage = new List<int>();
         for (i = 0; i <= 22; i++)
         {
-            if (SelectedSquad[i].Position == "CB")
+            if (OppThreat[i].Position == "CB")
             {
                 DefenceTotal = 0;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].Tackling;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].Physical;
+                DefenceTotal = DefenceTotal + OppThreat[i].Tackling;
+                DefenceTotal = DefenceTotal + OppThreat[i].Physical;
                 DefenceAverage.Add(DefenceTotal / 2);
 
             }
 
 
-            if (SelectedSquad[i].Position == "RB")
+            if (OppThreat[i].Position == "RB")
             {
                 DefenceTotal = 0;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].Tackling;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].Physical;
+                DefenceTotal = DefenceTotal + OppThreat[i].Tackling;
+                DefenceTotal = DefenceTotal + OppThreat[i].Physical;
                 DefenceAverage.Add(DefenceTotal / 2);
 
             }
 
-            if (SelectedSquad[i].Position == "LB")
+            if (OppThreat[i].Position == "LB")
             {
                 DefenceTotal = 0;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].Tackling;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].Physical;
+                DefenceTotal = DefenceTotal + OppThreat[i].Tackling;
+                DefenceTotal = DefenceTotal + OppThreat[i].Physical;
                 DefenceAverage.Add(DefenceTotal / 2);
 
             }
 
-            if (SelectedSquad[i].Position == "CDM")
+            if (OppThreat[i].Position == "CDM")
             {
                 DefenceTotal = 0;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].Tackling;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].Physical;
+                DefenceTotal = DefenceTotal + OppThreat[i].Tackling;
+                DefenceTotal = DefenceTotal + OppThreat[i].Physical;
                 DefenceAverage.Add(DefenceTotal / 2);
 
             }
 
-            if (SelectedSquad[i].Position == "GK")
+            if (OppThreat[i].Position == "GK")
             {
                 DefenceTotal = 0;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].GKDistribution;
-                DefenceTotal = DefenceTotal + SelectedSquad[i].GKReactions;
+                DefenceTotal = DefenceTotal + OppThreat[i].GKDistribution;
+                DefenceTotal = DefenceTotal + OppThreat[i].GKReactions;
                 DefenceAverage.Add(DefenceTotal / 2);
 
             }
@@ -1445,26 +1519,17 @@ public class UiManagement : MonoBehaviour
 
         CurrentTeamDefence = Defencecounter / DefenceAverage.Count();
 
-
-        DefensiveThreatText.text = ("Defensive Strength: " + CurrentTeamDefence);
-
-
-
-    }
-
-    public void teamInfoDisplay()
-    {
-       
-        DisplaySquadChoice();
+        Debug.Log("New Defence is" + CurrentTeamDefence);
+        return CurrentTeamDefence;
         
-        CalculateCurrOverall();
-       
-        RetrievePos();
-       
-        CalculateThreat();
+
+
+
+
 
 
     }
+
     void Start()
     {
         // for test purposes pre chosen team.
@@ -1479,10 +1544,11 @@ public class UiManagement : MonoBehaviour
 
         selectSquad();
 
-        //updateFaith();
-        //PointsUpdater();
+        //  updateFaith();
+         PointsUpdater();
         //PopulateTable();
 
+        //OppositionTeamInfo();
     }
 
 
