@@ -6,6 +6,6 @@ public class OppositionInfo : MonoBehaviour
 {
     public int CounterCapability;
     public int PossessionCapability;
-    public int PressureCapability; 
-
+    public int PressureCapability;
+    public int TeamID; 
 }
