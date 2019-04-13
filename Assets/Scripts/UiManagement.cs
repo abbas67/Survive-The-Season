@@ -21,6 +21,32 @@ public class UiManagement : MonoBehaviour
     public Button PossesionBtn;
 
 
+    public Button Starter0;
+    public Button Starter1;
+    public Button Starter2;
+    public Button Starter3;
+    public Button Starter4;
+    public Button Starter5;
+    public Button Starter6;
+    public Button Starter7;
+    public Button Starter8;
+    public Button Starter9;
+    public Button Starter10;
+    public Button Starter11;
+    public Button Starter12;
+    public Button Starter13;
+    public Button Starter14;
+    public Button Starter15;
+    public Button Starter16;
+    public Button Starter17;
+    public Button Starter18;
+    public Button Starter19;
+    public Button Starter20;
+    public Button Starter21;
+    public Button Starter22;
+
+
+
 
 
     public Text Playerinfo0;
@@ -305,6 +331,41 @@ public class UiManagement : MonoBehaviour
     static public int CurrentTeamPossesion;
     static public int CurrentTeamCounter;
     static public int CurrentTeamPressure;
+
+
+
+    public Text FinalScoreText;
+    public Text ScorersText;
+    public Text CardsText;
+    public Text FoulsText;
+
+    public List<int> HomeTeams = new List<int>();
+    public List<int> AwayTeams = new List<int>(); 
+
+    public int GameWeek = 0;
+    public List<MatchDayInfo> MatchStats = new List<MatchDayInfo>();
+
+
+
+
+    public void SelectStarter(int PlayerID)
+    {
+        Starter0 = GameObject.Find("Starter (0)").GetComponent<Button>();
+
+     
+
+
+
+    }
+
+
+
+
+
+
+
+
+
     public void DisplaySquadChoice()
     {
 
@@ -1577,10 +1638,233 @@ public class UiManagement : MonoBehaviour
 
     }
 
+    public List<MatchDayInfo> ScheduleMatches(int GameWeek, List<MatchDayInfo> Matchinfo)
+    {
+
+        if (GameWeek == 1)
+        {
+            for (int i = 0; i <= 5; i++)
+            {
+                MatchDayInfo t = new MatchDayInfo();
+
+                t.AwayID = HomeTeams[i];
+                t.AwayID = AwayTeams[i];
+                t.HomeGoals = 0;
+                t.AwayGoals = 0;
+                t.HomeYellows = 0;
+                t.AwayYellows = 0;
+                t.HomeReds = 0;
+                t.AwayReds = 0;
+                t.HomeFouls = 0;
+                t.AwayFouls = 0;
+                t.HomeScorers = "";
+                t.AwayScorers = "" ;
+          
+                Matchinfo.Add(t);
+
+            }
+
+        }
+
+        if (GameWeek == 2)
+        {
+            AwayTeams[0] = 11;
+            AwayTeams[1] = 1;
+            AwayTeams[2] = 3;
+            AwayTeams[3] = 5;
+            AwayTeams[4] = 7;
+            AwayTeams[5] = 9;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                MatchDayInfo t = new MatchDayInfo();
+
+                t.AwayID = HomeTeams[i];
+                t.AwayID = AwayTeams[i];
+                t.HomeGoals = 0;
+                t.AwayGoals = 0;
+                t.HomeYellows = 0;
+                t.AwayYellows = 0;
+                t.HomeReds = 0;
+                t.AwayReds = 0;
+                t.HomeFouls = 0;
+                t.AwayFouls = 0;
+                t.HomeScorers = "";
+                t.AwayScorers = "";
+
+                Matchinfo.Add(t);
+            }
+        }
+
+        if (GameWeek == 3)
+        {
+            AwayTeams[0] = 9;
+            AwayTeams[1] = 11;
+            AwayTeams[2] = 1;
+            AwayTeams[3] = 3;
+            AwayTeams[4] = 5;
+            AwayTeams[5] = 7;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                MatchDayInfo t = new MatchDayInfo();
+
+                t.AwayID = HomeTeams[i];
+                t.AwayID = AwayTeams[i];
+                t.HomeGoals = 0;
+                t.AwayGoals = 0;
+                t.HomeYellows = 0;
+                t.AwayYellows = 0;
+                t.HomeReds = 0;
+                t.AwayReds = 0;
+                t.HomeFouls = 0;
+                t.AwayFouls = 0;
+                t.HomeScorers = "";
+                t.AwayScorers = "";
+
+                Matchinfo.Add(t);
+            }
+        }
+
+        if (GameWeek == 4)
+        {
+            AwayTeams[0] = 7;
+            AwayTeams[1] = 9;
+            AwayTeams[2] = 11;
+            AwayTeams[3] = 1;
+            AwayTeams[4] = 3;
+            AwayTeams[5] = 5;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                MatchDayInfo t = new MatchDayInfo();
+
+                t.AwayID = HomeTeams[i];
+                t.AwayID = AwayTeams[i];
+                t.HomeGoals = 0;
+                t.AwayGoals = 0;
+                t.HomeYellows = 0;
+                t.AwayYellows = 0;
+                t.HomeReds = 0;
+                t.AwayReds = 0;
+                t.HomeFouls = 0;
+                t.AwayFouls = 0;
+                t.HomeScorers = "";
+                t.AwayScorers = "";
+
+                Matchinfo.Add(t);
+            }
+        }
+
+
+        if (GameWeek == 5)
+        {
+            AwayTeams[0] = 5;
+            AwayTeams[1] = 7;
+            AwayTeams[2] = 9;
+            AwayTeams[3] = 11;
+            AwayTeams[4] = 1;
+            AwayTeams[5] = 3;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                MatchDayInfo t = new MatchDayInfo();
+
+                t.AwayID = HomeTeams[i];
+                t.AwayID = AwayTeams[i];
+                t.HomeGoals = 0;
+                t.AwayGoals = 0;
+                t.HomeYellows = 0;
+                t.AwayYellows = 0;
+                t.HomeReds = 0;
+                t.AwayReds = 0;
+                t.HomeFouls = 0;
+                t.AwayFouls = 0;
+                t.HomeScorers = "";
+                t.AwayScorers = "";
+
+                Matchinfo.Add(t);
+            }
+        }
+
+
+        if (GameWeek == 6)
+        {
+            AwayTeams[0] = 3;
+            AwayTeams[1] = 5;
+            AwayTeams[2] = 7;
+            AwayTeams[3] = 9;
+            AwayTeams[4] = 11;
+            AwayTeams[5] = 1;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                MatchDayInfo t = new MatchDayInfo();
+
+                t.AwayID = HomeTeams[i];
+                t.AwayID = AwayTeams[i];
+                t.HomeGoals = 0;
+                t.AwayGoals = 0;
+                t.HomeYellows = 0;
+                t.AwayYellows = 0;
+                t.HomeReds = 0;
+                t.AwayReds = 0;
+                t.HomeFouls = 0;
+                t.AwayFouls = 0;
+                t.HomeScorers = "";
+                t.AwayScorers = "";
+
+                Matchinfo.Add(t);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        return Matchinfo;
+
+    }
+
+    public void initAwayHome()
+    {
+   
+
+        HomeTeams.Add(0);
+        HomeTeams.Add(2);
+        HomeTeams.Add(4);
+        HomeTeams.Add(6);
+        HomeTeams.Add(8);
+        HomeTeams.Add(10);
+
+        AwayTeams.Add(1);
+        AwayTeams.Add(3);
+        AwayTeams.Add(5);
+        AwayTeams.Add(7);
+        AwayTeams.Add(9);
+        AwayTeams.Add(11);
+
+
+    }
+
+    public void Matchday()
+    {
+        GameWeek++;
+        initAwayHome();
+        OppositionTeamInfo();
+        MatchStats = ScheduleMatches(GameWeek, MatchStats);
+    }
+
     void Start()
     {
         // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 2;
+        TeamSetup.TeamManagedID = 4;
 
         myteam.loadData();
         myplayer.loadPlayerData();
@@ -1594,8 +1878,8 @@ public class UiManagement : MonoBehaviour
         //  updateFaith();
          PointsUpdater();
         //PopulateTable();
-
-        OppositionTeamInfo();
+        initAwayHome();
+        
     }
 
 

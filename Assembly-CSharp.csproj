@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\LoadSceneOnClick.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
+     <Compile Include="Assets\Scripts\MatchDayInfo.cs" />
      <Compile Include="Assets\Scripts\OppositionInfo.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
