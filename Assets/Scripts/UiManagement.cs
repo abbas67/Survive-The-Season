@@ -1859,6 +1859,80 @@ public class UiManagement : MonoBehaviour
         initAwayHome();
         OppositionTeamInfo();
         MatchStats = ScheduleMatches(GameWeek, MatchStats);
+        MatchStats = MatchResults(MatchStats);
+        DisplayResult(MatchStats);
+    }
+
+
+    public void DisplayResult(List<MatchDayInfo> MatchInfo)
+    {
+        FinalScoreText = GameObject.Find("FinalScoreText").GetComponent<Text>();
+
+        int playerTrack = 0;
+        for (int i = 0; i <= 5; i++)
+        {
+
+            if (MatchInfo[i].AwayID == TeamSetup.TeamManagedID)
+            {
+
+                playerTrack = i;
+
+
+            }
+
+            if (MatchInfo[i].HomeID == TeamSetup.TeamManagedID)
+            {
+
+                playerTrack = i;
+
+
+            }
+
+
+        }
+
+
+
+            FinalScoreText.text = (myteam.teaminfo[MatchInfo[playerTrack].HomeID].Name + "  " + MatchInfo[playerTrack].HomeGoals + " VS " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Name + "  " + MatchInfo[playerTrack].AwayGoals);
+
+
+
+
+
+    }
+
+
+
+    public List<MatchDayInfo> MatchResults(List<MatchDayInfo> MatchInfo)
+    {
+    
+        for (int i = 0; i <= 5; i++)
+        {
+
+            if (myteam.teaminfo[MatchInfo[i].HomeID].Attack > myteam.teaminfo[MatchInfo[i].AwayID].Attack)
+            {
+
+                MatchInfo[i].HomeGoals = Random.Range(1, 5);
+                MatchInfo[i].AwayGoals = Random.Range(0, 5);
+
+
+            }
+            if (myteam.teaminfo[MatchInfo[i].HomeID].Attack < myteam.teaminfo[MatchInfo[i].AwayID].Attack)
+            {
+
+                MatchInfo[i].HomeGoals = Random.Range(0, 5);
+                MatchInfo[i].AwayGoals = Random.Range(1, 5);
+
+
+            }
+            Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " VS " + myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals);
+
+        }
+
+
+
+                return MatchInfo;
+
     }
 
     void Start()
