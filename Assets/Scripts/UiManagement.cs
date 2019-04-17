@@ -346,7 +346,8 @@ public class UiManagement : MonoBehaviour
     public List<MatchDayInfo> MatchStats = new List<MatchDayInfo>();
     public int GameWeek = 1;
 
-
+    int[] HomeTeams = new int[] { 0, 2, 4, 6, 8, 10 };
+    int[] AwayTeams = new int[] { 1, 3, 5, 7, 9, 11 };
 
     public void SelectStarter(int PlayerID)
     {
@@ -1638,12 +1639,648 @@ public class UiManagement : MonoBehaviour
 
     }
 
-    public List<MatchDayInfo> ScheduleMatches(int GameWeek, List<MatchDayInfo> Matchinfo, int[] HomeTeams, int[] AwayTeams)
+
+    public int[] AwayFixtures(int GameWeek)
     {
 
         if (GameWeek == 1)
         {
-            Debug.Log("1");
+          
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 9;
+            HomeTeams[2] = 10;
+            HomeTeams[3] = 7;
+            HomeTeams[4] = 8;
+            HomeTeams[5] = 12;
+
+            AwayTeams[0] = 11;
+            AwayTeams[1] = 3;
+            AwayTeams[2] = 6;
+            AwayTeams[3] = 1;
+            AwayTeams[4] = 5;
+            AwayTeams[5] = 2;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 2)
+        {
+      
+            HomeTeams[0] = 3;
+            HomeTeams[1] = 1;
+            HomeTeams[2] = 6;
+            HomeTeams[3] = 3;
+            HomeTeams[4] = 11;
+            HomeTeams[5] = 9;
+
+            AwayTeams[0] = 5;
+            AwayTeams[1] = 2;
+            AwayTeams[2] = 12;
+            AwayTeams[3] = 8;
+            AwayTeams[4] = 7;
+            AwayTeams[5] = 10;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+
+            }
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 3)
+        {
+ 
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 5;
+            HomeTeams[2] = 1;
+            HomeTeams[3] = 6;
+            HomeTeams[4] = 3;
+            HomeTeams[5] = 11;
+
+            AwayTeams[0] = 2;
+            AwayTeams[1] = 12;
+            AwayTeams[2] = 8;
+            AwayTeams[3] = 7;
+            AwayTeams[4] = 10;
+            AwayTeams[5] = 9;
+
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+
+            }
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 4)
+        {
+      
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 3;
+            HomeTeams[2] = 11;
+            HomeTeams[3] = 9;
+            HomeTeams[4] = 10;
+            HomeTeams[5] = 7;
+
+            AwayTeams[0] = 6;
+            AwayTeams[1] = 1;
+            AwayTeams[2] = 5;
+            AwayTeams[3] = 2;
+            AwayTeams[4] = 12;
+            AwayTeams[5] = 8;
+
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+        }
+           
+        
+
+        if (GameWeek == 5)
+        {
+ 
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 7;
+            HomeTeams[2] = 8;
+            HomeTeams[3] = 12;
+            HomeTeams[4] = 2;
+            HomeTeams[5] = 5;
+
+            AwayTeams[0] = 10;
+            AwayTeams[1] = 9;
+            AwayTeams[2] = 11;
+            AwayTeams[3] = 3;
+            AwayTeams[4] = 6;
+            AwayTeams[5] = 1;
+
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+
+        if (GameWeek == 6)
+        {
+
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 8;
+            HomeTeams[2] = 12;
+            HomeTeams[3] = 2;
+            HomeTeams[4] = 5;
+            HomeTeams[5] = 1;
+
+            AwayTeams[0] = 7;
+            AwayTeams[1] = 10;
+            AwayTeams[2] = 9;
+            AwayTeams[3] = 11;
+            AwayTeams[4] = 3;
+            AwayTeams[5] = 6;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+
+            }
+            return AwayTeams;
+        }
+
+        if (GameWeek == 7)
+        {
+
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 10;
+            HomeTeams[2] = 7;
+            HomeTeams[3] = 8;
+            HomeTeams[4] = 12;
+            HomeTeams[5] = 2;
+
+            AwayTeams[0] = 9;
+            AwayTeams[1] = 11;
+            AwayTeams[2] = 3;
+            AwayTeams[3] = 6;
+            AwayTeams[4] = 1;
+            AwayTeams[5] = 5;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 8)
+        {
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 12;
+            HomeTeams[2] = 2;
+            HomeTeams[3] = 5;
+            HomeTeams[4] = 1;
+            HomeTeams[5] = 6;
+
+            AwayTeams[0] = 8;
+            AwayTeams[1] = 7;
+            AwayTeams[2] = 10;
+            AwayTeams[3] = 9;
+            AwayTeams[4] = 11;
+            AwayTeams[5] = 3;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 9)
+        {
+
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 6;
+            HomeTeams[2] = 3;
+            HomeTeams[3] = 11;
+            HomeTeams[4] = 9;
+            HomeTeams[5] = 10;
+
+            AwayTeams[0] = 1;
+            AwayTeams[1] = 5;
+            AwayTeams[2] = 2;
+            AwayTeams[3] = 12;
+            AwayTeams[4] = 8;
+            AwayTeams[5] = 7;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 10)
+        {
+
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 2;
+            HomeTeams[2] = 5;
+            HomeTeams[3] = 1;
+            HomeTeams[4] = 6;
+            HomeTeams[5] = 3;
+
+            AwayTeams[0] = 12;
+            AwayTeams[1] = 8;
+            AwayTeams[2] = 7;
+            AwayTeams[3] = 10;
+            AwayTeams[4] = 9;
+            AwayTeams[5] = 11;
+
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+        }
+
+
+
+        if (GameWeek == 11)
+        {
+
+
+            HomeTeams[0] = 4;
+            HomeTeams[1] = 11;
+            HomeTeams[2] = 9;
+            HomeTeams[3] = 10;
+            HomeTeams[4] = 7;
+            HomeTeams[5] = 8;
+
+            AwayTeams[0] = 3;
+            AwayTeams[1] = 6;
+            AwayTeams[2] = 1;
+            AwayTeams[3] = 5;
+            AwayTeams[4] = 2;
+            AwayTeams[5] = 12;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 12)
+        {
+
+
+            HomeTeams[0] = 12;
+            HomeTeams[1] = 8;
+            HomeTeams[2] = 7;
+            HomeTeams[3] = 10;
+            HomeTeams[4] = 9;
+            HomeTeams[5] = 11;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 2;
+            AwayTeams[2] = 5;
+            AwayTeams[3] = 1;
+            AwayTeams[4] = 6;
+            AwayTeams[5] = 3;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 13)
+        {
+
+            HomeTeams[0] = 3;
+            HomeTeams[1] = 6;
+            HomeTeams[2] = 1;
+            HomeTeams[3] = 5;
+            HomeTeams[4] = 2;
+            HomeTeams[5] = 12;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 11;
+            AwayTeams[2] = 9;
+            AwayTeams[3] = 10;
+            AwayTeams[4] = 7;
+            AwayTeams[5] = 8;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 14)
+        {
+
+
+            HomeTeams[0] = 6;
+            HomeTeams[1] = 1;
+            HomeTeams[2] = 5;
+            HomeTeams[3] = 2;
+            HomeTeams[4] = 12;
+            HomeTeams[5] = 8;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 3;
+            AwayTeams[2] = 11;
+            AwayTeams[3] = 9;
+            AwayTeams[4] = 10;
+            AwayTeams[5] = 7;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 15)
+        {
+
+
+            HomeTeams[0] = 5;
+            HomeTeams[1] = 2;
+            HomeTeams[2] = 12;
+            HomeTeams[3] = 8;
+            HomeTeams[4] = 7;
+            HomeTeams[5] = 10;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 1;
+            AwayTeams[2] = 6;
+            AwayTeams[3] = 3;
+            AwayTeams[4] = 11;
+            AwayTeams[5] = 9;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+        }
+
+
+
+        if (GameWeek == 16)
+        {
+
+
+            HomeTeams[0] = 11;
+            HomeTeams[1] = 3;
+            HomeTeams[2] = 6;
+            HomeTeams[3] = 1;
+            HomeTeams[4] = 5;
+            HomeTeams[5] = 2;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 9;
+            AwayTeams[2] = 10;
+            AwayTeams[3] = 7;
+            AwayTeams[4] = 8;
+            AwayTeams[5] = 12;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+
+        if (GameWeek == 17)
+        {
+
+
+            HomeTeams[0] = 9;
+            HomeTeams[1] = 11;
+            HomeTeams[2] = 3;
+            HomeTeams[3] = 6;
+            HomeTeams[4] = 1;
+            HomeTeams[5] = 5;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 10;
+            AwayTeams[2] = 7;
+            AwayTeams[3] = 8;
+            AwayTeams[4] = 12;
+            AwayTeams[5] = 2;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+        }
+
+        if (GameWeek == 18)
+        {
+
+
+            HomeTeams[0] = 10;
+            HomeTeams[1] = 9;
+            HomeTeams[2] = 11;
+            HomeTeams[3] = 3;
+            HomeTeams[4] = 6;
+            HomeTeams[5] = 1;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 7;
+            AwayTeams[2] = 8;
+            AwayTeams[3] = 12;
+            AwayTeams[4] = 2;
+            AwayTeams[5] = 5;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 19)
+        {
+
+            HomeTeams[0] = 7;
+            HomeTeams[1] = 10;
+            HomeTeams[2] = 9;
+            HomeTeams[3] = 11;
+            HomeTeams[4] = 3;
+            HomeTeams[5] = 6;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 8;
+            AwayTeams[2] = 12;
+            AwayTeams[3] = 2;
+            AwayTeams[4] = 5;
+            AwayTeams[5] = 1;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 20)
+        {
+
+
+            HomeTeams[0] = 1;
+            HomeTeams[1] = 5;
+            HomeTeams[2] = 2;
+            HomeTeams[3] = 12;
+            HomeTeams[4] = 8;
+            HomeTeams[5] = 7;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 6;
+            AwayTeams[2] = 3;
+            AwayTeams[3] = 11;
+            AwayTeams[4] = 9;
+            AwayTeams[5] = 10;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+        if (GameWeek == 21)
+        {
+
+
+            HomeTeams[0] = 8;
+            HomeTeams[1] = 7;
+            HomeTeams[2] = 10;
+            HomeTeams[3] = 9;
+            HomeTeams[4] = 11;
+            HomeTeams[5] = 3;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 12;
+            AwayTeams[2] = 2;
+            AwayTeams[3] = 5;
+            AwayTeams[4] = 1;
+            AwayTeams[5] = 6;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+        }
+
+
+
+        if (GameWeek == 22)
+        {
+
+
+            HomeTeams[0] = 2;
+            HomeTeams[1] = 12;
+            HomeTeams[2] = 8;
+            HomeTeams[3] = 7;
+            HomeTeams[4] = 10;
+            HomeTeams[5] = 9;
+
+            AwayTeams[0] = 4;
+            AwayTeams[1] = 5;
+            AwayTeams[2] = 1;
+            AwayTeams[3] = 6;
+            AwayTeams[4] = 3;
+            AwayTeams[5] = 11;
+
+            for (int i = 0; i <= 5; i++)
+            {
+                AwayTeams[i] = AwayTeams[i] - 1;
+                HomeTeams[i] = HomeTeams[i] - 1;
+            }
+
+            return AwayTeams;
+
+        }
+
+
+
+            return null;
+
+
+    }
+
+
+
+    public List<MatchDayInfo> ScheduleMatches()
+    {
+
+
+        MatchStats.Clear();
+    
             for (int i = 0; i <= 5; i++)
             {
                 MatchDayInfo t = new MatchDayInfo();
@@ -1661,274 +2298,48 @@ public class UiManagement : MonoBehaviour
                 t.HomeScorers = "";
                 t.AwayScorers = "" ;
           
-                Matchinfo.Add(t);
-                Debug.Log(myteam.teaminfo[Matchinfo[i].HomeID].Name + "  " + myteam.teaminfo[Matchinfo[i].AwayID].Name);
-
+                MatchStats.Add(t);
+                Debug.Log(myteam.teaminfo[MatchStats[i].HomeID].Name + "  " + myteam.teaminfo[MatchStats[i].HomeID].ID + "  " + myteam.teaminfo[MatchStats[i].AwayID].Name + "  " + myteam.teaminfo[MatchStats[i].AwayID].ID);
+       
             }
-            return Matchinfo;
+            return MatchStats;
 
-        }
-
-        if (GameWeek == 2)
-        {
-            Debug.Log(2);
-            HomeTeams[0] = 0;
-            HomeTeams[1] = 2;
-            HomeTeams[2] = 4;
-            HomeTeams[3] = 6;
-            HomeTeams[4] = 8;
-            HomeTeams[5] = 10;
-
-            AwayTeams[0] = 11;
-            AwayTeams[1] = 1;
-            AwayTeams[2] = 3;
-            AwayTeams[3] = 5;
-            AwayTeams[4] = 7;
-            AwayTeams[5] = 9;
-
-            for (int i = 0; i <= 5; i++)
-            {
-                MatchDayInfo t = new MatchDayInfo();
-
-                t.HomeID = HomeTeams[i];
-                t.AwayID = AwayTeams[i];
-                t.HomeGoals = 0;
-                t.AwayGoals = 0;
-                t.HomeYellows = 0;
-                t.AwayYellows = 0;
-                t.HomeReds = 0;
-                t.AwayReds = 0;
-                t.HomeFouls = 0;
-                t.AwayFouls = 0;
-                t.HomeScorers = "";
-                t.AwayScorers = "";
-
-                Matchinfo.Add(t);
-                Debug.Log(myteam.teaminfo[Matchinfo[i].HomeID].Name + "  " + myteam.teaminfo[Matchinfo[i].AwayID].Name);
-            }
-            return Matchinfo;
-        }
-
-        if (GameWeek == 3)
-        {
-            Debug.Log(3);
-
-            HomeTeams[0] = 0;
-            HomeTeams[1] = 2;
-            HomeTeams[2] = 4;
-            HomeTeams[3] = 6;
-            HomeTeams[4] = 8;
-            HomeTeams[5] = 10;
-
-            AwayTeams[0] = 9;
-            AwayTeams[1] = 11;
-            AwayTeams[2] = 1;
-            AwayTeams[3] = 3;
-            AwayTeams[4] = 5;
-            AwayTeams[5] = 7;
-
-            for (int i = 0; i <= 5; i++)
-            {
-                MatchDayInfo t = new MatchDayInfo();
-
-                t.HomeID = HomeTeams[i];
-                t.AwayID = AwayTeams[i];
-                t.HomeGoals = 0;
-                t.AwayGoals = 0;
-                t.HomeYellows = 0;
-                t.AwayYellows = 0;
-                t.HomeReds = 0;
-                t.AwayReds = 0;
-                t.HomeFouls = 0;
-                t.AwayFouls = 0;
-                t.HomeScorers = "";
-                t.AwayScorers = "";
-
-                Matchinfo.Add(t);
-                Debug.Log(myteam.teaminfo[Matchinfo[i].HomeID].Name + "  " + myteam.teaminfo[Matchinfo[i].AwayID].Name);
-            }
-            return Matchinfo;
-        }
-  
-        if (GameWeek == 4)
-        {
-            Debug.Log(4);
-
-            HomeTeams[0] = 0;
-            HomeTeams[1] = 2;
-            HomeTeams[2] = 4;
-            HomeTeams[3] = 6;
-            HomeTeams[4] = 8;
-            HomeTeams[5] = 10;
-
-            AwayTeams[0] = 7;
-            AwayTeams[1] = 9;
-            AwayTeams[2] = 11;
-            AwayTeams[3] = 1;
-            AwayTeams[4] = 3;
-            AwayTeams[5] = 5;
-
-            for (int i = 0; i <= 5; i++)
-            {
-                MatchDayInfo t = new MatchDayInfo();
-
-                t.HomeID = HomeTeams[i];
-                t.AwayID = AwayTeams[i];
-                t.HomeGoals = 0;
-                t.AwayGoals = 0;
-                t.HomeYellows = 0;
-                t.AwayYellows = 0;
-                t.HomeReds = 0;
-                t.AwayReds = 0;
-                t.HomeFouls = 0;
-                t.AwayFouls = 0;
-                t.HomeScorers = "";
-                t.AwayScorers = "";
-
-                Matchinfo.Add(t);
-                Debug.Log(myteam.teaminfo[Matchinfo[i].HomeID].Name + "  " + myteam.teaminfo[Matchinfo[i].AwayID].Name);
-            }
-            return Matchinfo;
-        }
-
-
-        if (GameWeek == 5)
-        {
-            Debug.Log(5);
-
-            HomeTeams[0] = 0;
-            HomeTeams[1] = 2;
-            HomeTeams[2] = 4;
-            HomeTeams[3] = 6;
-            HomeTeams[4] = 8;
-            HomeTeams[5] = 10;
-
-            AwayTeams[0] = 5;
-            AwayTeams[1] = 7;
-            AwayTeams[2] = 9;
-            AwayTeams[3] = 11;
-            AwayTeams[4] = 1;
-            AwayTeams[5] = 3;
-
-            for (int i = 0; i <= 5; i++)
-            {
-                MatchDayInfo t = new MatchDayInfo();
-
-                t.HomeID = HomeTeams[i];
-                t.AwayID = AwayTeams[i];
-                t.HomeGoals = 0;
-                t.AwayGoals = 0;
-                t.HomeYellows = 0;
-                t.AwayYellows = 0;
-                t.HomeReds = 0;
-                t.AwayReds = 0;
-                t.HomeFouls = 0;
-                t.AwayFouls = 0;
-                t.HomeScorers = "";
-                t.AwayScorers = "";
-
-                Matchinfo.Add(t);
-                Debug.Log(myteam.teaminfo[Matchinfo[i].HomeID].Name + "  " + myteam.teaminfo[Matchinfo[i].AwayID].Name);
-            }
-            return Matchinfo;
-        }
-
-
-        if (GameWeek == 6)
-        {
-            Debug.Log(6);
-
-            HomeTeams[0] = 0;
-            HomeTeams[1] = 2;
-            HomeTeams[2] = 4;
-            HomeTeams[3] = 6;
-            HomeTeams[4] = 8;
-            HomeTeams[5] = 10;
-             
-            AwayTeams[0] = 3;
-            AwayTeams[1] = 5;
-            AwayTeams[2] = 7;
-            AwayTeams[3] = 9;
-            AwayTeams[4] = 11;
-            AwayTeams[5] = 1;
-
-            for (int i = 0; i <= 5; i++)
-            {
-                MatchDayInfo t = new MatchDayInfo();
-
-                t.HomeID = HomeTeams[i];
-                t.AwayID = AwayTeams[i];
-                t.HomeGoals = 0;
-                t.AwayGoals = 0;
-                t.HomeYellows = 0;
-                t.AwayYellows = 0;
-                t.HomeReds = 0;
-                t.AwayReds = 0;
-                t.HomeFouls = 0;
-                t.AwayFouls = 0;
-                t.HomeScorers = "";
-                t.AwayScorers = "";
-
-                Matchinfo.Add(t);
-                Debug.Log(myteam.teaminfo[Matchinfo[i].HomeID].Name + "  " + myteam.teaminfo[Matchinfo[i].AwayID].Name);
-            }
-            return Matchinfo;
-        }
+     
 
 
 
-
-
-
-
-
-
-        return null;
 
        
 
     }
 
-    public void initAwayHome(int[] HomeTeams, int[] AwayTeams)
-    {
-
-
-        HomeTeams[0] = 0;
-        HomeTeams[1] = 2;
-        HomeTeams[2] = 4;
-        HomeTeams[3] = 6;
-        HomeTeams[4] = 8;
-        HomeTeams[5] = 10;
-
-        AwayTeams[0] = 1;
-        AwayTeams[1] = 3;
-        AwayTeams[2] = 5;
-        AwayTeams[3] = 7;
-        AwayTeams[4] = 9;
-        AwayTeams[5] = 11;
 
 
 
-    }
+
+
+
 
     public void Matchday()
     {
-        int[] HomeTeams = new int[] { 0, 2, 4, 6, 8, 10 };
-        int[] AwayTeams = new int[] { 1, 3, 5, 7, 9, 11 };
 
-        if (GameWeek > 6)
+
+        if (GameWeek > 22)
         {
 
             Debug.Log("Bitch Please");
         }
         else
         {
+            AwayTeams = AwayFixtures(GameWeek);
+ 
             OppositionTeamInfo();
-            MatchStats = ScheduleMatches(GameWeek, MatchStats,HomeTeams,AwayTeams);
+            MatchStats = ScheduleMatches();
             MatchStats = MatchResults(MatchStats);
             DisplayResult(MatchStats);
             GameWeek++;
-
+            Debug.Log(" ");
+            Debug.Log(" ");
 
 
 
@@ -2023,7 +2434,38 @@ public class UiManagement : MonoBehaviour
 
 
 
-                return MatchInfo;
+        //Applying the league stats
+
+
+       // myteam.teaminfo[MatchInfo[i].HomeID].Scored = myteam.teaminfo[MatchInfo[i].HomeID].Scored + MatchInfo[i].HomeGoals;
+        //myteam.teaminfo[MatchInfo[i].AwayID].Scored = myteam.teaminfo[MatchInfo[i].AwayID].Scored + MatchInfo[i].AwayGoals;
+        
+        // Adding Draws to each team
+        if (MatchInfo[i].HomeGoals == MatchInfo[i].AwayGoals)
+        {
+            myteam.teaminfo[MatchInfo[i].HomeID].Draws++;
+            myteam.teaminfo[MatchInfo[i].AwayID].Draws++;
+
+        }
+
+        //Adding a win to the winning team
+        if (MatchInfo[i].HomeGoals > MatchInfo[i].AwayGoals)
+        {
+            myteam.teaminfo[MatchInfo[i].HomeID].Wins++;
+
+
+        }
+
+
+        if (MatchInfo[i].HomeGoals < MatchInfo[i].AwayGoals)
+        {
+            myteam.teaminfo[MatchInfo[i].AwayID].Wins++;
+
+
+        }
+
+  
+        return MatchInfo;
 
     }
 
@@ -2044,7 +2486,7 @@ public class UiManagement : MonoBehaviour
         //PopulateTable();
        // initAwayHome();
         GameWeek = 1;
-    
+       
     }
 
 
