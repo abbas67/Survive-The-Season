@@ -1387,13 +1387,13 @@ public class UiManagement : MonoBehaviour
     {
         BoardText = GameObject.Find("BoardText").GetComponent<Text>();
         FanText = GameObject.Find("FanText").GetComponent<Text>();
-        ManagerText = GameObject.Find("ManagerText").GetComponent<Text>();
+      //  ManagerText = GameObject.Find("ManagerText").GetComponent<Text>();
 
 
 
         BoardText.text = ("Board Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].BoardDiff));
         FanText.text = ("Fan Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].FanDiff));
-        ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
+      //  ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
 
     }
     public void CalculateCurrentThreat()
@@ -2275,7 +2275,7 @@ public class UiManagement : MonoBehaviour
 
 
 
-    public List<MatchDayInfo> ScheduleMatches()
+    public List<MatchDayInfo> ScheduleMatches(List<MatchDayInfo> MatchStats)
     {
 
 
@@ -2322,7 +2322,7 @@ public class UiManagement : MonoBehaviour
 
     public void Matchday()
     {
-
+        Debug.Log("GameWeek: " + GameWeek);
 
         if (GameWeek > 22)
         {
@@ -2331,15 +2331,18 @@ public class UiManagement : MonoBehaviour
         }
         else
         {
+
             AwayTeams = AwayFixtures(GameWeek);
- 
+
             OppositionTeamInfo();
-            MatchStats = ScheduleMatches();
+            MatchStats = ScheduleMatches(MatchStats);
+            Debug.Log("schedule");
             MatchStats = MatchResults(MatchStats);
+            Debug.Log("Results");
             DisplayResult(MatchStats);
+            Debug.Log("Display");
             GameWeek++;
-            Debug.Log(" ");
-            Debug.Log(" ");
+
 
 
 
@@ -2391,80 +2394,86 @@ public class UiManagement : MonoBehaviour
 
     public List<MatchDayInfo> MatchResults(List<MatchDayInfo> MatchInfo)
     {
+        int HomeBasicOverall = 0;
+        int AwayBasicOverall = 0;
+       
+
         //looping round for every match that is to be played on a specific match day.
         for (int i = 0; i <= 5; i++)
         {
-            int HomeBasicOverall;
-            int AwayBasicOverall;
-            //Firstly checking that each team will employ an appropiate gameplan against their opposition.
 
-            HomeBasicOverall = (myteam.teaminfo[MatchInfo[i].HomeID].Attack + myteam.teaminfo[MatchInfo[i].HomeID].Defence) / 2;
-            AwayBasicOverall = (myteam.teaminfo[MatchInfo[i].AwayID].Attack + myteam.teaminfo[MatchInfo[i].AwayID].Defence) / 2;
-          //  Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + HomeBasicOverall);
-           // Debug.Log(myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + AwayBasicOverall);
-            //Significantly weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
-            //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
+                //Firstly checking that each team will employ an appropiate gameplan against their opposition.
 
+                HomeBasicOverall = (myteam.teaminfo[MatchInfo[i].HomeID].Attack + myteam.teaminfo[MatchInfo[i].HomeID].Defence) / 2;
+                AwayBasicOverall = (myteam.teaminfo[MatchInfo[i].AwayID].Attack + myteam.teaminfo[MatchInfo[i].AwayID].Defence) / 2;
+
+
+                //Significantly weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
+                //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
 
 
 
 
 
-            //Dynamically prediciting the amount of goals that will be scored by each team on a specific match day. 
 
-            if (myteam.teaminfo[MatchInfo[i].HomeID].Attack > myteam.teaminfo[MatchInfo[i].AwayID].Attack)
+                //Dynamically prediciting the amount of goals that will be scored by each team on a specific match day. 
+
+                if (myteam.teaminfo[MatchInfo[i].HomeID].Attack > myteam.teaminfo[MatchInfo[i].AwayID].Attack)
+                {
+
+                    MatchInfo[i].HomeGoals = Random.Range(1, 5);
+                    MatchInfo[i].AwayGoals = Random.Range(0, 5);
+
+
+                }
+                if (myteam.teaminfo[MatchInfo[i].HomeID].Attack < myteam.teaminfo[MatchInfo[i].AwayID].Attack)
+                {
+
+                    MatchInfo[i].HomeGoals = Random.Range(0, 5);
+                    MatchInfo[i].AwayGoals = Random.Range(1, 5);
+
+
+                }
+
+               Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " VS " + myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals);
+
+
+
+
+
+            //Applying the league stats
+
+            //myteam.teaminfo[MatchInfo[i].HomeID].Scored = myteam.teaminfo[MatchInfo[i].HomeID].Scored + MatchInfo[i].HomeGoals;
+            //myteam.teaminfo[MatchInfo[i].AwayID].Scored = myteam.teaminfo[MatchInfo[i].AwayID].Scored + MatchInfo[i].AwayGoals;
+
+            // Adding Draws to each team
+
+          
+
+            if (MatchInfo[i].HomeGoals == MatchInfo[i].AwayGoals)
             {
+                myteam.teaminfo[MatchInfo[i].HomeID].Draws++;
+                myteam.teaminfo[MatchInfo[i].AwayID].Draws++;
+              //  Debug.Log("Draws");
+            }
 
-                MatchInfo[i].HomeGoals = Random.Range(1, 5);
-                MatchInfo[i].AwayGoals = Random.Range(0, 5);
-
+          
+            //Adding a win to the winning team
+            if (MatchInfo[i].HomeGoals > MatchInfo[i].AwayGoals)
+            {
+               // myteam.teaminfo[MatchInfo[i].HomeID].Wins++;
+                Debug.Log("Home Win");
 
             }
-            if (myteam.teaminfo[MatchInfo[i].HomeID].Attack < myteam.teaminfo[MatchInfo[i].AwayID].Attack)
+
+
+            if (MatchInfo[i].HomeGoals < MatchInfo[i].AwayGoals)
             {
-
-                MatchInfo[i].HomeGoals = Random.Range(0, 5);
-                MatchInfo[i].AwayGoals = Random.Range(1, 5);
-
+                // myteam.teaminfo[MatchInfo[i].AwayID].Wins++;
+                Debug.Log("Away Win");
 
             }
-          //  Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " VS " + myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals);
-
         }
-
-
-
-        //Applying the league stats
-
-
-       // myteam.teaminfo[MatchInfo[i].HomeID].Scored = myteam.teaminfo[MatchInfo[i].HomeID].Scored + MatchInfo[i].HomeGoals;
-        //myteam.teaminfo[MatchInfo[i].AwayID].Scored = myteam.teaminfo[MatchInfo[i].AwayID].Scored + MatchInfo[i].AwayGoals;
-        
-        // Adding Draws to each team
-        if (MatchInfo[i].HomeGoals == MatchInfo[i].AwayGoals)
-        {
-            myteam.teaminfo[MatchInfo[i].HomeID].Draws++;
-            myteam.teaminfo[MatchInfo[i].AwayID].Draws++;
-
-        }
-
-        //Adding a win to the winning team
-        if (MatchInfo[i].HomeGoals > MatchInfo[i].AwayGoals)
-        {
-            myteam.teaminfo[MatchInfo[i].HomeID].Wins++;
-
-
-        }
-
-
-        if (MatchInfo[i].HomeGoals < MatchInfo[i].AwayGoals)
-        {
-            myteam.teaminfo[MatchInfo[i].AwayID].Wins++;
-
-
-        }
-
-  
         return MatchInfo;
 
     }
@@ -2472,7 +2481,7 @@ public class UiManagement : MonoBehaviour
     void Start()
     {
         // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 1;
+        //TeamSetup.TeamManagedID = 1;
         myteam.loadData();
         myplayer.loadPlayerData();
         myplayer.updateOverall();
@@ -2481,10 +2490,10 @@ public class UiManagement : MonoBehaviour
 
         selectSquad();
 
-        //updateFaith();
+        updateFaith();
          PointsUpdater();
-        //PopulateTable();
-       // initAwayHome();
+        PopulateTable();
+
         GameWeek = 1;
        
     }
