@@ -1,13 +1,13 @@
 ID,Name,Rep,Budget,Attack,Defence,Ground,Scored,Conceded,Wins,Losses,Draws,Points,BoardDiff,FanDiff
-0,Glasgow Celts,40,100,65,60,Celts Park,0,0,0,0,21,0,50,40
-1,London Kings,70,700,85,80,Stamford Park,0,0,13,19,7,0,60,75
-2,Liverpool Red,85,700,95,90,Annfield Road,0,0,4,0,5,0,70,70
-3,Manchester Red,90,800,85,85,New Trafford,0,0,19,12,13,0,90,75
-4,Manchester Blue,75,950,95,90,Citizen Stadium,0,0,18,0,17,0,90,80
-5,Paris Saints FC,70,950,95,85,Paris Park,0,0,2,19,4,0,80,50
-6,Tottenham FC,80,500,85,90,National Stadium,0,0,13,13,11,0,60,50
-7,FC Munich ,85,700,85,90,Alliance Arena,0,0,3,18,0,0,80,70
-8,C.F Madrid,95,850,80,85,Royal White,0,0,10,19,22,0,90,95
-9,FC Barca,95,850,95,95,Barcelona Stadium,0,0,4,19,17,0,90,95
-10,Turin FC,85,750,90,95,Alliance Stadium,0,0,16,11,13,0,75,80
-11,C.F Milan,90,700,80,75,Stadio de Milan,0,0,6,17,21,0,70,60
+0,Glasgow Celts,40,100,65,60,Celts Park,0,0,0,0,0,0,50,40
+1,London Kings,70,700,85,80,Stamford Park,0,0,0,0,0,0,60,75
+2,Liverpool Red,85,700,95,90,Annfield Road,0,0,0,0,0,0,70,70
+3,Manchester Red,90,800,85,85,New Trafford,0,0,0,0,0,0,90,75
+4,Manchester Blue,75,950,95,90,Citizen Stadium,0,0,0,0,0,0,90,80
+5,Paris Saints FC,70,950,95,85,Paris Park,0,0,0,0,0,0,80,50
+6,Tottenham FC,80,500,85,90,National Stadium,0,0,0,0,0,0,60,50
+7,FC Munich ,85,700,85,90,Alliance Arena,0,0,0,0,0,0,80,70
+8,C.F Madrid,95,850,80,85,Royal White,0,0,0,0,0,0,90,95
+9,FC Barca,95,850,95,95,Barcelona Stadium,0,0,0,0,0,0,90,95
+10,Turin FC,85,750,90,95,Alliance Stadium,0,0,0,0,0,0,75,80
+11,C.F Milan,90,700,80,75,Stadio de Milan,0,0,0,0,0,0,70,60
