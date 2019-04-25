@@ -21,57 +21,6 @@ public class UiManagement : MonoBehaviour
     public Button PossesionBtn;
 
 
-    public Button Starter0;
-    public Button Starter1;
-    public Button Starter2;
-    public Button Starter3;
-    public Button Starter4;
-    public Button Starter5;
-    public Button Starter6;
-    public Button Starter7;
-    public Button Starter8;
-    public Button Starter9;
-    public Button Starter10;
-    public Button Starter11;
-    public Button Starter12;
-    public Button Starter13;
-    public Button Starter14;
-    public Button Starter15;
-    public Button Starter16;
-    public Button Starter17;
-    public Button Starter18;
-    public Button Starter19;
-    public Button Starter20;
-    public Button Starter21;
-    public Button Starter22;
-
-
-
-
-
-    public Text Playerinfo0;
-    public Text Playerinfo1;
-    public Text Playerinfo2;
-    public Text Playerinfo3;
-    public Text Playerinfo4;
-    public Text Playerinfo5;
-    public Text Playerinfo6;
-    public Text Playerinfo7;
-    public Text Playerinfo8;
-    public Text Playerinfo9;
-    public Text Playerinfo10;
-    public Text Playerinfo11;
-    public Text Playerinfo12;
-    public Text Playerinfo13;
-    public Text Playerinfo14;
-    public Text Playerinfo15;
-    public Text Playerinfo16;
-    public Text Playerinfo17;
-    public Text Playerinfo18;
-    public Text Playerinfo19;
-    public Text Playerinfo20;
-    public Text Playerinfo21;
-    public Text Playerinfo22;
 
 
 
@@ -293,7 +242,7 @@ public class UiManagement : MonoBehaviour
 
 
 
-    int i = 0;
+  
 
 
     Team myteam = new Team();
@@ -355,130 +304,149 @@ public class UiManagement : MonoBehaviour
     public Text ManStressTxt;
     public Text ManNameTxt;
 
-    public void SelectStarter(int PlayerID)
+
+
+
+
+
+
+
+    public Button SToption1;
+    public Button SToption2;
+    public Button SToption3;
+
+    public Button MFoption1;
+    public Button MFoption2;
+    public Button MFoption3;
+    public Button MFoption4;
+    public Button MFoption5;
+    public Button MFoption6;
+
+    public Button LeftMoption1;
+    public Button LeftMoption2;
+
+    public Button RightMoption1;
+    public Button RightMoption2;
+
+    public Button LBoption1;
+    public Button LBoption2;
+
+    public Button RBoption1;
+    public Button RBoption2;
+
+    public Button CBoption1;
+    public Button CBoption2;
+    public Button CBoption3;
+    public Button CBoption4;
+
+    public Button GKoption1;
+    public Button GKoption2;
+    public Button GKoption3;
+
+
+
+    public List<Starting11Info> SquadTracker = new List<Starting11Info>();
+
+
+
+    public void displayOptions()
     {
-        Starter0 = GameObject.Find("Starter (0)").GetComponent<Button>();
+        List<Button> GKTracker = new List<Button>();
+        List<Button> RBTracker = new List<Button>();
 
-     
+        SToption1 = GameObject.Find("SToption1").GetComponent<Button>();
+        SToption2 = GameObject.Find("SToption2").GetComponent<Button>();
+        SToption3 = GameObject.Find("SToption3").GetComponent<Button>();
 
-
-
-    }
-
-
-
-
-
-
-
-
-
-    public void DisplaySquadChoice()
-    {
+        MFoption1 = GameObject.Find("MFoption1").GetComponent<Button>();
+        MFoption2 = GameObject.Find("MFoption2").GetComponent<Button>();
+        MFoption3 = GameObject.Find("MFoption3").GetComponent<Button>();
+        MFoption4 = GameObject.Find("MFoption4").GetComponent<Button>();
+        MFoption5 = GameObject.Find("MFoption5").GetComponent<Button>();
+        MFoption6 = GameObject.Find("MFoption6").GetComponent<Button>();
 
 
+        LeftMoption1 = GameObject.Find("LMoption1").GetComponent<Button>();
+        LeftMoption2 = GameObject.Find("LMoption2").GetComponent<Button>();
+
+        RightMoption1 = GameObject.Find("RMoption1").GetComponent<Button>();
+        RightMoption2 = GameObject.Find("RMoption2").GetComponent<Button>();
 
 
-        CurrentGameplanText = GameObject.Find("CurrentGameplanText").GetComponent<Text>();
-        GameplanCapabilityText = GameObject.Find("GameplanCapabilityText").GetComponent<Text>();
+        LBoption1 = GameObject.Find("LBoption1").GetComponent<Button>();
+        LBoption2 = GameObject.Find("LBoption2").GetComponent<Button>();
+
+        RBoption1 = GameObject.Find("RBoption1").GetComponent<Button>();
+        RBoption2 = GameObject.Find("RBoption2").GetComponent<Button>();
+
+        RBTracker.Add(RBoption1);
+        RBTracker.Add(RBoption2);
+
+        CBoption1 = GameObject.Find("CBoption1").GetComponent<Button>();
+        CBoption2 = GameObject.Find("CBoption2").GetComponent<Button>();
+        CBoption3 = GameObject.Find("CBoption3").GetComponent<Button>();
+        CBoption4 = GameObject.Find("CBoption4").GetComponent<Button>();
+
+        GKoption1 = GameObject.Find("GKoption1").GetComponent<Button>();
+        GKoption2 = GameObject.Find("GKoption2").GetComponent<Button>();
+      
+        GKTracker.Add(GKoption1);
+        GKTracker.Add(GKoption2);
 
 
+        int GKlimit = 0;
+        int RBlimit = 0;
 
-        Playerinfo0 = GameObject.Find("PlayerInfo (0)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo0);
-
-        Playerinfo1 = GameObject.Find("PlayerInfo (1)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo1);
-
-        Playerinfo2 = GameObject.Find("PlayerInfo (2)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo2);
-
-        Playerinfo3 = GameObject.Find("PlayerInfo (3)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo3);
-
-        Playerinfo4 = GameObject.Find("PlayerInfo (4)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo4);
-
-        Playerinfo5 = GameObject.Find("PlayerInfo (5)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo5);
-
-
-        Playerinfo6 = GameObject.Find("PlayerInfo (6)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo6);
-
-        Playerinfo7 = GameObject.Find("PlayerInfo (7)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo7);
-
-        Playerinfo8 = GameObject.Find("PlayerInfo (8)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo8);
-
-
-        Playerinfo9 = GameObject.Find("PlayerInfo (9)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo9);
-
-        Playerinfo10 = GameObject.Find("PlayerInfo (10)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo10);
-
-        Playerinfo11 = GameObject.Find("PlayerInfo (11)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo11);
-
-        Playerinfo12 = GameObject.Find("PlayerInfo (12)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo12);
-
-
-        Playerinfo13 = GameObject.Find("PlayerInfo (13)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo13);
-
-
-        Playerinfo14 = GameObject.Find("PlayerInfo (14)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo14);
-
-
-        Playerinfo15 = GameObject.Find("PlayerInfo (15)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo15);
-
-        Playerinfo16 = GameObject.Find("PlayerInfo (16)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo16);
-
-
-        Playerinfo17 = GameObject.Find("PlayerInfo (17)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo17);
-
-        Playerinfo18 = GameObject.Find("PlayerInfo (18)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo18);
-
-        Playerinfo19 = GameObject.Find("PlayerInfo (19)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo19);
-
-        Playerinfo20 = GameObject.Find("PlayerInfo (20)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo20);
-
-        Playerinfo21 = GameObject.Find("PlayerInfo (21)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo21);
-
-        Playerinfo22 = GameObject.Find("PlayerInfo (22)").GetComponent<Text>();
-        SquadChoice.Add(Playerinfo22);
-
-
-
-
-        for (i = 0; i <= 22; i++)
+        for (int i = 0; i <= 22;i++)
         {
-            SquadChoice[i].text = (SelectedSquad[i].Name + "\n" + SelectedSquad[i].Position + "\n" + SelectedSquad[i].Overall);
 
-            if (SelectedSquad[i].Star == 100)
+            if (SelectedSquad[i].Position == "GK")
             {
-                SquadChoice[i].color = Color.red;
+                SquadTracker.Clear();
+                Starting11Info t = new Starting11Info();
+                Debug.Log(1);
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+
+                SquadTracker.Add(t);
+                Debug.Log(2);
+
+                GKTracker[GKlimit].GetComponentInChildren<Text>().text = SquadTracker[i].Name;
+                GKlimit++;
+            }
+
+
+
+
+
+
+            if (SelectedSquad[i].Position == "RB")
+            {
+                SquadTracker.Clear();
+                Starting11Info t = new Starting11Info();
+                Debug.Log(1);
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+
+                SquadTracker.Add(t);
+
+
+                RBTracker[RBlimit].GetComponentInChildren<Text>().text = SquadTracker[i].Name;
+                RBlimit++;
 
 
             }
 
         }
 
+    
 
 
-
-
+  
 
 
 
@@ -489,9 +457,7 @@ public class UiManagement : MonoBehaviour
 
 
 
-
-
-    public void ViewPosessionPlan()
+        public void ViewPosessionPlan()
     {
 
         PossesionBtn = GameObject.Find("PossesionBtn").GetComponent<Button>();
@@ -671,7 +637,7 @@ public class UiManagement : MonoBehaviour
         TeamOverallText = GameObject.Find("TeamOverallText").GetComponent<Text>();
         int total = 0;
         //CurrentTeamOverall
-        for (i = 0; i <= 22; i++)
+        for (int i = 0; i <= 22; i++)
         {
             total = total + SelectedSquad[i].Overall;
 
@@ -846,7 +812,7 @@ public class UiManagement : MonoBehaviour
         LeaguePointsList.Add(Points11);
 
 
-        for (i = 0; i <= 11; i++)
+        for (int i = 0; i <= 11; i++)
         {
 
             LeagueTeamList[i].text = myteam.teaminfo[i].Name;
@@ -1055,7 +1021,7 @@ public class UiManagement : MonoBehaviour
     public void NextSquadPage()
     {
 
-        for (i = 12; i <= 22; i++)
+        for (int i = 12; i <= 22; i++)
         {
 
             SquadNameList[i - 12].text = SelectedSquad[i].Name;
@@ -1065,7 +1031,7 @@ public class UiManagement : MonoBehaviour
             SquadFormList[i - 12].text = SelectedSquad[i].Form.ToString();
             SquadMoraleList[i - 12].text = SelectedSquad[i].Morale.ToString();
 
-            Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
+            //Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
 
         }
 
@@ -1097,7 +1063,7 @@ public class UiManagement : MonoBehaviour
 
 
 
-        for (i = 0; i <= 11; i++)
+        for (int i = 0; i <= 11; i++)
         {
 
             SquadNameList[i].text = SelectedSquad[i].Name;
@@ -1107,7 +1073,7 @@ public class UiManagement : MonoBehaviour
             SquadFormList[i].text = SelectedSquad[i].Form.ToString();
             SquadMoraleList[i].text = SelectedSquad[i].Morale.ToString();
 
-            Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
+           // Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
 
         }
 
@@ -1364,9 +1330,9 @@ public class UiManagement : MonoBehaviour
         SquadMoraleList.Add(MoraleHeader12);
         SquadAgeList.Add(AgeHeader12);
 
-        Debug.Log("populate");
 
-        for (i = 0; i <= 11; i++)
+
+        for (int i = 0; i <= 11; i++)
         {
 
             SquadNameList[i].text = SelectedSquad[i].Name;
@@ -1422,9 +1388,11 @@ public class UiManagement : MonoBehaviour
 
     public void teamInfoDisplay()
     {
-        
-        DisplaySquadChoice();
-       
+        CurrentGameplanText = GameObject.Find("CurrentGameplanText").GetComponent<Text>();
+        GameplanCapabilityText = GameObject.Find("GameplanCapabilityText").GetComponent<Text>();
+
+        //DisplaySquadChoice();
+
         CalculateCurrOverall();
         
         RetrievePos();
@@ -1487,7 +1455,7 @@ public class UiManagement : MonoBehaviour
         List<int> AttackAverage = new List<int>();
 
         //CurrentTeamOverall
-        for (i = 0; i <= 22; i++)
+        for (int i = 0; i <= 22; i++)
         {
             if (OppThreat[i].Position == "ST")
             {
@@ -1546,7 +1514,7 @@ public class UiManagement : MonoBehaviour
 
 
 
-        for (i = 0; i < AttackAverage.Count(); i++)
+        for (int i = 0; i < AttackAverage.Count(); i++)
         {
             attackcounter = attackcounter + AttackAverage[i];
 
@@ -1573,7 +1541,7 @@ public class UiManagement : MonoBehaviour
         int Defencecounter = 0;
 
         List<int> DefenceAverage = new List<int>();
-        for (i = 0; i <= 22; i++)
+        for (int i = 0; i <= 22; i++)
         {
             if (OppThreat[i].Position == "CB")
             {
@@ -1624,7 +1592,7 @@ public class UiManagement : MonoBehaviour
         }
 
 
-        for (i = 0; i < DefenceAverage.Count(); i++)
+        for (int i = 0; i < DefenceAverage.Count(); i++)
         {
             Defencecounter = Defencecounter + DefenceAverage[i];
 
@@ -2595,12 +2563,14 @@ public class UiManagement : MonoBehaviour
 
         selectSquad();
 
-        updateFaith();
+        //updateFaith();
 
-        UpdatePlayerInfo();
+       // UpdatePlayerInfo();
         initTableInfo();
         PointsUpdater();
-        PopulateTable();
+        // PopulateTable();
+
+        displayOptions();
     }
 
 

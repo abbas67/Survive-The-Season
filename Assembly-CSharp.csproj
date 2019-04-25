@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\PlayerInfo.cs" />
     <Compile Include="Assets\Scripts\QuitOnClick.cs" />
     <Compile Include="Assets\Scripts\SelectOnInput.cs" />
+    <Compile Include="Assets\Scripts\Starting11Info.cs" />
     <Compile Include="Assets\Scripts\TableInfo.cs" />
     <Compile Include="Assets\Scripts\Team.cs" />
     <Compile Include="Assets\Scripts\TeamInfo.cs" />

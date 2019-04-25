@@ -28,6 +28,8 @@ public class PlayerInfo : MonoBehaviour
     public int Happiness;
     public int Morale;
     public int Form;
+    public int Goals;
+    public int Assists;
 
 
 

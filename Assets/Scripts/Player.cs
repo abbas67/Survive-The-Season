@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
                 int.TryParse(row[21], out t.Happiness);
                 int.TryParse(row[22], out t.Morale);
                 int.TryParse(row[23], out t.Form);
+                int.TryParse(row[24], out t.Goals);
+                int.TryParse(row[25], out t.Assists);
                 playerinfo.Add(t);
             }
 
