@@ -12,8 +12,8 @@ public class Manager : MonoBehaviour {
 
 
     int ManAge;
-    string ManNationality;
-    string ManName;
+    static public string ManNationality;
+    static public string ManName;
 
    
     static public int ManStress = 50;
