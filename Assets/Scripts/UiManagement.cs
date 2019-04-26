@@ -242,7 +242,7 @@ public class UiManagement : MonoBehaviour
 
 
 
-  
+
 
 
     Team myteam = new Team();
@@ -298,7 +298,7 @@ public class UiManagement : MonoBehaviour
     int[] AwayTeams = new int[] { 1, 3, 5, 7, 9, 11 };
 
     private static readonly System.Random rnd = new System.Random();
-    private static  object syncLock = new object();
+    private static object syncLock = new object();
 
     public Text GameWeekTxt;
     public Text ManStressTxt;
@@ -344,6 +344,14 @@ public class UiManagement : MonoBehaviour
     public Button GKoption3;
 
 
+    public List<Starting11Info> Keepers = new List<Starting11Info>();
+    public List<Starting11Info> CentreBacks = new List<Starting11Info>();
+    List<Starting11Info> RightBacks = new List<Starting11Info>();
+    List<Starting11Info> LeftBacks = new List<Starting11Info>();
+    List<Starting11Info> MidFielders = new List<Starting11Info>();
+    List<Starting11Info> LeftMid = new List<Starting11Info>();
+    List<Starting11Info> RightMid = new List<Starting11Info>();
+    List<Starting11Info> Striker = new List<Starting11Info>();
 
     public List<Starting11Info> SquadTracker = new List<Starting11Info>();
 
@@ -353,10 +361,21 @@ public class UiManagement : MonoBehaviour
     {
         List<Button> GKTracker = new List<Button>();
         List<Button> RBTracker = new List<Button>();
+        List<Button> LBTracker = new List<Button>();
+        List<Button> CBTracker = new List<Button>();
+        List<Button> RMTracker = new List<Button>();
+        List<Button> LMTracker = new List<Button>();
+        List<Button> STTracker = new List<Button>();
+        List<Button> MFTracker = new List<Button>();
+
+
+
 
         SToption1 = GameObject.Find("SToption1").GetComponent<Button>();
         SToption2 = GameObject.Find("SToption2").GetComponent<Button>();
         SToption3 = GameObject.Find("SToption3").GetComponent<Button>();
+
+
 
         MFoption1 = GameObject.Find("MFoption1").GetComponent<Button>();
         MFoption2 = GameObject.Find("MFoption2").GetComponent<Button>();
@@ -375,6 +394,8 @@ public class UiManagement : MonoBehaviour
 
         LBoption1 = GameObject.Find("LBoption1").GetComponent<Button>();
         LBoption2 = GameObject.Find("LBoption2").GetComponent<Button>();
+        LBTracker.Add(LBoption1);
+        LBTracker.Add(LBoption2);
 
         RBoption1 = GameObject.Find("RBoption1").GetComponent<Button>();
         RBoption2 = GameObject.Find("RBoption2").GetComponent<Button>();
@@ -387,34 +408,56 @@ public class UiManagement : MonoBehaviour
         CBoption3 = GameObject.Find("CBoption3").GetComponent<Button>();
         CBoption4 = GameObject.Find("CBoption4").GetComponent<Button>();
 
+        CBTracker.Add(CBoption1);
+        CBTracker.Add(CBoption2);
+        CBTracker.Add(CBoption3);
+        CBTracker.Add(CBoption4);
+
         GKoption1 = GameObject.Find("GKoption1").GetComponent<Button>();
         GKoption2 = GameObject.Find("GKoption2").GetComponent<Button>();
-      
+
         GKTracker.Add(GKoption1);
         GKTracker.Add(GKoption2);
 
 
-        int GKlimit = 0;
-        int RBlimit = 0;
 
-        for (int i = 0; i <= 22;i++)
+
+        for (int i = 0; i <= 22; i++)
         {
 
             if (SelectedSquad[i].Position == "GK")
             {
-                SquadTracker.Clear();
+
+
+
                 Starting11Info t = new Starting11Info();
-                Debug.Log(1);
+
                 t.Name = SelectedSquad[i].Name;
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                Keepers.Add(t);
 
-                SquadTracker.Add(t);
-                Debug.Log(2);
 
-                GKTracker[GKlimit].GetComponentInChildren<Text>().text = SquadTracker[i].Name;
-                GKlimit++;
+
+            }
+
+            if (SelectedSquad[i].Position == "CB")
+            {
+
+
+
+                Starting11Info t = new Starting11Info();
+
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                CentreBacks.Add(t);
+
+
             }
 
 
@@ -422,37 +465,30 @@ public class UiManagement : MonoBehaviour
 
 
 
-            if (SelectedSquad[i].Position == "RB")
+        }
+ 
+        displayPlayers(Keepers, GKTracker);
+        displayPlayers(CentreBacks, CBTracker);
+    }
+
+
+        public void displayPlayers(List<Starting11Info> playerTracker, List<Button> buttons)
+        {
+            for (int i = 0;i < playerTracker.Count(); i++)
             {
-                SquadTracker.Clear();
-                Starting11Info t = new Starting11Info();
-                Debug.Log(1);
-                t.Name = SelectedSquad[i].Name;
-                t.Overall = SelectedSquad[i].Overall;
-                t.Position = SelectedSquad[i].Position;
-                t.PlayerID = SelectedSquad[i].PlayerID;
 
-                SquadTracker.Add(t);
+                buttons[i].GetComponentInChildren<Text>().text = playerTracker[i].Name;
 
 
-                RBTracker[RBlimit].GetComponentInChildren<Text>().text = SquadTracker[i].Name;
-                RBlimit++;
 
 
             }
 
         }
 
+
+
     
-
-
-  
-
-
-
-
-    }
-
 
 
 

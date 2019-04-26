@@ -8,5 +8,6 @@ public class Starting11Info : MonoBehaviour
     public int PlayerID;
     public string Position;
     public string Name;
-    public int Overall; 
+    public int Overall;
+    public bool Starting;
 }
