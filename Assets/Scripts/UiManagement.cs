@@ -356,6 +356,30 @@ public class UiManagement : MonoBehaviour
     public List<Starting11Info> SquadTracker = new List<Starting11Info>();
 
 
+    public List<PlayerInfo> Starting11 = new List<PlayerInfo>();
+
+
+    public void SelectLM(int ButtonID)
+    { 
+
+    
+    
+    }
+
+    public void SelectRM(int ButtonID)
+    {
+
+
+
+    }
+
+
+    public void SelectST(int ButtonID)
+    {
+
+
+
+    }
 
     public void displayOptions()
     {
@@ -374,8 +398,9 @@ public class UiManagement : MonoBehaviour
         SToption1 = GameObject.Find("SToption1").GetComponent<Button>();
         SToption2 = GameObject.Find("SToption2").GetComponent<Button>();
         SToption3 = GameObject.Find("SToption3").GetComponent<Button>();
-
-
+        STTracker.Add(SToption1);
+        STTracker.Add(SToption2);
+        STTracker.Add(SToption3);
 
         MFoption1 = GameObject.Find("MFoption1").GetComponent<Button>();
         MFoption2 = GameObject.Find("MFoption2").GetComponent<Button>();
@@ -383,17 +408,26 @@ public class UiManagement : MonoBehaviour
         MFoption4 = GameObject.Find("MFoption4").GetComponent<Button>();
         MFoption5 = GameObject.Find("MFoption5").GetComponent<Button>();
         MFoption6 = GameObject.Find("MFoption6").GetComponent<Button>();
-
+        MFTracker.Add(MFoption1);
+        MFTracker.Add(MFoption2);
+        MFTracker.Add(MFoption3);
+        MFTracker.Add(MFoption4);
+        MFTracker.Add(MFoption5);
+        MFTracker.Add(MFoption6);
 
         LeftMoption1 = GameObject.Find("LMoption1").GetComponent<Button>();
         LeftMoption2 = GameObject.Find("LMoption2").GetComponent<Button>();
+        LMTracker.Add(LeftMoption1);
+        LMTracker.Add(LeftMoption2);
 
         RightMoption1 = GameObject.Find("RMoption1").GetComponent<Button>();
         RightMoption2 = GameObject.Find("RMoption2").GetComponent<Button>();
-
+        RMTracker.Add(RightMoption1);
+        RMTracker.Add(RightMoption2);
 
         LBoption1 = GameObject.Find("LBoption1").GetComponent<Button>();
         LBoption2 = GameObject.Find("LBoption2").GetComponent<Button>();
+
         LBTracker.Add(LBoption1);
         LBTracker.Add(LBoption2);
 
@@ -427,48 +461,131 @@ public class UiManagement : MonoBehaviour
 
             if (SelectedSquad[i].Position == "GK")
             {
-
-
-
                 Starting11Info t = new Starting11Info();
-
                 t.Name = SelectedSquad[i].Name;
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
                 t.Starting = false;
                 Keepers.Add(t);
-
-
-
             }
 
             if (SelectedSquad[i].Position == "CB")
             {
-
-
-
                 Starting11Info t = new Starting11Info();
-
                 t.Name = SelectedSquad[i].Name;
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
                 t.Starting = false;
                 CentreBacks.Add(t);
+            }
 
+            if (SelectedSquad[i].Position == "LB")
+            {
+                Starting11Info t = new Starting11Info();
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                LeftBacks.Add(t);
+            }
 
+            if (SelectedSquad[i].Position == "RB")
+            {
+                Starting11Info t = new Starting11Info();
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                RightBacks.Add(t);
+            }
+
+            if (SelectedSquad[i].Position == "CM")
+            {
+                Starting11Info t = new Starting11Info();
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                MidFielders.Add(t);
+            }
+
+            if (SelectedSquad[i].Position == "CAM")
+            {
+                Starting11Info t = new Starting11Info();
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                MidFielders.Add(t);
+            }
+
+            if (SelectedSquad[i].Position == "CDM")
+            {
+                Starting11Info t = new Starting11Info();
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                MidFielders.Add(t);
+            }
+
+            if (SelectedSquad[i].Position == "LM")
+            {
+                Starting11Info t = new Starting11Info();
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                LeftMid.Add(t);
+            }
+
+            if (SelectedSquad[i].Position == "RM")
+            {
+                Starting11Info t = new Starting11Info();
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                RightMid.Add(t);
+            }
+            if (SelectedSquad[i].Position == "ST")
+            {
+                Starting11Info t = new Starting11Info();
+                t.Name = SelectedSquad[i].Name;
+                t.Overall = SelectedSquad[i].Overall;
+                t.Position = SelectedSquad[i].Position;
+                t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Starting = false;
+                Striker.Add(t);
             }
 
 
-
-
-
-
         }
- 
+        displayPlayers(MidFielders, MFTracker);
         displayPlayers(Keepers, GKTracker);
+        Debug.Log(1);
         displayPlayers(CentreBacks, CBTracker);
+        Debug.Log(2);
+        displayPlayers(LeftBacks, LBTracker);
+        Debug.Log(3);
+        displayPlayers(RightBacks, RBTracker);
+        Debug.Log(4);
+
+        displayPlayers(RightMid, RMTracker);
+        Debug.Log(5);
+        displayPlayers(LeftMid, LMTracker);
+        Debug.Log(6);
+        displayPlayers(Striker, STTracker);
+        Debug.Log(7);
     }
 
 
@@ -2589,7 +2706,7 @@ public class UiManagement : MonoBehaviour
     void Start()
     {
         // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 0;
+        TeamSetup.TeamManagedID = 2;
         GameWeek = 1;
         myteam.loadData();
         myplayer.loadPlayerData();

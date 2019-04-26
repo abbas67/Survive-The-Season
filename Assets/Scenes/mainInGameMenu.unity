@@ -6273,7 +6273,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 480, y: 153.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428690909
 MonoBehaviour:
@@ -13921,7 +13921,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 934802515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -13931,10 +13931,10 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
 --- !u!1 &946414478
 GameObject:
   m_ObjectHideFlags: 0
@@ -19809,8 +19809,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.91636646}
   m_AnchorMax: {x: 0.5, y: 0.91636646}
-  m_AnchoredPosition: {x: 10.5, y: -1471}
-  m_SizeDelta: {x: 480, y: 251.6}
+  m_AnchoredPosition: {x: 0.000015259, y: -1524}
+  m_SizeDelta: {x: 829.76, y: 251.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1370157247
 MonoBehaviour:
@@ -21901,7 +21901,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 480, y: 133.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499842128
 MonoBehaviour:
@@ -24667,7 +24667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.91636646}
   m_AnchorMax: {x: 0.5, y: 0.91636646}
-  m_AnchoredPosition: {x: 1.6, y: -1071.6}
+  m_AnchoredPosition: {x: 0.00000011921, y: -1010}
   m_SizeDelta: {x: 610.9, y: 287.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1696701081
@@ -24679,7 +24679,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1696701079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -24688,11 +24688,12 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 600, y: 120}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!114 &1696701082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28980,7 +28981,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 480, y: 186.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929598180
 MonoBehaviour:
@@ -31115,6 +31116,8 @@ MonoBehaviour:
   GKoption1: {fileID: 0}
   GKoption2: {fileID: 0}
   GKoption3: {fileID: 0}
+  Keepers: []
+  CentreBacks: []
   SquadTracker: []
 --- !u!1 &2028884668
 GameObject:
@@ -31275,8 +31278,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.91636646}
   m_AnchorMax: {x: 0.5, y: 0.91636646}
-  m_AnchoredPosition: {x: 10.5, y: -576.4}
-  m_SizeDelta: {x: 781.6, y: 335.4}
+  m_AnchoredPosition: {x: 17.29, y: -596.8}
+  m_SizeDelta: {x: 795.18, y: 376.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2033158342
 MonoBehaviour:
@@ -31287,7 +31290,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2033158340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -31296,11 +31299,12 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 400, y: 130}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 1
+  m_ConstraintCount: 2
 --- !u!114 &2033158343
 MonoBehaviour:
   m_ObjectHideFlags: 0
