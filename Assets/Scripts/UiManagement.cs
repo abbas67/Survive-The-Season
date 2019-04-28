@@ -343,6 +343,7 @@ public class UiManagement : MonoBehaviour
     public Button GKoption2;
     public Button GKoption3;
 
+    public bool LMSelectCheck = false;
 
     public List<Starting11Info> Keepers = new List<Starting11Info>();
     public List<Starting11Info> CentreBacks = new List<Starting11Info>();
@@ -357,19 +358,191 @@ public class UiManagement : MonoBehaviour
 
 
     public List<PlayerInfo> Starting11 = new List<PlayerInfo>();
+    List<Button> GKTracker = new List<Button>();
+    List<Button> RBTracker = new List<Button>();
+    List<Button> LBTracker = new List<Button>();
+    List<Button> CBTracker = new List<Button>();
+    List<Button> RMTracker = new List<Button>();
+    List<Button> LMTracker = new List<Button>();
+    List<Button> STTracker = new List<Button>();
+    List<Button> MFTracker = new List<Button>();
+
+    public void AddToLineup(int PlayerID)
+    {
+
+        for (int i = 0; i <= 22; i++)
+        {
+            if (SelectedSquad[i].PlayerID == PlayerID)
+            {
+
+                Starting11.Add(SelectedSquad[i]);
+
+            }
+
+        }
+
+
+
+
+    }
+
 
 
     public void SelectLM(int ButtonID)
-    { 
+    {
+        if (ButtonID == 0)
+        {
+            AddToLineup(LeftMid[0].PlayerID);
+
+            LMTracker[ButtonID].GetComponent<Button>().interactable = false;
+            LMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            LeftMid[ButtonID].Starting = true;
+
+            LMTracker[1].GetComponent<Button>().interactable = true;
+            LMTracker[1].GetComponent<Image>().color = Color.white;
+            LeftMid[1].Starting = false;
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == LeftMid[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftMid[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                   
+                    Starting11.RemoveAll(a => a.PlayerID == LeftMid[1].PlayerID);
+                }
+
+
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name);
+
+            }
+
+        }
 
     
     
+        if (ButtonID == 1)
+        {
+         
+            AddToLineup(LeftMid[ButtonID].PlayerID);
+            LMTracker[ButtonID].GetComponent<Button>().interactable = false;
+            LMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            LeftMid[ButtonID].Starting = true;
+
+            LMTracker[0].GetComponent<Button>().interactable = true;
+            LMTracker[0].GetComponent<Image>().color = Color.white;
+            LeftMid[0].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == LeftMid[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftMid[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == LeftMid[0].PlayerID);
+                }
+
+
+            }
+
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+             
+                Debug.Log(Starting11[i].Name);
+
+            }
+           
+        }
+
     }
 
     public void SelectRM(int ButtonID)
     {
 
+        if (ButtonID == 0)
+        {
 
+            AddToLineup(RightMid[ButtonID].PlayerID);
+            RMTracker[ButtonID].GetComponent<Button>().interactable = false;
+            RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            RightMid[ButtonID].Starting = true;
+
+            RMTracker[1].GetComponent<Button>().interactable = true;
+            RMTracker[1].GetComponent<Image>().color = Color.white;
+            RightMid[1].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == RightMid[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == RightMid[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == LeftMid[1].PlayerID);
+
+                }
+
+
+            }
+
+            Debug.Log("new list");
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+              
+                Debug.Log(Starting11[i].Name);
+
+            }
+
+        }
+
+
+
+        if (ButtonID == 1)
+        {
+
+            AddToLineup(RightMid[ButtonID].PlayerID);
+            RMTracker[ButtonID].GetComponent<Button>().interactable = false;
+            RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            RightMid[ButtonID].Starting = true;
+
+            RMTracker[0].GetComponent<Button>().interactable = true;
+            RMTracker[0].GetComponent<Image>().color = Color.white;
+            RightMid[0].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == RightMid[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == RightMid[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == LeftMid[0].PlayerID);
+
+                }
+
+
+            }
+
+            Debug.Log("new list");
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+               
+                Debug.Log(Starting11[i].Name);
+
+            }
+
+        }
 
     }
 
@@ -383,14 +556,7 @@ public class UiManagement : MonoBehaviour
 
     public void displayOptions()
     {
-        List<Button> GKTracker = new List<Button>();
-        List<Button> RBTracker = new List<Button>();
-        List<Button> LBTracker = new List<Button>();
-        List<Button> CBTracker = new List<Button>();
-        List<Button> RMTracker = new List<Button>();
-        List<Button> LMTracker = new List<Button>();
-        List<Button> STTracker = new List<Button>();
-        List<Button> MFTracker = new List<Button>();
+
 
 
 
@@ -572,20 +738,20 @@ public class UiManagement : MonoBehaviour
         }
         displayPlayers(MidFielders, MFTracker);
         displayPlayers(Keepers, GKTracker);
-        Debug.Log(1);
+    
         displayPlayers(CentreBacks, CBTracker);
-        Debug.Log(2);
+      
         displayPlayers(LeftBacks, LBTracker);
-        Debug.Log(3);
+       
         displayPlayers(RightBacks, RBTracker);
-        Debug.Log(4);
+       
 
         displayPlayers(RightMid, RMTracker);
-        Debug.Log(5);
+    
         displayPlayers(LeftMid, LMTracker);
-        Debug.Log(6);
+     
         displayPlayers(Striker, STTracker);
-        Debug.Log(7);
+     
     }
 
 

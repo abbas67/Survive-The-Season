@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{E94744D6-C8B0-AEC2-CE8A-D7A69BB1AE69}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UiManagement.cs">
     <Files>
-      <File FileName="Assets/Scripts/UiManagement.cs" Line="364" Column="1" />
+      <File FileName="Assets/Scripts/UiManagement.cs" Line="417" Column="1" />
       <File FileName="Assets/Scripts/TeamSetup.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Player.cs" Line="60" Column="1" />
       <File FileName="Assets/Scripts/Manager.cs" Line="15" Column="19" />
@@ -13,7 +13,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b7739fe4-bc59-4b6e-b4c0-d5fe44e7b2be" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="3913d6a9-50a2-4286-986e-9ad50fe2838d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
