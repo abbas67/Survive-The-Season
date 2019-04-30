@@ -1,6 +1,6 @@
 iOS
 PlayerPath?
-/Users/abbaslawal/Documents/GitHub/GamesProgramming/Iphone/Iphone Test Build
+/Users/abbaslawal/Documents/IphoneTestBuild
 SceneListBegin?
 Assets/Scenes/MainMenu.unity
 Assets/Scenes/TeamSetup.unity
@@ -132,8 +132,9 @@ b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.Analytics.Editor.dll:UnityEditor.Analytics.AnalyticsEventTrackerEditor
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ShowSliderValue
-f7246515a5409eedcf35bf0efdff67d2 Assembly-CSharp.dll:.PlayerInfo
+aaa320ca92f4a0276321c37d81e8484b Assembly-CSharp.dll:.PlayerInfo
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
+fb3c3473a6fa32f4208d2ad38de86cae Assembly-CSharp.dll:.Starting11Info
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -153,7 +154,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 510fefd6a544e16a3ffefa557ddcba39 Unity.TextMeshPro.dll:TMPro.PackageResourceImporterWindow
 aa82b3ce4c0c9b227036c0337315c5d3 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 e51c09a4cc447f11db225afcd8e3e490 Unity.TextMeshPro.dll:TMPro.TMP_Settings
-80f7555ef2c5437ace02a121c073875b Assembly-CSharp.dll:.UiManagement
+5f898504788c36ccfde758cb4641ee4b Assembly-CSharp.dll:.UiManagement
 cf96e5f7b3d069bab453925bd41be04e UnityEngine.TestRunner.dll:UnityEngine.TestTools.EnumerableSetUpTearDownCommandState
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 259d013faac28e8ba0aa2a7542273735 UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
@@ -171,6 +172,7 @@ fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 a4f0a4f62100f1a4fb5cbe0e00dde83f Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 5fc094978ce3e3591a7500ed380d854a Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+15b43d238e101cbacd41053f376446bb Assembly-CSharp.dll:.TableInfo
 09fe53f599e1b043b2ab790cced57532 Assembly-CSharp.dll:.ScrollDetailTexture
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 91bf575ba52dc6e191a745acaa3744af Assembly-CSharp.dll:.Manager

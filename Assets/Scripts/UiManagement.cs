@@ -342,6 +342,7 @@ public class UiManagement : MonoBehaviour
     public Button GKoption1;
     public Button GKoption2;
     public Button GKoption3;
+    public Text LineupText;
 
     public bool LMSelectCheck = false;
 
@@ -380,13 +381,21 @@ public class UiManagement : MonoBehaviour
             }
 
         }
-
-
-
-
     }
 
 
+    public void PlayerStarterView()
+    {
+
+        for (int i = 0; i < Starting11.Count(); i++)
+        {
+
+            LineupText.text = LineupText.text + Starting11[i].Name;
+
+        }
+
+
+    }
 
     public void SelectLM(int ButtonID)
     {
@@ -487,7 +496,7 @@ public class UiManagement : MonoBehaviour
                 {
                     //var itemToRemove = Starting11.Single(r => r.PlayerID == RightMid[0].PlayerID);
                     //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == LeftMid[1].PlayerID);
+                    Starting11.RemoveAll(a => a.PlayerID == RightMid[1].PlayerID);
 
                 }
 
@@ -526,7 +535,7 @@ public class UiManagement : MonoBehaviour
                 {
                     //var itemToRemove = Starting11.Single(r => r.PlayerID == RightMid[0].PlayerID);
                     //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == LeftMid[0].PlayerID);
+                    Starting11.RemoveAll(a => a.PlayerID == RightMid[0].PlayerID);
 
                 }
 
@@ -550,15 +559,1073 @@ public class UiManagement : MonoBehaviour
     public void SelectST(int ButtonID)
     {
 
+        if (ButtonID == 0)
+        {
+            AddToLineup(Striker[0].PlayerID);
+
+            STTracker[ButtonID].GetComponent<Button>().interactable = false;
+            STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            Striker[ButtonID].Starting = true;
+
+            STTracker[1].GetComponent<Button>().interactable = true;
+            STTracker[1].GetComponent<Image>().color = Color.white;
+            Striker[1].Starting = false;
+
+            STTracker[2].GetComponent<Button>().interactable = true;
+            STTracker[2].GetComponent<Image>().color = Color.white;
+            Striker[2].Starting = false;
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == Striker[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == Striker[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == Striker[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == Striker[2].PlayerID);
+                }
+
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+
+
+        if (ButtonID == 1)
+        {
+
+            AddToLineup(Striker[ButtonID].PlayerID);
+            STTracker[ButtonID].GetComponent<Button>().interactable = false;
+            STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            Striker[ButtonID].Starting = true;
+
+            STTracker[0].GetComponent<Button>().interactable = true;
+            STTracker[0].GetComponent<Image>().color = Color.white;
+            Striker[0].Starting = false;
+
+            STTracker[2].GetComponent<Button>().interactable = true;
+            STTracker[2].GetComponent<Image>().color = Color.white;
+            Striker[2].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == Striker[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == Striker[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == Striker[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == Striker[2].PlayerID);
+                }
+
+            }
+
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+
+        if (ButtonID == 2)
+        {
+
+            AddToLineup(Striker[ButtonID].PlayerID);
+            STTracker[ButtonID].GetComponent<Button>().interactable = false;
+            STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            Striker[ButtonID].Starting = true;
+
+            STTracker[0].GetComponent<Button>().interactable = true;
+            STTracker[0].GetComponent<Image>().color = Color.white;
+            Striker[0].Starting = false;
+
+            STTracker[1].GetComponent<Button>().interactable = true;
+            STTracker[1].GetComponent<Image>().color = Color.white;
+            Striker[1].Starting = false;
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == Striker[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == Striker[0].PlayerID);
+                }
+                if (Starting11[i].PlayerID == Striker[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == Striker[1].PlayerID);
+                }
+
+            }
+
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+    }
+
+
+
+    public void SelectLB(int ButtonID)
+    {
+        if (ButtonID == 0)
+        {
+            AddToLineup(LeftBacks[0].PlayerID);
+
+            LBTracker[ButtonID].GetComponent<Button>().interactable = false;
+            LBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            LeftBacks[ButtonID].Starting = true;
+
+            LBTracker[1].GetComponent<Button>().interactable = true;
+            LBTracker[1].GetComponent<Image>().color = Color.white;
+            LeftBacks[1].Starting = false;
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == LeftBacks[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == LeftBacks[1].PlayerID);
+                }
+
+
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+
+
+        if (ButtonID == 1)
+        {
+
+            AddToLineup(LeftBacks[ButtonID].PlayerID);
+            LBTracker[ButtonID].GetComponent<Button>().interactable = false;
+            LBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            LeftBacks[ButtonID].Starting = true;
+
+            LBTracker[0].GetComponent<Button>().interactable = true;
+            LBTracker[0].GetComponent<Image>().color = Color.white;
+            LeftBacks[0].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == LeftBacks[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == LeftBacks[0].PlayerID);
+                }
+
+
+            }
+
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+
+
+
+
+
+
 
 
     }
+
+    public void SelectRB(int ButtonID)
+    {
+
+        if (ButtonID == 0)
+        {
+            AddToLineup(RightBacks[0].PlayerID);
+
+            RBTracker[ButtonID].GetComponent<Button>().interactable = false;
+            RBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            RightBacks[ButtonID].Starting = true;
+
+            RBTracker[1].GetComponent<Button>().interactable = true;
+            RBTracker[1].GetComponent<Image>().color = Color.white;
+            RightBacks[1].Starting = false;
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == RightBacks[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == RightBacks[1].PlayerID);
+                }
+
+
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+
+
+        if (ButtonID == 1)
+        {
+
+            AddToLineup(RightBacks[ButtonID].PlayerID);
+            RBTracker[ButtonID].GetComponent<Button>().interactable = false;
+            RBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            RightBacks[ButtonID].Starting = true;
+
+            RBTracker[0].GetComponent<Button>().interactable = true;
+            RBTracker[0].GetComponent<Image>().color = Color.white;
+            RightBacks[0].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == RightBacks[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == RightBacks[0].PlayerID);
+                }
+
+
+            }
+
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+
+
+
+    }
+
+
+    public void SelectCB(int ButtonID)
+    {
+
+        if (ButtonID == 0)
+        {
+            AddToLineup(CentreBacks[0].PlayerID);
+
+            CBTracker[ButtonID].GetComponent<Button>().interactable = false;
+            CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            CentreBacks[ButtonID].Starting = true;
+
+            CBTracker[1].GetComponent<Button>().interactable = true;
+            CBTracker[1].GetComponent<Image>().color = Color.white;
+            CentreBacks[1].Starting = false;
+
+            CBTracker[2].GetComponent<Button>().interactable = true;
+            CBTracker[2].GetComponent<Image>().color = Color.white;
+            CentreBacks[2].Starting = false;
+
+            CBTracker[3].GetComponent<Button>().interactable = true;
+            CBTracker[3].GetComponent<Image>().color = Color.white;
+            CentreBacks[3].Starting = false;
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == CentreBacks[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == CentreBacks[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[2].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == CentreBacks[3].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[3].PlayerID);
+                }
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+
+
+        if (ButtonID == 1)
+        {
+
+            AddToLineup(CentreBacks[ButtonID].PlayerID);
+            CBTracker[1].GetComponent<Button>().interactable = false;
+            CBTracker[1].GetComponent<Image>().color = Color.grey;
+            CentreBacks[1].Starting = true;
+
+       
+            CBTracker[0].GetComponent<Button>().interactable = true;
+            CBTracker[0].GetComponent<Image>().color = Color.white;
+            CentreBacks[0].Starting = false;
+
+
+            CBTracker[2].GetComponent<Button>().interactable = true;
+            CBTracker[2].GetComponent<Image>().color = Color.white;
+            CentreBacks[2].Starting = false;
+
+            CBTracker[3].GetComponent<Button>().interactable = true;
+            CBTracker[3].GetComponent<Image>().color = Color.white;
+            CentreBacks[3].Starting = false;
+
+         
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == CentreBacks[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == CentreBacks[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[2].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == CentreBacks[3].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[3].PlayerID);
+                }
+
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+
+        }
+
+        if (ButtonID == 2)
+        {
+
+            AddToLineup(CentreBacks[ButtonID].PlayerID);
+            CBTracker[ButtonID].GetComponent<Button>().interactable = false;
+            CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            CentreBacks[ButtonID].Starting = true;
+
+            CBTracker[0].GetComponent<Button>().interactable = true;
+            CBTracker[0].GetComponent<Image>().color = Color.white;
+            CentreBacks[0].Starting = false;
+
+
+            CBTracker[1].GetComponent<Button>().interactable = true;
+            CBTracker[1].GetComponent<Image>().color = Color.white;
+            CentreBacks[1].Starting = false;
+
+            CBTracker[3].GetComponent<Button>().interactable = true;
+            CBTracker[3].GetComponent<Image>().color = Color.white;
+            CentreBacks[3].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == CentreBacks[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == CentreBacks[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == CentreBacks[3].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[3].PlayerID);
+                }
+
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+
+        }
+
+        if (ButtonID == 3)
+        {
+
+            AddToLineup(CentreBacks[ButtonID].PlayerID);
+            CBTracker[ButtonID].GetComponent<Button>().interactable = false;
+            CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            CentreBacks[ButtonID].Starting = true;
+
+            CBTracker[0].GetComponent<Button>().interactable = true;
+            CBTracker[0].GetComponent<Image>().color = Color.white;
+            CentreBacks[0].Starting = false;
+
+
+            CBTracker[1].GetComponent<Button>().interactable = true;
+            CBTracker[1].GetComponent<Image>().color = Color.white;
+            CentreBacks[1].Starting = false;
+
+            CBTracker[2].GetComponent<Button>().interactable = true;
+            CBTracker[2].GetComponent<Image>().color = Color.white;
+            CentreBacks[2].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == CentreBacks[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == CentreBacks[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == CentreBacks[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[2].PlayerID);
+                }
+
+            }
+
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+
+            }
+
+        }
+
+
+
+    }
+
+
+    public void SelectMF(int ButtonID)
+    {
+
+        if (ButtonID == 0)
+        {
+            AddToLineup(MidFielders[ButtonID].PlayerID);
+
+            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            MidFielders[ButtonID].Starting = true;
+
+            MFTracker[1].GetComponent<Button>().interactable = true;
+            MFTracker[1].GetComponent<Image>().color = Color.white;
+            MidFielders[1].Starting = false;
+
+            MFTracker[2].GetComponent<Button>().interactable = true;
+            MFTracker[2].GetComponent<Image>().color = Color.white;
+            MidFielders[2].Starting = false;
+
+            MFTracker[3].GetComponent<Button>().interactable = true;
+            MFTracker[3].GetComponent<Image>().color = Color.white;
+            MidFielders[3].Starting = false;
+
+            MFTracker[4].GetComponent<Button>().interactable = true;
+            MFTracker[4].GetComponent<Image>().color = Color.white;
+            MidFielders[4].Starting = false;
+
+            MFTracker[5].GetComponent<Button>().interactable = true;
+            MFTracker[5].GetComponent<Image>().color = Color.white;
+            MidFielders[5].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
+                }
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + "  " +  Starting11[i].Position);
+
+            }
+
+        }
+
+        if (ButtonID == 1)
+        {
+            AddToLineup(MidFielders[ButtonID].PlayerID);
+
+            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            MidFielders[ButtonID].Starting = true;
+
+            MFTracker[0].GetComponent<Button>().interactable = true;
+            MFTracker[0].GetComponent<Image>().color = Color.white;
+            MidFielders[0].Starting = false;
+
+            MFTracker[2].GetComponent<Button>().interactable = true;
+            MFTracker[2].GetComponent<Image>().color = Color.white;
+            MidFielders[2].Starting = false;
+
+            MFTracker[3].GetComponent<Button>().interactable = true;
+            MFTracker[3].GetComponent<Image>().color = Color.white;
+            MidFielders[3].Starting = false;
+
+            MFTracker[4].GetComponent<Button>().interactable = true;
+            MFTracker[4].GetComponent<Image>().color = Color.white;
+            MidFielders[4].Starting = false;
+
+            MFTracker[5].GetComponent<Button>().interactable = true;
+            MFTracker[5].GetComponent<Image>().color = Color.white;
+            MidFielders[5].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
+                }
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
+
+            }
+
+        }
+
+        if (ButtonID == 2)
+        {
+            AddToLineup(MidFielders[ButtonID].PlayerID);
+
+            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            MidFielders[ButtonID].Starting = true;
+
+            MFTracker[1].GetComponent<Button>().interactable = true;
+            MFTracker[1].GetComponent<Image>().color = Color.white;
+            MidFielders[1].Starting = false;
+
+            MFTracker[0].GetComponent<Button>().interactable = true;
+            MFTracker[0].GetComponent<Image>().color = Color.white;
+            MidFielders[0].Starting = false;
+
+            MFTracker[3].GetComponent<Button>().interactable = true;
+            MFTracker[3].GetComponent<Image>().color = Color.white;
+            MidFielders[3].Starting = false;
+
+            MFTracker[4].GetComponent<Button>().interactable = true;
+            MFTracker[4].GetComponent<Image>().color = Color.white;
+            MidFielders[4].Starting = false;
+
+            MFTracker[5].GetComponent<Button>().interactable = true;
+            MFTracker[5].GetComponent<Image>().color = Color.white;
+            MidFielders[5].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
+                }
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + "  " +  Starting11[i].Position);
+
+            }
+
+        }
+
+
+        if (ButtonID == 3)
+        {
+            AddToLineup(MidFielders[ButtonID].PlayerID);
+
+            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            MidFielders[ButtonID].Starting = true;
+
+            MFTracker[1].GetComponent<Button>().interactable = true;
+            MFTracker[1].GetComponent<Image>().color = Color.white;
+            MidFielders[1].Starting = false;
+
+            MFTracker[0].GetComponent<Button>().interactable = true;
+            MFTracker[0].GetComponent<Image>().color = Color.white;
+            MidFielders[0].Starting = false;
+
+            MFTracker[2].GetComponent<Button>().interactable = true;
+            MFTracker[2].GetComponent<Image>().color = Color.white;
+            MidFielders[2].Starting = false;
+
+            MFTracker[4].GetComponent<Button>().interactable = true;
+            MFTracker[4].GetComponent<Image>().color = Color.white;
+            MidFielders[4].Starting = false;
+
+            MFTracker[5].GetComponent<Button>().interactable = true;
+            MFTracker[5].GetComponent<Image>().color = Color.white;
+            MidFielders[5].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
+                }
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
+
+            }
+
+        }
+
+
+        if (ButtonID == 4)
+        {
+            AddToLineup(MidFielders[ButtonID].PlayerID);
+
+            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            MidFielders[ButtonID].Starting = true;
+
+            MFTracker[1].GetComponent<Button>().interactable = true;
+            MFTracker[1].GetComponent<Image>().color = Color.white;
+            MidFielders[1].Starting = false;
+
+            MFTracker[0].GetComponent<Button>().interactable = true;
+            MFTracker[0].GetComponent<Image>().color = Color.white;
+            MidFielders[0].Starting = false;
+
+            MFTracker[3].GetComponent<Button>().interactable = true;
+            MFTracker[3].GetComponent<Image>().color = Color.white;
+            MidFielders[3].Starting = false;
+
+            MFTracker[2].GetComponent<Button>().interactable = true;
+            MFTracker[2].GetComponent<Image>().color = Color.white;
+            MidFielders[2].Starting = false;
+
+            MFTracker[5].GetComponent<Button>().interactable = true;
+            MFTracker[5].GetComponent<Image>().color = Color.white;
+            MidFielders[5].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
+                }
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
+
+            }
+
+        }
+
+
+
+
+
+
+        if (ButtonID == 5)
+        {
+            AddToLineup(MidFielders[ButtonID].PlayerID);
+
+            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            MidFielders[ButtonID].Starting = true;
+
+            MFTracker[1].GetComponent<Button>().interactable = true;
+            MFTracker[1].GetComponent<Image>().color = Color.white;
+            MidFielders[1].Starting = false;
+
+            MFTracker[0].GetComponent<Button>().interactable = true;
+            MFTracker[0].GetComponent<Image>().color = Color.white;
+            MidFielders[0].Starting = false;
+
+            MFTracker[3].GetComponent<Button>().interactable = true;
+            MFTracker[3].GetComponent<Image>().color = Color.white;
+            MidFielders[3].Starting = false;
+
+            MFTracker[4].GetComponent<Button>().interactable = true;
+            MFTracker[4].GetComponent<Image>().color = Color.white;
+            MidFielders[4].Starting = false;
+
+            MFTracker[2].GetComponent<Button>().interactable = true;
+            MFTracker[2].GetComponent<Image>().color = Color.white;
+            MidFielders[2].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
+                }
+
+                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
+                }
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
+
+            }
+
+        }
+    }
+
 
     public void displayOptions()
     {
 
 
-
+        //LineupText = GameObject.Find("SToption1").GetComponent<Text>();
 
 
         SToption1 = GameObject.Find("SToption1").GetComponent<Button>();
@@ -2872,7 +3939,7 @@ public class UiManagement : MonoBehaviour
     void Start()
     {
         // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 2;
+        //TeamSetup.TeamManagedID = 2;
         GameWeek = 1;
         myteam.loadData();
         myplayer.loadPlayerData();
@@ -2889,7 +3956,7 @@ public class UiManagement : MonoBehaviour
         PointsUpdater();
         // PopulateTable();
 
-        displayOptions();
+       // displayOptions();
     }
 
 
