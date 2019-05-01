@@ -367,6 +367,8 @@ public class UiManagement : MonoBehaviour
     List<Button> LMTracker = new List<Button>();
     List<Button> STTracker = new List<Button>();
     List<Button> MFTracker = new List<Button>();
+    public int totalST = 0;
+    public int TotalStarters = 0;
 
     public void AddToLineup(int PlayerID)
     {
@@ -383,7 +385,6 @@ public class UiManagement : MonoBehaviour
         }
     }
 
-
     public void PlayerStarterView()
     {
 
@@ -396,6 +397,97 @@ public class UiManagement : MonoBehaviour
 
 
     }
+
+
+
+
+
+
+    public void SelectGK(int ButtonID)
+    {
+        if (ButtonID == 0 )
+        {
+            AddToLineup(Keepers[0].PlayerID);
+
+            GKTracker[ButtonID].GetComponent<Button>().interactable = false;
+            GKTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            Keepers[ButtonID].Starting = true;
+
+            GKTracker[1].GetComponent<Button>().interactable = true;
+            GKTracker[1].GetComponent<Image>().color = Color.white;
+            Keepers[1].Starting = false;
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == Keepers[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Keepers[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+
+                    Starting11.RemoveAll(a => a.PlayerID == Keepers[1].PlayerID);
+                }
+
+
+            }
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name);
+
+            }
+
+        }
+
+
+
+        if (ButtonID == 1)
+        {
+
+            AddToLineup(Keepers[ButtonID].PlayerID);
+            GKTracker[ButtonID].GetComponent<Button>().interactable = false;
+            GKTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            Keepers[ButtonID].Starting = true;
+
+            GKTracker[0].GetComponent<Button>().interactable = true;
+            GKTracker[0].GetComponent<Image>().color = Color.white;
+            Keepers[0].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                if (Starting11[i].PlayerID == Keepers[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Keepers[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == Keepers[0].PlayerID);
+                }
+
+
+            }
+
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name);
+
+            }
+
+        }
+
+
+
+
+
+
+    }
+
+
+
+
 
     public void SelectLM(int ButtonID)
     {
@@ -559,41 +651,63 @@ public class UiManagement : MonoBehaviour
     public void SelectST(int ButtonID)
     {
 
+
         if (ButtonID == 0)
         {
-            AddToLineup(Striker[0].PlayerID);
-
-            STTracker[ButtonID].GetComponent<Button>().interactable = false;
-            STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            Striker[ButtonID].Starting = true;
-
-            STTracker[1].GetComponent<Button>().interactable = true;
-            STTracker[1].GetComponent<Image>().color = Color.white;
-            Striker[1].Starting = false;
-
-            STTracker[2].GetComponent<Button>().interactable = true;
-            STTracker[2].GetComponent<Image>().color = Color.white;
-            Striker[2].Starting = false;
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalST <= 1 && Striker[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == Striker[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
+                AddToLineup(Striker[0].PlayerID);
 
-                    Starting11.RemoveAll(a => a.PlayerID == Striker[1].PlayerID);
+                STTracker[ButtonID].GetComponent<Button>().interactable = false;
+                STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                Striker[ButtonID].Starting = true;
+                totalST++;
+
+ 
+
+
+                
+            }
+            else
+            {
+                Debug.Log("You can only have a maximum of 2 strikers starting");
+
+                totalST = 0;
+                for (int i = 0; i < Starting11.Count(); i++)
+                {
+
+                    if (Starting11[i].PlayerID == Striker[1].PlayerID)
+                    {
+      
+
+                        Starting11.RemoveAll(a => a.PlayerID == Striker[1].PlayerID);
+                        STTracker[1].GetComponent<Button>().interactable = true;
+                        STTracker[1].GetComponent<Image>().color = Color.white;
+                        Striker[1].Starting = false;
+                    }
+
+                    if (Starting11[i].PlayerID == Striker[2].PlayerID)
+                    {
+         
+
+                        Starting11.RemoveAll(a => a.PlayerID == Striker[2].PlayerID);
+
+                        STTracker[2].GetComponent<Button>().interactable = true;
+                        STTracker[2].GetComponent<Image>().color = Color.white;
+                        Striker[2].Starting = false;
+                    }
+
+
+
+
                 }
 
-                if (Starting11[i].PlayerID == Striker[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == Striker[2].PlayerID);
-                }
 
             }
+
+
+
+
 
             Debug.Log("new list");
             for (int i = 0; i < Starting11.Count(); i++)
@@ -609,38 +723,56 @@ public class UiManagement : MonoBehaviour
 
         if (ButtonID == 1)
         {
-
-            AddToLineup(Striker[ButtonID].PlayerID);
-            STTracker[ButtonID].GetComponent<Button>().interactable = false;
-            STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            Striker[ButtonID].Starting = true;
-
-            STTracker[0].GetComponent<Button>().interactable = true;
-            STTracker[0].GetComponent<Image>().color = Color.white;
-            Striker[0].Starting = false;
-
-            STTracker[2].GetComponent<Button>().interactable = true;
-            STTracker[2].GetComponent<Image>().color = Color.white;
-            Striker[2].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalST <= 1 && Striker[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == Striker[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == Striker[0].PlayerID);
-                }
+                AddToLineup(Striker[1].PlayerID);
 
-                if (Starting11[i].PlayerID == Striker[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == Striker[2].PlayerID);
-                }
+                STTracker[ButtonID].GetComponent<Button>().interactable = false;
+                STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                Striker[ButtonID].Starting = true;
+                totalST++;
+
+
+
+
 
             }
+            else
+            {
+                Debug.Log("You can only have a maximum of 2 strikers starting");
+                totalST = 0;
+                for (int i = 0; i < Starting11.Count(); i++)
+                {
+
+
+                    if (Starting11[i].PlayerID == Striker[0].PlayerID)
+                    {
+
+
+                        Starting11.RemoveAll(a => a.PlayerID == Striker[0].PlayerID);
+                        STTracker[0].GetComponent<Button>().interactable = true;
+                        STTracker[0].GetComponent<Image>().color = Color.white;
+                        Striker[0].Starting = false;
+                    }
+
+                    if (Starting11[i].PlayerID == Striker[2].PlayerID)
+                    {
+
+
+                        Starting11.RemoveAll(a => a.PlayerID == Striker[2].PlayerID);
+
+                        STTracker[2].GetComponent<Button>().interactable = true;
+                        STTracker[2].GetComponent<Image>().color = Color.white;
+                        Striker[2].Starting = false;
+                    }
+
+                }
+
+
+            }
+
+
+
 
 
             Debug.Log("new list");
@@ -656,36 +788,56 @@ public class UiManagement : MonoBehaviour
 
         if (ButtonID == 2)
         {
-
-            AddToLineup(Striker[ButtonID].PlayerID);
-            STTracker[ButtonID].GetComponent<Button>().interactable = false;
-            STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            Striker[ButtonID].Starting = true;
-
-            STTracker[0].GetComponent<Button>().interactable = true;
-            STTracker[0].GetComponent<Image>().color = Color.white;
-            Striker[0].Starting = false;
-
-            STTracker[1].GetComponent<Button>().interactable = true;
-            STTracker[1].GetComponent<Image>().color = Color.white;
-            Striker[1].Starting = false;
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalST <= 1 && Striker[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == Striker[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == Striker[0].PlayerID);
-                }
-                if (Starting11[i].PlayerID == Striker[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == Striker[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == Striker[1].PlayerID);
-                }
+                AddToLineup(Striker[2].PlayerID);
+
+                STTracker[ButtonID].GetComponent<Button>().interactable = false;
+                STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                Striker[ButtonID].Starting = true;
+                totalST++;
+
+
+
+
 
             }
+            else
+            {
+                totalST = 0;
+                Debug.Log("You can only have a maximum of 2 strikers starting");
+                for (int i = 0; i < Starting11.Count(); i++)
+                {
+
+
+                    if (Starting11[i].PlayerID == Striker[1].PlayerID)
+                    {
+
+
+                        Starting11.RemoveAll(a => a.PlayerID == Striker[1].PlayerID);
+                        STTracker[1].GetComponent<Button>().interactable = true;
+                        STTracker[1].GetComponent<Image>().color = Color.white;
+                        Striker[1].Starting = false;
+                    }
+
+                    if (Starting11[i].PlayerID == Striker[0].PlayerID)
+                    {
+
+
+                        Starting11.RemoveAll(a => a.PlayerID == Striker[0].PlayerID);
+
+                        STTracker[0].GetComponent<Button>().interactable = true;
+                        STTracker[0].GetComponent<Image>().color = Color.white;
+                        Striker[0].Starting = false;
+                    }
+
+                }
+
+
+            }
+
+
+
 
 
             Debug.Log("new list");
@@ -3701,6 +3853,7 @@ public class UiManagement : MonoBehaviour
 
             GameWeek++;
 
+   
 
 
 
@@ -3865,13 +4018,14 @@ public class UiManagement : MonoBehaviour
             if (MatchInfo[i].HomeGoals < MatchInfo[i].AwayGoals)
             {
                 TableStats[MatchInfo[i].AwayID].Wins++;
+           
                 TableStats[MatchInfo[i].HomeID].Losses++;
 
             }
-          
-         
+   
+            PointsUpdater();
 
-            Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals  + " VS " + myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals);
+            Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " points: " + TableStats[MatchInfo[i].HomeID].Points + " VS " + myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals + " points: " + TableStats[MatchInfo[i].AwayID].Points);
            
         }
        
@@ -3939,7 +4093,7 @@ public class UiManagement : MonoBehaviour
     void Start()
     {
         // for test purposes pre chosen team.
-        //TeamSetup.TeamManagedID = 2;
+        TeamSetup.TeamManagedID = 2;
         GameWeek = 1;
         myteam.loadData();
         myplayer.loadPlayerData();
