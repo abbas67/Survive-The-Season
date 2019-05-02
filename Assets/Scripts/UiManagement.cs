@@ -368,7 +368,19 @@ public class UiManagement : MonoBehaviour
     List<Button> STTracker = new List<Button>();
     List<Button> MFTracker = new List<Button>();
     public int totalST = 0;
+    public int totalCB = 0;
+    public int totalMF = 0;
     public int TotalStarters = 0;
+
+
+
+    public bool STbtn1pressed = false;
+    public bool MFbtn1pressed = false;
+    public bool CBbtn1pressed = false;
+
+
+    public Text PlayerWarnings;
+
 
     public void AddToLineup(int PlayerID)
     {
@@ -384,6 +396,26 @@ public class UiManagement : MonoBehaviour
 
         }
     }
+
+
+    public void RemoveFromLineup(int ToRemove)
+    {
+
+        for (int i = 0; i < Starting11.Count(); i++)
+        {
+            if (Starting11[i].PlayerID == ToRemove)
+            {
+
+                Starting11.RemoveAll(a => a.PlayerID == ToRemove);
+
+            }
+
+        }
+    }
+
+
+
+
 
     public void PlayerStarterView()
     {
@@ -644,213 +676,135 @@ public class UiManagement : MonoBehaviour
             }
 
         }
-
+     
     }
+
+
+
 
 
     public void SelectST(int ButtonID)
     {
-
+        PlayerWarnings.text = "Choose 11 players to start";
 
         if (ButtonID == 0)
         {
-            if (totalST <= 1 && Striker[ButtonID].Starting == false)
+
+                if (totalST != 2 && Striker[ButtonID].Starting == false)
+                {
+                    AddToLineup(Striker[ButtonID].PlayerID);
+                    STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                    Striker[ButtonID].Starting = true;
+
+                    totalST++;
+                    STbtn1pressed = true;
+                }
+                else
+                if (Striker[ButtonID].Starting == true && STbtn1pressed == true)
+                {
+                    RemoveFromLineup(Striker[ButtonID].PlayerID);
+                    STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                    Striker[ButtonID].Starting = false;
+                    totalST--;
+
+                }
+            else if (Starting11.Count == 11)
             {
-                AddToLineup(Striker[0].PlayerID);
-
-                STTracker[ButtonID].GetComponent<Button>().interactable = false;
-                STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                Striker[ButtonID].Starting = true;
-                totalST++;
-
- 
-
-
-                
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
             else
             {
-                Debug.Log("You can only have a maximum of 2 strikers starting");
+                PlayerWarnings.text = ("You should only be playing a maximum of two strikers ");
 
-                totalST = 0;
-                for (int i = 0; i < Starting11.Count(); i++)
-                {
-
-                    if (Starting11[i].PlayerID == Striker[1].PlayerID)
-                    {
-      
-
-                        Starting11.RemoveAll(a => a.PlayerID == Striker[1].PlayerID);
-                        STTracker[1].GetComponent<Button>().interactable = true;
-                        STTracker[1].GetComponent<Image>().color = Color.white;
-                        Striker[1].Starting = false;
-                    }
-
-                    if (Starting11[i].PlayerID == Striker[2].PlayerID)
-                    {
-         
-
-                        Starting11.RemoveAll(a => a.PlayerID == Striker[2].PlayerID);
-
-                        STTracker[2].GetComponent<Button>().interactable = true;
-                        STTracker[2].GetComponent<Image>().color = Color.white;
-                        Striker[2].Starting = false;
-                    }
-
-
-
-
-                }
-
-
-            }
-
-
-
-
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
-
-                Debug.Log(Starting11[i].Name + Starting11[i].Position);
 
             }
 
         }
-
-
 
         if (ButtonID == 1)
         {
-            if (totalST <= 1 && Striker[ButtonID].Starting == false)
+            if (totalST != 2 && Striker[ButtonID].Starting == false)
             {
-                AddToLineup(Striker[1].PlayerID);
-
-                STTracker[ButtonID].GetComponent<Button>().interactable = false;
+                AddToLineup(Striker[ButtonID].PlayerID);
                 STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
                 Striker[ButtonID].Starting = true;
+
                 totalST++;
+                STbtn1pressed = true;
+            }
+            else
+            if (Striker[ButtonID].Starting == true && STbtn1pressed == true)
+            {
+                RemoveFromLineup(Striker[ButtonID].PlayerID);
+                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                Striker[ButtonID].Starting = false;
+                totalST--;
 
+            }
 
-
-
-
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
             else
             {
-                Debug.Log("You can only have a maximum of 2 strikers starting");
-                totalST = 0;
-                for (int i = 0; i < Starting11.Count(); i++)
-                {
-
-
-                    if (Starting11[i].PlayerID == Striker[0].PlayerID)
-                    {
-
-
-                        Starting11.RemoveAll(a => a.PlayerID == Striker[0].PlayerID);
-                        STTracker[0].GetComponent<Button>().interactable = true;
-                        STTracker[0].GetComponent<Image>().color = Color.white;
-                        Striker[0].Starting = false;
-                    }
-
-                    if (Starting11[i].PlayerID == Striker[2].PlayerID)
-                    {
-
-
-                        Starting11.RemoveAll(a => a.PlayerID == Striker[2].PlayerID);
-
-                        STTracker[2].GetComponent<Button>().interactable = true;
-                        STTracker[2].GetComponent<Image>().color = Color.white;
-                        Striker[2].Starting = false;
-                    }
-
-                }
+                PlayerWarnings.text = ("You should only be playing a maximum of two strikers ");
 
 
             }
-
-
-
-
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
-
-                Debug.Log(Starting11[i].Name + Starting11[i].Position);
-
-            }
-
         }
-
 
         if (ButtonID == 2)
         {
-            if (totalST <= 1 && Striker[ButtonID].Starting == false)
+            if (totalST != 2 && Striker[ButtonID].Starting == false)
             {
-                AddToLineup(Striker[2].PlayerID);
-
-                STTracker[ButtonID].GetComponent<Button>().interactable = false;
+                AddToLineup(Striker[ButtonID].PlayerID);
                 STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
                 Striker[ButtonID].Starting = true;
+
                 totalST++;
+                STbtn1pressed = true;
+            }
+            else
+            if (Striker[ButtonID].Starting == true && STbtn1pressed == true)
+            {
+                RemoveFromLineup(Striker[ButtonID].PlayerID);
+                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                Striker[ButtonID].Starting = false;
+                totalST--;
 
-
-
-
-
+            }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
             else
             {
-                totalST = 0;
-                Debug.Log("You can only have a maximum of 2 strikers starting");
-                for (int i = 0; i < Starting11.Count(); i++)
-                {
-
-
-                    if (Starting11[i].PlayerID == Striker[1].PlayerID)
-                    {
-
-
-                        Starting11.RemoveAll(a => a.PlayerID == Striker[1].PlayerID);
-                        STTracker[1].GetComponent<Button>().interactable = true;
-                        STTracker[1].GetComponent<Image>().color = Color.white;
-                        Striker[1].Starting = false;
-                    }
-
-                    if (Starting11[i].PlayerID == Striker[0].PlayerID)
-                    {
-
-
-                        Starting11.RemoveAll(a => a.PlayerID == Striker[0].PlayerID);
-
-                        STTracker[0].GetComponent<Button>().interactable = true;
-                        STTracker[0].GetComponent<Image>().color = Color.white;
-                        Striker[0].Starting = false;
-                    }
-
-                }
+                PlayerWarnings.text = ("You should only be playing a maximum of two strikers ");
 
 
             }
+        }
 
 
 
 
+        Debug.Log("new list");
+        for (int i = 0; i < Starting11.Count(); i++)
+        {
 
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
-
-                Debug.Log(Starting11[i].Name + Starting11[i].Position);
-
-            }
+            Debug.Log(Starting11[i].Name +" " + Starting11[i].Position);
 
         }
 
+   
+
+
+
+
     }
+
+
 
 
 
@@ -1024,247 +978,143 @@ public class UiManagement : MonoBehaviour
     public void SelectCB(int ButtonID)
     {
 
+        PlayerWarnings.text = "Choose 11 players to start";
+
         if (ButtonID == 0)
         {
-            AddToLineup(CentreBacks[0].PlayerID);
 
-            CBTracker[ButtonID].GetComponent<Button>().interactable = false;
-            CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            CentreBacks[ButtonID].Starting = true;
-
-            CBTracker[1].GetComponent<Button>().interactable = true;
-            CBTracker[1].GetComponent<Image>().color = Color.white;
-            CentreBacks[1].Starting = false;
-
-            CBTracker[2].GetComponent<Button>().interactable = true;
-            CBTracker[2].GetComponent<Image>().color = Color.white;
-            CentreBacks[2].Starting = false;
-
-            CBTracker[3].GetComponent<Button>().interactable = true;
-            CBTracker[3].GetComponent<Image>().color = Color.white;
-            CentreBacks[3].Starting = false;
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == CentreBacks[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
+                AddToLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                CentreBacks[ButtonID].Starting = true;
 
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[1].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == CentreBacks[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[2].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == CentreBacks[3].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[3].PlayerID);
-                }
+                totalCB++;
+                CBbtn1pressed = true;
             }
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
+            else
+            if (CentreBacks[ButtonID].Starting == true && CBbtn1pressed == true)
             {
-
-                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                CentreBacks[ButtonID].Starting = false;
+                totalCB--;
 
             }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Centre Backs ");
 
+            }
         }
-
-
 
         if (ButtonID == 1)
         {
 
-            AddToLineup(CentreBacks[ButtonID].PlayerID);
-            CBTracker[1].GetComponent<Button>().interactable = false;
-            CBTracker[1].GetComponent<Image>().color = Color.grey;
-            CentreBacks[1].Starting = true;
-
-       
-            CBTracker[0].GetComponent<Button>().interactable = true;
-            CBTracker[0].GetComponent<Image>().color = Color.white;
-            CentreBacks[0].Starting = false;
-
-
-            CBTracker[2].GetComponent<Button>().interactable = true;
-            CBTracker[2].GetComponent<Image>().color = Color.white;
-            CentreBacks[2].Starting = false;
-
-            CBTracker[3].GetComponent<Button>().interactable = true;
-            CBTracker[3].GetComponent<Image>().color = Color.white;
-            CentreBacks[3].Starting = false;
-
-         
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == CentreBacks[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[0].PlayerID);
-                }
+                AddToLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                CentreBacks[ButtonID].Starting = true;
 
-                if (Starting11[i].PlayerID == CentreBacks[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[2].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == CentreBacks[3].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[3].PlayerID);
-                }
+                totalCB++;
+                CBbtn1pressed = true;
+            }
+            else
+            if (CentreBacks[ButtonID].Starting == true && CBbtn1pressed == true)
+            {
+                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                CentreBacks[ButtonID].Starting = false;
+                totalCB--;
 
             }
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
+            else if (Starting11.Count == 11)
             {
-
-                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Centre Backs ");
 
             }
-
-
         }
 
         if (ButtonID == 2)
         {
 
-            AddToLineup(CentreBacks[ButtonID].PlayerID);
-            CBTracker[ButtonID].GetComponent<Button>().interactable = false;
-            CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            CentreBacks[ButtonID].Starting = true;
-
-            CBTracker[0].GetComponent<Button>().interactable = true;
-            CBTracker[0].GetComponent<Image>().color = Color.white;
-            CentreBacks[0].Starting = false;
-
-
-            CBTracker[1].GetComponent<Button>().interactable = true;
-            CBTracker[1].GetComponent<Image>().color = Color.white;
-            CentreBacks[1].Starting = false;
-
-            CBTracker[3].GetComponent<Button>().interactable = true;
-            CBTracker[3].GetComponent<Image>().color = Color.white;
-            CentreBacks[3].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == CentreBacks[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[0].PlayerID);
-                }
+                AddToLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                CentreBacks[ButtonID].Starting = true;
 
-                if (Starting11[i].PlayerID == CentreBacks[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[1].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == CentreBacks[3].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[3].PlayerID);
-                }
+                totalCB++;
+                CBbtn1pressed = true;
+            }
+            else
+            if (CentreBacks[ButtonID].Starting == true && CBbtn1pressed == true)
+            {
+                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                CentreBacks[ButtonID].Starting = false;
+                totalCB--;
 
             }
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
+            else if (Starting11.Count == 11)
             {
-
-                Debug.Log(Starting11[i].Name + Starting11[i].Position);
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Centre Backs ");
 
             }
-
-
         }
+
 
         if (ButtonID == 3)
         {
 
-            AddToLineup(CentreBacks[ButtonID].PlayerID);
-            CBTracker[ButtonID].GetComponent<Button>().interactable = false;
-            CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            CentreBacks[ButtonID].Starting = true;
-
-            CBTracker[0].GetComponent<Button>().interactable = true;
-            CBTracker[0].GetComponent<Image>().color = Color.white;
-            CentreBacks[0].Starting = false;
-
-
-            CBTracker[1].GetComponent<Button>().interactable = true;
-            CBTracker[1].GetComponent<Image>().color = Color.white;
-            CentreBacks[1].Starting = false;
-
-            CBTracker[2].GetComponent<Button>().interactable = true;
-            CBTracker[2].GetComponent<Image>().color = Color.white;
-            CentreBacks[2].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == CentreBacks[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[0].PlayerID);
-                }
+                AddToLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                CentreBacks[ButtonID].Starting = true;
 
-                if (Starting11[i].PlayerID == CentreBacks[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[1].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == CentreBacks[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == CentreBacks[2].PlayerID);
-                }
+                totalCB++;
+                CBbtn1pressed = true;
+            }
+            else
+            if (CentreBacks[ButtonID].Starting == true && CBbtn1pressed == true)
+            {
+                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                CentreBacks[ButtonID].Starting = false;
+                totalCB--;
 
             }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Centre Backs ");
 
-
-            Debug.Log("new list");
+            }
+        }
+        Debug.Log("new list");
             for (int i = 0; i < Starting11.Count(); i++)
             {
 
                 Debug.Log(Starting11[i].Name + Starting11[i].Position);
 
             }
-
-        }
-
-
 
     }
 
@@ -1274,508 +1124,213 @@ public class UiManagement : MonoBehaviour
 
         if (ButtonID == 0)
         {
-            AddToLineup(MidFielders[ButtonID].PlayerID);
 
-            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
-            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            MidFielders[ButtonID].Starting = true;
-
-            MFTracker[1].GetComponent<Button>().interactable = true;
-            MFTracker[1].GetComponent<Image>().color = Color.white;
-            MidFielders[1].Starting = false;
-
-            MFTracker[2].GetComponent<Button>().interactable = true;
-            MFTracker[2].GetComponent<Image>().color = Color.white;
-            MidFielders[2].Starting = false;
-
-            MFTracker[3].GetComponent<Button>().interactable = true;
-            MFTracker[3].GetComponent<Image>().color = Color.white;
-            MidFielders[3].Starting = false;
-
-            MFTracker[4].GetComponent<Button>().interactable = true;
-            MFTracker[4].GetComponent<Image>().color = Color.white;
-            MidFielders[4].Starting = false;
-
-            MFTracker[5].GetComponent<Button>().interactable = true;
-            MFTracker[5].GetComponent<Image>().color = Color.white;
-            MidFielders[5].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
+                AddToLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                MidFielders[ButtonID].Starting = true;
 
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
-                }
+                totalMF++;
+                MFbtn1pressed = true;
             }
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
+            else
+            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
             {
-
-                Debug.Log(Starting11[i].Name + "  " +  Starting11[i].Position);
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
 
             }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
+            }
         }
 
         if (ButtonID == 1)
         {
-            AddToLineup(MidFielders[ButtonID].PlayerID);
 
-            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
-            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            MidFielders[ButtonID].Starting = true;
-
-            MFTracker[0].GetComponent<Button>().interactable = true;
-            MFTracker[0].GetComponent<Image>().color = Color.white;
-            MidFielders[0].Starting = false;
-
-            MFTracker[2].GetComponent<Button>().interactable = true;
-            MFTracker[2].GetComponent<Image>().color = Color.white;
-            MidFielders[2].Starting = false;
-
-            MFTracker[3].GetComponent<Button>().interactable = true;
-            MFTracker[3].GetComponent<Image>().color = Color.white;
-            MidFielders[3].Starting = false;
-
-            MFTracker[4].GetComponent<Button>().interactable = true;
-            MFTracker[4].GetComponent<Image>().color = Color.white;
-            MidFielders[4].Starting = false;
-
-            MFTracker[5].GetComponent<Button>().interactable = true;
-            MFTracker[5].GetComponent<Image>().color = Color.white;
-            MidFielders[5].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
+                AddToLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                MidFielders[ButtonID].Starting = true;
 
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
-                }
+                totalMF++;
+                MFbtn1pressed = true;
             }
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
+            else
+            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
             {
-
-                Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
 
             }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
+            }
         }
 
         if (ButtonID == 2)
         {
-            AddToLineup(MidFielders[ButtonID].PlayerID);
 
-            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
-            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            MidFielders[ButtonID].Starting = true;
-
-            MFTracker[1].GetComponent<Button>().interactable = true;
-            MFTracker[1].GetComponent<Image>().color = Color.white;
-            MidFielders[1].Starting = false;
-
-            MFTracker[0].GetComponent<Button>().interactable = true;
-            MFTracker[0].GetComponent<Image>().color = Color.white;
-            MidFielders[0].Starting = false;
-
-            MFTracker[3].GetComponent<Button>().interactable = true;
-            MFTracker[3].GetComponent<Image>().color = Color.white;
-            MidFielders[3].Starting = false;
-
-            MFTracker[4].GetComponent<Button>().interactable = true;
-            MFTracker[4].GetComponent<Image>().color = Color.white;
-            MidFielders[4].Starting = false;
-
-            MFTracker[5].GetComponent<Button>().interactable = true;
-            MFTracker[5].GetComponent<Image>().color = Color.white;
-            MidFielders[5].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
+                AddToLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                MidFielders[ButtonID].Starting = true;
 
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
-                }
+                totalMF++;
+                MFbtn1pressed = true;
             }
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
+            else
+            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
             {
-
-                Debug.Log(Starting11[i].Name + "  " +  Starting11[i].Position);
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
 
             }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
+            }
         }
-
 
         if (ButtonID == 3)
         {
-            AddToLineup(MidFielders[ButtonID].PlayerID);
 
-            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
-            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            MidFielders[ButtonID].Starting = true;
-
-            MFTracker[1].GetComponent<Button>().interactable = true;
-            MFTracker[1].GetComponent<Image>().color = Color.white;
-            MidFielders[1].Starting = false;
-
-            MFTracker[0].GetComponent<Button>().interactable = true;
-            MFTracker[0].GetComponent<Image>().color = Color.white;
-            MidFielders[0].Starting = false;
-
-            MFTracker[2].GetComponent<Button>().interactable = true;
-            MFTracker[2].GetComponent<Image>().color = Color.white;
-            MidFielders[2].Starting = false;
-
-            MFTracker[4].GetComponent<Button>().interactable = true;
-            MFTracker[4].GetComponent<Image>().color = Color.white;
-            MidFielders[4].Starting = false;
-
-            MFTracker[5].GetComponent<Button>().interactable = true;
-            MFTracker[5].GetComponent<Image>().color = Color.white;
-            MidFielders[5].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
+                AddToLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                MidFielders[ButtonID].Starting = true;
 
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
-                }
+                totalMF++;
+                MFbtn1pressed = true;
             }
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
+            else
+            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
             {
-
-                Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
 
             }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
+            }
         }
 
 
         if (ButtonID == 4)
         {
-            AddToLineup(MidFielders[ButtonID].PlayerID);
 
-            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
-            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            MidFielders[ButtonID].Starting = true;
-
-            MFTracker[1].GetComponent<Button>().interactable = true;
-            MFTracker[1].GetComponent<Image>().color = Color.white;
-            MidFielders[1].Starting = false;
-
-            MFTracker[0].GetComponent<Button>().interactable = true;
-            MFTracker[0].GetComponent<Image>().color = Color.white;
-            MidFielders[0].Starting = false;
-
-            MFTracker[3].GetComponent<Button>().interactable = true;
-            MFTracker[3].GetComponent<Image>().color = Color.white;
-            MidFielders[3].Starting = false;
-
-            MFTracker[2].GetComponent<Button>().interactable = true;
-            MFTracker[2].GetComponent<Image>().color = Color.white;
-            MidFielders[2].Starting = false;
-
-            MFTracker[5].GetComponent<Button>().interactable = true;
-            MFTracker[5].GetComponent<Image>().color = Color.white;
-            MidFielders[5].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
+                AddToLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                MidFielders[ButtonID].Starting = true;
 
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[5].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[5].PlayerID);
-                }
+                totalMF++;
+                MFbtn1pressed = true;
             }
-
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
+            else
+            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
             {
-
-                Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
 
             }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
+            }
         }
-
-
-
-
 
 
         if (ButtonID == 5)
         {
-            AddToLineup(MidFielders[ButtonID].PlayerID);
 
-            MFTracker[ButtonID].GetComponent<Button>().interactable = false;
-            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            MidFielders[ButtonID].Starting = true;
-
-            MFTracker[1].GetComponent<Button>().interactable = true;
-            MFTracker[1].GetComponent<Image>().color = Color.white;
-            MidFielders[1].Starting = false;
-
-            MFTracker[0].GetComponent<Button>().interactable = true;
-            MFTracker[0].GetComponent<Image>().color = Color.white;
-            MidFielders[0].Starting = false;
-
-            MFTracker[3].GetComponent<Button>().interactable = true;
-            MFTracker[3].GetComponent<Image>().color = Color.white;
-            MidFielders[3].Starting = false;
-
-            MFTracker[4].GetComponent<Button>().interactable = true;
-            MFTracker[4].GetComponent<Image>().color = Color.white;
-            MidFielders[4].Starting = false;
-
-            MFTracker[2].GetComponent<Button>().interactable = true;
-            MFTracker[2].GetComponent<Image>().color = Color.white;
-            MidFielders[2].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == MidFielders[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
+                AddToLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                MidFielders[ButtonID].Starting = true;
 
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[1].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[0].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[3].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[3].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[4].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[4].PlayerID);
-                }
-
-                if (Starting11[i].PlayerID == MidFielders[2].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == LeftBack[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-
-                    Starting11.RemoveAll(a => a.PlayerID == MidFielders[2].PlayerID);
-                }
+                totalMF++;
+                MFbtn1pressed = true;
             }
+            else
+            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
+            {
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
 
-            Debug.Log("new list");
+            }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
+
+            }
+        }
+        Debug.Log("new list");
             for (int i = 0; i < Starting11.Count(); i++)
             {
 
                 Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
 
             }
-
-        }
     }
+
+
+
 
 
     public void displayOptions()
     {
-
+        PlayerWarnings = GameObject.Find("PlayerWarnings").GetComponent<Text>();
 
         //LineupText = GameObject.Find("SToption1").GetComponent<Text>();
 
@@ -2353,7 +1908,7 @@ public class UiManagement : MonoBehaviour
         for (int i = 0; i <= 11; i++)
         {
 
-            LeagueTeamList[i].text = myteam.teaminfo[i].Name;
+            LeagueTeamList[i].text = myteam.teaminfo[SortedTeams[i].TeamID].Name;
             LeagueWinsList[i].text = SortedTeams[i].Wins.ToString();
             LeagueLossesList[i].text = SortedTeams[i].Losses.ToString();
             LeagueDrawsList[i].text = SortedTeams[i].Draws.ToString();
@@ -4110,7 +3665,7 @@ public class UiManagement : MonoBehaviour
         PointsUpdater();
         // PopulateTable();
 
-       // displayOptions();
+        displayOptions();
     }
 
 
