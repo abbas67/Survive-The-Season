@@ -9,5 +9,6 @@ public class Starting11Info : MonoBehaviour
     public string Position;
     public string Name;
     public int Overall;
+    public int Form;
     public bool Starting;
 }

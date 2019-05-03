@@ -370,6 +370,11 @@ public class UiManagement : MonoBehaviour
     public int totalST = 0;
     public int totalCB = 0;
     public int totalMF = 0;
+    public int totalRB = 0;
+    public int totalLB = 0;
+    public int totalLM = 0;
+    public int totalRM = 0;
+    public int totalGK = 0;
     public int TotalStarters = 0;
 
 
@@ -377,9 +382,33 @@ public class UiManagement : MonoBehaviour
     public bool STbtn1pressed = false;
     public bool MFbtn1pressed = false;
     public bool CBbtn1pressed = false;
-
+    public bool RMbtn1pressed = false;
+    public bool LMbtn1pressed = false;
+    public bool RBbtn1pressed = false;
+    public bool LBbtn1pressed = false;
+    public bool GKbtn1pressed = false;
 
     public Text PlayerWarnings;
+
+    public Text SquadCapabilitiesText;
+
+
+
+
+    public void DisplayNewAttackDefence()
+    {
+        if (Starting11.Count >= 8)
+        {
+            SquadCapabilitiesText.text = "Attacking Threat: " + OppositionAttackThreat(Starting11, TeamSetup.TeamManagedID) + "    Defensive Threat: " + OppositionDefenceThreat(Starting11, TeamSetup.TeamManagedID);
+
+
+        }
+
+
+
+    }
+
+
 
 
     public void AddToLineup(int PlayerID)
@@ -395,6 +424,7 @@ public class UiManagement : MonoBehaviour
             }
 
         }
+        DisplayNewAttackDefence();
     }
 
 
@@ -411,6 +441,7 @@ public class UiManagement : MonoBehaviour
             }
 
         }
+        DisplayNewAttackDefence();
     }
 
 
@@ -601,72 +632,81 @@ public class UiManagement : MonoBehaviour
     public void SelectRM(int ButtonID)
     {
 
+        PlayerWarnings.text = "Choose 11 players to start";
+
         if (ButtonID == 0)
         {
 
-            AddToLineup(RightMid[ButtonID].PlayerID);
-            RMTracker[ButtonID].GetComponent<Button>().interactable = false;
-            RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            RightMid[ButtonID].Starting = true;
-
-            RMTracker[1].GetComponent<Button>().interactable = true;
-            RMTracker[1].GetComponent<Image>().color = Color.white;
-            RightMid[1].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalRM != 1 && RightMid[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == RightMid[1].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == RightMid[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == RightMid[1].PlayerID);
+                AddToLineup(RightMid[ButtonID].PlayerID);
+                RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                RightMid[ButtonID].Starting = true;
 
-                }
-
+                totalRM++;
+                RMbtn1pressed = true;
+            }
+            else
+            if (RightMid[ButtonID].Starting == true && RMbtn1pressed == true)
+            {
+                RemoveFromLineup(RightMid[ButtonID].PlayerID);
+                RMTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                RightMid[ButtonID].Starting = false;
+                totalRM--;
 
             }
-
-            Debug.Log("new list");
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            else if (Starting11.Count == 11)
             {
-              
-                Debug.Log(Starting11[i].Name);
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(Striker[ButtonID].PlayerID);
+                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                Striker[ButtonID].Starting = false;
+                totalST--;
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing 1 wide attacking player attacking player at a time on each side ");
+
 
             }
 
         }
 
-
-
         if (ButtonID == 1)
         {
 
-            AddToLineup(RightMid[ButtonID].PlayerID);
-            RMTracker[ButtonID].GetComponent<Button>().interactable = false;
-            RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-            RightMid[ButtonID].Starting = true;
-
-            RMTracker[0].GetComponent<Button>().interactable = true;
-            RMTracker[0].GetComponent<Image>().color = Color.white;
-            RightMid[0].Starting = false;
-
-
-            for (int i = 0; i < Starting11.Count(); i++)
+            if (totalRM != 1 && RightMid[ButtonID].Starting == false)
             {
-                if (Starting11[i].PlayerID == RightMid[0].PlayerID)
-                {
-                    //var itemToRemove = Starting11.Single(r => r.PlayerID == RightMid[0].PlayerID);
-                    //Starting11.Remove(itemToRemove);
-                    Starting11.RemoveAll(a => a.PlayerID == RightMid[0].PlayerID);
+                AddToLineup(RightMid[ButtonID].PlayerID);
+                RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+                RightMid[ButtonID].Starting = true;
 
-                }
+                totalRM++;
+                RMbtn1pressed = true;
+            }
+            else
+            if (RightMid[ButtonID].Starting == true && RMbtn1pressed == true)
+            {
+                RemoveFromLineup(RightMid[ButtonID].PlayerID);
+                RMTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                RightMid[ButtonID].Starting = false;
+                totalRM--;
+
+            }
+            else if (Starting11.Count == 11)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            }
+            else
+            {
+                PlayerWarnings.text = ("You should only be playing 1 wide attacking player attacking player at a time on each side ");
 
 
             }
 
-            Debug.Log("new list");
+        }
+
+        Debug.Log("new list");
 
             for (int i = 0; i < Starting11.Count(); i++)
             {
@@ -675,9 +715,15 @@ public class UiManagement : MonoBehaviour
 
             }
 
+
+
+
+
+        Debug.Log(Starting11.Count());
+
         }
      
-    }
+ 
 
 
 
@@ -686,6 +732,8 @@ public class UiManagement : MonoBehaviour
     public void SelectST(int ButtonID)
     {
         PlayerWarnings.text = "Choose 11 players to start";
+
+
 
         if (ButtonID == 0)
         {
@@ -797,10 +845,10 @@ public class UiManagement : MonoBehaviour
 
         }
 
-   
 
 
 
+        Debug.Log(Starting11.Count());
 
     }
 
@@ -1102,11 +1150,8 @@ public class UiManagement : MonoBehaviour
             {
                 PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Centre Backs ");
+           
 
-            }
         }
         Debug.Log("new list");
             for (int i = 0; i < Starting11.Count(); i++)
@@ -1147,11 +1192,7 @@ public class UiManagement : MonoBehaviour
             {
                 PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
-            }
         }
 
         if (ButtonID == 1)
@@ -1179,11 +1220,7 @@ public class UiManagement : MonoBehaviour
             {
                 PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
-            }
         }
 
         if (ButtonID == 2)
@@ -1211,11 +1248,7 @@ public class UiManagement : MonoBehaviour
             {
                 PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
-            }
         }
 
         if (ButtonID == 3)
@@ -1243,11 +1276,7 @@ public class UiManagement : MonoBehaviour
             {
                 PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
-            }
         }
 
 
@@ -1276,11 +1305,7 @@ public class UiManagement : MonoBehaviour
             {
                 PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
 
-            }
         }
 
 
@@ -1309,11 +1334,8 @@ public class UiManagement : MonoBehaviour
             {
                 PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Central Midfieleders at a time ");
+       
 
-            }
         }
         Debug.Log("new list");
             for (int i = 0; i < Starting11.Count(); i++)
@@ -1331,8 +1353,8 @@ public class UiManagement : MonoBehaviour
     public void displayOptions()
     {
         PlayerWarnings = GameObject.Find("PlayerWarnings").GetComponent<Text>();
-
-        //LineupText = GameObject.Find("SToption1").GetComponent<Text>();
+        SquadCapabilitiesText = GameObject.Find("SquadCapabilitiesText").GetComponent<Text>();
+       
 
 
         SToption1 = GameObject.Find("SToption1").GetComponent<Button>();
@@ -1406,6 +1428,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 Keepers.Add(t);
             }
@@ -1417,6 +1440,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 CentreBacks.Add(t);
             }
@@ -1428,6 +1452,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 LeftBacks.Add(t);
             }
@@ -1439,6 +1464,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 RightBacks.Add(t);
             }
@@ -1450,6 +1476,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 MidFielders.Add(t);
             }
@@ -1461,6 +1488,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 MidFielders.Add(t);
             }
@@ -1472,6 +1500,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 MidFielders.Add(t);
             }
@@ -1483,6 +1512,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 LeftMid.Add(t);
             }
@@ -1494,6 +1524,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 RightMid.Add(t);
             }
@@ -1504,6 +1535,7 @@ public class UiManagement : MonoBehaviour
                 t.Overall = SelectedSquad[i].Overall;
                 t.Position = SelectedSquad[i].Position;
                 t.PlayerID = SelectedSquad[i].PlayerID;
+                t.Form = SelectedSquad[i].Form;
                 t.Starting = false;
                 Striker.Add(t);
             }
@@ -1534,12 +1566,23 @@ public class UiManagement : MonoBehaviour
             for (int i = 0;i < playerTracker.Count(); i++)
             {
 
-                buttons[i].GetComponentInChildren<Text>().text = playerTracker[i].Name;
+                buttons[i].GetComponentInChildren<Text>().text = playerTracker[i].Name + "\n " + playerTracker[i].Overall ;
 
+                
+                if (playerTracker[i].Overall >= 85)
+                {
+                buttons[i].GetComponentInChildren<Text>().color = Color.red;
+                }
 
-
-
-            }
+                if (playerTracker[i].Form >= 75)
+                {
+                    buttons[i].GetComponent<Image>().color = Color.green;
+                }
+                if (playerTracker[i].Form < 70)
+                {
+                    buttons[i].GetComponent<Image>().color = Color.yellow;
+                }
+        }
 
         }
 
@@ -2548,7 +2591,7 @@ public class UiManagement : MonoBehaviour
         List<int> AttackAverage = new List<int>();
 
         //CurrentTeamOverall
-        for (int i = 0; i <= 22; i++)
+        for (int i = 0; i < OppThreat.Count(); i++)
         {
             if (OppThreat[i].Position == "ST")
             {
@@ -2634,7 +2677,7 @@ public class UiManagement : MonoBehaviour
         int Defencecounter = 0;
 
         List<int> DefenceAverage = new List<int>();
-        for (int i = 0; i <= 22; i++)
+        for (int i = 0; i < OppThreat.Count(); i++)
         {
             if (OppThreat[i].Position == "CB")
             {
@@ -3435,7 +3478,6 @@ public class UiManagement : MonoBehaviour
 
                 playerTrack = i;
 
-
             }
 
             if (MatchInfo[i].HomeID == TeamSetup.TeamManagedID)
@@ -3443,14 +3485,11 @@ public class UiManagement : MonoBehaviour
 
                 playerTrack = i;
 
-
             }
 
 
         }
 
-
-        
         FinalScoreText.text = (myteam.teaminfo[MatchInfo[playerTrack].HomeID].Name + "  " + MatchInfo[playerTrack].HomeGoals + " VS " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Name + "  " + MatchInfo[playerTrack].AwayGoals);
         GameDayText.text = ("Match Week: " + GameWeek);
 
@@ -3665,7 +3704,7 @@ public class UiManagement : MonoBehaviour
         PointsUpdater();
         // PopulateTable();
 
-        displayOptions();
+        //displayOptions();
     }
 
 
