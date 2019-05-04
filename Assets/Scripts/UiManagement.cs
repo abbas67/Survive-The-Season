@@ -392,8 +392,11 @@ public class UiManagement : MonoBehaviour
 
     public Text SquadCapabilitiesText;
 
+    public Text ScoutReportText;
 
+    public Text ScoutReportTitle;
 
+    public Text ScoutReportDetails;
 
     public void DisplayNewAttackDefence()
     {
@@ -1574,14 +1577,7 @@ public class UiManagement : MonoBehaviour
                 buttons[i].GetComponentInChildren<Text>().color = Color.red;
                 }
 
-                if (playerTracker[i].Form >= 75)
-                {
-                    buttons[i].GetComponent<Image>().color = Color.green;
-                }
-                if (playerTracker[i].Form < 70)
-                {
-                    buttons[i].GetComponent<Image>().color = Color.yellow;
-                }
+
         }
 
         }
@@ -3429,20 +3425,8 @@ public class UiManagement : MonoBehaviour
 
         Debug.Log("GameWeek: " + GameWeek);
 
-        if (GameWeek > 22)
-        {
 
-            Debug.Log("Season Over");
-        }
-        else
-        {
 
-            AwayTeams = AwayFixtures(GameWeek);
-
-            OppositionTeamInfo();
-   
-
-            MatchStats = ScheduleMatches(MatchStats);
 
 
             MatchStats = MatchResults(MatchStats);
@@ -3454,8 +3438,6 @@ public class UiManagement : MonoBehaviour
    
 
 
-
-        }
 
 
     }
@@ -3497,6 +3479,101 @@ public class UiManagement : MonoBehaviour
 
         ScorersText.text = ("Home Scorers: " + MatchInfo[playerTrack].HomeScorers + " Away Scorers: " + MatchInfo[playerTrack].AwayScorers);
         CardsText.text = ("Home Cards: " + MatchInfo[playerTrack].HomeYellows + " Away Cards: " + MatchInfo[playerTrack].AwayYellows);
+    }
+
+    public void displayMatchPrep()
+    {
+
+
+        if (GameWeek > 22)
+        {
+
+            Debug.Log("Season Over");
+        }
+        else
+        {
+            AwayTeams = AwayFixtures(GameWeek);
+
+            OppositionTeamInfo();
+
+            MatchStats = ScheduleMatches(MatchStats);
+
+            MatchPreparation(MatchStats, GameWeek);
+
+
+        }
+    }
+        public void MatchPreparation(List<MatchDayInfo> MatchInfo, int GameWeek)
+    {
+        ScoutReportText = GameObject.Find("ScoutReportText").GetComponent<Text>();
+        ScoutReportTitle = GameObject.Find("ScoutReportTitle").GetComponent<Text>();
+        ScoutReportDetails = GameObject.Find("ScoutReportDetails").GetComponent<Text>();
+
+
+        int playerTrack = 0;
+        bool playerIsHome = false;
+        for (int i = 0; i <= 5; i++)
+        {
+            if (MatchInfo[i].AwayID == TeamSetup.TeamManagedID)
+            {
+
+                playerTrack = i;
+
+            }
+
+            if (MatchInfo[i].HomeID == TeamSetup.TeamManagedID)
+            {
+
+                playerTrack = i;
+                playerIsHome = true;
+            }
+        }
+
+
+
+
+
+        int HomeTactic = 0;
+        int AwayTactic = 0;
+        //Firstly checking that each team will employ an appropiate gameplan against their opposition.
+
+        int HomeBasicOverall = (myteam.teaminfo[MatchInfo[playerTrack].HomeID].Attack + myteam.teaminfo[MatchInfo[playerTrack].HomeID].Defence) / 2;
+        int AwayBasicOverall = (myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Defence) / 2;
+
+
+        //Significantly weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
+        //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
+        int difference = HomeBasicOverall - AwayBasicOverall;
+
+        if (difference > 10)
+        {
+            Debug.Log("Home is weak");
+
+
+        }
+
+        difference = AwayBasicOverall - HomeBasicOverall;
+
+        if (difference > 10)
+        {
+            Debug.Log("Away is weak");
+
+
+
+        }
+
+
+        if (playerIsHome == true)
+        {
+            ScoutReportTitle.text = (myteam.teaminfo[MatchInfo[playerTrack].AwayID].Name + " Scout Report");
+
+            ScoutReportText.text = "Opposition Attack: " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack + "Our Attack: " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack;
+        }
+        if (playerIsHome == false)
+        {
+            ScoutReportTitle.text = (myteam.teaminfo[MatchInfo[playerTrack].HomeID].Name + " Scout Report");
+        }
+
     }
 
 
