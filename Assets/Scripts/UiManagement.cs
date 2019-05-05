@@ -3509,7 +3509,10 @@ public class UiManagement : MonoBehaviour
         ScoutReportTitle = GameObject.Find("ScoutReportTitle").GetComponent<Text>();
         ScoutReportDetails = GameObject.Find("ScoutReportDetails").GetComponent<Text>();
 
+        List<string> oppStars = new List<string>();
 
+        bool homeweak = false;
+        bool awayweak = false;
         int playerTrack = 0;
         bool playerIsHome = false;
         for (int i = 0; i <= 5; i++)
@@ -3548,7 +3551,7 @@ public class UiManagement : MonoBehaviour
         if (difference > 10)
         {
             Debug.Log("Home is weak");
-
+            homeweak = true;
 
         }
 
@@ -3557,22 +3560,102 @@ public class UiManagement : MonoBehaviour
         if (difference > 10)
         {
             Debug.Log("Away is weak");
+            awayweak = false;
+        }
 
 
+
+
+        if (playerIsHome == true)
+        {
+
+            //finding opposition star player;
+            for (int i = 0; i < myplayer.playerinfo.Count(); i++)
+            {
+
+                if (myplayer.playerinfo[i].TeamID == MatchInfo[playerTrack].AwayID && myplayer.playerinfo[i].Star == 100)
+                {
+
+                    oppStars.Add(myplayer.playerinfo[i].Name);
+
+                }
+
+            }
 
         }
 
+        if (playerIsHome == false)
+        {
+
+            //finding opposition star player;
+            for (int i = 0; i < myplayer.playerinfo.Count(); i++)
+            {
+
+                if (myplayer.playerinfo[i].TeamID == MatchInfo[playerTrack].HomeID && myplayer.playerinfo[i].Star == 100)
+                {
+
+                    oppStars.Add(myplayer.playerinfo[i].Name);
+                   
+                }
+
+            }
+
+        }
+
+        string stars = oppStars.Aggregate((i, j) => i + ", " + j).ToString();
 
         if (playerIsHome == true)
         {
             ScoutReportTitle.text = (myteam.teaminfo[MatchInfo[playerTrack].AwayID].Name + " Scout Report");
 
-            ScoutReportText.text = "Opposition Attack: " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack + "Our Attack: " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack;
+            ScoutReportText.text = "Opposition Attack: " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack + "  \n Our Attack: " + myteam.teaminfo[MatchInfo[playerTrack].HomeID].Attack + "  \n Star Players: " + stars;
+
+            if (homeweak == true)
+            {
+                ScoutReportDetails.text = " This team is significantly stronger than us all around so it is probably a good idea to field a defensive team and try to catch them on the counter.";
+
+            }
+
+            if (awayweak == true)
+            {
+                ScoutReportDetails.text = " This team is weaker than us and we are clear favourites which means they are probably gonna play it safe and park the bus.";
+
+            }
+
+            if (difference < 5)
+            {
+                ScoutReportDetails.text = "This is likely to be a very close game so it is a good idea to field our strongest team as this game could very well go either way. " ;
+            }
+
         }
+
         if (playerIsHome == false)
         {
             ScoutReportTitle.text = (myteam.teaminfo[MatchInfo[playerTrack].HomeID].Name + " Scout Report");
+            ScoutReportText.text = "Opposition Attack: " + myteam.teaminfo[MatchInfo[playerTrack].HomeID].Attack + " \n Our Attack: " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack + "  \n Star Players: " + stars;
+
+            if (awayweak == true)
+            {
+                ScoutReportDetails.text = " This team is significantly stronger than us going forward so it is probably a good idea to field a defensive team and try to catch them on the counter.";
+
+            }
+
+            if (homeweak == true)
+            {
+                ScoutReportDetails.text = " This team is weaker than us and we are clear favourites which means they are probably gonna play it safe and park the bus.";
+
+            }
+
+            if (difference < 5)
+            {
+                ScoutReportDetails.text = "This is likely to be a very close game so it is a good idea to field our strongest team as this game could very well go either way. ";
+            }
+
         }
+
+
+
+
 
     }
 
