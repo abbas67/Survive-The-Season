@@ -7,7 +7,7 @@ using System.Linq;
 
 
 
-public class UiManagement : MonoBehaviour
+public class UiManagement: MonoBehaviour
 {
 
     public Text TeamOverallText;
@@ -397,6 +397,13 @@ public class UiManagement : MonoBehaviour
     public Text ScoutReportTitle;
 
     public Text ScoutReportDetails;
+
+
+    public int SelectedTactic = 0;
+
+
+
+
 
     public void DisplayNewAttackDefence()
     {
@@ -1629,6 +1636,8 @@ public class UiManagement : MonoBehaviour
 
         CurrentTeamPossesion = Possesioncounter / PossesionAverage.Count();
 
+        SelectedTactic = CurrentTeamPossesion;
+
         return CurrentTeamPossesion;
 
 
@@ -1704,7 +1713,7 @@ public class UiManagement : MonoBehaviour
 
         CurrentTeamCounter = Countercounter / CounterAverage.Count();
 
-
+        SelectedTactic = CurrentTeamCounter;
 
         return CurrentTeamCounter;
 
@@ -1752,6 +1761,10 @@ public class UiManagement : MonoBehaviour
         }
 
         CurrentTeamPressure = Pressurecounter / PressureAverage.Count();
+
+
+        SelectedTactic = CurrentTeamPressure;
+
 
         return CurrentTeamPressure;
 
@@ -3686,7 +3699,6 @@ public class UiManagement : MonoBehaviour
 
             if (difference > 10)
             {
-                Debug.Log("Home is weak");
                 AwayTactic = oppinfo[MatchInfo[i].AwayID].CounterCapability;
 
                 HomeTactic = oppinfo[MatchInfo[i].HomeID].PossessionCapability;
@@ -3697,19 +3709,123 @@ public class UiManagement : MonoBehaviour
 
             if (difference > 10)
             {
-                Debug.Log("Away is weak");
+           
                 HomeTactic = oppinfo[MatchInfo[i].HomeID].CounterCapability;
-                Debug.Log(oppinfo[MatchInfo[i].AwayID].PossessionCapability);
                 AwayTactic = oppinfo[MatchInfo[i].AwayID].PossessionCapability;
 
 
 
             }
 
+            //making sure the tactic capability of the player is the one that they selected rather than what the algorithm feels is appropiate
+            if (MatchInfo[i].AwayID == TeamSetup.TeamManagedID)
+            {
+           
+                AwayTactic = SelectedTactic;
+            
+            }
+
+            if (MatchInfo[i].HomeID == TeamSetup.TeamManagedID)
+            {
+        
+             
+                HomeTactic = SelectedTactic;
+
+            }
+
+
             HomeTactic = HomeTactic * RandomNumber(0, 100) ;
             AwayTactic = AwayTactic * RandomNumber(0, 100);
             //Dynamically prediciting the amount of goals that will be scored by each team on a specific match day. 
 
+
+
+            // Based on the attacking capability of each team the amount of potential goals is calculated
+            if (Enumerable.Range(0, 70).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Attack))
+            {
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 3);
+
+            }
+
+            if (Enumerable.Range(71, 80).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Attack))
+            {
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 4);
+
+            }
+
+
+            if (Enumerable.Range(81, 100).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Attack))
+            {
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 6);
+
+            }
+
+
+            if (Enumerable.Range(0, 70).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Attack))
+            {
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 3);
+
+            }
+
+            if (Enumerable.Range(71, 80).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Attack))
+            {
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 4);
+
+            }
+
+
+            if (Enumerable.Range(81, 100).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Attack))
+            {
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(1, 6);
+
+            }
+
+            // Based on the defensive capability of each team the amount of potential goals conceded is calculated
+
+            if (Enumerable.Range(0, 70).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Defence))
+            {
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 3);
+
+            }
+
+            if (Enumerable.Range(71, 80).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Defence))
+            {
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 2);
+
+            }
+
+
+            if (Enumerable.Range(81, 100).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Defence))
+            {
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 1);
+
+            }
+
+
+
+            if (Enumerable.Range(0, 70).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Defence))
+            {
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 3);
+
+            }
+
+            if (Enumerable.Range(71, 80).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Defence))
+            {
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 2);
+
+            }
+
+
+            if (Enumerable.Range(81, 100).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Defence))
+            {
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 1);
+
+            }
+
+
+
+
+            /*
             if (HomeTactic > AwayTactic)
                 {
                    
@@ -3721,12 +3837,11 @@ public class UiManagement : MonoBehaviour
 
                 if (HomeTactic > AwayTactic)
                 {
-           
-                    MatchInfo[i].HomeGoals = RandomNumber(0, 6);
-                    MatchInfo[i].AwayGoals = RandomNumber(1, 6);
+                MatchInfo[i].HomeGoals = RandomNumber(0, 6);
+                MatchInfo[i].AwayGoals = RandomNumber(1, 6);
 
 
-                }
+            }
 
                 if (HomeTactic == AwayTactic)
                 {
@@ -3737,7 +3852,7 @@ public class UiManagement : MonoBehaviour
                 }
 
 
-
+    */
 
 
 
@@ -3779,7 +3894,7 @@ public class UiManagement : MonoBehaviour
    
             PointsUpdater();
 
-            Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " points: " + TableStats[MatchInfo[i].HomeID].Points + " VS " + myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals + " points: " + TableStats[MatchInfo[i].AwayID].Points);
+            Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals  + " VS " + myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals );
            
         }
        
@@ -3798,7 +3913,7 @@ public class UiManagement : MonoBehaviour
     {
         lock (syncLock)
         { // synchronize
-            return rnd.Next(min, max);
+            return Random.Range(min, max);
         }
     }
 
@@ -3868,9 +3983,10 @@ public class UiManagement : MonoBehaviour
     }
 
 
-
-
+  
 }
+
+
 
 
 

@@ -31527,7 +31527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0012207031, y: -157.57007}
+  m_AnchoredPosition: {x: 0.0009765625, y: -157.57031}
   m_SizeDelta: {x: -0, y: -315.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688452780
@@ -38106,7 +38106,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028581571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 331.89783, y: 205.80083, z: -1.875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -38370,6 +38370,7 @@ MonoBehaviour:
   ScoutReportText: {fileID: 0}
   ScoutReportTitle: {fileID: 0}
   ScoutReportDetails: {fileID: 0}
+  SelectedTactic: 0
 --- !u!1 &2028884668
 GameObject:
   m_ObjectHideFlags: 0
