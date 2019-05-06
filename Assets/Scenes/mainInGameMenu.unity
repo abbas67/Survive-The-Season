@@ -191,7 +191,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: ViewPressurePlan
         m_Mode: 1
         m_Arguments:
@@ -464,7 +464,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: selectSquad
         m_Mode: 1
         m_Arguments:
@@ -475,7 +475,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: populateSquad
         m_Mode: 1
         m_Arguments:
@@ -2680,7 +2680,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectMF
         m_Mode: 3
         m_Arguments:
@@ -4100,7 +4100,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectCB
         m_Mode: 3
         m_Arguments:
@@ -5066,7 +5066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectMF
         m_Mode: 3
         m_Arguments:
@@ -6812,7 +6812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectST
         m_Mode: 3
         m_Arguments:
@@ -7423,7 +7423,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: BackSquadPage
         m_Mode: 1
         m_Arguments:
@@ -7731,7 +7731,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: NextSquadPage
         m_Mode: 1
         m_Arguments:
@@ -7939,7 +7939,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectMF
         m_Mode: 3
         m_Arguments:
@@ -8308,7 +8308,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: teamInfoDisplay
         m_Mode: 1
         m_Arguments:
@@ -8516,7 +8516,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectCB
         m_Mode: 3
         m_Arguments:
@@ -8802,7 +8802,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: teamInfoDisplay
         m_Mode: 1
         m_Arguments:
@@ -8975,7 +8975,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: displayOptions
         m_Mode: 1
         m_Arguments:
@@ -10416,7 +10416,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: ViewPressurePlan
         m_Mode: 1
         m_Arguments:
@@ -11642,7 +11642,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectLM
         m_Mode: 3
         m_Arguments:
@@ -12231,7 +12231,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectGK
         m_Mode: 3
         m_Arguments:
@@ -14693,7 +14693,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: ViewCounterPlan
         m_Mode: 1
         m_Arguments:
@@ -15232,7 +15232,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectMF
         m_Mode: 3
         m_Arguments:
@@ -15579,7 +15579,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectCB
         m_Mode: 3
         m_Arguments:
@@ -15966,7 +15966,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: ViewCounterPlan
         m_Mode: 1
         m_Arguments:
@@ -16596,7 +16596,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRM
         m_Mode: 3
         m_Arguments:
@@ -17338,7 +17338,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 2028581572}
         m_MethodName: displayMatchPrep
         m_Mode: 1
         m_Arguments:
@@ -17489,7 +17489,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: Matchday
         m_Mode: 1
         m_Arguments:
@@ -21022,7 +21022,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: ViewPosessionPlan
         m_Mode: 1
         m_Arguments:
@@ -22685,7 +22685,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectCB
         m_Mode: 3
         m_Arguments:
@@ -23675,7 +23675,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectMF
         m_Mode: 3
         m_Arguments:
@@ -23804,7 +23804,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectST
         m_Mode: 3
         m_Arguments:
@@ -25071,7 +25071,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: displayOptions
         m_Mode: 1
         m_Arguments:
@@ -30156,7 +30156,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRB
         m_Mode: 3
         m_Arguments:
@@ -31148,7 +31148,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: PopulateTable
         m_Mode: 1
         m_Arguments:
@@ -31159,7 +31159,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: PopulateTable
         m_Mode: 1
         m_Arguments:
@@ -32145,7 +32145,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: UpdatePlayerInfo
         m_Mode: 1
         m_Arguments:
@@ -32514,7 +32514,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectGK
         m_Mode: 3
         m_Arguments:
@@ -32925,7 +32925,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectLM
         m_Mode: 3
         m_Arguments:
@@ -36087,7 +36087,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: UpdatePlayerInfo
         m_Mode: 1
         m_Arguments:
@@ -36227,7 +36227,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectST
         m_Mode: 3
         m_Arguments:
@@ -37926,7 +37926,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectMF
         m_Mode: 3
         m_Arguments:
@@ -38091,14 +38091,30 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2028581573}
-  - component: {fileID: 2028581574}
+  - component: {fileID: 2028581572}
   m_Layer: 0
-  m_Name: Gameplay
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2028581572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028581571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d912dff177443df83b308ea1a734f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScoutReportText: {fileID: 0}
+  ScoutReportTitle: {fileID: 0}
+  ScoutReportDetails: {fileID: 0}
+  GameWeek: 1
 --- !u!4 &2028581573
 Transform:
   m_ObjectHideFlags: 0
@@ -38113,264 +38129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2028581574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028581571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc260d8a97f209c46b71da3a1856cafd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TeamOverallText: {fileID: 0}
-  TablePositionText: {fileID: 0}
-  AttackingThreatText: {fileID: 0}
-  DefensiveThreatText: {fileID: 0}
-  CurrentGameplanText: {fileID: 0}
-  GameplanCapabilityText: {fileID: 0}
-  PressureBtn: {fileID: 0}
-  CounterBtn: {fileID: 0}
-  PossesionBtn: {fileID: 0}
-  NextBtn: {fileID: 0}
-  BackBtn: {fileID: 0}
-  BoardText: {fileID: 1859801882}
-  FanText: {fileID: 0}
-  ManagerText: {fileID: 0}
-  Pos0: {fileID: 0}
-  Pos1: {fileID: 0}
-  Pos2: {fileID: 0}
-  Pos3: {fileID: 0}
-  Pos4: {fileID: 0}
-  Pos5: {fileID: 0}
-  Pos6: {fileID: 0}
-  Pos7: {fileID: 0}
-  Pos8: {fileID: 0}
-  Pos9: {fileID: 0}
-  Pos10: {fileID: 0}
-  Pos11: {fileID: 0}
-  NameHeader: {fileID: 0}
-  PositionHeader: {fileID: 0}
-  AgeHeader: {fileID: 0}
-  OverallHeader: {fileID: 0}
-  MoraleHeader: {fileID: 0}
-  FormHeader: {fileID: 0}
-  MoreInfoBtn: {fileID: 0}
-  NameHeader1: {fileID: 0}
-  PositionHeader1: {fileID: 0}
-  AgeHeader1: {fileID: 0}
-  OverallHeader1: {fileID: 0}
-  MoraleHeader1: {fileID: 0}
-  FormHeader1: {fileID: 0}
-  MoreInfoBtn1: {fileID: 0}
-  NameHeader2: {fileID: 0}
-  PositionHeader2: {fileID: 0}
-  AgeHeader2: {fileID: 0}
-  OverallHeader2: {fileID: 0}
-  MoraleHeader2: {fileID: 0}
-  FormHeader2: {fileID: 0}
-  MoreInfoBtn2: {fileID: 0}
-  BoardFaith2: 0
-  NameHeader3: {fileID: 0}
-  PositionHeader3: {fileID: 0}
-  AgeHeader3: {fileID: 0}
-  OverallHeader3: {fileID: 0}
-  MoraleHeader3: {fileID: 0}
-  FormHeader3: {fileID: 0}
-  MoreInfoBtn3: {fileID: 0}
-  NameHeader4: {fileID: 0}
-  PositionHeader4: {fileID: 0}
-  AgeHeader4: {fileID: 0}
-  OverallHeader4: {fileID: 0}
-  MoraleHeader4: {fileID: 0}
-  FormHeader4: {fileID: 0}
-  MoreInfoBtn4: {fileID: 0}
-  NameHeader5: {fileID: 0}
-  PositionHeader5: {fileID: 0}
-  AgeHeader5: {fileID: 0}
-  OverallHeader5: {fileID: 0}
-  MoraleHeader5: {fileID: 0}
-  FormHeader5: {fileID: 0}
-  MoreInfoBtn5: {fileID: 0}
-  NameHeader6: {fileID: 0}
-  PositionHeader6: {fileID: 0}
-  AgeHeader6: {fileID: 0}
-  OverallHeader6: {fileID: 0}
-  MoraleHeader6: {fileID: 0}
-  FormHeader6: {fileID: 0}
-  MoreInfoBtn6: {fileID: 0}
-  NameHeader7: {fileID: 0}
-  PositionHeader7: {fileID: 0}
-  AgeHeader7: {fileID: 0}
-  OverallHeader7: {fileID: 0}
-  MoraleHeader7: {fileID: 0}
-  FormHeader7: {fileID: 0}
-  MoreInfoBtn7: {fileID: 0}
-  NameHeader8: {fileID: 0}
-  PositionHeader8: {fileID: 0}
-  AgeHeader8: {fileID: 0}
-  OverallHeader8: {fileID: 0}
-  MoraleHeader8: {fileID: 0}
-  FormHeader8: {fileID: 0}
-  MoreInfoBtn8: {fileID: 0}
-  NameHeader9: {fileID: 0}
-  PositionHeader9: {fileID: 0}
-  AgeHeader9: {fileID: 0}
-  OverallHeader9: {fileID: 0}
-  MoraleHeader9: {fileID: 0}
-  FormHeader9: {fileID: 0}
-  MoreInfoBtn9: {fileID: 0}
-  NameHeader10: {fileID: 0}
-  PositionHeader10: {fileID: 0}
-  AgeHeader10: {fileID: 0}
-  OverallHeader10: {fileID: 0}
-  MoraleHeader10: {fileID: 0}
-  FormHeader10: {fileID: 0}
-  MoreInfoBtn10: {fileID: 0}
-  NameHeader11: {fileID: 0}
-  PositionHeader11: {fileID: 0}
-  AgeHeader11: {fileID: 0}
-  OverallHeader11: {fileID: 0}
-  MoraleHeader11: {fileID: 0}
-  FormHeader11: {fileID: 0}
-  MoreInfoBtn11: {fileID: 0}
-  NameHeader12: {fileID: 0}
-  PositionHeader12: {fileID: 0}
-  AgeHeader12: {fileID: 0}
-  OverallHeader12: {fileID: 0}
-  MoraleHeader12: {fileID: 0}
-  FormHeader12: {fileID: 0}
-  MoreInfoBtn12: {fileID: 0}
-  Team0: {fileID: 0}
-  Wins0: {fileID: 0}
-  Losses0: {fileID: 0}
-  Draws0: {fileID: 0}
-  Points0: {fileID: 0}
-  Team1: {fileID: 0}
-  Wins1: {fileID: 0}
-  Losses1: {fileID: 0}
-  Draws1: {fileID: 0}
-  Points1: {fileID: 0}
-  Team2: {fileID: 0}
-  Wins2: {fileID: 0}
-  Losses2: {fileID: 0}
-  Draws2: {fileID: 0}
-  Points2: {fileID: 0}
-  Team3: {fileID: 0}
-  Wins3: {fileID: 0}
-  Losses3: {fileID: 0}
-  Draws3: {fileID: 0}
-  Points3: {fileID: 0}
-  Team4: {fileID: 0}
-  Wins4: {fileID: 0}
-  Losses4: {fileID: 0}
-  Draws4: {fileID: 0}
-  Points4: {fileID: 0}
-  Team5: {fileID: 0}
-  Wins5: {fileID: 0}
-  Losses5: {fileID: 0}
-  Draws5: {fileID: 0}
-  Points5: {fileID: 0}
-  Team6: {fileID: 0}
-  Wins6: {fileID: 0}
-  Losses6: {fileID: 0}
-  Draws6: {fileID: 0}
-  Points6: {fileID: 0}
-  Team7: {fileID: 0}
-  Wins7: {fileID: 0}
-  Losses7: {fileID: 0}
-  Draws7: {fileID: 0}
-  Points7: {fileID: 0}
-  Team8: {fileID: 0}
-  Wins8: {fileID: 0}
-  Losses8: {fileID: 0}
-  Draws8: {fileID: 0}
-  Points8: {fileID: 0}
-  Team9: {fileID: 0}
-  Wins9: {fileID: 0}
-  Losses9: {fileID: 0}
-  Draws9: {fileID: 0}
-  Points9: {fileID: 0}
-  Team10: {fileID: 0}
-  Wins10: {fileID: 0}
-  Losses10: {fileID: 0}
-  Draws10: {fileID: 0}
-  Points10: {fileID: 0}
-  Team11: {fileID: 0}
-  Wins11: {fileID: 0}
-  Losses11: {fileID: 0}
-  Draws11: {fileID: 0}
-  Points11: {fileID: 0}
-  oppinfo: []
-  SelectedSquad: []
-  SortedTeams: []
-  SquadChoice: []
-  FinalScoreText: {fileID: 0}
-  ScorersText: {fileID: 0}
-  CardsText: {fileID: 0}
-  FoulsText: {fileID: 0}
-  GameDayText: {fileID: 0}
-  TableStats: []
-  MatchStats: []
-  GameWeek: 0
-  GameWeekTxt: {fileID: 0}
-  ManStressTxt: {fileID: 0}
-  ManNameTxt: {fileID: 0}
-  SToption1: {fileID: 0}
-  SToption2: {fileID: 0}
-  SToption3: {fileID: 0}
-  MFoption1: {fileID: 0}
-  MFoption2: {fileID: 0}
-  MFoption3: {fileID: 0}
-  MFoption4: {fileID: 0}
-  MFoption5: {fileID: 0}
-  MFoption6: {fileID: 0}
-  LeftMoption1: {fileID: 0}
-  LeftMoption2: {fileID: 0}
-  RightMoption1: {fileID: 0}
-  RightMoption2: {fileID: 0}
-  LBoption1: {fileID: 0}
-  LBoption2: {fileID: 0}
-  RBoption1: {fileID: 0}
-  RBoption2: {fileID: 0}
-  CBoption1: {fileID: 0}
-  CBoption2: {fileID: 0}
-  CBoption3: {fileID: 0}
-  CBoption4: {fileID: 0}
-  GKoption1: {fileID: 0}
-  GKoption2: {fileID: 0}
-  GKoption3: {fileID: 0}
-  LineupText: {fileID: 0}
-  LMSelectCheck: 0
-  Keepers: []
-  CentreBacks: []
-  SquadTracker: []
-  Starting11: []
-  totalST: 0
-  totalCB: 0
-  totalMF: 0
-  totalRB: 0
-  totalLB: 0
-  totalLM: 0
-  totalRM: 0
-  totalGK: 0
-  TotalStarters: 0
-  STbtn1pressed: 0
-  MFbtn1pressed: 0
-  CBbtn1pressed: 0
-  RMbtn1pressed: 0
-  LMbtn1pressed: 0
-  RBbtn1pressed: 0
-  LBbtn1pressed: 0
-  GKbtn1pressed: 0
-  PlayerWarnings: {fileID: 0}
-  SquadCapabilitiesText: {fileID: 0}
-  ScoutReportText: {fileID: 0}
-  ScoutReportTitle: {fileID: 0}
-  ScoutReportDetails: {fileID: 0}
-  SelectedTactic: 0
 --- !u!1 &2028884668
 GameObject:
   m_ObjectHideFlags: 0
@@ -38988,7 +38746,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectLB
         m_Mode: 3
         m_Arguments:
@@ -39682,7 +39440,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRM
         m_Mode: 3
         m_Arguments:
@@ -39811,7 +39569,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: ViewPosessionPlan
         m_Mode: 1
         m_Arguments:
@@ -40446,7 +40204,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectLB
         m_Mode: 3
         m_Arguments:
@@ -41186,7 +40944,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2028581574}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRB
         m_Mode: 3
         m_Arguments:
