@@ -140,16 +140,6 @@ public class Player : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
         for (i = 0; i <= 275; i++)
         {
 
@@ -164,26 +154,7 @@ public class Player : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
 
 
 

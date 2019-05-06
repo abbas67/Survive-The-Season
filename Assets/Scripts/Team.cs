@@ -7,12 +7,11 @@ public class Team : MonoBehaviour
     
    public List<TeamInfo> teaminfo = new List<TeamInfo>();
 
-    int index = 0;
 
     public TextAsset TeamData;
 
 
-    public void loadData()
+    public void loadTeamData()
     {
 
          TeamData = Resources.Load<TextAsset>("TeamData");
@@ -57,17 +56,6 @@ public class Team : MonoBehaviour
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

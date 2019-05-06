@@ -8,6 +8,7 @@ public class TeamSetup : MonoBehaviour
 
     Team myteam = new Team();
     Player myplayer = new Player();
+    Model myModel = new Model();
 
      Text NameText;
     public Text ReputationText;
@@ -86,7 +87,7 @@ public class TeamSetup : MonoBehaviour
     void Start()
     {
             
-        myteam.loadData();
+        myModel.loadTeamData();
 
 
 
