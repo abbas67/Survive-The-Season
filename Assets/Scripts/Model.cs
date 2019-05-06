@@ -16,18 +16,52 @@ public class Model : MonoBehaviour
 
 
 
-    public Text TeamOverallText;
-    public Text TablePositionText;
-    public Text AttackingThreatText;
-    public Text DefensiveThreatText;
-    public Text CurrentGameplanText;
-    public Text GameplanCapabilityText;
-    public Button PressureBtn;
-    public Button CounterBtn;
-    public Button PossesionBtn;
 
 
 
+    public Text PlayerWarnings;
+    public Text SquadCapabilitiesText;
+
+    public Button SToption1;
+    public Button SToption2;
+    public Button SToption3;
+
+    public Button MFoption1;
+    public Button MFoption2;
+    public Button MFoption3;
+    public Button MFoption4;
+    public Button MFoption5;
+    public Button MFoption6;
+
+    public Button LeftMoption1;
+    public Button LeftMoption2;
+
+    public Button RightMoption1;
+    public Button RightMoption2;
+
+    public Button LBoption1;
+    public Button LBoption2;
+
+    public Button RBoption1;
+    public Button RBoption2;
+
+    public Button CBoption1;
+    public Button CBoption2;
+    public Button CBoption3;
+    public Button CBoption4;
+
+    public Button GKoption1;
+    public Button GKoption2;
+    public Button GKoption3;
+
+    List<Button> GKTracker = new List<Button>();
+    List<Button> RBTracker = new List<Button>();
+    List<Button> LBTracker = new List<Button>();
+    List<Button> CBTracker = new List<Button>();
+    List<Button> RMTracker = new List<Button>();
+    List<Button> LMTracker = new List<Button>();
+    List<Button> STTracker = new List<Button>();
+    List<Button> MFTracker = new List<Button>();
 
 
 
@@ -251,8 +285,7 @@ public class Model : MonoBehaviour
 
 
 
-    Team myteam = new Team();
-    Player myplayer = new Player();
+
     TeamSetup myTeamSetup = new TeamSetup();
 
     List<Text> Tlist = new List<Text>();
@@ -317,37 +350,7 @@ public class Model : MonoBehaviour
 
 
 
-    public Button SToption1;
-    public Button SToption2;
-    public Button SToption3;
 
-    public Button MFoption1;
-    public Button MFoption2;
-    public Button MFoption3;
-    public Button MFoption4;
-    public Button MFoption5;
-    public Button MFoption6;
-
-    public Button LeftMoption1;
-    public Button LeftMoption2;
-
-    public Button RightMoption1;
-    public Button RightMoption2;
-
-    public Button LBoption1;
-    public Button LBoption2;
-
-    public Button RBoption1;
-    public Button RBoption2;
-
-    public Button CBoption1;
-    public Button CBoption2;
-    public Button CBoption3;
-    public Button CBoption4;
-
-    public Button GKoption1;
-    public Button GKoption2;
-    public Button GKoption3;
     public Text LineupText;
 
     public bool LMSelectCheck = false;
@@ -365,14 +368,7 @@ public class Model : MonoBehaviour
 
 
     public List<PlayerInfo> Starting11 = new List<PlayerInfo>();
-    List<Button> GKTracker = new List<Button>();
-    List<Button> RBTracker = new List<Button>();
-    List<Button> LBTracker = new List<Button>();
-    List<Button> CBTracker = new List<Button>();
-    List<Button> RMTracker = new List<Button>();
-    List<Button> LMTracker = new List<Button>();
-    List<Button> STTracker = new List<Button>();
-    List<Button> MFTracker = new List<Button>();
+
     public int totalST = 0;
     public int totalCB = 0;
     public int totalMF = 0;
@@ -394,9 +390,7 @@ public class Model : MonoBehaviour
     public bool LBbtn1pressed = false;
     public bool GKbtn1pressed = false;
 
-    public Text PlayerWarnings;
 
-    public Text SquadCapabilitiesText;
 
 
 
@@ -1359,22 +1353,36 @@ public class Model : MonoBehaviour
     }
 
 
+    public void displayPlayers(List<Starting11Info> playerTracker, List<Button> buttons)
+    {
+        for (int i = 0; i < playerTracker.Count(); i++)
+        {
+
+            buttons[i].GetComponentInChildren<Text>().text = playerTracker[i].Name + "\n " + playerTracker[i].Overall;
+
+
+            if (playerTracker[i].Overall >= 85)
+            {
+                buttons[i].GetComponentInChildren<Text>().color = Color.red;
+            }
+
+
+        }
+
+    }
 
 
 
     public void displayOptions()
     {
+
         PlayerWarnings = GameObject.Find("PlayerWarnings").GetComponent<Text>();
         SquadCapabilitiesText = GameObject.Find("SquadCapabilitiesText").GetComponent<Text>();
-
 
 
         SToption1 = GameObject.Find("SToption1").GetComponent<Button>();
         SToption2 = GameObject.Find("SToption2").GetComponent<Button>();
         SToption3 = GameObject.Find("SToption3").GetComponent<Button>();
-        STTracker.Add(SToption1);
-        STTracker.Add(SToption2);
-        STTracker.Add(SToption3);
 
         MFoption1 = GameObject.Find("MFoption1").GetComponent<Button>();
         MFoption2 = GameObject.Find("MFoption2").GetComponent<Button>();
@@ -1382,53 +1390,52 @@ public class Model : MonoBehaviour
         MFoption4 = GameObject.Find("MFoption4").GetComponent<Button>();
         MFoption5 = GameObject.Find("MFoption5").GetComponent<Button>();
         MFoption6 = GameObject.Find("MFoption6").GetComponent<Button>();
-        MFTracker.Add(MFoption1);
-        MFTracker.Add(MFoption2);
-        MFTracker.Add(MFoption3);
-        MFTracker.Add(MFoption4);
-        MFTracker.Add(MFoption5);
-        MFTracker.Add(MFoption6);
 
         LeftMoption1 = GameObject.Find("LMoption1").GetComponent<Button>();
         LeftMoption2 = GameObject.Find("LMoption2").GetComponent<Button>();
-        LMTracker.Add(LeftMoption1);
-        LMTracker.Add(LeftMoption2);
 
         RightMoption1 = GameObject.Find("RMoption1").GetComponent<Button>();
         RightMoption2 = GameObject.Find("RMoption2").GetComponent<Button>();
-        RMTracker.Add(RightMoption1);
-        RMTracker.Add(RightMoption2);
 
         LBoption1 = GameObject.Find("LBoption1").GetComponent<Button>();
         LBoption2 = GameObject.Find("LBoption2").GetComponent<Button>();
 
-        LBTracker.Add(LBoption1);
-        LBTracker.Add(LBoption2);
-
         RBoption1 = GameObject.Find("RBoption1").GetComponent<Button>();
         RBoption2 = GameObject.Find("RBoption2").GetComponent<Button>();
 
-        RBTracker.Add(RBoption1);
-        RBTracker.Add(RBoption2);
 
         CBoption1 = GameObject.Find("CBoption1").GetComponent<Button>();
         CBoption2 = GameObject.Find("CBoption2").GetComponent<Button>();
         CBoption3 = GameObject.Find("CBoption3").GetComponent<Button>();
         CBoption4 = GameObject.Find("CBoption4").GetComponent<Button>();
 
+
+        GKoption1 = GameObject.Find("GKoption1").GetComponent<Button>();
+        GKoption2 = GameObject.Find("GKoption2").GetComponent<Button>();
+        // adding the buttons to lists so they are easier to keep track of.
+        STTracker.Add(SToption1);
+        STTracker.Add(SToption2);
+        STTracker.Add(SToption3);
+        MFTracker.Add(MFoption1);
+        MFTracker.Add(MFoption2);
+        MFTracker.Add(MFoption3);
+        MFTracker.Add(MFoption4);
+        MFTracker.Add(MFoption5);
+        MFTracker.Add(MFoption6);
+        LMTracker.Add(LeftMoption1);
+        LMTracker.Add(LeftMoption2);
+        RMTracker.Add(RightMoption1);
+        RMTracker.Add(RightMoption2);
+        LBTracker.Add(LBoption1);
+        LBTracker.Add(LBoption2);
+        RBTracker.Add(RBoption1);
+        RBTracker.Add(RBoption2);
         CBTracker.Add(CBoption1);
         CBTracker.Add(CBoption2);
         CBTracker.Add(CBoption3);
         CBTracker.Add(CBoption4);
-
-        GKoption1 = GameObject.Find("GKoption1").GetComponent<Button>();
-        GKoption2 = GameObject.Find("GKoption2").GetComponent<Button>();
-
         GKTracker.Add(GKoption1);
         GKTracker.Add(GKoption2);
-
-
-
 
         for (int i = 0; i <= 22; i++)
         {
@@ -1573,23 +1580,10 @@ public class Model : MonoBehaviour
     }
 
 
-    public void displayPlayers(List<Starting11Info> playerTracker, List<Button> buttons)
-    {
-        for (int i = 0; i < playerTracker.Count(); i++)
-        {
-
-            buttons[i].GetComponentInChildren<Text>().text = playerTracker[i].Name + "\n " + playerTracker[i].Overall;
 
 
-            if (playerTracker[i].Overall >= 85)
-            {
-                buttons[i].GetComponentInChildren<Text>().color = Color.red;
-            }
 
 
-        }
-
-    }
 
 
 
@@ -1601,9 +1595,7 @@ public class Model : MonoBehaviour
     public void ViewPosessionPlan()
     {
 
-        PossesionBtn = GameObject.Find("PossesionBtn").GetComponent<Button>();
-        GameplanCapabilityText.text = ("Gameplan Capability: " + returnPossessionPlan(SelectedSquad, TeamSetup.TeamManagedID));
-        CurrentGameplanText.text = ("Possesion");
+
 
     }
 
@@ -1647,17 +1639,6 @@ public class Model : MonoBehaviour
 
 
 
-    public void ViewCounterPlan()
-    {
-
-        CounterBtn = GameObject.Find("CounterBtn").GetComponent<Button>();
-        GameplanCapabilityText.text = ("Gameplan Capability: " + returnCounterPlan(SelectedSquad, TeamSetup.TeamManagedID));
-        CurrentGameplanText.text = ("Counter");
-
-
-
-
-    }
 
     public int returnCounterPlan(List<PlayerInfo> CurrSquad, int teamid)
     {
@@ -1725,14 +1706,7 @@ public class Model : MonoBehaviour
 
 
 
-    public void ViewPressurePlan()
-    {
-        PressureBtn = GameObject.Find("PressureBtn").GetComponent<Button>();
-        GameplanCapabilityText.text = ("Gameplan Capability: " + returnPressurePlan(SelectedSquad, TeamSetup.TeamManagedID));
-        CurrentGameplanText.text = ("Pressure");
 
-
-    }
 
     public int returnPressurePlan(List<PlayerInfo> CurrSquad, int teamid)
     {
@@ -1779,9 +1753,8 @@ public class Model : MonoBehaviour
 
 
 
-    public void CalculateCurrOverall()
+    public int CalculateCurrOverall()
     {
-        TeamOverallText = GameObject.Find("TeamOverallText").GetComponent<Text>();
         int total = 0;
         //CurrentTeamOverall
         for (int i = 0; i <= 22; i++)
@@ -1794,8 +1767,7 @@ public class Model : MonoBehaviour
 
         CurrentTeamOverall = total / 23;
 
-
-        TeamOverallText.text = ("Team Overall: " + CurrentTeamOverall);
+        return CurrentTeamOverall;
 
     }
 
@@ -1962,7 +1934,7 @@ public class Model : MonoBehaviour
         for (int i = 0; i <= 11; i++)
         {
 
-            LeagueTeamList[i].text = myteam.teaminfo[SortedTeams[i].TeamID].Name;
+            LeagueTeamList[i].text = teaminfo[SortedTeams[i].TeamID].Name;
             LeagueWinsList[i].text = SortedTeams[i].Wins.ToString();
             LeagueLossesList[i].text = SortedTeams[i].Losses.ToString();
             LeagueDrawsList[i].text = SortedTeams[i].Draws.ToString();
@@ -1973,16 +1945,15 @@ public class Model : MonoBehaviour
 
     }
 
-    public void RetrievePos()
+    public string RetrievePos(int TeamID)
     {
-        TablePositionText = GameObject.Find("TablePositionText").GetComponent<Text>();
         int i = 0;
         bool found = false;
 
         while (found == false)
         {
 
-            if (SortedTeams[i].TeamID == TeamSetup.TeamManagedID)
+            if (SortedTeams[i].TeamID == TeamID)
             {
 
                 found = true;
@@ -1999,7 +1970,7 @@ public class Model : MonoBehaviour
         if (i == 0)
         {
 
-            TablePositionText.text = "Table Position: 1st";
+            return "Table Position: 1st";
 
 
         }
@@ -2007,7 +1978,7 @@ public class Model : MonoBehaviour
         if (i == 1)
         {
 
-            TablePositionText.text = "Table Position: 2nd";
+            return "Table Position: 2nd";
 
 
         }
@@ -2015,7 +1986,7 @@ public class Model : MonoBehaviour
         if (i == 2)
         {
 
-            TablePositionText.text = "Table Position: 3rd";
+            return "Table Position: 3rd";
 
 
         }
@@ -2024,7 +1995,7 @@ public class Model : MonoBehaviour
         if (i == 3)
         {
 
-            TablePositionText.text = "Table Position: 4th";
+            return "Table Position: 4th";
 
 
         }
@@ -2032,7 +2003,7 @@ public class Model : MonoBehaviour
         if (i == 4)
         {
 
-            TablePositionText.text = "Table Position: 5th";
+            return "Table Position: 5th";
 
 
         }
@@ -2042,7 +2013,7 @@ public class Model : MonoBehaviour
         if (i == 5)
         {
 
-            TablePositionText.text = "Table Position: 6th";
+            return "Table Position: 6th";
 
 
         }
@@ -2050,7 +2021,7 @@ public class Model : MonoBehaviour
         if (i == 6)
         {
 
-            TablePositionText.text = "Table Position: 7th";
+            return "Table Position: 7th";
 
 
         }
@@ -2058,7 +2029,7 @@ public class Model : MonoBehaviour
         if (i == 7)
         {
 
-            TablePositionText.text = "Table Position: 8th";
+            return "Table Position: 8th";
 
 
         }
@@ -2066,7 +2037,7 @@ public class Model : MonoBehaviour
         if (i == 8)
         {
 
-            TablePositionText.text = "Table Position: 9th";
+            return "Table Position: 9th";
 
 
         }
@@ -2075,7 +2046,7 @@ public class Model : MonoBehaviour
         if (i == 9)
         {
 
-            TablePositionText.text = "Table Position: 10th";
+            return "Table Position: 10th";
 
 
         }
@@ -2083,7 +2054,7 @@ public class Model : MonoBehaviour
         if (i == 10)
         {
 
-            TablePositionText.text = "Table Position: 11th";
+            return "Table Position: 11th";
 
 
         }
@@ -2091,9 +2062,16 @@ public class Model : MonoBehaviour
         if (i == 11)
         {
 
-            TablePositionText.text = "Table Position: 12th";
+            return "Table Position: 12th";
 
 
+        }
+        else
+        {
+
+            return null;
+        
+        
         }
 
     }
@@ -2508,8 +2486,8 @@ public class Model : MonoBehaviour
 
 
 
-        BoardText.text = ("Board Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].BoardDiff));
-        FanText.text = ("Fan Faith: " + (100 - myteam.teaminfo[TeamSetup.TeamManagedID].FanDiff));
+        BoardText.text = ("Board Faith: " + (100 - teaminfo[TeamSetup.TeamManagedID].BoardDiff));
+        FanText.text = ("Fan Faith: " + (100 - teaminfo[TeamSetup.TeamManagedID].FanDiff));
         //  ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
 
     }
@@ -2535,14 +2513,11 @@ public class Model : MonoBehaviour
 
     public void teamInfoDisplay()
     {
-        CurrentGameplanText = GameObject.Find("CurrentGameplanText").GetComponent<Text>();
-        GameplanCapabilityText = GameObject.Find("GameplanCapabilityText").GetComponent<Text>();
 
-        //DisplaySquadChoice();
 
-        CalculateCurrOverall();
+    
 
-        RetrievePos();
+      
 
         CalculateCurrentThreat();
 
@@ -2557,22 +2532,23 @@ public class Model : MonoBehaviour
         for (int i = 0; i <= 11; i++)
         {
             TempSelectedSquad.Clear();
-            Debug.Log(playerinfo.Count());
 
             for (int j = 0; j < playerinfo.Count; j++)
             {
                 if (playerinfo[j].TeamID == i)
                 {
                     TempSelectedSquad.Add(playerinfo[j]);
-                    Debug.Log(playerinfo[j]);
+
 
                 }
 
 
             }
+          
 
-            myteam.teaminfo[i].Attack = OppositionAttackThreat(TempSelectedSquad, i);
-            myteam.teaminfo[i].Defence = OppositionAttackThreat(TempSelectedSquad, i);
+            teaminfo[i].Attack = OppositionAttackThreat(TempSelectedSquad, i);
+           
+            teaminfo[i].Defence = OppositionDefenceThreat(TempSelectedSquad, i);
 
             OppositionInfo t = new OppositionInfo();
 
@@ -2603,6 +2579,9 @@ public class Model : MonoBehaviour
         CurrentTeamThreat = 0;
         CurrentTeamDefence = 0;
         List<int> AttackAverage = new List<int>();
+
+
+
 
         //CurrentTeamOverall
         for (int i = 0; i < OppThreat.Count(); i++)
@@ -2662,6 +2641,7 @@ public class Model : MonoBehaviour
         }
 
 
+       
 
 
         for (int i = 0; i < AttackAverage.Count(); i++)
@@ -3421,7 +3401,7 @@ public class Model : MonoBehaviour
             t.AwayScorers = "";
 
             MatchStats.Add(t);
-            // Debug.Log(myteam.teaminfo[MatchStats[i].HomeID].Name + "  " + myteam.teaminfo[MatchStats[i].HomeID].ID + "  " + myteam.teaminfo[MatchStats[i].AwayID].Name + "  " + myteam.teaminfo[MatchStats[i].AwayID].ID);
+            // Debug.Log(teaminfo[MatchStats[i].HomeID].Name + "  " + teaminfo[MatchStats[i].HomeID].ID + "  " + teaminfo[MatchStats[i].AwayID].Name + "  " + teaminfo[MatchStats[i].AwayID].ID);
 
         }
         return MatchStats;
@@ -3490,7 +3470,7 @@ public class Model : MonoBehaviour
 
         }
 
-        FinalScoreText.text = (myteam.teaminfo[MatchInfo[playerTrack].HomeID].Name + "  " + MatchInfo[playerTrack].HomeGoals + " VS " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Name + "  " + MatchInfo[playerTrack].AwayGoals);
+        FinalScoreText.text = (teaminfo[MatchInfo[playerTrack].HomeID].Name + "  " + MatchInfo[playerTrack].HomeGoals + " VS " + teaminfo[MatchInfo[playerTrack].AwayID].Name + "  " + MatchInfo[playerTrack].AwayGoals);
         GameDayText.text = ("Match Week: " + GameWeek);
 
         FoulsText.text = ("Home Fouls: " + MatchInfo[playerTrack].HomeFouls + " Away Fouls: " + MatchInfo[playerTrack].AwayFouls);
@@ -3541,8 +3521,8 @@ public class Model : MonoBehaviour
 
 
 
-        int HomeBasicOverall = (myteam.teaminfo[MatchInfo[playerTrack].HomeID].Attack + myteam.teaminfo[MatchInfo[playerTrack].HomeID].Defence) / 2;
-        int AwayBasicOverall = (myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Defence) / 2;
+        int HomeBasicOverall = (teaminfo[MatchInfo[playerTrack].HomeID].Attack + teaminfo[MatchInfo[playerTrack].HomeID].Defence) / 2;
+        int AwayBasicOverall = (teaminfo[MatchInfo[playerTrack].AwayID].Attack + teaminfo[MatchInfo[playerTrack].AwayID].Defence) / 2;
 
 
         //Significantly weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
@@ -3607,9 +3587,9 @@ public class Model : MonoBehaviour
 
         if (playerIsHome == true)
         {
-            ToBeReturned[0] = (myteam.teaminfo[MatchInfo[playerTrack].AwayID].Name + " Scout Report");
+            ToBeReturned[0] = (teaminfo[MatchInfo[playerTrack].AwayID].Name + " Scout Report");
 
-            ToBeReturned[1] = "Opposition Attack: " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack + "  \n Our Attack: " + myteam.teaminfo[MatchInfo[playerTrack].HomeID].Attack + "  \n Star Players: " + stars;
+            ToBeReturned[1] = "Opposition Attack: " + teaminfo[MatchInfo[playerTrack].AwayID].Attack + "  \n Our Attack: " + teaminfo[MatchInfo[playerTrack].HomeID].Attack + "  \n Star Players: " + stars;
 
             if (homeweak == true)
             {
@@ -3631,8 +3611,8 @@ public class Model : MonoBehaviour
 
         if (playerIsHome == false)
         {
-            ToBeReturned[0] = (myteam.teaminfo[MatchInfo[playerTrack].HomeID].Name + " Scout Report");
-            ToBeReturned[1] = "Opposition Attack: " + myteam.teaminfo[MatchInfo[playerTrack].HomeID].Attack + " \n Our Attack: " + myteam.teaminfo[MatchInfo[playerTrack].AwayID].Attack + "  \n Star Players: " + stars;
+            ToBeReturned[0] = (teaminfo[MatchInfo[playerTrack].HomeID].Name + " Scout Report");
+            ToBeReturned[1] = "Opposition Attack: " + teaminfo[MatchInfo[playerTrack].HomeID].Attack + " \n Our Attack: " + teaminfo[MatchInfo[playerTrack].AwayID].Attack + "  \n Star Players: " + stars;
 
             if (awayweak == true)
             {
@@ -3675,8 +3655,8 @@ public class Model : MonoBehaviour
             AwayTactic = 0;
             //Firstly checking that each team will employ an appropiate gameplan against their opposition.
 
-            HomeBasicOverall = (myteam.teaminfo[MatchInfo[i].HomeID].Attack + myteam.teaminfo[MatchInfo[i].HomeID].Defence) / 2;
-            AwayBasicOverall = (myteam.teaminfo[MatchInfo[i].AwayID].Attack + myteam.teaminfo[MatchInfo[i].AwayID].Defence) / 2;
+            HomeBasicOverall = (teaminfo[MatchInfo[i].HomeID].Attack + teaminfo[MatchInfo[i].HomeID].Defence) / 2;
+            AwayBasicOverall = (teaminfo[MatchInfo[i].AwayID].Attack + teaminfo[MatchInfo[i].AwayID].Defence) / 2;
 
 
             //Significantly weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
@@ -3727,40 +3707,40 @@ public class Model : MonoBehaviour
 
 
             // Based on the attacking capability of each team the amount of potential goals is calculated
-            if (Enumerable.Range(0, 70).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Attack))
+            if (Enumerable.Range(0, 70).Contains(teaminfo[MatchInfo[i].HomeID].Attack))
             {
                 MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 3);
 
             }
 
-            if (Enumerable.Range(71, 80).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Attack))
+            if (Enumerable.Range(71, 80).Contains(teaminfo[MatchInfo[i].HomeID].Attack))
             {
                 MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 4);
 
             }
 
 
-            if (Enumerable.Range(81, 100).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Attack))
+            if (Enumerable.Range(81, 100).Contains(teaminfo[MatchInfo[i].HomeID].Attack))
             {
                 MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 6);
 
             }
 
 
-            if (Enumerable.Range(0, 70).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Attack))
+            if (Enumerable.Range(0, 70).Contains(teaminfo[MatchInfo[i].AwayID].Attack))
             {
                 MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 3);
 
             }
 
-            if (Enumerable.Range(71, 80).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Attack))
+            if (Enumerable.Range(71, 80).Contains(teaminfo[MatchInfo[i].AwayID].Attack))
             {
                 MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 4);
 
             }
 
 
-            if (Enumerable.Range(81, 100).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Attack))
+            if (Enumerable.Range(81, 100).Contains(teaminfo[MatchInfo[i].AwayID].Attack))
             {
                 MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(1, 6);
 
@@ -3768,20 +3748,20 @@ public class Model : MonoBehaviour
 
             // Based on the defensive capability of each team the amount of potential goals conceded is calculated
 
-            if (Enumerable.Range(0, 70).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Defence))
+            if (Enumerable.Range(0, 70).Contains(teaminfo[MatchInfo[i].AwayID].Defence))
             {
                 MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 3);
 
             }
 
-            if (Enumerable.Range(71, 80).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Defence))
+            if (Enumerable.Range(71, 80).Contains(teaminfo[MatchInfo[i].AwayID].Defence))
             {
                 MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 2);
 
             }
 
 
-            if (Enumerable.Range(81, 100).Contains(myteam.teaminfo[MatchInfo[i].AwayID].Defence))
+            if (Enumerable.Range(81, 100).Contains(teaminfo[MatchInfo[i].AwayID].Defence))
             {
                 MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 1);
 
@@ -3789,20 +3769,20 @@ public class Model : MonoBehaviour
 
 
 
-            if (Enumerable.Range(0, 70).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Defence))
+            if (Enumerable.Range(0, 70).Contains(teaminfo[MatchInfo[i].HomeID].Defence))
             {
                 MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 3);
 
             }
 
-            if (Enumerable.Range(71, 80).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Defence))
+            if (Enumerable.Range(71, 80).Contains(teaminfo[MatchInfo[i].HomeID].Defence))
             {
                 MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 2);
 
             }
 
 
-            if (Enumerable.Range(81, 100).Contains(myteam.teaminfo[MatchInfo[i].HomeID].Defence))
+            if (Enumerable.Range(81, 100).Contains(teaminfo[MatchInfo[i].HomeID].Defence))
             {
                 MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 1);
 
@@ -3845,8 +3825,8 @@ public class Model : MonoBehaviour
 
             //Applying the league stats
 
-            myteam.teaminfo[MatchInfo[i].HomeID].Scored = myteam.teaminfo[MatchInfo[i].HomeID].Scored + MatchInfo[i].HomeGoals;
-            myteam.teaminfo[MatchInfo[i].AwayID].Scored = myteam.teaminfo[MatchInfo[i].AwayID].Scored + MatchInfo[i].AwayGoals;
+            teaminfo[MatchInfo[i].HomeID].Scored = teaminfo[MatchInfo[i].HomeID].Scored + MatchInfo[i].HomeGoals;
+            teaminfo[MatchInfo[i].AwayID].Scored = teaminfo[MatchInfo[i].AwayID].Scored + MatchInfo[i].AwayGoals;
 
             // Adding Draws to each team
 
@@ -3880,7 +3860,7 @@ public class Model : MonoBehaviour
 
             PointsUpdater();
 
-            Debug.Log(myteam.teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " VS " + myteam.teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals);
+            Debug.Log(teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " VS " + teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals);
 
         }
 
@@ -3947,7 +3927,7 @@ public class Model : MonoBehaviour
 
         string[] ReturnThis = new string[3];
         OppositionTeamInfo();
-
+      
         AwayFixtures(Week);
 
 
@@ -3975,17 +3955,19 @@ public class Model : MonoBehaviour
         loadPlayerData();
         updateOverall();
 
-        Debug.Log(playerinfo.Count());
+
 
 
         selectSquad();
 
+
+
         //updateFaith();
-        UpdatePlayerInfo();
+         //UpdatePlayerInfo();
         // OppositionTeamInfo();
 
         initTableInfo();
-        PointsUpdater();
+        //PointsUpdater();
         // PopulateTable();
 
         //displayOptions();

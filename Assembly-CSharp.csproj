@@ -75,7 +75,6 @@
     <Compile Include="Assets\Scripts\Team.cs" />
     <Compile Include="Assets\Scripts\TeamInfo.cs" />
     <Compile Include="Assets\Scripts\TeamSetup.cs" />
-    <Compile Include="Assets\Scripts\UiView.cs" />
     <Compile Include="Assets\Scripts\ViewController.cs" />
     <Compile Include="Assets\Unity UI sample\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\Unity UI sample\Scripts\ApplicationManager.cs" />

@@ -2680,8 +2680,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectMF
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectMF
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4100,8 +4100,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectCB
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectCB
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5066,8 +5066,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectMF
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectMF
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6812,8 +6812,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectST
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectST
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7939,8 +7939,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectMF
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectMF
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8308,8 +8308,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: teamInfoDisplay
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: RetrieveTeamInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8516,8 +8516,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectCB
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectCB
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11642,8 +11642,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectLM
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectLM
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12231,8 +12231,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectGK
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectGK
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15232,8 +15232,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectMF
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectMF
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15579,8 +15579,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectCB
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectCB
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16596,8 +16596,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectRM
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectRM
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22685,8 +22685,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectCB
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectCB
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23675,8 +23675,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectMF
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectMF
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23804,8 +23804,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectST
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectST
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25071,8 +25071,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: displayOptions
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: displayTeamSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30156,8 +30156,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectRB
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectRB
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32514,8 +32514,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectGK
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectGK
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32925,8 +32925,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectLM
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectLM
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36227,8 +36227,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectST
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectST
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -37926,8 +37926,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectMF
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectMF
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -38114,6 +38114,15 @@ MonoBehaviour:
   ScoutReportText: {fileID: 0}
   ScoutReportTitle: {fileID: 0}
   ScoutReportDetails: {fileID: 0}
+  TeamOverallText: {fileID: 0}
+  TablePositionText: {fileID: 0}
+  AttackingThreatText: {fileID: 0}
+  DefensiveThreatText: {fileID: 0}
+  CurrentGameplanText: {fileID: 0}
+  GameplanCapabilityText: {fileID: 0}
+  PressureBtn: {fileID: 0}
+  CounterBtn: {fileID: 0}
+  PossesionBtn: {fileID: 0}
   GameWeek: 1
 --- !u!4 &2028581573
 Transform:
@@ -38746,8 +38755,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectLB
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectLB
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39440,8 +39449,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectRM
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectRM
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40204,8 +40213,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectLB
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectLB
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40944,8 +40953,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectRB
+      - m_Target: {fileID: 2028581572}
+        m_MethodName: selectRB
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
