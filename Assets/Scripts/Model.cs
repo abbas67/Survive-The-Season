@@ -321,11 +321,6 @@ public class Model : MonoBehaviour
 
 
 
-    public Text FinalScoreText;
-    public Text ScorersText;
-    public Text CardsText;
-    public Text FoulsText;
-    public Text GameDayText;
 
 
     public List<TableInfo> TableStats = new List<TableInfo>();
@@ -725,7 +720,6 @@ public class Model : MonoBehaviour
 
 
 
-        Debug.Log(Starting11.Count());
 
     }
 
@@ -1945,28 +1939,13 @@ public class Model : MonoBehaviour
 
     }
 
-    public string RetrievePos(int TeamID)
+    public string RetrievePos(int FindTeamID)
     {
-        int i = 0;
-        bool found = false;
+       
 
-        while (found == false)
-        {
+        int i = SortedTeams.FindIndex(r => r.TeamID == FindTeamID);
 
-            if (SortedTeams[i].TeamID == TeamID)
-            {
-
-                found = true;
-            }
-            else
-            {
-                i++;
-
-
-            }
-
-        }
-
+        Debug.Log(i);
         if (i == 0)
         {
 
@@ -2068,12 +2047,11 @@ public class Model : MonoBehaviour
         }
         else
         {
-
             return null;
         
-        
         }
-
+    
+   
     }
 
 
@@ -2491,38 +2469,26 @@ public class Model : MonoBehaviour
         //  ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
 
     }
-    public void CalculateCurrentThreat()
+
+    public int [] CalculateCurrentThreat(int TeamID)
     {
 
-        AttackingThreatText = GameObject.Find("AttackingThreatText").GetComponent<Text>();
-        DefensiveThreatText = GameObject.Find("DefensiveThreatText").GetComponent<Text>();
+        int[] ToReturn = new int[2];
 
 
 
-        int attackTracker = OppositionAttackThreat(SelectedSquad, TeamSetup.TeamManagedID);
+        ToReturn[0] = OppositionAttackThreat(SelectedSquad, TeamID);
 
-        int defenceTracker = OppositionDefenceThreat(SelectedSquad, TeamSetup.TeamManagedID);
+        ToReturn[1] = OppositionDefenceThreat(SelectedSquad,TeamID);
 
-        AttackingThreatText.text = ("Attacking Threat: " + attackTracker.ToString());
-        DefensiveThreatText.text = ("Defensive Strength: " + defenceTracker.ToString());
 
+        return ToReturn;
 
 
 
     }
 
-    public void teamInfoDisplay()
-    {
 
-
-    
-
-      
-
-        CalculateCurrentThreat();
-
-
-    }
 
     public void OppositionTeamInfo()
     {
@@ -3422,45 +3388,31 @@ public class Model : MonoBehaviour
 
 
         Debug.Log("GameWeek: " + GameWeek);
-
-
-
-
-
         MatchStats = MatchResults(MatchStats);
-        DisplayResult(MatchStats);
         PointsUpdater();
-
-        GameWeek++;
-
-
-
-
-
 
     }
 
-
-    public void DisplayResult(List<MatchDayInfo> MatchInfo)
+    //Remeber i removed passing in Matchstats byref 
+    public string[] DisplayResult()
     {
-        FinalScoreText = GameObject.Find("FinalScoreText").GetComponent<Text>();
-        GameDayText = GameObject.Find("GameDayText").GetComponent<Text>();
-        FoulsText = GameObject.Find("FoulsText").GetComponent<Text>();
-        ScorersText = GameObject.Find("ScorersText").GetComponent<Text>();
-        CardsText = GameObject.Find("CardsText").GetComponent<Text>();
+
+        string[] ToBeReturned = new string[5];
+
+
 
         int playerTrack = 0;
         for (int i = 0; i <= 5; i++)
         {
 
-            if (MatchInfo[i].AwayID == TeamSetup.TeamManagedID)
+            if (MatchStats[i].AwayID == TeamSetup.TeamManagedID)
             {
 
                 playerTrack = i;
 
             }
 
-            if (MatchInfo[i].HomeID == TeamSetup.TeamManagedID)
+            if (MatchStats[i].HomeID == TeamSetup.TeamManagedID)
             {
 
                 playerTrack = i;
@@ -3470,13 +3422,15 @@ public class Model : MonoBehaviour
 
         }
 
-        FinalScoreText.text = (teaminfo[MatchInfo[playerTrack].HomeID].Name + "  " + MatchInfo[playerTrack].HomeGoals + " VS " + teaminfo[MatchInfo[playerTrack].AwayID].Name + "  " + MatchInfo[playerTrack].AwayGoals);
-        GameDayText.text = ("Match Week: " + GameWeek);
+        ToBeReturned[0] = (teaminfo[MatchStats[playerTrack].HomeID].Name + "  " + MatchStats[playerTrack].HomeGoals + " VS " + teaminfo[MatchStats[playerTrack].AwayID].Name + "  " + MatchStats[playerTrack].AwayGoals);
+        ToBeReturned[1] = ("Match Week: " + GameWeek);
 
-        FoulsText.text = ("Home Fouls: " + MatchInfo[playerTrack].HomeFouls + " Away Fouls: " + MatchInfo[playerTrack].AwayFouls);
+        ToBeReturned[2] = ("Home Fouls: " + MatchStats[playerTrack].HomeFouls + " Away Fouls: " + MatchStats[playerTrack].AwayFouls);
 
-        ScorersText.text = ("Home Scorers: " + MatchInfo[playerTrack].HomeScorers + " Away Scorers: " + MatchInfo[playerTrack].AwayScorers);
-        CardsText.text = ("Home Cards: " + MatchInfo[playerTrack].HomeYellows + " Away Cards: " + MatchInfo[playerTrack].AwayYellows);
+        ToBeReturned[3] = ("Home Scorers: " + MatchStats[playerTrack].HomeScorers + " Away Scorers: " + MatchStats[playerTrack].AwayScorers);
+        ToBeReturned[4] = ("Home Cards: " + MatchStats[playerTrack].HomeYellows + " Away Cards: " + MatchStats[playerTrack].AwayYellows);
+
+        return ToBeReturned;
     }
 
 
@@ -3866,7 +3820,7 @@ public class Model : MonoBehaviour
 
         PointsUpdater();
 
-        Debug.Log("  ");
+    
         return MatchInfo;
 
     }
@@ -3949,7 +3903,7 @@ public class Model : MonoBehaviour
     {
 
         // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 2;
+        TeamSetup.TeamManagedID = 4;
 
         loadTeamData();
         loadPlayerData();
@@ -3967,7 +3921,7 @@ public class Model : MonoBehaviour
         // OppositionTeamInfo();
 
         initTableInfo();
-        //PointsUpdater();
+        PointsUpdater();
         // PopulateTable();
 
         //displayOptions();

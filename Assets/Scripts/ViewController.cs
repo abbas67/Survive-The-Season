@@ -18,6 +18,13 @@ public class ViewController : MonoBehaviour
     public Button CounterBtn;
     public Button PossesionBtn;
 
+    //Text objects to be used to display the matchday information
+
+    public Text FinalScoreText;
+    public Text ScorersText;
+    public Text CardsText;
+    public Text FoulsText;
+    public Text GameDayText;
 
     public int GameWeek = 1;
 
@@ -28,6 +35,37 @@ public class ViewController : MonoBehaviour
 
 
 
+    // When the kick off button is pressed the controller has the Model do the simulation behind the scenes.
+    //The view then displays the results relevant to the user.
+    public void displayKickOffInfo()
+    {
+
+        string[] KickInfo = new string[5];
+
+        MyModel.Matchday();
+        FinalScoreText = GameObject.Find("FinalScoreText").GetComponent<Text>();
+        GameDayText = GameObject.Find("GameDayText").GetComponent<Text>();
+        FoulsText = GameObject.Find("FoulsText").GetComponent<Text>();
+        ScorersText = GameObject.Find("ScorersText").GetComponent<Text>();
+        CardsText = GameObject.Find("CardsText").GetComponent<Text>();
+
+        KickInfo = MyModel.DisplayResult();
+
+        FinalScoreText.text = KickInfo[0];
+  
+        GameDayText.text = KickInfo[1];
+    
+        FoulsText.text = KickInfo[2];
+        ScorersText.text = KickInfo[3];
+        CardsText.text = KickInfo[4];
+    
+
+
+        GameWeek++;
+
+    }
+
+
     //Every Time The matchday button is pressed
     //Controller then has Model prepare teams for matchday
 
@@ -36,7 +74,6 @@ public class ViewController : MonoBehaviour
         ScoutReportText = GameObject.Find("ScoutReportText").GetComponent<Text>();
         ScoutReportTitle = GameObject.Find("ScoutReportTitle").GetComponent<Text>();
         ScoutReportDetails = GameObject.Find("ScoutReportDetails").GetComponent<Text>();
-        TablePositionText = GameObject.Find("TablePositionText").GetComponent<Text>();
 
 
         if (GameWeek > 22)
@@ -90,7 +127,7 @@ public class ViewController : MonoBehaviour
     }
     public void selectLM(int buttonID)
     {
-        MyModel.SelectRM(buttonID);
+        MyModel.SelectLM(buttonID);
     }
     public void selectGK(int buttonID)
     {
@@ -114,6 +151,11 @@ public class ViewController : MonoBehaviour
     // Model completes calculations which are then displayed to the user by view.
     public void RetrieveTeamInfo()
     {
+        int[] AttackDefenceInfo = new int[2];
+
+        AttackingThreatText = GameObject.Find("AttackingThreatText").GetComponent<Text>();
+        DefensiveThreatText = GameObject.Find("DefensiveThreatText").GetComponent<Text>();
+        TablePositionText = GameObject.Find("TablePositionText").GetComponent<Text>();
 
         CurrentGameplanText = GameObject.Find("CurrentGameplanText").GetComponent<Text>();
         GameplanCapabilityText = GameObject.Find("GameplanCapabilityText").GetComponent<Text>();
@@ -122,9 +164,13 @@ public class ViewController : MonoBehaviour
 
         TeamOverallText.text = ("Team Overall: " + MyModel.CalculateCurrOverall());
 
-        MyModel.RetrievePos(TeamSetup.TeamManagedID);
+        Debug.Log(1);
+        TablePositionText.text = MyModel.RetrievePos(TeamSetup.TeamManagedID);
 
-
+        Debug.Log(2);
+        AttackDefenceInfo = MyModel.CalculateCurrentThreat(TeamSetup.TeamManagedID);
+        AttackingThreatText.text = ("Attacking Threat: " + AttackDefenceInfo[0] );
+        DefensiveThreatText.text = ("Defensive Strength: " + AttackDefenceInfo[1]);
 
 
 
