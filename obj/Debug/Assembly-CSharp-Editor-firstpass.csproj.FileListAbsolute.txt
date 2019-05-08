@@ -19,7 +19,6 @@
 /Users/abbaslawal/Documents/GitHub/GamesProgramming/Temp/bin/Debug/Unity.TextMeshPro.dll
 /Users/abbaslawal/Documents/GitHub/GamesProgramming/Temp/bin/Debug/Unity.TextMeshPro.Editor.dll
 /Users/abbaslawal/Documents/GitHub/GamesProgramming/Temp/bin/Debug/UnityEditor.Advertisements.dll
-/Users/abbaslawal/Documents/GitHub/GamesProgramming/Temp/bin/Debug/UnityEditor.Android.Extensions.dll
 /Users/abbaslawal/Documents/GitHub/GamesProgramming/Temp/bin/Debug/UnityEditor.dll
 /Users/abbaslawal/Documents/GitHub/GamesProgramming/Temp/bin/Debug/UnityEditor.GoogleAudioSpatializer.dll
 /Users/abbaslawal/Documents/GitHub/GamesProgramming/Temp/bin/Debug/UnityEditor.Graphs.dll

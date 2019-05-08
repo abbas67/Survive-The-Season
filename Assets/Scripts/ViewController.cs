@@ -4,6 +4,12 @@ using UnityEngine.UI;
 using UnityEngine;
 public class ViewController : MonoBehaviour
 {
+
+    public InputField NameInpuField;
+    public InputField NationalityInputField;
+
+
+
     //Text objects to be used to display the scout report and tactics information
     public Text ScoutReportText;
     public Text ScoutReportTitle;
@@ -18,6 +24,11 @@ public class ViewController : MonoBehaviour
     public Button CounterBtn;
     public Button PossesionBtn;
 
+
+
+    public Text GameWeekTxt;
+    public Text ManStressTxt;
+    public Text ManNameTxt;
     //Text objects to be used to display the matchday information
 
     public Text FinalScoreText;
@@ -32,7 +43,11 @@ public class ViewController : MonoBehaviour
     private Model MyModel = new Model();
 
 
-
+    Text NameText;
+    public Text ReputationText;
+    public Text BudgetText;
+    public Text AttackDefenceText;
+    public Text GroundText;
 
 
     // When the kick off button is pressed the controller has the Model do the simulation behind the scenes.
@@ -42,14 +57,14 @@ public class ViewController : MonoBehaviour
 
         string[] KickInfo = new string[5];
 
-        MyModel.Matchday();
+        MyModel.Matchday(GameWeek);
         FinalScoreText = GameObject.Find("FinalScoreText").GetComponent<Text>();
         GameDayText = GameObject.Find("GameDayText").GetComponent<Text>();
         FoulsText = GameObject.Find("FoulsText").GetComponent<Text>();
         ScorersText = GameObject.Find("ScorersText").GetComponent<Text>();
         CardsText = GameObject.Find("CardsText").GetComponent<Text>();
 
-        KickInfo = MyModel.DisplayResult();
+        KickInfo = MyModel.DisplayResult(GameWeek);
 
         FinalScoreText.text = KickInfo[0];
   
@@ -164,11 +179,11 @@ public class ViewController : MonoBehaviour
 
         TeamOverallText.text = ("Team Overall: " + MyModel.CalculateCurrOverall());
 
-        Debug.Log(1);
-        TablePositionText.text = MyModel.RetrievePos(TeamSetup.TeamManagedID);
+     
+        TablePositionText.text = MyModel.RetrievePos(MyModel.TeamManagedID);
 
-        Debug.Log(2);
-        AttackDefenceInfo = MyModel.CalculateCurrentThreat(TeamSetup.TeamManagedID);
+       
+        AttackDefenceInfo = MyModel.CalculateCurrentThreat(MyModel.TeamManagedID);
         AttackingThreatText.text = ("Attacking Threat: " + AttackDefenceInfo[0] );
         DefensiveThreatText.text = ("Defensive Strength: " + AttackDefenceInfo[1]);
 
@@ -179,7 +194,7 @@ public class ViewController : MonoBehaviour
     public void DisplayPossesionPlan()
     {
         PossesionBtn = GameObject.Find("PossesionBtn").GetComponent<Button>();
-        GameplanCapabilityText.text = ("Gameplan Capability: " + MyModel.returnPossessionPlan(MyModel.SelectedSquad, TeamSetup.TeamManagedID));
+        GameplanCapabilityText.text = ("Gameplan Capability: " + MyModel.returnPossessionPlan(MyModel.SelectedSquad, MyModel.TeamManagedID));
         CurrentGameplanText.text = ("Possesion");
 
     }
@@ -188,7 +203,7 @@ public class ViewController : MonoBehaviour
     {
 
         CounterBtn = GameObject.Find("CounterBtn").GetComponent<Button>();
-        GameplanCapabilityText.text = ("Gameplan Capability: " + MyModel.returnCounterPlan(MyModel.SelectedSquad, TeamSetup.TeamManagedID));
+        GameplanCapabilityText.text = ("Gameplan Capability: " + MyModel.returnCounterPlan(MyModel.SelectedSquad, MyModel.TeamManagedID));
         CurrentGameplanText.text = ("Counter");
 
     }
@@ -196,10 +211,74 @@ public class ViewController : MonoBehaviour
     public void ViewPressurePlan()
     {
         PressureBtn = GameObject.Find("PressureBtn").GetComponent<Button>();
-        GameplanCapabilityText.text = ("Gameplan Capability: " + MyModel.returnPressurePlan(MyModel.SelectedSquad ,TeamSetup.TeamManagedID));
+        GameplanCapabilityText.text = ("Gameplan Capability: " + MyModel.returnPressurePlan(MyModel.SelectedSquad , MyModel.TeamManagedID));
         CurrentGameplanText.text = ("Pressure");
 
     }
+
+
+
+    public void UpdatePlayerInfo()
+    {
+        GameWeekTxt = GameObject.Find("GameWeekTxt").GetComponent<Text>();
+        ManStressTxt = GameObject.Find("ManStressTxt").GetComponent<Text>();
+        ManNameTxt = GameObject.Find("ManNameTxt").GetComponent<Text>();
+
+
+        GameWeekTxt.text = ("Game Week: " + GameWeek);
+        ManStressTxt.text = ("Stress Level: " + MyModel.ManStress);
+        ManNameTxt.text = ("Name: " + MyModel.ManName);
+    }
+
+
+
+
+    public void CreateManager()
+    {
+        NameInpuField = GameObject.Find("NameInputField").GetComponent<InputField>();
+        NationalityInputField = GameObject.Find("NationalityInputField").GetComponent<InputField>();
+
+        string ManName = NameInpuField.text;
+
+        string ManNat = NationalityInputField.text;
+
+        MyModel.ManagerCreate(ManName, ManNat);
+
+
+    }
+
+
+    public void ChangeTeam()
+    {
+        string[] TeamSelectInfo = new string[5];
+
+
+        NameText = GameObject.Find("NameText").GetComponent<Text>();
+        ReputationText = GameObject.Find("ReputationText").GetComponent<Text>();
+        BudgetText = GameObject.Find("BudgetText").GetComponent<Text>();
+        AttackDefenceText = GameObject.Find("AttackDefenceText").GetComponent<Text>();
+        GroundText = GameObject.Find("GroundText").GetComponent<Text>();
+
+        TeamSelectInfo = MyModel.changeTeam();
+
+        NameText.text = TeamSelectInfo[0];
+        ReputationText.text = TeamSelectInfo[1];
+        BudgetText.text = TeamSelectInfo[2];
+        AttackDefenceText.text = TeamSelectInfo[3];
+        GroundText.text = TeamSelectInfo[4];
+
+
+    }
+
+    public void SelectTeam()
+    {
+
+        MyModel.chooseTeam();
+    
+    
+    }
+
+
 
 
 

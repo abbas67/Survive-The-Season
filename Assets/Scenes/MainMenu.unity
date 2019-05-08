@@ -202,8 +202,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1238762433}
-        m_MethodName: ManagerCreate
+      - m_Target: {fileID: 1013943204}
+        m_MethodName: CreateManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2142,6 +2142,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961011950}
   m_CullTransparentMesh: 0
+--- !u!1 &1013943203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013943205}
+  - component: {fileID: 1013943204}
+  m_Layer: 0
+  m_Name: View
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1013943204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013943203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d912dff177443df83b308ea1a734f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameInpuField: {fileID: 0}
+  NationalityInputField: {fileID: 0}
+  ScoutReportText: {fileID: 0}
+  ScoutReportTitle: {fileID: 0}
+  ScoutReportDetails: {fileID: 0}
+  TeamOverallText: {fileID: 0}
+  TablePositionText: {fileID: 0}
+  AttackingThreatText: {fileID: 0}
+  DefensiveThreatText: {fileID: 0}
+  CurrentGameplanText: {fileID: 0}
+  GameplanCapabilityText: {fileID: 0}
+  PressureBtn: {fileID: 0}
+  CounterBtn: {fileID: 0}
+  PossesionBtn: {fileID: 0}
+  GameWeekTxt: {fileID: 0}
+  ManStressTxt: {fileID: 0}
+  ManNameTxt: {fileID: 0}
+  FinalScoreText: {fileID: 0}
+  ScorersText: {fileID: 0}
+  CardsText: {fileID: 0}
+  FoulsText: {fileID: 0}
+  GameDayText: {fileID: 0}
+  GameWeek: 1
+  ReputationText: {fileID: 0}
+  BudgetText: {fileID: 0}
+  AttackDefenceText: {fileID: 0}
+  GroundText: {fileID: 0}
+--- !u!4 &1013943205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013943203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 255.1613, y: 597.05365, z: 97.75054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1124762409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,8 +2718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1122d0cd45394eb4f840655758d11cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameInpuField: {fileID: 82494997}
-  NationalityInputField: {fileID: 137979603}
 --- !u!224 &1272455982 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22400008, guid: b6a1cf4e3eeaf9a4ca38bf8acb910a6d,

@@ -9,6 +9,34 @@ using System.Linq;
 
 public class Model : MonoBehaviour
 {
+
+
+
+    int AttackCount;
+    int DefenceCount;
+
+    int index = 0;
+    public int TeamManagedID;
+
+
+
+
+    int ManAge;
+     public string ManNationality;
+   public string ManName;
+
+
+    public int ManStress = 50;
+    public int ManReputation = 50;
+
+
+
+
+
+
+
+
+
     public List<PlayerInfo> playerinfo = new List<PlayerInfo>();
     public TextAsset PlayerData;
     public List<TeamInfo> teaminfo = new List<TeamInfo>();
@@ -280,14 +308,6 @@ public class Model : MonoBehaviour
 
 
 
-
-
-
-
-
-
-    TeamSetup myTeamSetup = new TeamSetup();
-
     List<Text> Tlist = new List<Text>();
     List<Text> SquadAgeList = new List<Text>();
     List<Text> SquadOverallList = new List<Text>();
@@ -334,9 +354,7 @@ public class Model : MonoBehaviour
     private static readonly System.Random rnd = new System.Random();
     private static object syncLock = new object();
 
-    public Text GameWeekTxt;
-    public Text ManStressTxt;
-    public Text ManNameTxt;
+
 
 
 
@@ -400,7 +418,7 @@ public class Model : MonoBehaviour
     {
         if (Starting11.Count >= 8)
         {
-            SquadCapabilitiesText.text = "Attacking Threat: " + OppositionAttackThreat(Starting11, TeamSetup.TeamManagedID) + "    Defensive Threat: " + OppositionDefenceThreat(Starting11, TeamSetup.TeamManagedID);
+            SquadCapabilitiesText.text = "Attacking Threat: " + OppositionAttackThreat(Starting11, TeamManagedID) + "    Defensive Threat: " + OppositionDefenceThreat(Starting11, TeamManagedID);
 
 
         }
@@ -409,7 +427,16 @@ public class Model : MonoBehaviour
 
     }
 
+    public void ManagerCreate(string NameInput, string NatInput)
+    {
 
+        ManName = NameInput;
+
+        ManNationality = NatInput;
+
+
+        Debug.Log(NameInput + " " + NatInput);
+    }
 
 
     public void AddToLineup(int PlayerID)
@@ -2105,7 +2132,7 @@ public class Model : MonoBehaviour
 
         for (int i = 0; i <= 275; i++)
         {
-            if (playerinfo[i].TeamID == TeamSetup.TeamManagedID)
+            if (playerinfo[i].TeamID == TeamManagedID)
             {
 
                 SelectedSquad.Add(playerinfo[i]);
@@ -2464,8 +2491,8 @@ public class Model : MonoBehaviour
 
 
 
-        BoardText.text = ("Board Faith: " + (100 - teaminfo[TeamSetup.TeamManagedID].BoardDiff));
-        FanText.text = ("Fan Faith: " + (100 - teaminfo[TeamSetup.TeamManagedID].FanDiff));
+        BoardText.text = ("Board Faith: " + (100 - teaminfo[TeamManagedID].BoardDiff));
+        FanText.text = ("Fan Faith: " + (100 - teaminfo[TeamManagedID].FanDiff));
         //  ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
 
     }
@@ -3383,18 +3410,18 @@ public class Model : MonoBehaviour
 
 
 
-    public void Matchday()
+    public void Matchday(int Week)
     {
 
 
-        Debug.Log("GameWeek: " + GameWeek);
+        Debug.Log("GameWeek: " + Week);
         MatchStats = MatchResults(MatchStats);
         PointsUpdater();
 
     }
 
     //Remeber i removed passing in Matchstats byref 
-    public string[] DisplayResult()
+    public string[] DisplayResult(int week)
     {
 
         string[] ToBeReturned = new string[5];
@@ -3405,14 +3432,14 @@ public class Model : MonoBehaviour
         for (int i = 0; i <= 5; i++)
         {
 
-            if (MatchStats[i].AwayID == TeamSetup.TeamManagedID)
+            if (MatchStats[i].AwayID == TeamManagedID)
             {
 
                 playerTrack = i;
 
             }
 
-            if (MatchStats[i].HomeID == TeamSetup.TeamManagedID)
+            if (MatchStats[i].HomeID == TeamManagedID)
             {
 
                 playerTrack = i;
@@ -3423,7 +3450,7 @@ public class Model : MonoBehaviour
         }
 
         ToBeReturned[0] = (teaminfo[MatchStats[playerTrack].HomeID].Name + "  " + MatchStats[playerTrack].HomeGoals + " VS " + teaminfo[MatchStats[playerTrack].AwayID].Name + "  " + MatchStats[playerTrack].AwayGoals);
-        ToBeReturned[1] = ("Match Week: " + GameWeek);
+        ToBeReturned[1] = ("Match Week: " +week);
 
         ToBeReturned[2] = ("Home Fouls: " + MatchStats[playerTrack].HomeFouls + " Away Fouls: " + MatchStats[playerTrack].AwayFouls);
 
@@ -3448,14 +3475,14 @@ public class Model : MonoBehaviour
         bool playerIsHome = false;
         for (int i = 0; i <= 5; i++)
         {
-            if (MatchInfo[i].AwayID == TeamSetup.TeamManagedID)
+            if (MatchInfo[i].AwayID == TeamManagedID)
             {
 
                 playerTrack = i;
 
             }
 
-            if (MatchInfo[i].HomeID == TeamSetup.TeamManagedID)
+            if (MatchInfo[i].HomeID == TeamManagedID)
             {
 
                 playerTrack = i;
@@ -3638,14 +3665,14 @@ public class Model : MonoBehaviour
             }
 
             //making sure the tactic capability of the player is the one that they selected rather than what the algorithm feels is appropiate
-            if (MatchInfo[i].AwayID == TeamSetup.TeamManagedID)
+            if (MatchInfo[i].AwayID == TeamManagedID)
             {
 
                 AwayTactic = SelectedTactic;
 
             }
 
-            if (MatchInfo[i].HomeID == TeamSetup.TeamManagedID)
+            if (MatchInfo[i].HomeID == TeamManagedID)
             {
 
 
@@ -3663,40 +3690,40 @@ public class Model : MonoBehaviour
             // Based on the attacking capability of each team the amount of potential goals is calculated
             if (Enumerable.Range(0, 70).Contains(teaminfo[MatchInfo[i].HomeID].Attack))
             {
-                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 3);
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 2);
 
             }
 
             if (Enumerable.Range(71, 80).Contains(teaminfo[MatchInfo[i].HomeID].Attack))
             {
-                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 4);
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 3);
 
             }
 
 
             if (Enumerable.Range(81, 100).Contains(teaminfo[MatchInfo[i].HomeID].Attack))
             {
-                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 6);
+                MatchInfo[i].HomeGoals = MatchInfo[i].HomeGoals + RandomNumber(0, 4);
 
             }
 
 
             if (Enumerable.Range(0, 70).Contains(teaminfo[MatchInfo[i].AwayID].Attack))
             {
-                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 3);
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 2);
 
             }
 
             if (Enumerable.Range(71, 80).Contains(teaminfo[MatchInfo[i].AwayID].Attack))
             {
-                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 4);
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(0, 3);
 
             }
 
 
             if (Enumerable.Range(81, 100).Contains(teaminfo[MatchInfo[i].AwayID].Attack))
             {
-                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(1, 6);
+                MatchInfo[i].AwayGoals = MatchInfo[i].AwayGoals + RandomNumber(1, 4);
 
             }
 
@@ -3840,17 +3867,7 @@ public class Model : MonoBehaviour
 
 
 
-    public void UpdatePlayerInfo()
-    {
-        GameWeekTxt = GameObject.Find("GameWeekTxt").GetComponent<Text>();
-        ManStressTxt = GameObject.Find("ManStressTxt").GetComponent<Text>();
-        ManNameTxt = GameObject.Find("ManNameTxt").GetComponent<Text>();
 
-
-        GameWeekTxt.text = ("Game Week: " + GameWeek);
-        ManStressTxt.text = ("Stress Level: " + Manager.ManStress);
-        ManNameTxt.text = ("Name: " + Manager.ManName);
-    }
 
 
 
@@ -3903,7 +3920,7 @@ public class Model : MonoBehaviour
     {
 
         // for test purposes pre chosen team.
-        TeamSetup.TeamManagedID = 4;
+        TeamManagedID = 4;
 
         loadTeamData();
         loadPlayerData();
@@ -4010,6 +4027,47 @@ public class Model : MonoBehaviour
 
     }
 
+
+    public string[] changeTeam()
+    {
+        if (index < 11)
+        {
+            index++;
+            return TeamSelect(index);
+        }
+        else
+        {
+            index = 0;
+            return TeamSelect(index);
+        }
+
+
+
+
+    }
+
+
+    public void chooseTeam()
+    {
+
+        TeamManagedID = index;
+
+    }
+
+
+    public string [] TeamSelect(int index)
+    {
+        string[] ReturnThis = new string[5];
+
+        ReturnThis[0] = ("Name: " + teaminfo[index].Name);
+        ReturnThis[1] = ("Reputation: " + teaminfo[index].Rep);
+        ReturnThis[2] = ("Budget: " + teaminfo[index].Budget);
+        ReturnThis[3] = ("Attack/Defence: " + teaminfo[index].Attack + "/" + teaminfo[index].Defence);
+        ReturnThis[4] = ("Ground: " + teaminfo[index].Ground);
+
+
+        return ReturnThis;
+    }
 
 
 

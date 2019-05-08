@@ -432,11 +432,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194540175}
-  - component: {fileID: 194540176}
-  - component: {fileID: 194540174}
   - component: {fileID: 194540177}
+  - component: {fileID: 194540174}
+  - component: {fileID: 194540176}
   m_Layer: 5
-  m_Name: TeamDisplay
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -451,9 +451,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 194540173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e23b9f43b12ce41bffbc087ffdf958, type: 3}
+  m_Script: {fileID: 11500000, guid: b5d912dff177443df83b308ea1a734f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NameInpuField: {fileID: 0}
+  NationalityInputField: {fileID: 0}
+  ScoutReportText: {fileID: 0}
+  ScoutReportTitle: {fileID: 0}
+  ScoutReportDetails: {fileID: 0}
+  TeamOverallText: {fileID: 0}
+  TablePositionText: {fileID: 0}
+  AttackingThreatText: {fileID: 0}
+  DefensiveThreatText: {fileID: 0}
+  CurrentGameplanText: {fileID: 0}
+  GameplanCapabilityText: {fileID: 0}
+  PressureBtn: {fileID: 0}
+  CounterBtn: {fileID: 0}
+  PossesionBtn: {fileID: 0}
+  GameWeekTxt: {fileID: 0}
+  ManStressTxt: {fileID: 0}
+  ManNameTxt: {fileID: 0}
+  FinalScoreText: {fileID: 0}
+  ScorersText: {fileID: 0}
+  CardsText: {fileID: 0}
+  FoulsText: {fileID: 0}
+  GameDayText: {fileID: 0}
+  GameWeek: 1
+  ReputationText: {fileID: 0}
+  BudgetText: {fileID: 0}
+  AttackDefenceText: {fileID: 0}
+  GroundText: {fileID: 0}
 --- !u!224 &194540175
 RectTransform:
   m_ObjectHideFlags: 0
@@ -482,10 +509,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 194540173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e96904677d2d3c49a8de6ee4e00b6f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 28e23b9f43b12ce41bffbc087ffdf958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamData: {fileID: 0}
 --- !u!114 &194540177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,10 +524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f2b72537033cc4594aafb7a36ba1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReputationText: {fileID: 0}
-  BudgetText: {fileID: 0}
-  AttackDefenceText: {fileID: 0}
-  GroundText: {fileID: 0}
 --- !u!1 &233017967
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,8 +827,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 194540177}
-        m_MethodName: change
+      - m_Target: {fileID: 194540174}
+        m_MethodName: ChangeTeam
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -934,18 +956,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 194540177}
-        m_MethodName: chooseTeam
+      - m_Target: {fileID: 194540174}
+        m_MethodName: SelectTeam
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 194540174}
+      - m_Target: {fileID: 194540176}
         m_MethodName: LoadScene
         m_Mode: 3
         m_Arguments:
@@ -2038,7 +2060,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8b45e662ae2de66439c32db348a78ee5, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
