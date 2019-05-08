@@ -98,8 +98,7 @@ public class Model : MonoBehaviour
     public Button NextBtn;
     public Button BackBtn;
 
-    public Text BoardText;
-    public Text FanText;
+
     public Text ManagerText;
 
     public Text Pos0;
@@ -2126,7 +2125,6 @@ public class Model : MonoBehaviour
 
 
 
-
     public void selectSquad()
     {
 
@@ -2483,19 +2481,6 @@ public class Model : MonoBehaviour
 
 
 
-    public void updateFaith()
-    {
-        BoardText = GameObject.Find("BoardText").GetComponent<Text>();
-        FanText = GameObject.Find("FanText").GetComponent<Text>();
-        //  ManagerText = GameObject.Find("ManagerText").GetComponent<Text>();
-
-
-
-        BoardText.text = ("Board Faith: " + (100 - teaminfo[TeamManagedID].BoardDiff));
-        FanText.text = ("Fan Faith: " + (100 - teaminfo[TeamManagedID].FanDiff));
-        //  ManagerText.text = ("Your Stress Level: " + Manager.ManStress);
-
-    }
 
     public int [] CalculateCurrentThreat(int TeamID)
     {
@@ -2515,7 +2500,35 @@ public class Model : MonoBehaviour
 
     }
 
+    public int[] getFaith()
+    {
 
+        int[] ToReturn = new int[2];
+
+        ToReturn[0] = teaminfo[TeamManagedID].BoardDiff;
+
+        ToReturn[1] = teaminfo[TeamManagedID].FanDiff;
+
+        return ToReturn;
+
+
+    }
+
+
+    public string[] getPlayerInfo()
+    {
+
+        string[] ToReturn = new string[3];
+
+        ToReturn[0] = ManName;
+
+        ToReturn[1] = ManStress.ToString();
+
+
+        return ToReturn;
+
+
+    }
 
     public void OppositionTeamInfo()
     {
@@ -3771,37 +3784,50 @@ public class Model : MonoBehaviour
 
 
 
-
-            /*
-            if (HomeTactic > AwayTactic)
+            // Dynamically choosing the scorers of each goal.
+      
+                if (TeamManagedID == MatchInfo[i].HomeID)
                 {
-                   
-                    MatchInfo[i].HomeGoals = RandomNumber(1, 6);
-                    MatchInfo[i].AwayGoals = RandomNumber(0, 6);
+                    for (int k = 0; k <= MatchInfo[i].HomeGoals; k++)
+                    {
 
+                        for (int j = 0; j < Starting11.Count; j++)
+                        {
+                            if (Starting11[i].Form > 80)
+                            {
 
-                }
+                                playerinfo[Starting11[i].PlayerID].Goals++;
 
-                if (HomeTactic > AwayTactic)
-                {
-                MatchInfo[i].HomeGoals = RandomNumber(0, 6);
-                MatchInfo[i].AwayGoals = RandomNumber(1, 6);
+                            }
 
-
-            }
-
-                if (HomeTactic == AwayTactic)
-                {
-                    
-                    MatchInfo[i].HomeGoals = RandomNumber(0, 4);
-                    MatchInfo[i].HomeGoals = RandomNumber(0, 4);
+                        }
 
                 }
 
 
-    */
+                }
+
+                if (TeamManagedID == MatchInfo[i].AwayID)
+                {
+
+                    for (int k = 0; i <= MatchInfo[i].HomeGoals; k++)
+                    {
+
+                    }
+
+                }
+                else
+                {
+
+                    for (int k = 0; i <= MatchInfo[i].HomeGoals; k++)
+                    {
+
+                    }
+
+                }
 
 
+            
 
 
             //Applying the league stats

@@ -50,6 +50,10 @@ public class ViewController : MonoBehaviour
     public Text GroundText;
 
 
+
+    public Text BoardText;
+    public Text FanText;
+
     // When the kick off button is pressed the controller has the Model do the simulation behind the scenes.
     //The view then displays the results relevant to the user.
     public void displayKickOffInfo()
@@ -67,13 +71,13 @@ public class ViewController : MonoBehaviour
         KickInfo = MyModel.DisplayResult(GameWeek);
 
         FinalScoreText.text = KickInfo[0];
-  
+
         GameDayText.text = KickInfo[1];
-    
+
         FoulsText.text = KickInfo[2];
         ScorersText.text = KickInfo[3];
         CardsText.text = KickInfo[4];
-    
+
 
 
         GameWeek++;
@@ -112,8 +116,39 @@ public class ViewController : MonoBehaviour
 
     }
 
+    public void populateTable ()
+    {
+
+        MyModel.PointsUpdater();
+        MyModel.PopulateTable();
 
 
+
+    }   
+
+    public void populateSquad()
+    { 
+    
+    
+        MyModel.populateSquad();
+    
+    
+    }
+
+
+    public void nextSquadPage()
+    {
+
+        MyModel.NextSquadPage();
+    
+    }
+
+    public void backSquadPage()
+    {
+
+        MyModel.BackSquadPage();
+
+    }
 
     //Every time the team selection Button is pressed.
     //Controller has retrieves team info from model and gives to view.
@@ -276,6 +311,49 @@ public class ViewController : MonoBehaviour
         MyModel.chooseTeam();
     
     
+    }
+
+
+    public void  DisplayFaithPanel()
+    {
+        BoardText = GameObject.Find("BoardText").GetComponent<Text>();
+        FanText = GameObject.Find("FanText").GetComponent<Text>();
+
+        int[] Faith = new int[2];
+
+
+        Faith = MyModel.getFaith();
+
+        BoardText.text = ("Board Faith: " +  Faith[0]);
+        FanText.text = ("Fan Faith: " + Faith[1]);
+
+    }
+
+    public void DisplayPlayerInfo()
+    {
+
+        string[] playerinfo = new string[2];
+        GameWeekTxt = GameObject.Find("GameWeekTxt").GetComponent<Text>();
+        ManStressTxt = GameObject.Find("ManStressTxt").GetComponent<Text>();
+        ManNameTxt = GameObject.Find("ManNameTxt").GetComponent<Text>();
+
+
+        playerinfo = MyModel.getPlayerInfo();
+
+        GameWeekTxt.text = "GameWeek: " + GameWeek;
+        ManStressTxt.text = "Stress Level: " + playerinfo[1];
+        ManNameTxt.text = "Head Coach: " + playerinfo[0];
+
+
+    }
+
+    public void DisplayPlayerStats()
+    {
+        DisplayPlayerInfo();
+        DisplayFaithPanel();
+
+
+
     }
 
 
