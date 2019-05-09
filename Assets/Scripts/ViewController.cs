@@ -7,6 +7,7 @@ public class ViewController : MonoBehaviour
 
 
     public Text NotificationsText;
+    public Text ManagerText;
 
     public InputField NameInpuField;
     public InputField NationalityInputField;
@@ -26,7 +27,7 @@ public class ViewController : MonoBehaviour
     public Button PressureBtn;
     public Button CounterBtn;
     public Button PossesionBtn;
-
+    
 
 
     public Text GameWeekTxt;
@@ -56,6 +57,8 @@ public class ViewController : MonoBehaviour
 
     public Text BoardText;
     public Text FanText;
+
+    string[] Notificationinfo = new string[4];
 
     // When the kick off button is pressed the controller has the Model do the simulation behind the scenes.
     //The view then displays the results relevant to the user.
@@ -130,11 +133,27 @@ public class ViewController : MonoBehaviour
     }
 
 
+
+    public void RequestRaise()
+    { 
+    
+            
+    
+    }
+
+    public void DisplayManagerInfo()
+    {
+        ManagerText = GameObject.Find("ManagerText").GetComponent<Text>();
+
+        ManagerText.text = Notificationinfo[1] + "\n  \n " + Notificationinfo[2];
+
+
+    }
+
     public void DisplayNotificaitons()
     {
         NotificationsText = GameObject.Find("NotificationsTxt").GetComponent<Text>();
 
-        string[] Notificationinfo = new string[4];
 
 
 
@@ -142,7 +161,7 @@ public class ViewController : MonoBehaviour
 
 
 
-        NotificationsText.text = Notificationinfo[0] +"\n "+ Notificationinfo[1] + "\n " + Notificationinfo[2];
+        NotificationsText.text = Notificationinfo[0] ;
 
     }
 
@@ -383,7 +402,7 @@ public class ViewController : MonoBehaviour
         DisplayPlayerInfo();
         DisplayFaithPanel();
 
-        MyModel.DecreaseFanFaith();
+        //MyModel.DecreaseFanFaith();
 
     }
 

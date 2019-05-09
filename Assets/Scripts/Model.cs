@@ -3479,6 +3479,7 @@ public class Model : MonoBehaviour
     public string[] MatchPreparation(List<MatchDayInfo> MatchInfo, int GameWeek)
     {
         string[] ToBeReturned = new string[3];
+        string stars = "No notable stars.";
 
         List<string> oppStars = new List<string>();
 
@@ -3574,8 +3575,11 @@ public class Model : MonoBehaviour
             }
 
         }
-
-        string stars = oppStars.Aggregate((i, j) => i + ", " + j).ToString();
+        if (oppStars.Count() != 0)
+        {
+            stars = "";
+            stars = oppStars.Aggregate((i, j) => i + ", " + j).ToString();
+        }
 
         if (playerIsHome == true)
         {
@@ -3630,6 +3634,28 @@ public class Model : MonoBehaviour
 
     }
 
+
+
+
+    public bool tryRaise()
+    {
+        int tableposition = SortedTeams.FindIndex(r => r.TeamID == TeamManagedID);
+        Debug.Log(tableposition);
+
+        if (teaminfo[TeamManagedID].Budget >= 700 && tableposition < 3)
+        {
+
+            return true;
+
+        }
+        else if (teaminfo[TeamManagedID].Budget <= 600 && tableposition < 6)
+        {
+            return true;
+
+        }
+
+        else return false;
+    }
 
 
     public List<MatchDayInfo> MatchResults(List<MatchDayInfo> MatchInfo)
