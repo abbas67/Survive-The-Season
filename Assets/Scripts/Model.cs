@@ -22,15 +22,15 @@ public class Model : MonoBehaviour
 
 
     int ManAge;
-     public string ManNationality;
-   public string ManName;
+    public string ManNationality;
+    public string ManName;
 
 
     public int ManStress = 50;
     public int ManReputation = 50;
 
 
-
+    public int Uncertiancy = 0;
 
 
 
@@ -1967,7 +1967,7 @@ public class Model : MonoBehaviour
 
     public string RetrievePos(int FindTeamID)
     {
-       
+
 
         int i = SortedTeams.FindIndex(r => r.TeamID == FindTeamID);
 
@@ -2074,10 +2074,10 @@ public class Model : MonoBehaviour
         else
         {
             return null;
-        
+
         }
-    
-   
+
+
     }
 
 
@@ -2482,7 +2482,7 @@ public class Model : MonoBehaviour
 
 
 
-    public int [] CalculateCurrentThreat(int TeamID)
+    public int[] CalculateCurrentThreat(int TeamID)
     {
 
         int[] ToReturn = new int[2];
@@ -2491,7 +2491,7 @@ public class Model : MonoBehaviour
 
         ToReturn[0] = OppositionAttackThreat(SelectedSquad, TeamID);
 
-        ToReturn[1] = OppositionDefenceThreat(SelectedSquad,TeamID);
+        ToReturn[1] = OppositionDefenceThreat(SelectedSquad, TeamID);
 
 
         return ToReturn;
@@ -2550,10 +2550,10 @@ public class Model : MonoBehaviour
 
 
             }
-          
+
 
             teaminfo[i].Attack = OppositionAttackThreat(TempSelectedSquad, i);
-           
+
             teaminfo[i].Defence = OppositionDefenceThreat(TempSelectedSquad, i);
 
             OppositionInfo t = new OppositionInfo();
@@ -2647,7 +2647,7 @@ public class Model : MonoBehaviour
         }
 
 
-       
+
 
 
         for (int i = 0; i < AttackAverage.Count(); i++)
@@ -3463,7 +3463,7 @@ public class Model : MonoBehaviour
         }
 
         ToBeReturned[0] = (teaminfo[MatchStats[playerTrack].HomeID].Name + "  " + MatchStats[playerTrack].HomeGoals + " VS " + teaminfo[MatchStats[playerTrack].AwayID].Name + "  " + MatchStats[playerTrack].AwayGoals);
-        ToBeReturned[1] = ("Match Week: " +week);
+        ToBeReturned[1] = ("Match Week: " + week);
 
         ToBeReturned[2] = ("Home Fouls: " + MatchStats[playerTrack].HomeFouls + " Away Fouls: " + MatchStats[playerTrack].AwayFouls);
 
@@ -3523,18 +3523,16 @@ public class Model : MonoBehaviour
         //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
         int difference = HomeBasicOverall - AwayBasicOverall;
 
-        if (difference > 10)
+        if (difference > 8)
         {
-            Debug.Log("Home is weak");
             homeweak = true;
 
         }
 
         difference = AwayBasicOverall - HomeBasicOverall;
 
-        if (difference > 10)
+        if (difference < 8)
         {
-            Debug.Log("Away is weak");
             awayweak = false;
         }
 
@@ -3785,49 +3783,53 @@ public class Model : MonoBehaviour
 
 
             // Dynamically choosing the scorers of each goal.
-      
-                if (TeamManagedID == MatchInfo[i].HomeID)
+
+            if (TeamManagedID == MatchInfo[i].HomeID)
+            {
+                for (int k = 0; k <= MatchInfo[i].HomeGoals; k++)
                 {
-                    for (int k = 0; k <= MatchInfo[i].HomeGoals; k++)
+
+                    for (int j = 0; j < Starting11.Count; j++)
                     {
-
-                        for (int j = 0; j < Starting11.Count; j++)
+                        if (Starting11[i].Form > 80)
                         {
-                            if (Starting11[i].Form > 80)
-                            {
 
-                                playerinfo[Starting11[i].PlayerID].Goals++;
-
-                            }
+                            playerinfo[Starting11[i].PlayerID].Goals++;
 
                         }
 
-                }
-
-
-                }
-
-                if (TeamManagedID == MatchInfo[i].AwayID)
-                {
-
-                    for (int k = 0; i <= MatchInfo[i].HomeGoals; k++)
-                    {
-
-                    }
-
-                }
-                else
-                {
-
-                    for (int k = 0; i <= MatchInfo[i].HomeGoals; k++)
-                    {
-
                     }
 
                 }
 
 
-            
+            }
+
+
+
+
+            /*
+            if (TeamManagedID == MatchInfo[i].AwayID)
+            {
+
+                for (int k = 0; i <= MatchInfo[i].HomeGoals; k++)
+                {
+
+                }
+
+            }
+            else
+            {
+
+                for (int k = 0; i <= MatchInfo[i].HomeGoals; k++)
+                {
+
+                }
+
+            }
+
+            */
+
 
 
             //Applying the league stats
@@ -3838,7 +3840,7 @@ public class Model : MonoBehaviour
             // Adding Draws to each team
 
 
-
+            //
 
             if (MatchInfo[i].HomeGoals == MatchInfo[i].AwayGoals)
             {
@@ -3854,15 +3856,41 @@ public class Model : MonoBehaviour
                 TableStats[MatchInfo[i].HomeID].Wins++;
                 TableStats[MatchInfo[i].AwayID].Losses++;
 
+                if (TeamManagedID == MatchInfo[i].AwayID)
+                {
+                    DecreaseFanFaith();
+                    DecreaseBoardFaith();
+                    MatchDayEffects(false);
+
+                }
+
+                if (TeamManagedID == MatchInfo[i].HomeID)
+                {
+                    IncreaseFanFaith();
+                    IncreaseBoardFaith();
+                    MatchDayEffects(true);
+                }
+
+
             }
 
 
             if (MatchInfo[i].HomeGoals < MatchInfo[i].AwayGoals)
             {
                 TableStats[MatchInfo[i].AwayID].Wins++;
-
                 TableStats[MatchInfo[i].HomeID].Losses++;
 
+                if (TeamManagedID == MatchInfo[i].HomeID)
+                {
+
+                    MatchDayEffects(false);
+                }
+
+                if (TeamManagedID == MatchInfo[i].AwayID)
+                {
+
+                    MatchDayEffects(true);
+                }
             }
 
             PointsUpdater();
@@ -3873,10 +3901,80 @@ public class Model : MonoBehaviour
 
         PointsUpdater();
 
-    
+
         return MatchInfo;
 
     }
+
+
+
+    public void MatchDayEffects(bool Win)
+    {
+
+        if (Win == false)
+        {
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                Starting11[i].Morale = Starting11[i].Morale - 5;
+                DecreaseFanFaith();
+                DecreaseBoardFaith();
+            }
+        }
+
+
+        if (Win == true)
+        {
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+                Starting11[i].Morale = Starting11[i].Morale + 5;
+                IncreaseFanFaith();
+                IncreaseBoardFaith();
+            }
+        }
+
+
+        for (int i = 0; i < Starting11.Count(); i++)
+        {
+
+            if (Starting11[i].Morale < 50)
+            {
+
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Passing - 3;
+
+
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Shooting - 3;
+
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Tackling - 3;
+
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Dribbling - 3;
+
+            }
+
+            if (Starting11[i].Morale > 50)
+            {
+
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Passing + 2;
+
+
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Shooting + 2;
+
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Tackling + 2;
+
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Dribbling + 2;
+
+            }
+
+        }
+
+
+        updateOverall();
+
+    }
+
+
+
+
+
 
 
 
@@ -3924,7 +4022,7 @@ public class Model : MonoBehaviour
 
         string[] ReturnThis = new string[3];
         OppositionTeamInfo();
-      
+
         AwayFixtures(Week);
 
 
@@ -3942,11 +4040,161 @@ public class Model : MonoBehaviour
     }
 
 
+
+
+    public string[] GetNotifications()
+    {
+        string[] ReturnThis = new string[3];
+
+        int counter = 0;
+        for (int i = 0; i < SelectedSquad.Count; i++)
+        {
+            counter = counter + SelectedSquad[i].Morale;
+        }
+
+        int SquadMorale = counter / 23;
+
+
+        if (Enumerable.Range(70, 100).Contains(SquadMorale))
+        {
+            ReturnThis[0] = "The Squads overall morale is good and the players are improving well due to the good vibes";
+
+        }
+
+        if (Enumerable.Range(50, 69).Contains(SquadMorale))
+        {
+            ReturnThis[0] = "The Squads overall morale is acceptable but could be improved, there is currently no negative effects on the squads performance due to this";
+
+        }
+
+        if (Enumerable.Range(0, 49).Contains(SquadMorale))
+        {
+            ReturnThis[0] = "The Squads overall morale is not acceptable and must be improved, The team will get worse and worse if nothing is done about this";
+
+        }
+
+
+
+
+        string[] ManagerInfo = new string[2];
+
+        ManagerInfo = managerDistractions(ManStress);
+
+        if (ManagerInfo[1] == "0")
+        {
+            ReturnThis[1] = ManagerInfo[0];
+            ReturnThis[2] = "This does not have any further impact on your stress level";
+        
+        }
+
+        if (ManagerInfo[1] == "1")
+        {
+            ReturnThis[1] = ManagerInfo[0];
+            ReturnThis[2] = "This has a further impact on you stress, Stress +5";
+            ManStress = ManStress + 5;
+
+        }
+
+
+
+
+        return ReturnThis;
+
+
+    }
+
+
+
+    public string[] managerDistractions(int Stress)
+    {
+
+        string[] ReturnThis = new string[2];
+
+        string[] Situations = new string[6];
+
+        Situations[0] = "Your wife has left you due to you being distant, she has taken the kids. This may impact your stress level even more";
+
+        Situations[1] = "You have made a poor financial decision by buying a sports car you cannot afford, your wife is raging.";
+
+        Situations[2] = "You have began chainsmoking to deal with the stress";
+
+        Situations[3] = "You are feeling fine and your stress is at a managable but not an ideal level.";
+
+        Situations[4] = "You are feeling great and decided to treat your family to a night at the cinema";
+
+        Situations[5] = "You are feeling great and decided to treat your family to a day at the beach";
+
+
+
+        if (Enumerable.Range(35, 55).Contains(Stress))
+        {
+
+            ReturnThis[0] = Situations[3];
+            ReturnThis[1] = RandomNumber(0, 1).ToString();
+
+        }
+
+        if (Enumerable.Range(0, 34).Contains(Stress))
+        {
+
+            ReturnThis[0] = Situations[RandomNumber(4, 5)];
+            ReturnThis[1] = RandomNumber(0, 1).ToString();
+
+
+        }
+
+        if (Enumerable.Range(56, 100).Contains(Stress))
+        {
+
+            ReturnThis[0] = Situations[RandomNumber(0, 2)];
+            ReturnThis[1] = RandomNumber(0, 1).ToString();
+
+
+        }
+
+
+
+        return ReturnThis;
+
+    }
+
+
+    public void IncreaseFanFaith()
+    {
+
+        teaminfo[TeamManagedID].FanDiff = teaminfo[TeamManagedID].FanDiff + 5;
+
+    }
+
+    public void DecreaseFanFaith()
+    {
+
+        teaminfo[TeamManagedID].FanDiff = teaminfo[TeamManagedID].FanDiff - 5;
+
+
+    }
+
+    public void DecreaseBoardFaith()
+    {
+
+        teaminfo[TeamManagedID].BoardDiff = teaminfo[TeamManagedID].BoardDiff - 5;
+
+
+    }
+
+    public void IncreaseBoardFaith()
+    {
+        teaminfo[TeamManagedID].BoardDiff = teaminfo[TeamManagedID].BoardDiff + 5;
+
+
+    }
+
+
     public void InitModel()
     {
 
         // for test purposes pre chosen team.
-        TeamManagedID = 4;
+       // TeamManagedID = 5;
 
         loadTeamData();
         loadPlayerData();
@@ -3960,7 +4208,7 @@ public class Model : MonoBehaviour
 
 
         //updateFaith();
-         //UpdatePlayerInfo();
+        //UpdatePlayerInfo();
         // OppositionTeamInfo();
 
         initTableInfo();
@@ -4081,7 +4329,7 @@ public class Model : MonoBehaviour
     }
 
 
-    public string [] TeamSelect(int index)
+    public string[] TeamSelect(int index)
     {
         string[] ReturnThis = new string[5];
 

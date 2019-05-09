@@ -5,6 +5,9 @@ using UnityEngine;
 public class ViewController : MonoBehaviour
 {
 
+
+    public Text NotificationsText;
+
     public InputField NameInpuField;
     public InputField NationalityInputField;
 
@@ -124,7 +127,25 @@ public class ViewController : MonoBehaviour
 
 
 
-    }   
+    }
+
+
+    public void DisplayNotificaitons()
+    {
+        NotificationsText = GameObject.Find("NotificationsTxt").GetComponent<Text>();
+
+        string[] Notificationinfo = new string[4];
+
+
+
+        Notificationinfo = MyModel.GetNotifications();
+
+
+
+        NotificationsText.text = Notificationinfo[0] +"\n "+ Notificationinfo[1] + "\n " + Notificationinfo[2];
+
+    }
+
 
     public void populateSquad()
     { 
@@ -352,11 +373,19 @@ public class ViewController : MonoBehaviour
         DisplayPlayerInfo();
         DisplayFaithPanel();
 
-
+       
 
     }
 
 
+    public void CheckFaith()
+    {
+        DisplayPlayerInfo();
+        DisplayFaithPanel();
+
+        MyModel.DecreaseFanFaith();
+
+    }
 
 
 
@@ -366,6 +395,10 @@ public class ViewController : MonoBehaviour
         //Teams for matchday are prepared
 
         MyModel.InitModel();
+       
     }
+
+
+
 
 }
