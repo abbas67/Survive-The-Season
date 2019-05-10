@@ -430,7 +430,13 @@ public class ViewController : MonoBehaviour
 
     }
 
+    public void populateScorerTable()
+    {
 
+        MyModel.PopulateScorersTable();
+        
+    
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -302,10 +302,30 @@ public class Model : MonoBehaviour
 
 
 
+    public Text ScorerPositionHeader0;
+    public Text ScorerNameHeader0;
+    public Text ScorerTeamHeader0;
+    public Text ScorerGoalsScored0;
 
+    public Text ScorerPositionHeader1;
+    public Text ScorerNameHeader1;
+    public Text ScorerTeamHeader1;
+    public Text ScorerGoalsScored1;
 
+    public Text ScorerPositionHeader2;
+    public Text ScorerNameHeader2;
+    public Text ScorerTeamHeader2;
+    public Text ScorerGoalsScored2;
 
+    public Text ScorerPositionHeader3;
+    public Text ScorerNameHeader3;
+    public Text ScorerTeamHeader3;
+    public Text ScorerGoalsScored3;
 
+    public Text ScorerPositionHeader4;
+    public Text ScorerNameHeader4;
+    public Text ScorerTeamHeader4;
+    public Text ScorerGoalsScored4;
 
 
     List<Text> Tlist = new List<Text>();
@@ -321,6 +341,15 @@ public class Model : MonoBehaviour
     List<Text> LeagueLossesList = new List<Text>();
     List<Text> LeagueDrawsList = new List<Text>();
     List<Text> LeaguePointsList = new List<Text>();
+
+    List<Text> ScorerPositionList = new List<Text>();
+    List<Text> ScorerNameList = new List<Text>();
+    List<Text> ScorerTeamList = new List<Text>();
+    List<Text> ScorerGoalsScored = new List<Text>();
+
+
+
+
 
     public List<OppositionInfo> oppinfo = new List<OppositionInfo>();
 
@@ -1793,7 +1822,74 @@ public class Model : MonoBehaviour
     }
 
 
+    public void PopulateScorersTable()
+    {
+        List<PlayerInfo> SortedPlayers = new List<PlayerInfo>();
 
+        SortedPlayers = playerinfo.OrderByDescending(x => x.Goals).ToList();
+
+
+        ScorerPositionHeader0 = GameObject.Find("ScorerPositionHeader (0)").GetComponent<Text>(); 
+        ScorerNameHeader0 = GameObject.Find("ScorerNameHeader (0)").GetComponent<Text>();
+        ScorerTeamHeader0 = GameObject.Find("ScorerTeamHeader (0)").GetComponent<Text>(); 
+        ScorerGoalsScored0 = GameObject.Find("ScorerGoalsScored (0)").GetComponent<Text>();
+
+        ScorerPositionList.Add(ScorerPositionHeader0);
+        ScorerNameList.Add(ScorerNameHeader0);
+        ScorerTeamList.Add(ScorerTeamHeader0);
+        ScorerGoalsScored.Add(ScorerGoalsScored0);
+
+
+        ScorerPositionHeader1 = GameObject.Find("ScorerPositionHeader (1)").GetComponent<Text>();
+        ScorerNameHeader1 = GameObject.Find("ScorerNameHeader (1)").GetComponent<Text>();
+        ScorerTeamHeader1 = GameObject.Find("ScorerTeamHeader (1)").GetComponent<Text>();
+        ScorerGoalsScored1 = GameObject.Find("ScorerGoalsScored (1)").GetComponent<Text>();
+
+        ScorerPositionList.Add(ScorerPositionHeader1);
+        ScorerNameList.Add(ScorerNameHeader1);
+        ScorerTeamList.Add(ScorerTeamHeader1);
+        ScorerGoalsScored.Add(ScorerGoalsScored1);
+
+        ScorerPositionHeader2 = GameObject.Find("ScorerPositionHeader (2)").GetComponent<Text>();
+        ScorerNameHeader2 = GameObject.Find("ScorerNameHeader (2)").GetComponent<Text>();
+        ScorerTeamHeader2 = GameObject.Find("ScorerTeamHeader (2)").GetComponent<Text>();
+        ScorerGoalsScored2 = GameObject.Find("ScorerGoalsScored (2)").GetComponent<Text>();
+
+        ScorerPositionList.Add(ScorerPositionHeader2);
+        ScorerNameList.Add(ScorerNameHeader2);
+        ScorerTeamList.Add(ScorerTeamHeader2);
+        ScorerGoalsScored.Add(ScorerGoalsScored2);
+
+        ScorerPositionHeader3 = GameObject.Find("ScorerPositionHeader (3)").GetComponent<Text>();
+        ScorerNameHeader3 = GameObject.Find("ScorerNameHeader (3)").GetComponent<Text>();
+        ScorerTeamHeader3 = GameObject.Find("ScorerTeamHeader (3)").GetComponent<Text>();
+        ScorerGoalsScored3 = GameObject.Find("ScorerGoalsScored (3)").GetComponent<Text>();
+
+        ScorerPositionList.Add(ScorerPositionHeader3);
+        ScorerNameList.Add(ScorerNameHeader3);
+        ScorerTeamList.Add(ScorerTeamHeader3);
+        ScorerGoalsScored.Add(ScorerGoalsScored3);
+
+        ScorerPositionHeader4 = GameObject.Find("ScorerPositionHeader (4)").GetComponent<Text>();
+        ScorerNameHeader4 = GameObject.Find("ScorerNameHeader (4)").GetComponent<Text>();
+        ScorerTeamHeader4 = GameObject.Find("ScorerTeamHeader (4)").GetComponent<Text>();
+        ScorerGoalsScored4 = GameObject.Find("ScorerGoalsScored (4)").GetComponent<Text>();
+
+        ScorerPositionList.Add(ScorerPositionHeader4);
+        ScorerNameList.Add(ScorerNameHeader4);
+        ScorerTeamList.Add(ScorerTeamHeader4);
+        ScorerGoalsScored.Add(ScorerGoalsScored4);
+
+        for (int i = 0; i <= 4; i++)
+        {
+
+            ScorerPositionList[i].text = SortedPlayers[i].Position;
+            ScorerNameList[i].text = SortedPlayers[i].Name;
+            ScorerTeamList[i].text = teaminfo[SortedPlayers[i].TeamID].Name;
+            ScorerGoalsScored[i].text = SortedPlayers[i].Goals.ToString();
+
+        }
+    }
 
 
     public void PopulateTable()
@@ -2170,7 +2266,6 @@ public class Model : MonoBehaviour
         SquadAgeList[11].gameObject.SetActive(false);
         SquadFormList[11].gameObject.SetActive(false);
         SquadMoraleList[11].gameObject.SetActive(false);
-        MoreInfoBtn12.gameObject.SetActive(false);
 
 
     }
@@ -2187,7 +2282,6 @@ public class Model : MonoBehaviour
         SquadAgeList[11].gameObject.SetActive(true);
         SquadFormList[11].gameObject.SetActive(true);
         SquadMoraleList[11].gameObject.SetActive(true);
-        MoreInfoBtn12.gameObject.SetActive(true);
 
 
 
@@ -2234,7 +2328,6 @@ public class Model : MonoBehaviour
         OverallHeader = GameObject.Find("OverallHeader").GetComponent<Text>();
         FormHeader = GameObject.Find("FormHeader").GetComponent<Text>();
         MoraleHeader = GameObject.Find("MoraleHeader").GetComponent<Text>();
-        MoreInfoBtn = GameObject.Find("MoreInfoBtn").GetComponent<Button>();
 
 
         NameHeader1 = GameObject.Find("NameHeader (1)").GetComponent<Text>();
@@ -2243,7 +2336,6 @@ public class Model : MonoBehaviour
         OverallHeader1 = GameObject.Find("OverallHeader (1)").GetComponent<Text>();
         FormHeader1 = GameObject.Find("FormHeader (1)").GetComponent<Text>();
         MoraleHeader1 = GameObject.Find("MoraleHeader (1)").GetComponent<Text>();
-        MoreInfoBtn1 = GameObject.Find("MoreInfoBtn (1)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader1);
         SquadPositionList.Add(PositionHeader1);
@@ -2261,7 +2353,6 @@ public class Model : MonoBehaviour
         OverallHeader2 = GameObject.Find("OverallHeader (2)").GetComponent<Text>();
         FormHeader2 = GameObject.Find("FormHeader (2)").GetComponent<Text>();
         MoraleHeader2 = GameObject.Find("MoraleHeader (2)").GetComponent<Text>();
-        MoreInfoBtn2 = GameObject.Find("MoreInfoBtn (2)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader2);
         SquadPositionList.Add(PositionHeader2);
@@ -2280,7 +2371,6 @@ public class Model : MonoBehaviour
         OverallHeader3 = GameObject.Find("OverallHeader (3)").GetComponent<Text>();
         FormHeader3 = GameObject.Find("FormHeader (3)").GetComponent<Text>();
         MoraleHeader3 = GameObject.Find("MoraleHeader (3)").GetComponent<Text>();
-        MoreInfoBtn3 = GameObject.Find("MoreInfoBtn (3)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader3);
         SquadPositionList.Add(PositionHeader3);
@@ -2299,7 +2389,6 @@ public class Model : MonoBehaviour
         OverallHeader4 = GameObject.Find("OverallHeader (4)").GetComponent<Text>();
         FormHeader4 = GameObject.Find("FormHeader (4)").GetComponent<Text>();
         MoraleHeader4 = GameObject.Find("MoraleHeader (4)").GetComponent<Text>();
-        MoreInfoBtn4 = GameObject.Find("MoreInfoBtn (4)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader4);
         SquadPositionList.Add(PositionHeader4);
@@ -2317,7 +2406,6 @@ public class Model : MonoBehaviour
         OverallHeader5 = GameObject.Find("OverallHeader (5)").GetComponent<Text>();
         FormHeader5 = GameObject.Find("FormHeader (5)").GetComponent<Text>();
         MoraleHeader5 = GameObject.Find("MoraleHeader (5)").GetComponent<Text>();
-        MoreInfoBtn5 = GameObject.Find("MoreInfoBtn (5)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader5);
         SquadPositionList.Add(PositionHeader5);
@@ -2335,7 +2423,6 @@ public class Model : MonoBehaviour
         OverallHeader6 = GameObject.Find("OverallHeader (6)").GetComponent<Text>();
         FormHeader6 = GameObject.Find("FormHeader (6)").GetComponent<Text>();
         MoraleHeader6 = GameObject.Find("MoraleHeader (6)").GetComponent<Text>();
-        MoreInfoBtn6 = GameObject.Find("MoreInfoBtn (6)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader6);
         SquadPositionList.Add(PositionHeader6);
@@ -2354,7 +2441,6 @@ public class Model : MonoBehaviour
         OverallHeader7 = GameObject.Find("OverallHeader (7)").GetComponent<Text>();
         FormHeader7 = GameObject.Find("FormHeader (7)").GetComponent<Text>();
         MoraleHeader7 = GameObject.Find("MoraleHeader (7)").GetComponent<Text>();
-        MoreInfoBtn7 = GameObject.Find("MoreInfoBtn (7)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader7);
         SquadPositionList.Add(PositionHeader7);
@@ -2374,7 +2460,6 @@ public class Model : MonoBehaviour
         OverallHeader8 = GameObject.Find("OverallHeader (8)").GetComponent<Text>();
         FormHeader8 = GameObject.Find("FormHeader (8)").GetComponent<Text>();
         MoraleHeader8 = GameObject.Find("MoraleHeader (8)").GetComponent<Text>();
-        MoreInfoBtn8 = GameObject.Find("MoreInfoBtn (8)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader8);
         SquadPositionList.Add(PositionHeader8);
@@ -2393,7 +2478,6 @@ public class Model : MonoBehaviour
         OverallHeader9 = GameObject.Find("OverallHeader (9)").GetComponent<Text>();
         FormHeader9 = GameObject.Find("FormHeader (9)").GetComponent<Text>();
         MoraleHeader9 = GameObject.Find("MoraleHeader (9)").GetComponent<Text>();
-        MoreInfoBtn9 = GameObject.Find("MoreInfoBtn (9)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader9);
         SquadPositionList.Add(PositionHeader9);
@@ -2411,7 +2495,6 @@ public class Model : MonoBehaviour
         OverallHeader10 = GameObject.Find("OverallHeader (10)").GetComponent<Text>();
         FormHeader10 = GameObject.Find("FormHeader (10)").GetComponent<Text>();
         MoraleHeader10 = GameObject.Find("MoraleHeader (10)").GetComponent<Text>();
-        MoreInfoBtn10 = GameObject.Find("MoreInfoBtn (10)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader10);
         SquadPositionList.Add(PositionHeader10);
@@ -2430,7 +2513,6 @@ public class Model : MonoBehaviour
         OverallHeader11 = GameObject.Find("OverallHeader (11)").GetComponent<Text>();
         FormHeader11 = GameObject.Find("FormHeader (11)").GetComponent<Text>();
         MoraleHeader11 = GameObject.Find("MoraleHeader (11)").GetComponent<Text>();
-        MoreInfoBtn11 = GameObject.Find("MoreInfoBtn (11)").GetComponent<Button>();
 
         SquadNameList.Add(NameHeader11);
         SquadPositionList.Add(PositionHeader11);
@@ -2448,7 +2530,6 @@ public class Model : MonoBehaviour
         OverallHeader12 = GameObject.Find("OverallHeader (12)").GetComponent<Text>();
         FormHeader12 = GameObject.Find("FormHeader (12)").GetComponent<Text>();
         MoraleHeader12 = GameObject.Find("MoraleHeader (12)").GetComponent<Text>();
-        MoreInfoBtn12 = GameObject.Find("MoreInfoBtn (12)").GetComponent<Button>();
 
 
 
@@ -3945,22 +4026,28 @@ public class Model : MonoBehaviour
 
         if (Win == false)
         {
+            DecreaseFanFaith();
+            DecreaseBoardFaith();
+            ManStress = ManStress + 3;
+
             for (int i = 0; i < Starting11.Count(); i++)
             {
                 Starting11[i].Morale = Starting11[i].Morale - 5;
-                DecreaseFanFaith();
-                DecreaseBoardFaith();
+
             }
         }
 
 
         if (Win == true)
         {
+            IncreaseFanFaith();
+            IncreaseBoardFaith();
+            ManStress = ManStress - 3;
+
             for (int i = 0; i < Starting11.Count(); i++)
             {
                 Starting11[i].Morale = Starting11[i].Morale + 5;
-                IncreaseFanFaith();
-                IncreaseBoardFaith();
+
             }
         }
 
@@ -4227,7 +4314,7 @@ public class Model : MonoBehaviour
 
         // for test purposes pre chosen team.
         // TeamManagedID = 5;
-        TeamManagedID = index;
+        TeamManagedID = 9;
         loadTeamData();
         loadPlayerData();
         updateOverall();
