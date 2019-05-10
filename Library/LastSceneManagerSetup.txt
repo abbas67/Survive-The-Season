@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/mainInGameMenu.unity
+- path: Assets/Scenes/TeamSetup.unity
   isLoaded: 1
   isActive: 1

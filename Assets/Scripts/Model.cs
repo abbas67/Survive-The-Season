@@ -16,8 +16,9 @@ public class Model : MonoBehaviour
     int DefenceCount;
 
     int index = 0;
-    public int TeamManagedID;
+    // public int TeamManagedID;
 
+    public int TeamManagedID;
 
 
 
@@ -3644,17 +3645,22 @@ public class Model : MonoBehaviour
 
         if (teaminfo[TeamManagedID].Budget >= 700 && tableposition < 3)
         {
+            ManStress = ManStress - 10;
 
             return true;
 
         }
         else if (teaminfo[TeamManagedID].Budget <= 600 && tableposition < 6)
         {
+            ManStress = ManStress - 10;
+
             return true;
 
         }
 
-        else return false;
+        ManStress++;
+        return false;
+
     }
 
 
@@ -4220,8 +4226,8 @@ public class Model : MonoBehaviour
     {
 
         // for test purposes pre chosen team.
-       // TeamManagedID = 5;
-
+        // TeamManagedID = 5;
+        TeamManagedID = index;
         loadTeamData();
         loadPlayerData();
         updateOverall();
@@ -4333,11 +4339,13 @@ public class Model : MonoBehaviour
         if (index < 11)
         {
             index++;
+            Debug.Log(index);
             return TeamSelect(index);
         }
         else
         {
             index = 0;
+            Debug.Log(index);
             return TeamSelect(index);
         }
 
@@ -4349,7 +4357,7 @@ public class Model : MonoBehaviour
 
     public void chooseTeam()
     {
-
+        Debug.Log(index);
         TeamManagedID = index;
 
     }

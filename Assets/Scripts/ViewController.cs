@@ -12,6 +12,7 @@ public class ViewController : MonoBehaviour
     public InputField NameInpuField;
     public InputField NationalityInputField;
 
+    public Button RaiseButton;
 
 
     //Text objects to be used to display the scout report and tactics information
@@ -135,10 +136,33 @@ public class ViewController : MonoBehaviour
 
 
     public void RequestRaise()
-    { 
-    
-            
-    
+    {
+        RaiseButton = GameObject.Find("RaiseButton").GetComponent<Button>();
+
+
+        bool BoardResponse = MyModel.tryRaise(); 
+
+        if (BoardResponse ==  false)
+        {
+
+            ManagerText.text = Notificationinfo[1] + "\n  \n " + Notificationinfo[2] + "\n  \n " + "Your request for a raise was denied and you are frustrated, Stress + 1 " ;
+
+
+        }
+        if (BoardResponse == true)
+        {
+
+            ManagerText.text = Notificationinfo[1] + "\n  \n " + Notificationinfo[2] + "\n  \n " + "Your request for a raise was accepted , Stress - 10 ";
+
+
+        }
+
+        DisplayPlayerInfo();
+
+        RaiseButton.GetComponent<Image>().color = Color.grey;
+        RaiseButton.GetComponentInChildren<Text>().text = "You can only request a raise once per game";
+        RaiseButton.GetComponent<Button>().interactable = false;
+
     }
 
     public void DisplayManagerInfo()
