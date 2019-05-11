@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 
 
@@ -1832,6 +1833,7 @@ public void SelectST(int ButtonID)
 
         for (i = 0; i <= 22; i++)
         {
+            // Strikers need to be fast and clinical with their finishing in the counter, and this is what is taken into account.
             if (CurrSquad[i].Position == "ST")
             {
                 CounterTotal = 0;
@@ -1840,7 +1842,8 @@ public void SelectST(int ButtonID)
                 CounterTotal = CounterTotal + CurrSquad[i].Shooting;
                 CounterAverage.Add(CounterTotal / 3);
             }
-
+            //Really wingers dont need to be as clinical as strikers as they should be the ones getting them ball.
+            //Which is why wingers are only judged on their pace and dribbling in a counter attack.
             if (CurrSquad[i].Position == "LM")
             {
                 CounterTotal = 0;
@@ -1857,7 +1860,7 @@ public void SelectST(int ButtonID)
                 CounterAverage.Add(CounterTotal / 2);
             }
 
-
+            //Centre backs are vital in the counter as they are the ones usually winning back the ball and initiating the counter.
             if (CurrSquad[i].Position == "CB")
             {
                 CounterTotal = 0;
@@ -2729,7 +2732,7 @@ public void SelectST(int ButtonID)
 
     }
 
-
+    // Function in Model class
     public string[] getPlayerInfo()
     {
 
@@ -2739,7 +2742,7 @@ public void SelectST(int ButtonID)
 
         ToReturn[1] = ManStress.ToString();
 
-
+        //Model returning an array with information to be passed to the view by the controller
         return ToReturn;
 
 
@@ -3901,7 +3904,7 @@ public void SelectST(int ButtonID)
             //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
             int difference = HomeBasicOverall - AwayBasicOverall;
 
-            if (difference > 10)
+            if (difference > 8)
             {
                 AwayTactic = oppinfo[MatchInfo[i].AwayID].CounterCapability;
 
@@ -3911,7 +3914,7 @@ public void SelectST(int ButtonID)
 
             difference = AwayBasicOverall - HomeBasicOverall;
 
-            if (difference > 10)
+            if (difference > 8)
             {
 
                 HomeTactic = oppinfo[MatchInfo[i].HomeID].CounterCapability;
@@ -3937,10 +3940,18 @@ public void SelectST(int ButtonID)
 
             }
 
+            decimal HomeExecution = (decimal)HomeTactic / 100;
+            decimal AwayExecution = (decimal)AwayTactic / 100;
 
-            HomeTactic = HomeTactic * RandomNumber(0, 100);
-            AwayTactic = AwayTactic * RandomNumber(0, 100);
+
+            Debug.Log(HomeExecution);
+
+            Debug.Log(AwayExecution);
+         
+           
             //Dynamically prediciting the amount of goals that will be scored by each team on a specific match day. 
+
+
 
 
 
@@ -4026,6 +4037,9 @@ public void SelectST(int ButtonID)
 
             }
 
+
+            MatchInfo[i].AwayGoals = Decimal.ToInt32(MatchInfo[i].AwayGoals * AwayExecution);
+            MatchInfo[i].HomeGoals = Decimal.ToInt32(MatchInfo[i].HomeGoals * HomeExecution);
 
 
             // Dynamically choosing the scorers of each goal.
@@ -4236,7 +4250,7 @@ public void SelectST(int ButtonID)
     {
         lock (syncLock)
         { // synchronize
-            return Random.Range(min, max);
+            return UnityEngine.Random.Range(min, max);
         }
     }
 

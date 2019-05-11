@@ -395,13 +395,13 @@ public class ViewController : MonoBehaviour
 
     public void DisplayPlayerInfo()
     {
-
+        //An array to hold the data from the model.
         string[] playerinfo = new string[2];
         GameWeekTxt = GameObject.Find("GameWeekTxt").GetComponent<Text>();
         ManStressTxt = GameObject.Find("ManStressTxt").GetComponent<Text>();
         ManNameTxt = GameObject.Find("ManNameTxt").GetComponent<Text>();
 
-
+        //controller retrieving information from Model.
         playerinfo = MyModel.getPlayerInfo();
 
         GameWeekTxt.text = "GameWeek: " + GameWeek;
