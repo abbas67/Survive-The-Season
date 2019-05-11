@@ -221,7 +221,7 @@ public class ViewController : MonoBehaviour
 
 
         MyModel.displayOptions();
-
+        MyModel.InitialiseStarting11();
 
 
     }
@@ -452,8 +452,9 @@ public class ViewController : MonoBehaviour
     void Start()
     {
 
+            //only one that should be there after testing
         MyModel.InitModel();
-    
+
     }
        
 

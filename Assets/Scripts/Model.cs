@@ -15,7 +15,7 @@ public class Model : MonoBehaviour
     int AttackCount;
     int DefenceCount;
 
-    int index = 0;
+    public int index = 0;
     // public int TeamManagedID;
 
     public int TeamManagedID = 0;
@@ -520,6 +520,65 @@ public class Model : MonoBehaviour
 
 
 
+    public void InitialiseStarting11()
+    {
+        int ButtonID = 0;
+
+        AddToLineup(Keepers[0].PlayerID);
+
+        GKTracker[ButtonID].GetComponent<Button>().interactable = false;
+        GKTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+        Keepers[ButtonID].Starting = true;
+
+        GKTracker[1].GetComponent<Button>().interactable = true;
+        GKTracker[1].GetComponent<Image>().color = Color.white;
+        Keepers[1].Starting = false;
+
+
+
+        AddToLineup(LeftMid[0].PlayerID);
+
+        LMTracker[ButtonID].GetComponent<Button>().interactable = false;
+        LMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+        LeftMid[ButtonID].Starting = true;
+
+        LMTracker[1].GetComponent<Button>().interactable = true;
+        LMTracker[1].GetComponent<Image>().color = Color.white;
+        LeftMid[1].Starting = false;
+
+        AddToLineup(RightMid[0].PlayerID);
+
+        RMTracker[ButtonID].GetComponent<Button>().interactable = false;
+        RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+        RightMid[ButtonID].Starting = true;
+
+        RMTracker[1].GetComponent<Button>().interactable = true;
+        RMTracker[1].GetComponent<Image>().color = Color.white;
+        RightMid[1].Starting = false;
+
+        AddToLineup(LeftBacks[0].PlayerID);
+
+        LBTracker[ButtonID].GetComponent<Button>().interactable = false;
+        LBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+        LeftBacks[ButtonID].Starting = true;
+
+        LBTracker[1].GetComponent<Button>().interactable = true;
+        LBTracker[1].GetComponent<Image>().color = Color.white;
+        LeftBacks[1].Starting = false;
+
+
+        AddToLineup(RightBacks[0].PlayerID);
+
+        RBTracker[ButtonID].GetComponent<Button>().interactable = false;
+        RBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+        RightBacks[ButtonID].Starting = true;
+
+        RBTracker[1].GetComponent<Button>().interactable = true;
+        RBTracker[1].GetComponent<Image>().color = Color.white;
+        RightBacks[1].Starting = false;
+
+    }
+
 
 
 
@@ -632,6 +691,12 @@ public class Model : MonoBehaviour
 
                     Starting11.RemoveAll(a => a.PlayerID == LeftMid[1].PlayerID);
                 }
+                else
+                {
+                    PlayerWarnings.text = ("You should only be playing 1 wide attacking player attacking player at a time on each side ");
+
+
+                }
 
 
             }
@@ -669,7 +734,12 @@ public class Model : MonoBehaviour
                     //Starting11.Remove(itemToRemove);
                     Starting11.RemoveAll(a => a.PlayerID == LeftMid[0].PlayerID);
                 }
+                else
+                {
+                    PlayerWarnings.text = ("You should only be playing 1 wide attacking player attacking player at a time on each side ");
 
+
+                }
 
             }
 
@@ -688,94 +758,89 @@ public class Model : MonoBehaviour
 
     public void SelectRM(int ButtonID)
     {
-
-        PlayerWarnings.text = "Choose 11 players to start";
-
         if (ButtonID == 0)
         {
+            AddToLineup(RightMid[0].PlayerID);
 
-            if (totalRM != 1 && RightMid[ButtonID].Starting == false)
+            RMTracker[ButtonID].GetComponent<Button>().interactable = false;
+            RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            RightMid[ButtonID].Starting = true;
+
+            RMTracker[1].GetComponent<Button>().interactable = true;
+            RMTracker[1].GetComponent<Image>().color = Color.white;
+            RightMid[1].Starting = false;
+
+            for (int i = 0; i < Starting11.Count(); i++)
             {
-                AddToLineup(RightMid[ButtonID].PlayerID);
-                RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                RightMid[ButtonID].Starting = true;
+                if (Starting11[i].PlayerID == RightMid[1].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == RightMid[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
 
-                totalRM++;
-                RMbtn1pressed = true;
+                    Starting11.RemoveAll(a => a.PlayerID == RightMid[1].PlayerID);
+                }
+                else
+                {
+                    PlayerWarnings.text = ("You should only be playing 1 wide attacking player attacking player at a time on each side ");
+
+
+                }
+
+
             }
-            else
-            if (RightMid[ButtonID].Starting == true && RMbtn1pressed == true)
-            {
-                RemoveFromLineup(RightMid[ButtonID].PlayerID);
-                RMTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                RightMid[ButtonID].Starting = false;
-                totalRM--;
 
-            }
-            else if (Starting11.Count == 11)
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
             {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(Striker[ButtonID].PlayerID);
-                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                Striker[ButtonID].Starting = false;
-                totalST--;
-            }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing 1 wide attacking player attacking player at a time on each side ");
 
+                Debug.Log(Starting11[i].Name);
 
             }
 
         }
+
+
 
         if (ButtonID == 1)
         {
 
-            if (totalRM != 1 && RightMid[ButtonID].Starting == false)
-            {
-                AddToLineup(RightMid[ButtonID].PlayerID);
-                RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                RightMid[ButtonID].Starting = true;
+            AddToLineup(RightMid[ButtonID].PlayerID);
+            RMTracker[ButtonID].GetComponent<Button>().interactable = false;
+            RMTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            RightMid[ButtonID].Starting = true;
 
-                totalRM++;
-                RMbtn1pressed = true;
-            }
-            else
-            if (RightMid[ButtonID].Starting == true && RMbtn1pressed == true)
+            RMTracker[0].GetComponent<Button>().interactable = true;
+            RMTracker[0].GetComponent<Image>().color = Color.white;
+            RightMid[0].Starting = false;
+
+
+            for (int i = 0; i < Starting11.Count(); i++)
             {
-                RemoveFromLineup(RightMid[ButtonID].PlayerID);
-                RMTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                RightMid[ButtonID].Starting = false;
-                totalRM--;
+                if (Starting11[i].PlayerID == RightMid[0].PlayerID)
+                {
+                    //var itemToRemove = Starting11.Single(r => r.PlayerID == RightMid[0].PlayerID);
+                    //Starting11.Remove(itemToRemove);
+                    Starting11.RemoveAll(a => a.PlayerID == RightMid[0].PlayerID);
+                }
+                else
+                {
+                    PlayerWarnings.text = ("You should only be playing 1 wide attacking player attacking player at a time on each side ");
+
+
+                }
 
             }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing 1 wide attacking player attacking player at a time on each side ");
 
+
+            Debug.Log("new list");
+            for (int i = 0; i < Starting11.Count(); i++)
+            {
+
+                Debug.Log(Starting11[i].Name);
 
             }
 
         }
-
-        Debug.Log("new list");
-
-        for (int i = 0; i < Starting11.Count(); i++)
-        {
-
-            Debug.Log(Starting11[i].Name);
-
-        }
-
-
-
-
-
 
     }
 
@@ -785,16 +850,29 @@ public class Model : MonoBehaviour
 
 
 
-    public void SelectST(int ButtonID)
+
+
+
+
+
+
+
+public void SelectST(int ButtonID)
     {
         PlayerWarnings.text = "Choose 11 players to start";
 
-
-
         if (ButtonID == 0)
         {
-
-            if (totalST != 2 && Striker[ButtonID].Starting == false)
+            if (Starting11.Count == 11 && STbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(Striker[ButtonID].PlayerID);
+                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                Striker[ButtonID].Starting = false;
+                totalST--;
+            }
+   
+            else if (totalST != 2 && Striker[ButtonID].Starting == false)
             {
                 AddToLineup(Striker[ButtonID].PlayerID);
                 STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
@@ -812,21 +890,21 @@ public class Model : MonoBehaviour
                 totalST--;
 
             }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of two strikers ");
 
-
-            }
 
         }
 
         if (ButtonID == 1)
         {
+                if (Starting11.Count == 11 && STbtn1pressed == true)
+                {
+                    PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                    RemoveFromLineup(Striker[ButtonID].PlayerID);
+                    STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                    Striker[ButtonID].Starting = false;
+                    totalST--;
+                }
+                else
             if (totalST != 2 && Striker[ButtonID].Starting == false)
             {
                 AddToLineup(Striker[ButtonID].PlayerID);
@@ -846,20 +924,19 @@ public class Model : MonoBehaviour
 
             }
 
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of two strikers ");
-
-
-            }
         }
 
         if (ButtonID == 2)
         {
+                if (Starting11.Count == 11 && STbtn1pressed == true)
+                {
+                    PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                    RemoveFromLineup(Striker[ButtonID].PlayerID);
+                    STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                    Striker[ButtonID].Starting = false;
+                    totalST--;
+                }
+                else
             if (totalST != 2 && Striker[ButtonID].Starting == false)
             {
                 AddToLineup(Striker[ButtonID].PlayerID);
@@ -901,10 +978,6 @@ public class Model : MonoBehaviour
 
         }
 
-
-
-
-        Debug.Log(Starting11.Count());
 
     }
 
@@ -1086,8 +1159,15 @@ public class Model : MonoBehaviour
 
         if (ButtonID == 0)
         {
-
-            if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
+            if (Starting11.Count == 11 && CBbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                CentreBacks[ButtonID].Starting = false;
+                totalCB--;
+            }
+            else if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
             {
                 AddToLineup(CentreBacks[ButtonID].PlayerID);
                 CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
@@ -1105,21 +1185,22 @@ public class Model : MonoBehaviour
                 totalCB--;
 
             }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Centre Backs ");
 
-            }
+
         }
 
         if (ButtonID == 1)
         {
-
-            if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
+            if (Starting11.Count == 11 && CBbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                CentreBacks[ButtonID].Starting = false;
+                totalCB--;
+            }
+            else if
+             (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
             {
                 AddToLineup(CentreBacks[ButtonID].PlayerID);
                 CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
@@ -1137,20 +1218,20 @@ public class Model : MonoBehaviour
                 totalCB--;
 
             }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Centre Backs ");
 
-            }
         }
 
         if (ButtonID == 2)
         {
-
+            if (Starting11.Count == 11 && CBbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                CentreBacks[ButtonID].Starting = false;
+                totalCB--;
+            }
+            else
             if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
             {
                 AddToLineup(CentreBacks[ButtonID].PlayerID);
@@ -1169,21 +1250,21 @@ public class Model : MonoBehaviour
                 totalCB--;
 
             }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of three Centre Backs ");
 
-            }
         }
 
 
         if (ButtonID == 3)
         {
-
+            if (Starting11.Count == 11 && CBbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                CentreBacks[ButtonID].Starting = false;
+                totalCB--;
+            }
+            else
             if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
             {
                 AddToLineup(CentreBacks[ButtonID].PlayerID);
@@ -1202,10 +1283,7 @@ public class Model : MonoBehaviour
                 totalCB--;
 
             }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
+
 
 
         }
@@ -1222,8 +1300,16 @@ public class Model : MonoBehaviour
 
     public void SelectMF(int ButtonID)
     {
+        if (Starting11.Count == 11 && MFbtn1pressed == true)
+        {
+            PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            MidFielders[ButtonID].Starting = false;
+            totalMF--;
+        }
 
-        if (ButtonID == 0)
+        else if (ButtonID == 0)
         {
 
             if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
@@ -1253,8 +1339,17 @@ public class Model : MonoBehaviour
 
         if (ButtonID == 1)
         {
+            if (Starting11.Count == 11 && MFbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
+            }
 
-            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
+            else
+    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
                 AddToLineup(MidFielders[ButtonID].PlayerID);
                 MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
@@ -1281,8 +1376,17 @@ public class Model : MonoBehaviour
 
         if (ButtonID == 2)
         {
+            if (Starting11.Count == 11 && MFbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
+            }
 
-            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
+            else
+    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
                 AddToLineup(MidFielders[ButtonID].PlayerID);
                 MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
@@ -1309,8 +1413,18 @@ public class Model : MonoBehaviour
 
         if (ButtonID == 3)
         {
+            if (Starting11.Count == 11 && MFbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
+            }
 
-            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
+            else
+
+    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
                 AddToLineup(MidFielders[ButtonID].PlayerID);
                 MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
@@ -1338,8 +1452,17 @@ public class Model : MonoBehaviour
 
         if (ButtonID == 4)
         {
+            if (Starting11.Count == 11 && MFbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
+            }
 
-            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
+            else
+    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
                 AddToLineup(MidFielders[ButtonID].PlayerID);
                 MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
@@ -1367,8 +1490,18 @@ public class Model : MonoBehaviour
 
         if (ButtonID == 5)
         {
+            if (Starting11.Count == 11 && MFbtn1pressed == true)
+            {
+                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+                MidFielders[ButtonID].Starting = false;
+                totalMF--;
+            }
 
-            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
+            else
+
+    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
             {
                 AddToLineup(MidFielders[ButtonID].PlayerID);
                 MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
@@ -4312,8 +4445,6 @@ public class Model : MonoBehaviour
     public void InitPlayerTeam()
     {
 
-
-
         selectSquad();
 
     }
@@ -4322,7 +4453,7 @@ public class Model : MonoBehaviour
     {
 
         // for test purposes pre chosen team.
-        // TeamManagedID = 5;
+        //TeamManagedID = 5;
         loadTeamData();
         loadPlayerData();
         updateOverall();
@@ -4438,7 +4569,7 @@ public class Model : MonoBehaviour
 
     public void chooseTeam()
     {
-        Debug.Log(index);
+        
         TeamManagedID = index;
 
     }
