@@ -18,7 +18,7 @@ public class Model : MonoBehaviour
     int index = 0;
     // public int TeamManagedID;
 
-    public int TeamManagedID;
+    public int TeamManagedID = 0;
 
 
 
@@ -4309,32 +4309,26 @@ public class Model : MonoBehaviour
     }
 
 
-    public void InitModel()
+    public void InitPlayerTeam()
     {
-
-        // for test purposes pre chosen team.
-        // TeamManagedID = 5;
-        TeamManagedID = 9;
-        loadTeamData();
-        loadPlayerData();
-        updateOverall();
-
 
 
 
         selectSquad();
 
+    }
 
+    public void InitModel()
+    {
 
-        //updateFaith();
-        //UpdatePlayerInfo();
-        // OppositionTeamInfo();
+        // for test purposes pre chosen team.
+        // TeamManagedID = 5;
+        loadTeamData();
+        loadPlayerData();
+        updateOverall();
 
         initTableInfo();
         PointsUpdater();
-        // PopulateTable();
-
-        //displayOptions();
 
 
     }
@@ -4426,13 +4420,13 @@ public class Model : MonoBehaviour
         if (index < 11)
         {
             index++;
-            Debug.Log(index);
+       
             return TeamSelect(index);
         }
         else
         {
             index = 0;
-            Debug.Log(index);
+         
             return TeamSelect(index);
         }
 

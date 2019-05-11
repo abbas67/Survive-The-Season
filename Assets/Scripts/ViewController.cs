@@ -28,7 +28,7 @@ public class ViewController : MonoBehaviour
     public Button PressureBtn;
     public Button CounterBtn;
     public Button PossesionBtn;
-    
+
 
 
     public Text GameWeekTxt;
@@ -123,7 +123,7 @@ public class ViewController : MonoBehaviour
 
     }
 
-    public void populateTable ()
+    public void populateTable()
     {
 
         MyModel.PointsUpdater();
@@ -140,12 +140,12 @@ public class ViewController : MonoBehaviour
         RaiseButton = GameObject.Find("RaiseButton").GetComponent<Button>();
 
 
-        bool BoardResponse = MyModel.tryRaise(); 
+        bool BoardResponse = MyModel.tryRaise();
 
-        if (BoardResponse ==  false)
+        if (BoardResponse == false)
         {
 
-            ManagerText.text = Notificationinfo[1] + "\n  \n " + Notificationinfo[2] + "\n  \n " + "Your request for a raise was denied and you are frustrated, Stress + 1 " ;
+            ManagerText.text = Notificationinfo[1] + "\n  \n " + Notificationinfo[2] + "\n  \n " + "Your request for a raise was denied and you are frustrated, Stress + 1 ";
 
 
         }
@@ -185,18 +185,18 @@ public class ViewController : MonoBehaviour
 
 
 
-        NotificationsText.text = Notificationinfo[0] ;
+        NotificationsText.text = Notificationinfo[0];
 
     }
 
 
     public void populateSquad()
-    { 
-    
-    
+    {
+
+
         MyModel.populateSquad();
-    
-    
+
+
     }
 
 
@@ -204,7 +204,7 @@ public class ViewController : MonoBehaviour
     {
 
         MyModel.NextSquadPage();
-    
+
     }
 
     public void backSquadPage()
@@ -278,12 +278,12 @@ public class ViewController : MonoBehaviour
 
         TeamOverallText.text = ("Team Overall: " + MyModel.CalculateCurrOverall());
 
-     
+
         TablePositionText.text = MyModel.RetrievePos(MyModel.TeamManagedID);
 
-       
+
         AttackDefenceInfo = MyModel.CalculateCurrentThreat(MyModel.TeamManagedID);
-        AttackingThreatText.text = ("Attacking Threat: " + AttackDefenceInfo[0] );
+        AttackingThreatText.text = ("Attacking Threat: " + AttackDefenceInfo[0]);
         DefensiveThreatText.text = ("Defensive Strength: " + AttackDefenceInfo[1]);
 
 
@@ -310,7 +310,7 @@ public class ViewController : MonoBehaviour
     public void ViewPressurePlan()
     {
         PressureBtn = GameObject.Find("PressureBtn").GetComponent<Button>();
-        GameplanCapabilityText.text = ("Gameplan Capability: " + MyModel.returnPressurePlan(MyModel.SelectedSquad , MyModel.TeamManagedID));
+        GameplanCapabilityText.text = ("Gameplan Capability: " + MyModel.returnPressurePlan(MyModel.SelectedSquad, MyModel.TeamManagedID));
         CurrentGameplanText.text = ("Pressure");
 
     }
@@ -373,12 +373,12 @@ public class ViewController : MonoBehaviour
     {
 
         MyModel.chooseTeam();
-    
-    
+
+
     }
 
 
-    public void  DisplayFaithPanel()
+    public void DisplayFaithPanel()
     {
         BoardText = GameObject.Find("BoardText").GetComponent<Text>();
         FanText = GameObject.Find("FanText").GetComponent<Text>();
@@ -388,7 +388,7 @@ public class ViewController : MonoBehaviour
 
         Faith = MyModel.getFaith();
 
-        BoardText.text = ("Board Faith: " +  Faith[0]);
+        BoardText.text = ("Board Faith: " + Faith[0]);
         FanText.text = ("Fan Faith: " + Faith[1]);
 
     }
@@ -416,7 +416,7 @@ public class ViewController : MonoBehaviour
         DisplayPlayerInfo();
         DisplayFaithPanel();
 
-       
+
 
     }
 
@@ -434,18 +434,28 @@ public class ViewController : MonoBehaviour
     {
 
         MyModel.PopulateScorersTable();
-        
-    
+
+
+    }
+
+
+    public void InitialisePlayerTeam()
+    {
+
+        MyModel.InitPlayerTeam();
+
+
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //Teams for matchday are prepared
 
         MyModel.InitModel();
-       
+    
     }
+       
 
 
 
