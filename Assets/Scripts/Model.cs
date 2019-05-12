@@ -465,7 +465,6 @@ public class Model : MonoBehaviour
         ManNationality = NatInput;
 
 
-        Debug.Log(NameInput + " " + NatInput);
     }
 
 
@@ -610,13 +609,7 @@ public class Model : MonoBehaviour
 
             }
 
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
-
-                Debug.Log(Starting11[i].Name);
-
-            }
+  
 
         }
 
@@ -648,13 +641,6 @@ public class Model : MonoBehaviour
             }
 
 
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
-
-                Debug.Log(Starting11[i].Name);
-
-            }
 
         }
 
@@ -702,13 +688,7 @@ public class Model : MonoBehaviour
 
             }
 
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
 
-                Debug.Log(Starting11[i].Name);
-
-            }
 
         }
 
@@ -745,13 +725,7 @@ public class Model : MonoBehaviour
             }
 
 
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
 
-                Debug.Log(Starting11[i].Name);
-
-            }
 
         }
 
@@ -790,13 +764,7 @@ public class Model : MonoBehaviour
 
             }
 
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
-
-                Debug.Log(Starting11[i].Name);
-
-            }
+  
 
         }
 
@@ -833,13 +801,6 @@ public class Model : MonoBehaviour
             }
 
 
-            Debug.Log("new list");
-            for (int i = 0; i < Starting11.Count(); i++)
-            {
-
-                Debug.Log(Starting11[i].Name);
-
-            }
 
         }
 
@@ -971,13 +932,6 @@ public void SelectST(int ButtonID)
 
 
 
-        Debug.Log("new list");
-        for (int i = 0; i < Starting11.Count(); i++)
-        {
-
-            Debug.Log(Starting11[i].Name + " " + Starting11[i].Position);
-
-        }
 
 
     }
@@ -1288,13 +1242,7 @@ public void SelectST(int ButtonID)
 
 
         }
-        Debug.Log("new list");
-        for (int i = 0; i < Starting11.Count(); i++)
-        {
 
-            Debug.Log(Starting11[i].Name + Starting11[i].Position);
-
-        }
 
     }
 
@@ -1527,13 +1475,7 @@ public void SelectST(int ButtonID)
 
 
         }
-        Debug.Log("new list");
-        for (int i = 0; i < Starting11.Count(); i++)
-        {
 
-            Debug.Log(Starting11[i].Name + "  " + Starting11[i].Position);
-
-        }
     }
 
 
@@ -2204,7 +2146,7 @@ public void SelectST(int ButtonID)
 
         int i = SortedTeams.FindIndex(r => r.TeamID == FindTeamID);
 
-        Debug.Log(i);
+
         if (i == 0)
         {
 
@@ -3686,7 +3628,7 @@ public void SelectST(int ButtonID)
         ToBeReturned[2] = ("Home Fouls: " + MatchStats[playerTrack].HomeFouls + " Away Fouls: " + MatchStats[playerTrack].AwayFouls);
 
         ToBeReturned[3] = ("Home Scorers: " + MatchStats[playerTrack].HomeScorers + " Away Scorers: " + MatchStats[playerTrack].AwayScorers);
-        ToBeReturned[4] = ("Home Cards: " + MatchStats[playerTrack].HomeYellows + " Away Cards: " + MatchStats[playerTrack].AwayYellows);
+        ToBeReturned[4] = ("Home Yellows: " + MatchStats[playerTrack].HomeYellows + " Home Reds: " + MatchStats[playerTrack].HomeReds + "\n " + " Away Yellows: " + MatchStats[playerTrack].AwayYellows + " Away Reds: " + MatchStats[playerTrack].AwayReds);
 
         return ToBeReturned;
     }
@@ -3883,8 +3825,7 @@ public void SelectST(int ButtonID)
 
     public List<MatchDayInfo> MatchResults(List<MatchDayInfo> MatchInfo)
     {
-        int HomeBasicOverall = 0;
-        int AwayBasicOverall = 0;
+
         int HomeTactic = 0;
         int AwayTactic = 0;
 
@@ -3896,15 +3837,15 @@ public void SelectST(int ButtonID)
             AwayTactic = 0;
             //Firstly checking that each team will employ an appropiate gameplan against their opposition.
 
-            HomeBasicOverall = (teaminfo[MatchInfo[i].HomeID].Attack + teaminfo[MatchInfo[i].HomeID].Defence) / 2;
-            AwayBasicOverall = (teaminfo[MatchInfo[i].AwayID].Attack + teaminfo[MatchInfo[i].AwayID].Defence) / 2;
+           int HomeBasicOverall = (teaminfo[MatchInfo[i].HomeID].Attack + teaminfo[MatchInfo[i].HomeID].Defence) / 2;
+           int AwayBasicOverall = (teaminfo[MatchInfo[i].AwayID].Attack + teaminfo[MatchInfo[i].AwayID].Defence) / 2;
 
 
             //Significantly weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
             //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
             int difference = HomeBasicOverall - AwayBasicOverall;
 
-            if (difference > 8)
+            if (difference < 8)
             {
                 AwayTactic = oppinfo[MatchInfo[i].AwayID].CounterCapability;
 
@@ -3919,8 +3860,6 @@ public void SelectST(int ButtonID)
 
                 HomeTactic = oppinfo[MatchInfo[i].HomeID].CounterCapability;
                 AwayTactic = oppinfo[MatchInfo[i].AwayID].PossessionCapability;
-
-
 
             }
 
@@ -3940,19 +3879,14 @@ public void SelectST(int ButtonID)
 
             }
 
+
+
             decimal HomeExecution = (decimal)HomeTactic / 100;
             decimal AwayExecution = (decimal)AwayTactic / 100;
 
 
-            Debug.Log(HomeExecution);
 
-            Debug.Log(AwayExecution);
-         
-           
             //Dynamically prediciting the amount of goals that will be scored by each team on a specific match day. 
-
-
-
 
 
             // Based on the attacking capability of each team the amount of potential goals is calculated
@@ -4037,58 +3971,230 @@ public void SelectST(int ButtonID)
 
             }
 
-
+            // How capable each team is capable of executing their gameplan is then factored in to make the scenario more realistc.
             MatchInfo[i].AwayGoals = Decimal.ToInt32(MatchInfo[i].AwayGoals * AwayExecution);
             MatchInfo[i].HomeGoals = Decimal.ToInt32(MatchInfo[i].HomeGoals * HomeExecution);
 
 
+
+
             // Dynamically choosing the scorers of each goal.
+
+            List<PlayerInfo> likelyScorers = new List<PlayerInfo>();
+            List<PlayerInfo> tempList = new List<PlayerInfo>();
+
+            //Each players morale will play a big part in how often they score, followed by their shooting stats
+            //Starting11.OrderBy(s => s.Morale);
+
+
+            Starting11.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
+
+
+
+
+
 
             if (TeamManagedID == MatchInfo[i].HomeID)
             {
-                for (int k = 0; k <= MatchInfo[i].HomeGoals; k++)
+
+
+                Debug.Log(" \n Now for scorers ");
+                for (int j = 0; j < MatchInfo[i].HomeGoals; j++)
                 {
-
-                    for (int j = 0; j < Starting11.Count; j++)
+                    if (playerinfo[Starting11[j].PlayerID].Position != "GK")
                     {
-                        if (Starting11[i].Form > 80)
-                        {
+                        playerinfo[Starting11[j].PlayerID].Goals++;
+                        playerinfo[Starting11[j].PlayerID].Form = playerinfo[Starting11[j].PlayerID].Form + RandomNumber(0, 5);
+                        Debug.Log(playerinfo[Starting11[j].PlayerID].Name);
+                    }
 
-                            playerinfo[Starting11[i].PlayerID].Goals++;
+                }
 
-                        }
+            }
+
+
+            else if (TeamManagedID == MatchInfo[i].AwayID)
+            {
+
+    
+                Debug.Log(" \n Now for scorers ");
+
+
+                for (int j = 0; j < MatchInfo[i].AwayGoals; j++)
+                {
+                    if(playerinfo[Starting11[j].PlayerID].Position != "GK")
+                    {
+                        playerinfo[Starting11[j].PlayerID].Goals++;
+                        playerinfo[Starting11[j].PlayerID].Form = playerinfo[Starting11[j].PlayerID].Form + RandomNumber(0, 5);
+                        Debug.Log(playerinfo[Starting11[j].PlayerID].Name);
+
+                    }
+
+
+                }
+
+            }
+
+            else
+            {
+
+                for (int j = 0; j <= 275; j++)
+                {
+                    if (playerinfo[j].TeamID == MatchInfo[i].HomeID && playerinfo[j].Position != "GK")
+                    {
+
+                        tempList.Add(playerinfo[j]);
 
                     }
 
                 }
 
+                tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
+                Debug.Log(" \n Now for scorers ");
+                for (int j = 0; j < MatchInfo[i].HomeGoals; j++)
+                {
+                    playerinfo[tempList[j].PlayerID].Goals++;
+                    playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
+                   
 
+                    Debug.Log(playerinfo[tempList[j].PlayerID].Name);
+                }
+
+
+                tempList.Clear();
+
+
+                //Now for the away team.
+
+                for (int j = 0; j <= 275; j++)
+                {
+                    if (playerinfo[j].TeamID == MatchInfo[i].AwayID && playerinfo[j].Position != "GK")
+                    {
+
+                        tempList.Add(playerinfo[j]);
+
+                    }
+
+                }
+
+                tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
+                Debug.Log(" \n Now for scorers ");
+
+                for (int j = 0; j < MatchInfo[i].AwayGoals; j++)
+                {
+                    playerinfo[tempList[j].PlayerID].Goals++;
+                    playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
+                
+
+                    Debug.Log(playerinfo[tempList[j].PlayerID].Name);
+                }
             }
 
 
+            //Calculating the amount of fouls and bookings per game.
 
 
-            /*
-            if (TeamManagedID == MatchInfo[i].AwayID)
+            //The overall agression of each team is what the foul count is based on.
+            int awayFoulCounter = 0;
+            for (int j = 0; j < playerinfo.Count(); j++)
             {
 
-                for (int k = 0; i <= MatchInfo[i].HomeGoals; k++)
+
+                if (playerinfo[j].TeamID == MatchInfo[i].AwayID)
                 {
+                   
+                    awayFoulCounter = awayFoulCounter + playerinfo[j].Agression;
+
+                }
+
+              
+            }
+         
+            awayFoulCounter = awayFoulCounter / 23;
+
+            if (Enumerable.Range(0, 30).Contains(awayFoulCounter))
+            {
+                MatchInfo[i].AwayFouls = RandomNumber(0, 8);
+                MatchInfo[i].AwayYellows = RandomNumber(0, 3);
+
+            }
+
+            if (Enumerable.Range(31, 50).Contains(awayFoulCounter))
+            {
+                MatchInfo[i].AwayFouls = RandomNumber(0, 10);
+                MatchInfo[i].AwayYellows = RandomNumber(0, 4);
+
+            }
+
+            if (Enumerable.Range(51, 100).Contains(awayFoulCounter))
+            {
+                MatchInfo[i].AwayFouls = RandomNumber(0, 15);
+                MatchInfo[i].AwayYellows = RandomNumber(0, 5);
+                MatchInfo[i].AwayReds = RandomNumber(0, 1);
+                //Making sure a red card has an affect on the game.
+                if (MatchInfo[i].AwayReds == 1)
+                {
+                    MatchInfo[i].HomeGoals++;
+
 
                 }
 
             }
-            else
+         
+
+            int HomeFoulCounter = 0;
+            for (int j = 0; j < playerinfo.Count(); j++)
             {
 
-                for (int k = 0; i <= MatchInfo[i].HomeGoals; k++)
+
+                if (playerinfo[j].TeamID == MatchInfo[i].HomeID)
                 {
+
+                    HomeFoulCounter = HomeFoulCounter + playerinfo[j].Agression;
+
+                }
+
+
+            }
+
+            HomeFoulCounter = HomeFoulCounter / 23;
+
+            if (Enumerable.Range(0, 30).Contains(HomeFoulCounter))
+            {
+                MatchInfo[i].HomeFouls = RandomNumber(0, 8);
+                MatchInfo[i].HomeYellows = RandomNumber(0, 3);
+
+            }
+
+            if (Enumerable.Range(31, 60).Contains(HomeFoulCounter))
+            {
+                MatchInfo[i].HomeFouls = RandomNumber(0, 10);
+                MatchInfo[i].HomeYellows = RandomNumber(0, 4);
+
+            }
+
+            if (Enumerable.Range(61, 100).Contains(HomeFoulCounter))
+            {
+                MatchInfo[i].HomeFouls = RandomNumber(0, 15);
+                MatchInfo[i].HomeYellows = RandomNumber(0, 5);
+                MatchInfo[i].HomeReds = RandomNumber(0, 1);
+                //Making sure a red card has an affect on the game.
+                if (MatchInfo[i].HomeReds == 1)
+                {
+                    MatchInfo[i].AwayGoals++;
+
 
                 }
 
             }
 
-            */
+
+
+
+
+
+
+
 
 
 
@@ -4297,7 +4403,7 @@ public void SelectST(int ButtonID)
 
         ReturnThis = MatchPreparation(MatchStats, Week);
 
-        Debug.Log("Match PreparationPassed");
+
 
         return ReturnThis;
 
@@ -4471,7 +4577,7 @@ public void SelectST(int ButtonID)
         loadTeamData();
         loadPlayerData();
         updateOverall();
-
+        OppositionTeamInfo();
         initTableInfo();
         PointsUpdater();
 
@@ -4706,7 +4812,6 @@ public void SelectST(int ButtonID)
 
 
     }
-
 
 
 

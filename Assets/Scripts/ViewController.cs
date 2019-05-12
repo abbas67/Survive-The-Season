@@ -415,6 +415,7 @@ public class ViewController : MonoBehaviour
     {
         DisplayPlayerInfo();
         DisplayFaithPanel();
+     
 
 
 
@@ -454,7 +455,6 @@ public class ViewController : MonoBehaviour
 
             //only one that should be there after testing
         MyModel.InitModel();
-
     }
        
 
