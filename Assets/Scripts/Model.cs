@@ -424,8 +424,17 @@ public class Model : MonoBehaviour
 
 
 
-    public bool STbtn1pressed = false;
-    public bool MFbtn1pressed = false;
+
+
+
+    public bool[] buttonPressedTracker = new bool[6];
+
+    public bool[] CBpressed = new bool[4];
+    public bool[] STpressed = new bool[3];
+
+
+
+
     public bool CBbtn1pressed = false;
     public bool RMbtn1pressed = false;
     public bool LMbtn1pressed = false;
@@ -523,6 +532,36 @@ public class Model : MonoBehaviour
     public void InitialiseStarting11()
     {
         int ButtonID = 0;
+        Starting11.Clear();
+
+
+        for (int i = 0; i < buttonPressedTracker.Count(); i++)
+        {
+            buttonPressedTracker[i] = false;
+            MFTracker[i].GetComponent<Image>().color = Color.white;
+            MidFielders[i].Starting = false;
+            totalMF = 0;
+        }
+
+
+        for (int i = 0; i < CBpressed.Count(); i++)
+        {
+            CBpressed[i] = false;
+      
+            CBTracker[i].GetComponent<Image>().color = Color.white;
+            CentreBacks[i].Starting = false;
+            totalCB = 0;
+        }
+
+        for (int i = 0; i < STpressed.Count(); i++)
+        {
+            STpressed[i] = false;
+            STTracker[i].GetComponent<Image>().color = Color.white;
+            Striker[i].Starting = false;
+            totalST = 0;
+        }
+
+
 
         AddToLineup(Keepers[0].PlayerID);
 
@@ -821,115 +860,43 @@ public class Model : MonoBehaviour
 
 public void SelectST(int ButtonID)
     {
-        PlayerWarnings.text = "Choose 11 players to start";
 
-        if (ButtonID == 0)
+
+        if (Starting11.Count == 11 && STpressed[ButtonID] == true)
         {
-            if (Starting11.Count == 11 && STbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(Striker[ButtonID].PlayerID);
-                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                Striker[ButtonID].Starting = false;
-                totalST--;
-            }
-   
-            else if (totalST != 2 && Striker[ButtonID].Starting == false)
-            {
-                AddToLineup(Striker[ButtonID].PlayerID);
-                STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                Striker[ButtonID].Starting = true;
-
-                totalST++;
-                STbtn1pressed = true;
-            }
-            else
-            if (Striker[ButtonID].Starting == true && STbtn1pressed == true)
-            {
-                RemoveFromLineup(Striker[ButtonID].PlayerID);
-                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                Striker[ButtonID].Starting = false;
-                totalST--;
-
-            }
-
-
+            RemoveFromLineup(Striker[ButtonID].PlayerID);
+            STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            Striker[ButtonID].Starting = false;
+            totalST--;
+            STpressed[ButtonID] = false;
         }
 
-        if (ButtonID == 1)
+        else if (Starting11.Count == 11 && STpressed[ButtonID] == false)
         {
-                if (Starting11.Count == 11 && STbtn1pressed == true)
-                {
-                    PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                    RemoveFromLineup(Striker[ButtonID].PlayerID);
-                    STTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                    Striker[ButtonID].Starting = false;
-                    totalST--;
-                }
-                else
-            if (totalST != 2 && Striker[ButtonID].Starting == false)
-            {
-                AddToLineup(Striker[ButtonID].PlayerID);
-                STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                Striker[ButtonID].Starting = true;
-
-                totalST++;
-                STbtn1pressed = true;
-            }
-            else
-            if (Striker[ButtonID].Starting == true && STbtn1pressed == true)
-            {
-                RemoveFromLineup(Striker[ButtonID].PlayerID);
-                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                Striker[ButtonID].Starting = false;
-                totalST--;
-
-            }
-
+            PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            Striker[ButtonID].Starting = false;
+            STpressed[ButtonID] = false;
         }
 
-        if (ButtonID == 2)
+        else if (STpressed[ButtonID] == true && Starting11.Count != 11)
         {
-                if (Starting11.Count == 11 && STbtn1pressed == true)
-                {
-                    PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                    RemoveFromLineup(Striker[ButtonID].PlayerID);
-                    STTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                    Striker[ButtonID].Starting = false;
-                    totalST--;
-                }
-                else
-            if (totalST != 2 && Striker[ButtonID].Starting == false)
-            {
-                AddToLineup(Striker[ButtonID].PlayerID);
-                STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                Striker[ButtonID].Starting = true;
+            RemoveFromLineup(Striker[ButtonID].PlayerID);
+            STTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            Striker[ButtonID].Starting = false;
+            totalST--;
+            STpressed[ButtonID] = false;
 
-                totalST++;
-                STbtn1pressed = true;
-            }
-            else
-            if (Striker[ButtonID].Starting == true && STbtn1pressed == true)
-            {
-                RemoveFromLineup(Striker[ButtonID].PlayerID);
-                STTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                Striker[ButtonID].Starting = false;
-                totalST--;
-
-            }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-            else
-            {
-                PlayerWarnings.text = ("You should only be playing a maximum of two strikers ");
-
-
-            }
         }
+        else if (STpressed[ButtonID] == false && Starting11.Count != 11)
+        {
+            AddToLineup(Striker[ButtonID].PlayerID);
+            STTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            Striker[ButtonID].Starting = true;
 
-
+            totalST++;
+            STpressed[ButtonID] = true;
+        }
 
 
 
@@ -1112,135 +1079,40 @@ public void SelectST(int ButtonID)
 
         PlayerWarnings.text = "Choose 11 players to start";
 
-        if (ButtonID == 0)
+        if (Starting11.Count == 11 && CBpressed[ButtonID] == true)
         {
-            if (Starting11.Count == 11 && CBbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                CentreBacks[ButtonID].Starting = false;
-                totalCB--;
-            }
-            else if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
-            {
-                AddToLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                CentreBacks[ButtonID].Starting = true;
-
-                totalCB++;
-                CBbtn1pressed = true;
-            }
-            else
-            if (CentreBacks[ButtonID].Starting == true && CBbtn1pressed == true)
-            {
-                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                CentreBacks[ButtonID].Starting = false;
-                totalCB--;
-
-            }
-
-
+            RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+            CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            CentreBacks[ButtonID].Starting = false;
+            totalCB--;
+            CBpressed[ButtonID] = false;
         }
 
-        if (ButtonID == 1)
+        else if (Starting11.Count == 11 && CBpressed[ButtonID] == false)
         {
-            if (Starting11.Count == 11 && CBbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                CentreBacks[ButtonID].Starting = false;
-                totalCB--;
-            }
-            else if
-             (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
-            {
-                AddToLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                CentreBacks[ButtonID].Starting = true;
-
-                totalCB++;
-                CBbtn1pressed = true;
-            }
-            else
-            if (CentreBacks[ButtonID].Starting == true && CBbtn1pressed == true)
-            {
-                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                CentreBacks[ButtonID].Starting = false;
-                totalCB--;
-
-            }
-
+            PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            CentreBacks[ButtonID].Starting = false;
+            CBpressed[ButtonID] = false;
         }
 
-        if (ButtonID == 2)
+        else if (CBpressed[ButtonID] == true && Starting11.Count != 11)
         {
-            if (Starting11.Count == 11 && CBbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                CentreBacks[ButtonID].Starting = false;
-                totalCB--;
-            }
-            else
-            if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
-            {
-                AddToLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                CentreBacks[ButtonID].Starting = true;
-
-                totalCB++;
-                CBbtn1pressed = true;
-            }
-            else
-            if (CentreBacks[ButtonID].Starting == true && CBbtn1pressed == true)
-            {
-                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                CentreBacks[ButtonID].Starting = false;
-                totalCB--;
-
-            }
+            RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
+            CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            CentreBacks[ButtonID].Starting = false;
+            totalCB--;
+            CBpressed[ButtonID] = false;
 
         }
-
-
-        if (ButtonID == 3)
+        else if (CBpressed[ButtonID] == false && Starting11.Count != 11)
         {
-            if (Starting11.Count == 11 && CBbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                CentreBacks[ButtonID].Starting = false;
-                totalCB--;
-            }
-            else
-            if (totalCB != 3 && CentreBacks[ButtonID].Starting == false)
-            {
-                AddToLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                CentreBacks[ButtonID].Starting = true;
+            AddToLineup(CentreBacks[ButtonID].PlayerID);
+            CBTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            CentreBacks[ButtonID].Starting = true;
 
-                totalCB++;
-                CBbtn1pressed = true;
-            }
-            else
-            if (CentreBacks[ButtonID].Starting == true && CBbtn1pressed == true)
-            {
-                RemoveFromLineup(CentreBacks[ButtonID].PlayerID);
-                CBTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                CentreBacks[ButtonID].Starting = false;
-                totalCB--;
-
-            }
-
-
-
+            totalCB++;
+            CBpressed[ButtonID] = true;
         }
 
 
@@ -1249,231 +1121,41 @@ public void SelectST(int ButtonID)
 
     public void SelectMF(int ButtonID)
     {
-        if (Starting11.Count == 11 && MFbtn1pressed == true)
+
+        if (Starting11.Count == 11 && buttonPressedTracker[ButtonID] == true)
         {
-            PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
             RemoveFromLineup(MidFielders[ButtonID].PlayerID);
             MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
             MidFielders[ButtonID].Starting = false;
             totalMF--;
+            buttonPressedTracker[ButtonID] = false;
         }
 
-        else if (ButtonID == 0)
+        else if (Starting11.Count == 11 && buttonPressedTracker[ButtonID] == false)
         {
-
-            if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
-            {
-                AddToLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                MidFielders[ButtonID].Starting = true;
-
-                totalMF++;
-                MFbtn1pressed = true;
-            }
-            else
-            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
-            {
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-
-            }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-
+            PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            MidFielders[ButtonID].Starting = false;
+            buttonPressedTracker[ButtonID] = false;
         }
 
-        if (ButtonID == 1)
+         else if (buttonPressedTracker[ButtonID] == true && Starting11.Count != 11)
         {
-            if (Starting11.Count == 11 && MFbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-            }
-
-            else
-    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
-            {
-                AddToLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                MidFielders[ButtonID].Starting = true;
-
-                totalMF++;
-                MFbtn1pressed = true;
-            }
-            else
-            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
-            {
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-
-            }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
+            RemoveFromLineup(MidFielders[ButtonID].PlayerID);
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
+            MidFielders[ButtonID].Starting = false;
+            totalMF--;
+            buttonPressedTracker[ButtonID] = false;
 
         }
-
-        if (ButtonID == 2)
+        else if (buttonPressedTracker[ButtonID] == false && Starting11.Count != 11)
         {
-            if (Starting11.Count == 11 && MFbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-            }
+            AddToLineup(MidFielders[ButtonID].PlayerID);
+            MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
+            MidFielders[ButtonID].Starting = true;
 
-            else
-    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
-            {
-                AddToLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                MidFielders[ButtonID].Starting = true;
-
-                totalMF++;
-                MFbtn1pressed = true;
-            }
-            else
-            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
-            {
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-
-            }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-
-        }
-
-        if (ButtonID == 3)
-        {
-            if (Starting11.Count == 11 && MFbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-            }
-
-            else
-
-    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
-            {
-                AddToLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                MidFielders[ButtonID].Starting = true;
-
-                totalMF++;
-                MFbtn1pressed = true;
-            }
-            else
-            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
-            {
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-
-            }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-
-        }
-
-
-        if (ButtonID == 4)
-        {
-            if (Starting11.Count == 11 && MFbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-            }
-
-            else
-    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
-            {
-                AddToLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                MidFielders[ButtonID].Starting = true;
-
-                totalMF++;
-                MFbtn1pressed = true;
-            }
-            else
-            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
-            {
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-
-            }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-
-        }
-
-
-        if (ButtonID == 5)
-        {
-            if (Starting11.Count == 11 && MFbtn1pressed == true)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-            }
-
-            else
-
-    if (totalMF != 3 && MidFielders[ButtonID].Starting == false)
-            {
-                AddToLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.grey;
-                MidFielders[ButtonID].Starting = true;
-
-                totalMF++;
-                MFbtn1pressed = true;
-            }
-            else
-            if (MidFielders[ButtonID].Starting == true && MFbtn1pressed == true)
-            {
-                RemoveFromLineup(MidFielders[ButtonID].PlayerID);
-                MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
-                MidFielders[ButtonID].Starting = false;
-                totalMF--;
-
-            }
-            else if (Starting11.Count == 11)
-            {
-                PlayerWarnings.text = ("You can only field a maximum of 11 players at a time");
-            }
-
-
+            totalMF++;
+            buttonPressedTracker[ButtonID] = true;
         }
 
     }
@@ -2302,7 +1984,7 @@ public void SelectST(int ButtonID)
 
     public void selectSquad()
     {
-
+        SelectedSquad.Clear();
         for (int i = 0; i <= 275; i++)
         {
             if (playerinfo[i].TeamID == TeamManagedID)
@@ -3625,9 +3307,9 @@ public void SelectST(int ButtonID)
         ToBeReturned[0] = (teaminfo[MatchStats[playerTrack].HomeID].Name + "  " + MatchStats[playerTrack].HomeGoals + " VS " + teaminfo[MatchStats[playerTrack].AwayID].Name + "  " + MatchStats[playerTrack].AwayGoals);
         ToBeReturned[1] = ("Match Week: " + week);
 
-        ToBeReturned[2] = ("Home Fouls: " + MatchStats[playerTrack].HomeFouls + " Away Fouls: " + MatchStats[playerTrack].AwayFouls);
+        ToBeReturned[2] = ("Home Fouls: " + MatchStats[playerTrack].HomeFouls +"\n " + " Away Fouls: " + MatchStats[playerTrack].AwayFouls);
 
-        ToBeReturned[3] = ("Home Scorers: " + MatchStats[playerTrack].HomeScorers + " Away Scorers: " + MatchStats[playerTrack].AwayScorers);
+        ToBeReturned[3] = ("Home Scorers: " + MatchStats[playerTrack].HomeScorers +"\n " + " Away Scorers: " + MatchStats[playerTrack].AwayScorers);
         ToBeReturned[4] = ("Home Yellows: " + MatchStats[playerTrack].HomeYellows + " Home Reds: " + MatchStats[playerTrack].HomeReds + "\n " + " Away Yellows: " + MatchStats[playerTrack].AwayYellows + " Away Reds: " + MatchStats[playerTrack].AwayReds);
 
         return ToBeReturned;
@@ -3758,7 +3440,7 @@ public void SelectST(int ButtonID)
                 ToBeReturned[2] = " This team is weaker than us and we are clear favourites which means they are probably gonna play it safe and park the bus.";
             }
 
-            if (difference < 5)
+            if (difference < 4)
             {
                 ToBeReturned[2] = "This is likely to be a very close game so it is a good idea to field our strongest team as this game could very well go either way. ";
             }
@@ -3781,7 +3463,7 @@ public void SelectST(int ButtonID)
                 ToBeReturned[2] = " This team is weaker than us and we are clear favourites which means they are probably gonna play it safe and park the bus.";
             }
 
-            if (difference < 5)
+            if (difference < 4)
             {
                 ToBeReturned[2] = "This is likely to be a very close game so it is a good idea to field our strongest team as this game could very well go either way. ";
             }
@@ -3845,7 +3527,7 @@ public void SelectST(int ButtonID)
             //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
             int difference = HomeBasicOverall - AwayBasicOverall;
 
-            if (difference < 8)
+            if (difference < 4)
             {
                 AwayTactic = oppinfo[MatchInfo[i].AwayID].CounterCapability;
 
@@ -3855,7 +3537,7 @@ public void SelectST(int ButtonID)
 
             difference = AwayBasicOverall - HomeBasicOverall;
 
-            if (difference > 8)
+            if (difference > 4)
             {
 
                 HomeTactic = oppinfo[MatchInfo[i].HomeID].CounterCapability;
@@ -3998,17 +3680,49 @@ public void SelectST(int ButtonID)
             {
 
 
-                Debug.Log(" \n Now for scorers ");
-                for (int j = 0; j < MatchInfo[i].HomeGoals; j++)
+                Debug.Log(1);
+                for (int j = 0; j <= MatchInfo[i].HomeGoals; j++)
                 {
                     if (playerinfo[Starting11[j].PlayerID].Position != "GK")
                     {
                         playerinfo[Starting11[j].PlayerID].Goals++;
                         playerinfo[Starting11[j].PlayerID].Form = playerinfo[Starting11[j].PlayerID].Form + RandomNumber(0, 5);
-                        Debug.Log(playerinfo[Starting11[j].PlayerID].Name);
+
+                        MatchInfo[i].HomeScorers += playerinfo[Starting11[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
+
                     }
 
                 }
+
+
+                tempList.Clear();
+
+                for (int j = 0; j <= 275; j++)
+                {
+                    if (playerinfo[j].TeamID == MatchInfo[i].AwayID && playerinfo[j].Position != "GK")
+                    {
+
+                        tempList.Add(playerinfo[j]);
+
+                    }
+
+                }
+
+                tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
+
+
+                for (int j = 0; j < MatchInfo[i].AwayGoals; j++)
+                {
+                    playerinfo[tempList[j].PlayerID].Goals++;
+                    playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
+
+                    MatchInfo[i].AwayScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
+
+                }
+
+
+
+
 
             }
 
@@ -4016,27 +3730,57 @@ public void SelectST(int ButtonID)
             else if (TeamManagedID == MatchInfo[i].AwayID)
             {
 
-    
-                Debug.Log(" \n Now for scorers ");
 
-
-                for (int j = 0; j < MatchInfo[i].AwayGoals; j++)
+             
+                for (int j = 0; j <= MatchInfo[i].AwayGoals; j++)
                 {
                     if(playerinfo[Starting11[j].PlayerID].Position != "GK")
                     {
+
                         playerinfo[Starting11[j].PlayerID].Goals++;
                         playerinfo[Starting11[j].PlayerID].Form = playerinfo[Starting11[j].PlayerID].Form + RandomNumber(0, 5);
-                        Debug.Log(playerinfo[Starting11[j].PlayerID].Name);
+                        MatchInfo[i].AwayScorers += playerinfo[Starting11[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
+                      
 
                     }
 
+                 
+                }
+           
+                tempList.Clear();
+            
+
+                for (int j = 0; j <= 275; j++)
+                {
+                    if (playerinfo[j].TeamID == MatchInfo[i].HomeID && playerinfo[j].Position != "GK")
+                    {
+
+                        tempList.Add(playerinfo[j]);
+                       
+                    }
 
                 }
+              
+                tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
+
+
+
+                for (int j = 0; j < MatchInfo[i].HomeGoals; j++)
+                {
+                    playerinfo[tempList[j].PlayerID].Goals++;
+                    playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
+
+                    MatchInfo[i].HomeScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
+
+
+                }
+               
 
             }
 
             else
             {
+              
 
                 for (int j = 0; j <= 275; j++)
                 {
@@ -4050,14 +3794,15 @@ public void SelectST(int ButtonID)
                 }
 
                 tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
-                Debug.Log(" \n Now for scorers ");
-                for (int j = 0; j < MatchInfo[i].HomeGoals; j++)
+              
+                for (int j = 0; j <= MatchInfo[i].HomeGoals; j++)
                 {
                     playerinfo[tempList[j].PlayerID].Goals++;
                     playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
-                   
 
-                    Debug.Log(playerinfo[tempList[j].PlayerID].Name);
+                    MatchInfo[i].HomeScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
+
+            
                 }
 
 
@@ -4078,16 +3823,18 @@ public void SelectST(int ButtonID)
                 }
 
                 tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
-                Debug.Log(" \n Now for scorers ");
+    
 
-                for (int j = 0; j < MatchInfo[i].AwayGoals; j++)
+                for (int j = 0; j <= MatchInfo[i].AwayGoals; j++)
                 {
                     playerinfo[tempList[j].PlayerID].Goals++;
                     playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
-                
 
-                    Debug.Log(playerinfo[tempList[j].PlayerID].Name);
+                    MatchInfo[i].AwayScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0,90).ToString() + "', ";
+                   
                 }
+
+
             }
 
 
@@ -4099,7 +3846,6 @@ public void SelectST(int ButtonID)
             for (int j = 0; j < playerinfo.Count(); j++)
             {
 
-
                 if (playerinfo[j].TeamID == MatchInfo[i].AwayID)
                 {
                    
@@ -4107,7 +3853,6 @@ public void SelectST(int ButtonID)
 
                 }
 
-              
             }
          
             awayFoulCounter = awayFoulCounter / 23;
@@ -4215,7 +3960,7 @@ public void SelectST(int ButtonID)
 
             }
 
-
+ 
             //Adding a win to the winning team
             if (MatchInfo[i].HomeGoals > MatchInfo[i].AwayGoals)
             {
@@ -4224,16 +3969,14 @@ public void SelectST(int ButtonID)
 
                 if (TeamManagedID == MatchInfo[i].AwayID)
                 {
-                    DecreaseFanFaith();
-                    DecreaseBoardFaith();
+
                     MatchDayEffects(false);
 
                 }
 
                 if (TeamManagedID == MatchInfo[i].HomeID)
                 {
-                    IncreaseFanFaith();
-                    IncreaseBoardFaith();
+     
                     MatchDayEffects(true);
                 }
 
@@ -4259,7 +4002,7 @@ public void SelectST(int ButtonID)
                 }
             }
 
-            PointsUpdater();
+
 
             Debug.Log(teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " VS " + teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals);
 
@@ -4276,7 +4019,7 @@ public void SelectST(int ButtonID)
 
     public void MatchDayEffects(bool Win)
     {
-
+      
         if (Win == false)
         {
             DecreaseFanFaith();
@@ -4285,7 +4028,7 @@ public void SelectST(int ButtonID)
 
             for (int i = 0; i < Starting11.Count(); i++)
             {
-                Starting11[i].Morale = Starting11[i].Morale - 5;
+                playerinfo[Starting11[i].PlayerID].Morale = playerinfo[Starting11[i].PlayerID].Morale + 5;
 
             }
         }
@@ -4299,16 +4042,16 @@ public void SelectST(int ButtonID)
 
             for (int i = 0; i < Starting11.Count(); i++)
             {
-                Starting11[i].Morale = Starting11[i].Morale + 5;
+                playerinfo[Starting11[i].PlayerID].Morale = playerinfo[Starting11[i].PlayerID].Morale + 5;
 
             }
         }
-
+        Debug.Log("ahhhh ");
 
         for (int i = 0; i < Starting11.Count(); i++)
         {
 
-            if (Starting11[i].Morale < 50)
+            if (playerinfo[Starting11[i].PlayerID].Morale < 50)
             {
 
                 playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Passing - 3;
@@ -4322,7 +4065,7 @@ public void SelectST(int ButtonID)
 
             }
 
-            if (Starting11[i].Morale > 50)
+            if (playerinfo[Starting11[i].PlayerID].Morale > 50)
             {
 
                 playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Passing + 2;
@@ -4340,6 +4083,7 @@ public void SelectST(int ButtonID)
 
 
         updateOverall();
+        selectSquad();
 
     }
 
@@ -4355,7 +4099,7 @@ public void SelectST(int ButtonID)
     public static int RandomNumber(int min, int max)
     {
         lock (syncLock)
-        { // synchronize
+        { 
             return UnityEngine.Random.Range(min, max);
         }
     }
