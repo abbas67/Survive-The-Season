@@ -178,4 +178,4 @@ c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ApplicationManager
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.LoadSceneOnClick
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ChangeColor
-722ab2b0ce4fb953a03ccd4fa63d132c Assembly-CSharp.dll:.ViewController
+36fb3a5d0be29f00cfcc69d723c2ad4d Assembly-CSharp.dll:.ViewController

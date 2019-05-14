@@ -8,9 +8,13 @@ public class ViewController : MonoBehaviour
      public GameObject MatchDayPanel;
      public  GameObject FailureScreenFaith;
      public GameObject FailureScreenStress;
+    public GameObject SuccessScreen;
+
+    public Text InfoText;
 
     public GameObject MainUIPanel;
     public GameObject NotificationsPanel;
+
 
 
 
@@ -468,11 +472,10 @@ public class ViewController : MonoBehaviour
 
     public void CheckLoss()
     {
-        MatchDayPanel = GameObject.Find("Matchday Panel");
-        //FailureScreenFaith = GameObject.Find("FailureScreenFaith");
 
 
-        int Result = MyModel.LossCondition();
+
+        int Result = MyModel.LossCondition(GameWeek);
 
         if (Result == 0)
         {
@@ -484,6 +487,12 @@ public class ViewController : MonoBehaviour
             FailureScreenFaith.SetActive(true);
         }
 
+        if (Result == 3)
+        {
+           SuccessScreen.SetActive(true);
+
+           InfoText.text = "Congratulations you have survived the season! \n " + MyModel.RetrievePos(MyModel.TeamManagedID);
+        }
 
 
     }
@@ -518,10 +527,10 @@ public class ViewController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     MyModel.TeamManagedID = 1;
+     //MyModel.TeamManagedID = 3;
         //only one that should be there after testing
         MyModel.InitModel();
-        MyModel.selectSquad();
+       // MyModel.selectSquad();
 
 
     }
