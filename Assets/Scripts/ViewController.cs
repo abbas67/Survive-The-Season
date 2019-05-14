@@ -5,6 +5,14 @@ using UnityEngine;
 public class ViewController : MonoBehaviour
 {
 
+     public GameObject MatchDayPanel;
+     public  GameObject FailureScreenFaith;
+     public GameObject FailureScreenStress;
+
+    public GameObject MainUIPanel;
+    public GameObject NotificationsPanel;
+
+
 
     public Text NotificationsText;
     public Text ManagerText;
@@ -13,6 +21,11 @@ public class ViewController : MonoBehaviour
     public InputField NationalityInputField;
 
     public Button RaiseButton;
+
+
+
+
+
 
 
     //Text objects to be used to display the scout report and tactics information
@@ -192,7 +205,7 @@ public class ViewController : MonoBehaviour
 
     public void populateSquad()
     {
-
+      
 
         MyModel.populateSquad();
 
@@ -388,6 +401,23 @@ public class ViewController : MonoBehaviour
 
         Faith = MyModel.getFaith();
 
+        if (Faith[0] <= 30)
+        {   
+            BoardText.color = Color.red;
+        }
+        else
+        {
+            BoardText.color = Color.white;
+        }
+
+        if (Faith[1] <= 30)
+        {
+            FanText.color = Color.red;
+        }
+        else
+        {
+            FanText.color = Color.white;
+        }
         BoardText.text = ("Board Faith: " + Faith[0]);
         FanText.text = ("Fan Faith: " + Faith[1]);
 
@@ -411,15 +441,57 @@ public class ViewController : MonoBehaviour
 
     }
 
+
+    public void Resign()
+    {
+
+        MyModel.RestartGame();
+    }
+
     public void DisplayPlayerStats()
     {
         DisplayPlayerInfo();
         DisplayFaithPanel();
-     
 
 
 
     }
+
+    public void TriggerRestart()
+    {
+    
+        GameWeek = 1;
+        MyModel.RestartGame();
+
+    }
+
+
+    public void CheckLoss()
+    {
+        MatchDayPanel = GameObject.Find("Matchday Panel");
+        //FailureScreenFaith = GameObject.Find("FailureScreenFaith");
+
+
+        int Result = MyModel.LossCondition();
+
+        if (Result == 0)
+        {
+            FailureScreenStress.SetActive(true);
+        }
+
+        if (Result == 1)
+        {
+            FailureScreenFaith.SetActive(true);
+        }
+
+
+
+    }
+
+
+
+
+
 
 
     public void CheckFaith()
@@ -433,30 +505,27 @@ public class ViewController : MonoBehaviour
 
     public void populateScorerTable()
     {
-
         MyModel.PopulateScorersTable();
-
-
     }
 
 
     public void InitialisePlayerTeam()
     {
-
         MyModel.InitPlayerTeam();
-
-
-
     }
+
 
     // Start is called before the first frame update
     void Start()
     {
-
-            //only one that should be there after testing
+     MyModel.TeamManagedID = 1;
+        //only one that should be there after testing
         MyModel.InitModel();
+        MyModel.selectSquad();
+
+
     }
-       
+
 
 
 

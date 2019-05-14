@@ -21,7 +21,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.P
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
 7e6f3cec810b51366c6e857ffaf3cdbc Assembly-CSharp.dll:.PanelManager
 51f8d470cac09a8e32d2d547963d8efc Assembly-CSharp.dll:.ResizePanel
-1f982097f1b9ab1649201b5f69369f38 Assembly-CSharp.dll:.Model
+7a1d8429d821055bee84a7af0577b7d4 Assembly-CSharp.dll:.Model
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 5fc094978ce3e3591a7500ed380d854a UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -178,4 +178,4 @@ c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ApplicationManager
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.LoadSceneOnClick
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ChangeColor
-f37276130473aca82332108f52ff2bb4 Assembly-CSharp.dll:.ViewController
+722ab2b0ce4fb953a03ccd4fa63d132c Assembly-CSharp.dll:.ViewController

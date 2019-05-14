@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
-
+using UnityEngine.SceneManagement;
 
 
 
 public class Model : MonoBehaviour
 {
 
-
+    public bool TableCrash = false;
 
     int AttackCount;
     int DefenceCount;
@@ -1390,22 +1390,54 @@ public void SelectST(int ButtonID)
 
 
 
-
-
-
-
-
-
-
-
-
-
-    public void ViewPosessionPlan()
+    public int LossCondition()
     {
+        if (ManStress > 80)
+        {
+            return 0;
+        }
+
+        if (teaminfo[TeamManagedID].FanDiff < 20 || teaminfo[TeamManagedID].FanDiff < 20)
+        {
+            return 1;
+        }
+
+        else return 2;
+    }
 
 
+
+
+
+    public void RestartGame()
+    {
+        /*
+        playerinfo.Clear();
+        teaminfo.Clear();
+        SelectedSquad.Clear();
+        Starting11.Clear();
+        SortedTeams.Clear();
+        MatchStats.Clear();
+
+        index = 0;
+        TeamManagedID = 0;
+
+        loadTeamData();
+        loadPlayerData();
+        updateOverall();
+        OppositionTeamInfo();
+        initTableInfo();
+        PointsUpdater();
+
+    */
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
+
+
+
+
 
 
     public int returnPossessionPlan(List<PlayerInfo> CurrSquad, int teamid)
@@ -2027,7 +2059,7 @@ public void SelectST(int ButtonID)
         SquadFormList[11].gameObject.SetActive(false);
         SquadMoraleList[11].gameObject.SetActive(false);
 
-
+        TableCrash = true;
     }
 
 
@@ -2035,39 +2067,58 @@ public void SelectST(int ButtonID)
 
     public void BackSquadPage()
     {
-
-        SquadNameList[11].gameObject.SetActive(true);
-        SquadPositionList[11].gameObject.SetActive(true);
-        SquadOverallList[11].gameObject.SetActive(true);
-        SquadAgeList[11].gameObject.SetActive(true);
-        SquadFormList[11].gameObject.SetActive(true);
-        SquadMoraleList[11].gameObject.SetActive(true);
-
-
-
-
-        for (int i = 0; i <= 11; i++)
+        if (TableCrash == true)
         {
 
-            SquadNameList[i].text = SelectedSquad[i].Name;
-            SquadPositionList[i].text = SelectedSquad[i].Position;
-            SquadOverallList[i].text = SelectedSquad[i].Overall.ToString();
-            SquadAgeList[i].text = SelectedSquad[i].Age.ToString();
-            SquadFormList[i].text = SelectedSquad[i].Form.ToString();
-            SquadMoraleList[i].text = SelectedSquad[i].Morale.ToString();
+            SquadNameList[11].gameObject.SetActive(true);
+            SquadPositionList[11].gameObject.SetActive(true);
+            SquadOverallList[11].gameObject.SetActive(true);
+            SquadAgeList[11].gameObject.SetActive(true);
+            SquadFormList[11].gameObject.SetActive(true);
+            SquadMoraleList[11].gameObject.SetActive(true);
 
-            // Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
 
+
+
+            for (int i = 0; i <= 11; i++)
+            {
+
+                SquadNameList[i].text = SelectedSquad[i].Name;
+                SquadPositionList[i].text = SelectedSquad[i].Position;
+                SquadOverallList[i].text = SelectedSquad[i].Overall.ToString();
+                SquadAgeList[i].text = SelectedSquad[i].Age.ToString();
+                SquadFormList[i].text = SelectedSquad[i].Form.ToString();
+                SquadMoraleList[i].text = SelectedSquad[i].Morale.ToString();
+
+                // Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
+
+            }
+            TableCrash = false;
         }
-
-
 
     }
 
 
 
 
+    public void avoidTableCrash()
+    {
 
+        NameHeader12 = GameObject.Find("NameHeader (12)").GetComponent<Text>();
+        AgeHeader12 = GameObject.Find("AgeHeader (12)").GetComponent<Text>();
+        PositionHeader12 = GameObject.Find("PositionHeader (12)").GetComponent<Text>();
+        OverallHeader12 = GameObject.Find("OverallHeader (12)").GetComponent<Text>();
+        FormHeader12 = GameObject.Find("FormHeader (12)").GetComponent<Text>();
+        MoraleHeader12 = GameObject.Find("MoraleHeader (12)").GetComponent<Text>();
+
+        NameHeader12.gameObject.SetActive(true);
+        PositionHeader12.gameObject.SetActive(true);
+        OverallHeader12.gameObject.SetActive(true);
+        AgeHeader12.gameObject.SetActive(true);
+        FormHeader12.gameObject.SetActive(true);
+        MoraleHeader12.gameObject.SetActive(true);
+
+    }
 
 
 
@@ -2076,6 +2127,8 @@ public void SelectST(int ButtonID)
 
     public void populateSquad()
     {
+
+
 
 
         NextBtn = GameObject.Find("NextBtn").GetComponent<Button>();
@@ -3669,21 +3722,22 @@ public void SelectST(int ButtonID)
             //Starting11.OrderBy(s => s.Morale);
 
 
-            Starting11.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
 
-
-
-
+            Starting11 = Starting11.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ThenBy(s => s.Form).ToList();
+            Starting11 = Starting11.OrderByDescending(s => s.Form).ThenBy(s => s.Shooting).ToList();
 
 
             if (TeamManagedID == MatchInfo[i].HomeID)
             {
+                for (int j = 0; j < Starting11.Count(); j++)
+                {
+                    Debug.Log(Starting11[j].Name + " " + Starting11[j].Overall);
+                }
 
 
-                Debug.Log(1);
                 for (int j = 0; j <= MatchInfo[i].HomeGoals; j++)
                 {
-                    if (playerinfo[Starting11[j].PlayerID].Position != "GK")
+                    if (playerinfo[Starting11[j].PlayerID].Position != "GK" && playerinfo[Starting11[j].PlayerID].Position != "CB")
                     {
                         playerinfo[Starting11[j].PlayerID].Goals++;
                         playerinfo[Starting11[j].PlayerID].Form = playerinfo[Starting11[j].PlayerID].Form + RandomNumber(0, 5);
@@ -3699,18 +3753,26 @@ public void SelectST(int ButtonID)
 
                 for (int j = 0; j <= 275; j++)
                 {
-                    if (playerinfo[j].TeamID == MatchInfo[i].AwayID && playerinfo[j].Position != "GK")
+                    if (playerinfo[j].TeamID == MatchInfo[i].AwayID && playerinfo[j].Position != "GK" && playerinfo[j].Position != "CB")
                     {
 
                         tempList.Add(playerinfo[j]);
+                       // Debug.Log(playerinfo[j].Name);
 
                     }
 
                 }
 
-                tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
 
 
+                tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ThenBy(s => s.Form).ToList();
+                /*
+                for (int j = 0; j < tempList.Count(); j++)
+                {
+
+                    Debug.Log(tempList[j].Name + tempList[j].Overall);
+                }
+                */
                 for (int j = 0; j < MatchInfo[i].AwayGoals; j++)
                 {
                     playerinfo[tempList[j].PlayerID].Goals++;
@@ -3719,7 +3781,7 @@ public void SelectST(int ButtonID)
                     MatchInfo[i].AwayScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
 
                 }
-
+     
 
 
 
@@ -3729,12 +3791,15 @@ public void SelectST(int ButtonID)
 
             else if (TeamManagedID == MatchInfo[i].AwayID)
             {
+                for (int j = 0; j < Starting11.Count(); j++)
+                {
+                    Debug.Log(Starting11[j].Name + " " + Starting11[j].Overall);
+                }
 
 
-             
                 for (int j = 0; j <= MatchInfo[i].AwayGoals; j++)
                 {
-                    if(playerinfo[Starting11[j].PlayerID].Position != "GK")
+                    if(playerinfo[Starting11[j].PlayerID].Position != "GK" && playerinfo[Starting11[j].PlayerID].Position != "CB")
                     {
 
                         playerinfo[Starting11[j].PlayerID].Goals++;
@@ -3752,19 +3817,26 @@ public void SelectST(int ButtonID)
 
                 for (int j = 0; j <= 275; j++)
                 {
-                    if (playerinfo[j].TeamID == MatchInfo[i].HomeID && playerinfo[j].Position != "GK")
+                    if (playerinfo[j].TeamID == MatchInfo[i].HomeID && playerinfo[j].Position != "GK" && playerinfo[j].Position != "CB")
                     {
 
                         tempList.Add(playerinfo[j]);
-                       
+                        //Debug.Log(playerinfo[j].Name);
+
                     }
 
                 }
-              
-                tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
 
+                tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ThenBy(s => s.Form).ToList();
 
+                /*
+                for (int j = 0; j < tempList.Count(); j++)
+                {
 
+                    Debug.Log(tempList[j].Name + tempList[j].Overall);
+                }
+
+    */
                 for (int j = 0; j < MatchInfo[i].HomeGoals; j++)
                 {
                     playerinfo[tempList[j].PlayerID].Goals++;
@@ -3774,7 +3846,7 @@ public void SelectST(int ButtonID)
 
 
                 }
-               
+
 
             }
 
@@ -3784,7 +3856,7 @@ public void SelectST(int ButtonID)
 
                 for (int j = 0; j <= 275; j++)
                 {
-                    if (playerinfo[j].TeamID == MatchInfo[i].HomeID && playerinfo[j].Position != "GK")
+                    if (playerinfo[j].TeamID == MatchInfo[i].HomeID && playerinfo[j].Position != "GK" && playerinfo[j].Position != "CB")
                     {
 
                         tempList.Add(playerinfo[j]);
@@ -3793,8 +3865,8 @@ public void SelectST(int ButtonID)
 
                 }
 
-                tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
-              
+               tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ThenBy(s => s.Form).ToList();
+
                 for (int j = 0; j <= MatchInfo[i].HomeGoals; j++)
                 {
                     playerinfo[tempList[j].PlayerID].Goals++;
@@ -3813,7 +3885,7 @@ public void SelectST(int ButtonID)
 
                 for (int j = 0; j <= 275; j++)
                 {
-                    if (playerinfo[j].TeamID == MatchInfo[i].AwayID && playerinfo[j].Position != "GK")
+                    if (playerinfo[j].TeamID == MatchInfo[i].AwayID && playerinfo[j].Position != "GK" && playerinfo[j].Position != "CB")
                     {
 
                         tempList.Add(playerinfo[j]);
@@ -3822,8 +3894,8 @@ public void SelectST(int ButtonID)
 
                 }
 
-                tempList.OrderBy(s => s.Morale).ThenBy(s => s.Shooting).ThenBy(s => s.Overall).ThenBy(s => s.Form);
-    
+                tempList = tempList.OrderByDescending(s => s.Star).ThenBy(s => s.Morale).ThenBy(s => s.Form).ToList();
+
 
                 for (int j = 0; j <= MatchInfo[i].AwayGoals; j++)
                 {
@@ -4028,7 +4100,7 @@ public void SelectST(int ButtonID)
 
             for (int i = 0; i < Starting11.Count(); i++)
             {
-                playerinfo[Starting11[i].PlayerID].Morale = playerinfo[Starting11[i].PlayerID].Morale + 5;
+                playerinfo[Starting11[i].PlayerID].Morale = playerinfo[Starting11[i].PlayerID].Morale - 5;
 
             }
         }
@@ -4046,7 +4118,7 @@ public void SelectST(int ButtonID)
 
             }
         }
-        Debug.Log("ahhhh ");
+     
 
         for (int i = 0; i < Starting11.Count(); i++)
         {
@@ -4065,17 +4137,17 @@ public void SelectST(int ButtonID)
 
             }
 
-            if (playerinfo[Starting11[i].PlayerID].Morale > 50)
+            if (playerinfo[Starting11[i].PlayerID].Morale > 60)
             {
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Passing + 2;
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Passing + 3;
 
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Shooting + 2;
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Shooting + 3;
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Tackling + 2;
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Tackling + 3;
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Dribbling + 2;
+                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Dribbling + 3;
 
             }
 
@@ -4113,6 +4185,7 @@ public void SelectST(int ButtonID)
 
     public void initTableInfo()
     {
+        TableStats.Clear();
 
         for (int i = 0; i <= 11; i++)
         {
