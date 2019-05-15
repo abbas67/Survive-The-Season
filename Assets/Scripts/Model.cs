@@ -10,44 +10,38 @@ using UnityEngine.SceneManagement;
 
 public class Model : MonoBehaviour
 {
-
+    //Used to avoid a crash to do with the Team tab.
     public bool TableCrash = false;
 
+
+    //variable used for calculating attack and defence for each team
     int AttackCount;
     int DefenceCount;
 
+
+    //Variables required for manager creation and team selection.
     public int index = 0;
-    // public int TeamManagedID;
-
     public int TeamManagedID = 0;
-
-
-
-    int ManAge;
     public string ManNationality;
     public string ManName;
-
-
     public int ManStress = 50;
-    public int ManReputation = 50;
-
-
-    public int Uncertiancy = 0;
 
 
 
 
 
-
+    // List structures used to store player and team info.
     public List<PlayerInfo> playerinfo = new List<PlayerInfo>();
-    public TextAsset PlayerData;
     public List<TeamInfo> teaminfo = new List<TeamInfo>();
+
+
+    //Used for reading in data from a csv file.
     public TextAsset TeamData;
+    public TextAsset PlayerData;
 
 
 
-
-
+    //Required text objects for the team selection portion of the game.
 
     public Text PlayerWarnings;
     public Text SquadCapabilitiesText;
@@ -94,28 +88,48 @@ public class Model : MonoBehaviour
     List<Button> MFTracker = new List<Button>();
 
 
+    public List<PlayerInfo> Starting11 = new List<PlayerInfo>();
+
+    public int totalST = 0;
+    public int totalCB = 0;
+    public int totalMF = 0;
+    public int totalRB = 0;
+    public int totalLB = 0;
+    public int totalLM = 0;
+    public int totalRM = 0;
+    public int totalGK = 0;
+    public int TotalStarters = 0;
 
 
+
+    public bool[] buttonPressedTracker = new bool[6];
+
+    public bool[] CBpressed = new bool[4];
+    public bool[] STpressed = new bool[3];
+
+    public bool CBbtn1pressed = false;
+    public bool RMbtn1pressed = false;
+    public bool LMbtn1pressed = false;
+    public bool RBbtn1pressed = false;
+    public bool LBbtn1pressed = false;
+    public bool GKbtn1pressed = false;
+
+
+    public List<Starting11Info> Keepers = new List<Starting11Info>();
+    public List<Starting11Info> CentreBacks = new List<Starting11Info>();
+    List<Starting11Info> RightBacks = new List<Starting11Info>();
+    List<Starting11Info> LeftBacks = new List<Starting11Info>();
+    List<Starting11Info> MidFielders = new List<Starting11Info>();
+    List<Starting11Info> LeftMid = new List<Starting11Info>();
+    List<Starting11Info> RightMid = new List<Starting11Info>();
+    List<Starting11Info> Striker = new List<Starting11Info>();
+
+    public List<Starting11Info> SquadTracker = new List<Starting11Info>();
+
+    //Used for displaying squad information.
 
     public Button NextBtn;
     public Button BackBtn;
-
-
-    public Text ManagerText;
-
-    public Text Pos0;
-    public Text Pos1;
-    public Text Pos2;
-    public Text Pos3;
-    public Text Pos4;
-    public Text Pos5;
-    public Text Pos6;
-    public Text Pos7;
-    public Text Pos8;
-    public Text Pos9;
-    public Text Pos10;
-    public Text Pos11;
-
 
     public Text NameHeader;
     public Text PositionHeader;
@@ -223,7 +237,27 @@ public class Model : MonoBehaviour
     public Button MoreInfoBtn12;
 
 
+    List<Text> Tlist = new List<Text>();
+    List<Text> SquadAgeList = new List<Text>();
+    List<Text> SquadOverallList = new List<Text>();
+    List<Text> SquadFormList = new List<Text>();
+    List<Text> SquadMoraleList = new List<Text>();
+    List<Text> SquadPositionList = new List<Text>();
+    List<Text> SquadNameList = new List<Text>();
 
+    // Used for displaying table information
+    public Text Pos0;
+    public Text Pos1;
+    public Text Pos2;
+    public Text Pos3;
+    public Text Pos4;
+    public Text Pos5;
+    public Text Pos6;
+    public Text Pos7;
+    public Text Pos8;
+    public Text Pos9;
+    public Text Pos10;
+    public Text Pos11;
 
     public Text Team0;
     public Text Wins0;
@@ -298,10 +332,14 @@ public class Model : MonoBehaviour
     public Text Points11;
 
 
+    List<Text> LeagueTeamList = new List<Text>();
+    List<Text> LeagueWinsList = new List<Text>();
+    List<Text> LeagueLossesList = new List<Text>();
+    List<Text> LeagueDrawsList = new List<Text>();
+    List<Text> LeaguePointsList = new List<Text>();
 
 
-
-
+    // Used for displaying top scorers information.
 
     public Text ScorerPositionHeader0;
     public Text ScorerNameHeader0;
@@ -329,19 +367,6 @@ public class Model : MonoBehaviour
     public Text ScorerGoalsScored4;
 
 
-    List<Text> Tlist = new List<Text>();
-    List<Text> SquadAgeList = new List<Text>();
-    List<Text> SquadOverallList = new List<Text>();
-    List<Text> SquadFormList = new List<Text>();
-    List<Text> SquadMoraleList = new List<Text>();
-    List<Text> SquadPositionList = new List<Text>();
-    List<Text> SquadNameList = new List<Text>();
-
-    List<Text> LeagueTeamList = new List<Text>();
-    List<Text> LeagueWinsList = new List<Text>();
-    List<Text> LeagueLossesList = new List<Text>();
-    List<Text> LeagueDrawsList = new List<Text>();
-    List<Text> LeaguePointsList = new List<Text>();
 
     List<Text> ScorerPositionList = new List<Text>();
     List<Text> ScorerNameList = new List<Text>();
@@ -350,7 +375,7 @@ public class Model : MonoBehaviour
 
 
 
-
+    //Lists used to store data needed.
 
     public List<OppositionInfo> oppinfo = new List<OppositionInfo>();
 
@@ -360,27 +385,30 @@ public class Model : MonoBehaviour
 
     public List<Text> SquadChoice;
 
-
-
-    static public int CurrentTeamOverall;
-    static public int CurrentTeamThreat;
-    static public int CurrentTeamDefence;
-    static public int CurrentTeamPossesion;
-    static public int CurrentTeamCounter;
-    static public int CurrentTeamPressure;
-
-
-
-
-
     public List<TableInfo> TableStats = new List<TableInfo>();
 
     public List<MatchDayInfo> MatchStats = new List<MatchDayInfo>();
-    public int GameWeek = 1;
 
+
+
+    // Used for calculation of team overalls.
+    public int CurrentTeamOverall;
+    public int CurrentTeamThreat;
+    public int CurrentTeamDefence;
+    public int CurrentTeamPossesion;
+    public int CurrentTeamCounter;
+    public int CurrentTeamPressure;
+
+
+    
+
+    // Used for matchday preparation.
     int[] HomeTeams = new int[] { 0, 2, 4, 6, 8, 10 };
     int[] AwayTeams = new int[] { 1, 3, 5, 7, 9, 11 };
 
+
+
+    // Required to make sure random numbers are actually random.
     private static readonly System.Random rnd = new System.Random();
     private static object syncLock = new object();
 
@@ -391,81 +419,15 @@ public class Model : MonoBehaviour
 
 
 
-
-
-
-    public Text LineupText;
-
-    public bool LMSelectCheck = false;
-
-    public List<Starting11Info> Keepers = new List<Starting11Info>();
-    public List<Starting11Info> CentreBacks = new List<Starting11Info>();
-    List<Starting11Info> RightBacks = new List<Starting11Info>();
-    List<Starting11Info> LeftBacks = new List<Starting11Info>();
-    List<Starting11Info> MidFielders = new List<Starting11Info>();
-    List<Starting11Info> LeftMid = new List<Starting11Info>();
-    List<Starting11Info> RightMid = new List<Starting11Info>();
-    List<Starting11Info> Striker = new List<Starting11Info>();
-
-    public List<Starting11Info> SquadTracker = new List<Starting11Info>();
-
-
-    public List<PlayerInfo> Starting11 = new List<PlayerInfo>();
-
-    public int totalST = 0;
-    public int totalCB = 0;
-    public int totalMF = 0;
-    public int totalRB = 0;
-    public int totalLB = 0;
-    public int totalLM = 0;
-    public int totalRM = 0;
-    public int totalGK = 0;
-    public int TotalStarters = 0;
-
-
-
-
-
-
-    public bool[] buttonPressedTracker = new bool[6];
-
-    public bool[] CBpressed = new bool[4];
-    public bool[] STpressed = new bool[3];
-
-
-
-
-    public bool CBbtn1pressed = false;
-    public bool RMbtn1pressed = false;
-    public bool LMbtn1pressed = false;
-    public bool RBbtn1pressed = false;
-    public bool LBbtn1pressed = false;
-    public bool GKbtn1pressed = false;
-
-
-
-
-
-
+    // Used to make sure players selected tactics are actually carried out.
     public int SelectedTactic = 0;
 
 
 
 
+   
 
-    public void DisplayNewAttackDefence()
-    {
-        if (Starting11.Count >= 8)
-        {
-            SquadCapabilitiesText.text = "Attacking Threat: " + OppositionAttackThreat(Starting11, TeamManagedID) + "    Defensive Threat: " + OppositionDefenceThreat(Starting11, TeamManagedID);
-
-
-        }
-
-
-
-    }
-
+    //Taking in user input and assigning them to values to store for later.
     public void ManagerCreate(string NameInput, string NatInput)
     {
 
@@ -476,6 +438,12 @@ public class Model : MonoBehaviour
 
     }
 
+
+
+
+
+
+    //Adds a player to a list of players that will be starting the match.
 
     public void AddToLineup(int PlayerID)
     {
@@ -493,6 +461,7 @@ public class Model : MonoBehaviour
         DisplayNewAttackDefence();
     }
 
+    //Removing a player from a list of players that will be starting the match.
 
     public void RemoveFromLineup(int ToRemove)
     {
@@ -514,27 +483,15 @@ public class Model : MonoBehaviour
 
 
 
-    public void PlayerStarterView()
-    {
-
-        for (int i = 0; i < Starting11.Count(); i++)
-        {
-
-            LineupText.text = LineupText.text + Starting11[i].Name;
-
-        }
-
-
-    }
-
-
-
+    // Used to initialise the starting 11 selection screen for the player and makes sure specific positions are always used.
     public void InitialiseStarting11()
     {
+
+ 
         int ButtonID = 0;
         Starting11.Clear();
 
-
+        // Adding crucial players to the lineup e.g. GK.
         for (int i = 0; i < buttonPressedTracker.Count(); i++)
         {
             buttonPressedTracker[i] = false;
@@ -620,9 +577,10 @@ public class Model : MonoBehaviour
 
 
 
-
+    //Adding a keeper to the starting11 list depending on the ID of each button pressed, and also deselecting the previously selected keeper.
     public void SelectGK(int ButtonID)
     {
+
         if (ButtonID == 0)
         {
             AddToLineup(Keepers[0].PlayerID);
@@ -693,6 +651,7 @@ public class Model : MonoBehaviour
 
 
 
+    //Adding a LM to the starting11 list depending on the ID of each button pressed, and also deselecting the previously selected LM.
 
     public void SelectLM(int ButtonID)
     {
@@ -769,6 +728,7 @@ public class Model : MonoBehaviour
         }
 
     }
+    //Adding a RM to the starting11 list depending on the ID of each button pressed, and also deselecting the previously selected RM.
 
     public void SelectRM(int ButtonID)
     {
@@ -857,7 +817,7 @@ public class Model : MonoBehaviour
 
 
 
-
+    // Players are allowed to select as many players in this position as they want as long as there is less than 11 players already in the starting lineup.
 public void SelectST(int ButtonID)
     {
 
@@ -905,6 +865,7 @@ public void SelectST(int ButtonID)
 
 
 
+    //Adding a LB to the starting11 list depending on the ID of each button pressed, and also deselecting the previously selected LB.
 
 
     public void SelectLB(int ButtonID)
@@ -992,6 +953,9 @@ public void SelectST(int ButtonID)
 
     }
 
+    //Adding a RB to the starting11 list depending on the ID of each button pressed, and also deselecting the previously selected RB.
+
+
     public void SelectRB(int ButtonID)
     {
 
@@ -1073,6 +1037,7 @@ public void SelectST(int ButtonID)
 
     }
 
+    // Players are allowed to select as many players in this position as they want as long as there is less than 11 players already in the starting lineup.
 
     public void SelectCB(int ButtonID)
     {
@@ -1117,6 +1082,7 @@ public void SelectST(int ButtonID)
 
 
     }
+    // Players are allowed to select as many players in this position as they want as long as there is less than 11 players already in the starting lineup.
 
 
     public void SelectMF(int ButtonID)
@@ -1160,6 +1126,7 @@ public void SelectST(int ButtonID)
 
     }
 
+    //Displaying which available players there are to be selected for the user per position.
 
     public void displayPlayers(List<Starting11Info> playerTracker, List<Button> buttons)
     {
@@ -1180,6 +1147,8 @@ public void SelectST(int ButtonID)
     }
 
 
+
+    //Retrieving which players can be selected and calling the displayPlayerrs function to display them.
 
     public void displayOptions()
     {
@@ -1389,14 +1358,14 @@ public void SelectST(int ButtonID)
 
 
 
-
+    //Checking if the user has won or lost the game and returning a value based on this.
     public int LossCondition(int GameWeek)
     {
         if (ManStress > 80)
         {
             return 0;
         }
-
+        //Faith is too low causing the loss condition.
         if (teaminfo[TeamManagedID].FanDiff < 20 || teaminfo[TeamManagedID].FanDiff < 20)
         {
             return 1;
@@ -1407,45 +1376,35 @@ public void SelectST(int ButtonID)
             return 3;
                     
         }
-
+        //Nothing is to happen.
         else return 2;
     }
 
 
 
 
-
+    //Restarts the scene thus restarting the gam.
     public void RestartGame()
     {
-        /*
-        playerinfo.Clear();
-        teaminfo.Clear();
-        SelectedSquad.Clear();
-        Starting11.Clear();
-        SortedTeams.Clear();
-        MatchStats.Clear();
-
-        index = 0;
-        TeamManagedID = 0;
-
-        loadTeamData();
-        loadPlayerData();
-        updateOverall();
-        OppositionTeamInfo();
-        initTableInfo();
-        PointsUpdater();
-
-    */
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
 
 
 
 
 
+    // calls methods to retrive stats and displays them
+    public void DisplayNewAttackDefence()
+    {
+        if (Starting11.Count >= 8)
+        {
+            SquadCapabilitiesText.text = "Attacking Threat: " + OppositionAttackThreat(Starting11, TeamManagedID) + "    Defensive Threat: " + OppositionDefenceThreat(Starting11, TeamManagedID);
 
+        }
+
+    }
+
+    // calculates a value based on the stats of each player in the list of classes, CurrSquad.
     public int returnPossessionPlan(List<PlayerInfo> CurrSquad, int teamid)
     {
 
@@ -1455,16 +1414,15 @@ public void SelectST(int ButtonID)
         int i = 0;
         List<int> PossesionAverage = new List<int>();
 
+
+
+        // ball retention is the most important part of this gameplan and that is what is taken into account.
         for (i = 0; i <= 22; i++)
         {
-
             PossesionTotal = 0;
             PossesionTotal = PossesionTotal + CurrSquad[i].Passing;
             PossesionTotal = PossesionTotal + CurrSquad[i].Dribbling;
             PossesionAverage.Add(PossesionTotal / 2);
-
-
-
         }
 
 
@@ -1485,6 +1443,7 @@ public void SelectST(int ButtonID)
 
 
 
+    // calculates a value based on the stats of each player in the list of classes, CurrSquad.
 
     public int returnCounterPlan(List<PlayerInfo> CurrSquad, int teamid)
     {
@@ -1555,6 +1514,7 @@ public void SelectST(int ButtonID)
 
 
 
+    // calculates a value based on the stats of each player in the list of classes, CurrSquad.
 
     public int returnPressurePlan(List<PlayerInfo> CurrSquad, int teamid)
     {
@@ -1566,6 +1526,9 @@ public void SelectST(int ButtonID)
 
         for (i = 0; i <= 22; i++)
         {
+
+
+            //The whole team needs to be decent at tackling and be fit to be good at pressuring the opposition into a mistake.
             if (CurrSquad[i].Position != "GK")
             {
                 PressureTotal = 0;
@@ -1600,7 +1563,7 @@ public void SelectST(int ButtonID)
 
 
 
-
+    //Finding the average of overall of the users team.
     public int CalculateCurrOverall()
     {
         int total = 0;
@@ -1608,8 +1571,6 @@ public void SelectST(int ButtonID)
         for (int i = 0; i <= 22; i++)
         {
             total = total + SelectedSquad[i].Overall;
-
-
 
         }
 
@@ -1619,7 +1580,7 @@ public void SelectST(int ButtonID)
 
     }
 
-
+    //Adding the text objects to lists and then using a loop to display these correctly
     public void PopulateScorersTable()
     {
         List<PlayerInfo> SortedPlayers = new List<PlayerInfo>();
@@ -1689,6 +1650,7 @@ public void SelectST(int ButtonID)
         }
     }
 
+    //Adding the text objects to lists and then using a loop to display these correctly
 
     public void PopulateTable()
     {
@@ -1860,6 +1822,9 @@ public void SelectST(int ButtonID)
 
     }
 
+
+
+    //Finding the index of the players team in the Sorted teams list and returning a table position.
     public string RetrievePos(int FindTeamID)
     {
 
@@ -1977,6 +1942,8 @@ public void SelectST(int ButtonID)
 
 
 
+    // a win is worth 3 points and a draw is worth 1 point, so this is the basis of of how each teams numbers of points are calculated.
+    //The teams are then sorted again by points once the point calculations are finished.
     public void PointsUpdater()
     {
         int WinsCounter = 0;
@@ -2009,17 +1976,7 @@ public void SelectST(int ButtonID)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+    //Iterating through the playerinfo list of classes and adding them to the SelectedSquad list if the Team ID matches TeamManagaedID.
     public void selectSquad()
     {
         SelectedSquad.Clear();
@@ -2041,8 +1998,12 @@ public void SelectST(int ButtonID)
 
     }
 
+
+
+    // Displaying the second page of the full squad. Seting the last uneeded text objects to false.
     public void NextSquadPage()
     {
+
 
         for (int i = 12; i <= 22; i++)
         {
@@ -2053,8 +2014,6 @@ public void SelectST(int ButtonID)
             SquadAgeList[i - 12].text = SelectedSquad[i].Age.ToString();
             SquadFormList[i - 12].text = SelectedSquad[i].Form.ToString();
             SquadMoraleList[i - 12].text = SelectedSquad[i].Morale.ToString();
-
-            //Debug.Log(SelectedSquad[i].Name + " " + SelectedSquad[i].Position);
 
         }
 
@@ -2070,6 +2029,7 @@ public void SelectST(int ButtonID)
 
 
 
+    // Displaying the first page of the full squad, setting any previously inactive objects active.
 
     public void BackSquadPage()
     {
@@ -2107,33 +2067,12 @@ public void SelectST(int ButtonID)
 
 
 
-    public void avoidTableCrash()
-    {
-
-        NameHeader12 = GameObject.Find("NameHeader (12)").GetComponent<Text>();
-        AgeHeader12 = GameObject.Find("AgeHeader (12)").GetComponent<Text>();
-        PositionHeader12 = GameObject.Find("PositionHeader (12)").GetComponent<Text>();
-        OverallHeader12 = GameObject.Find("OverallHeader (12)").GetComponent<Text>();
-        FormHeader12 = GameObject.Find("FormHeader (12)").GetComponent<Text>();
-        MoraleHeader12 = GameObject.Find("MoraleHeader (12)").GetComponent<Text>();
-
-        NameHeader12.gameObject.SetActive(true);
-        PositionHeader12.gameObject.SetActive(true);
-        OverallHeader12.gameObject.SetActive(true);
-        AgeHeader12.gameObject.SetActive(true);
-        FormHeader12.gameObject.SetActive(true);
-        MoraleHeader12.gameObject.SetActive(true);
-
-    }
 
 
-
-
-
+    //Adding text objects to a list and iterating through a for loop to display them.
 
     public void populateSquad()
     {
-
 
 
 
@@ -2381,7 +2320,7 @@ public void SelectST(int ButtonID)
 
 
 
-
+    //returns the opposition threat of the team with the same ID as TeamID to the view/controller.
 
     public int[] CalculateCurrentThreat(int TeamID)
     {
@@ -2401,6 +2340,8 @@ public void SelectST(int ButtonID)
 
     }
 
+   //returning faith stats to the view/controller/
+
     public int[] getFaith()
     {
 
@@ -2415,7 +2356,6 @@ public void SelectST(int ButtonID)
 
     }
 
-    // Function in Model class
     public string[] getPlayerInfo()
     {
 
@@ -2430,6 +2370,10 @@ public void SelectST(int ButtonID)
 
 
     }
+
+
+
+    //used to find out the stats of every team in the game.
 
     public void OppositionTeamInfo()
     {
@@ -2477,7 +2421,7 @@ public void SelectST(int ButtonID)
 
     }
 
-
+    //Looping through the passed in list of classes and calculating an attacking threat number, taking into account the stats for each individual class in the list.
     public int OppositionAttackThreat(List<PlayerInfo> OppThreat, int teamid)
     {
 
@@ -2559,7 +2503,6 @@ public void SelectST(int ButtonID)
 
         CurrentTeamThreat = attackcounter / AttackAverage.Count();
 
-        // Debug.Log("New Attack is" + CurrentTeamThreat);
         return CurrentTeamThreat;
 
 
@@ -2568,6 +2511,7 @@ public void SelectST(int ButtonID)
 
     }
 
+    //Looping through the passed in list of classes and calculating an defencive threat number, taking into account the stats for each individual class in the list.
 
 
     public int OppositionDefenceThreat(List<PlayerInfo> OppThreat, int teamid)
@@ -2637,29 +2581,14 @@ public void SelectST(int ButtonID)
 
         CurrentTeamDefence = Defencecounter / DefenceAverage.Count();
 
-        // Debug.Log("New Defence is" + CurrentTeamDefence);
         return CurrentTeamDefence;
-
-
-
-
-
 
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
+   
+    //Setting the ID of the teams to play each other based on the Game week.
     public void AwayFixtures(int GameWeek)
     {
 
@@ -3283,7 +3212,7 @@ public void SelectST(int ButtonID)
     }
 
 
-
+    //Initialising the machday info for every match to be played based on gameweek.
     public List<MatchDayInfo> ScheduleMatches(List<MatchDayInfo> MatchStats)
     {
 
@@ -3308,7 +3237,6 @@ public void SelectST(int ButtonID)
             t.AwayScorers = "";
 
             MatchStats.Add(t);
-            // Debug.Log(teaminfo[MatchStats[i].HomeID].Name + "  " + teaminfo[MatchStats[i].HomeID].ID + "  " + teaminfo[MatchStats[i].AwayID].Name + "  " + teaminfo[MatchStats[i].AwayID].ID);
 
         }
         return MatchStats;
@@ -3323,18 +3251,17 @@ public void SelectST(int ButtonID)
 
 
 
-
+    //Running the functions needed to complete a match day then updating the points of each team.
     public void Matchday(int Week)
     {
-
-
         Debug.Log("GameWeek: " + Week);
         MatchStats = MatchResults(MatchStats);
         PointsUpdater();
-
     }
 
-    //Remeber i removed passing in Matchstats byref 
+
+
+    //Finding the match that the players team was involved in and then preparing the matchh information to be returned to ViewController.
     public string[] DisplayResult(int week)
     {
 
@@ -3375,7 +3302,7 @@ public void SelectST(int ButtonID)
     }
 
 
-
+    //Finding the opposition team on a set matchday for the player and finding any players with an overall of over 85 on that team and if the teams overall is better than the playes, this is all returned to View/Controller.
 
     public string[] MatchPreparation(List<MatchDayInfo> MatchInfo, int GameWeek)
     {
@@ -3425,7 +3352,7 @@ public void SelectST(int ButtonID)
         //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
         int difference = HomeBasicOverall - AwayBasicOverall;
 
-        if (difference > 8)
+        if (difference > 4)
         {
             homeweak = true;
 
@@ -3433,7 +3360,7 @@ public void SelectST(int ButtonID)
 
         difference = AwayBasicOverall - HomeBasicOverall;
 
-        if (difference < 8)
+        if (difference < 4)
         {
             awayweak = false;
         }
@@ -3482,6 +3409,10 @@ public void SelectST(int ButtonID)
             stars = oppStars.Aggregate((i, j) => i + ", " + j).ToString();
         }
 
+
+
+
+        //Returning info about the opposing team.
         if (playerIsHome == true)
         {
             ToBeReturned[0] = (teaminfo[MatchInfo[playerTrack].AwayID].Name + " Scout Report");
@@ -3505,7 +3436,7 @@ public void SelectST(int ButtonID)
             }
 
         }
-
+        //Returning info about the opposing team.
         if (playerIsHome == false)
         {
             ToBeReturned[0] = (teaminfo[MatchInfo[playerTrack].HomeID].Name + " Scout Report");
@@ -3537,7 +3468,7 @@ public void SelectST(int ButtonID)
 
 
 
-
+    //Returns a true or false answer based on the players position in the table and the teams budget.
     public bool tryRaise()
     {
         int tableposition = SortedTeams.FindIndex(r => r.TeamID == TeamManagedID);
@@ -3564,6 +3495,8 @@ public void SelectST(int ButtonID)
     }
 
 
+
+    //Calculating the stats for each game.
     public List<MatchDayInfo> MatchResults(List<MatchDayInfo> MatchInfo)
     {
 
@@ -3582,8 +3515,8 @@ public void SelectST(int ButtonID)
            int AwayBasicOverall = (teaminfo[MatchInfo[i].AwayID].Attack + teaminfo[MatchInfo[i].AwayID].Defence) / 2;
 
 
-            //Significantly weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
-            //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
+            // weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
+            //weaker teams should opt for pressure or counter depending on which they can execute better.
             int difference = HomeBasicOverall - AwayBasicOverall;
 
             if (difference < 4)
@@ -3621,7 +3554,7 @@ public void SelectST(int ButtonID)
             }
 
 
-
+            //Dividing the tactic by 100 so that it can be multiplied with the amount of goals scored later on.
             decimal HomeExecution = (decimal)HomeTactic / 100;
             decimal AwayExecution = (decimal)AwayTactic / 100;
 
@@ -3938,6 +3871,9 @@ public void SelectST(int ButtonID)
          
             awayFoulCounter = awayFoulCounter / 23;
 
+            //The more aggressive a team is, the more fouls they will have.
+
+
             if (Enumerable.Range(0, 30).Contains(awayFoulCounter))
             {
                 MatchInfo[i].AwayFouls = RandomNumber(0, 8);
@@ -4032,8 +3968,6 @@ public void SelectST(int ButtonID)
             // Adding Draws to each team
 
 
-            //
-
             if (MatchInfo[i].HomeGoals == MatchInfo[i].AwayGoals)
             {
                 TableStats[MatchInfo[i].HomeID].Draws++;
@@ -4043,10 +3977,15 @@ public void SelectST(int ButtonID)
 
  
             //Adding a win to the winning team
+            //And a loss to the losing side.
             if (MatchInfo[i].HomeGoals > MatchInfo[i].AwayGoals)
             {
                 TableStats[MatchInfo[i].HomeID].Wins++;
                 TableStats[MatchInfo[i].AwayID].Losses++;
+
+
+                //Making sure the win has a positive affect on a team.
+                //And a negative affect if the team lost.
 
                 if (TeamManagedID == MatchInfo[i].AwayID)
                 {
@@ -4064,6 +4003,8 @@ public void SelectST(int ButtonID)
 
             }
 
+            //Making sure the win has a positive affect on a team.
+            //And a negative affect if the team lost.
 
             if (MatchInfo[i].HomeGoals < MatchInfo[i].AwayGoals)
             {
@@ -4084,11 +4025,10 @@ public void SelectST(int ButtonID)
             }
 
 
-
-            Debug.Log(teaminfo[MatchInfo[i].HomeID].Name + "  " + MatchInfo[i].HomeGoals + " VS " + teaminfo[MatchInfo[i].AwayID].Name + "  " + MatchInfo[i].AwayGoals);
-
         }
 
+
+        //Updating the amount of points for each team based on the now changed wins and losses.
         PointsUpdater();
 
 
@@ -4096,13 +4036,16 @@ public void SelectST(int ButtonID)
 
     }
 
-
+    //Making sure the win has a positive affect on a team.
+    //And a negative affect if the team lost.
 
     public void MatchDayEffects(bool Win)
     {
       
         if (Win == false)
         {
+            //A loss will result in every player that the user chose to start the game to have a reduced morale.
+            //The manager will also gain some stress
             DecreaseFanFaith();
             DecreaseBoardFaith();
             ManStress = ManStress + 3;
@@ -4114,6 +4057,8 @@ public void SelectST(int ButtonID)
             }
         }
 
+        //A loss will result in every player that the user chose to start the game to have an improved morale.
+        //The manager will also lose some stress
 
         if (Win == true)
         {
@@ -4128,6 +4073,8 @@ public void SelectST(int ButtonID)
             }
         }
      
+
+        //If a players morale is less than 50 their stats should detoriate by random amounts.
 
         for (int i = 0; i < Starting11.Count(); i++)
         {
@@ -4146,6 +4093,8 @@ public void SelectST(int ButtonID)
 
             }
 
+
+            //If a players morale is more than 60 then the players stats should improve by random amounts.
             if (playerinfo[Starting11[i].PlayerID].Morale > 60)
             {
 
@@ -4162,7 +4111,8 @@ public void SelectST(int ButtonID)
 
         }
 
-
+        // The players overalls should be updated and 
+        // the SelectedSquad list should be updated.
         updateOverall();
         selectSquad();
 
@@ -4175,7 +4125,7 @@ public void SelectST(int ButtonID)
 
 
 
-
+    // Making sure each random number is actually random.
 
     public static int RandomNumber(int min, int max)
     {
@@ -4190,7 +4140,7 @@ public void SelectST(int ButtonID)
 
 
 
-
+    //Initialing the table information.
 
     public void initTableInfo()
     {
@@ -4214,6 +4164,9 @@ public void SelectST(int ButtonID)
 
     }
 
+
+
+    //Returnig the scouting report information to the player.
     public string[] prepareTeams(int Week)
     {
 
@@ -4238,7 +4191,7 @@ public void SelectST(int ButtonID)
     }
 
 
-
+    // returning squad and manager status based on the average morale of the squad and the managers squad level.
 
     public string[] GetNotifications()
     {
@@ -4301,7 +4254,7 @@ public void SelectST(int ButtonID)
 
     }
 
-
+    // returning a random situation which will randomly have a further affect on the players stress.
 
     public string[] managerDistractions(int Stress)
     {
@@ -4321,11 +4274,11 @@ public void SelectST(int ButtonID)
         Situations[4] = "You have dropped your phone and smashed your screen, you are raging";
 
 
-        Situations[3] = "You are feeling fine and your stress is at a managable but not an ideal level.";
+        Situations[5] = "You are feeling fine and your stress is at a managable but not an ideal level.";
 
-        Situations[4] = "You are feeling great and decided to treat your family to a night at the cinema";
+        Situations[6] = "You are feeling great and decided to treat your family to a night at the cinema";
 
-        Situations[5] = "You are feeling great and decided to treat your family to a day at the beach";
+        Situations[7] = "You are feeling great and decided to treat your family to a day at the beach";
 
 
 
@@ -4340,7 +4293,7 @@ public void SelectST(int ButtonID)
         if (Enumerable.Range(0, 34).Contains(Stress))
         {
 
-            ReturnThis[0] = Situations[RandomNumber(4, 5)];
+            ReturnThis[0] = Situations[RandomNumber(6, 7)];
             ReturnThis[1] = RandomNumber(0, 1).ToString();
 
 
@@ -4361,6 +4314,7 @@ public void SelectST(int ButtonID)
 
     }
 
+    //Increasing and decreasing the faith levels by 5.
 
     public void IncreaseFanFaith()
     {
@@ -4393,6 +4347,8 @@ public void SelectST(int ButtonID)
     }
 
 
+
+    //Selecting the 23 player squad for the player to use.
     public void InitPlayerTeam()
     {
 
@@ -4415,7 +4371,7 @@ public void SelectST(int ButtonID)
 
     }
 
-
+    //calculating the overall for each player in playerinfo taking account each players position.
 
     public void updateOverall()
     {
@@ -4496,6 +4452,7 @@ public void SelectST(int ButtonID)
 
     }
 
+    //Returning the team information to the View/Controller for them to display to the user.
 
     public string[] changeTeam()
     {
@@ -4517,7 +4474,7 @@ public void SelectST(int ButtonID)
 
     }
 
-
+    //chooses a team for the player to use
     public void chooseTeam()
     {
         
@@ -4525,7 +4482,7 @@ public void SelectST(int ButtonID)
 
     }
 
-
+    //Triggered by changeTeam()
     public string[] TeamSelect(int index)
     {
         string[] ReturnThis = new string[5];
@@ -4541,6 +4498,7 @@ public void SelectST(int ButtonID)
     }
 
 
+    // Reading in data from a csv file and placing it in a list.
 
     public void loadPlayerData()
     {
@@ -4597,7 +4555,7 @@ public void SelectST(int ButtonID)
 
 
 
-
+    // Reading in data from a csv file and placing it in a list.
     public void loadTeamData()
     {
 

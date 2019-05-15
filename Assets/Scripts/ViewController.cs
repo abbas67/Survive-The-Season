@@ -4,19 +4,16 @@ using UnityEngine.UI;
 using UnityEngine;
 public class ViewController : MonoBehaviour
 {
-
-     public GameObject MatchDayPanel;
-     public  GameObject FailureScreenFaith;
-     public GameObject FailureScreenStress;
+    //Panels, text objects and buttons used for taking in user input and displaing.
+    public GameObject MatchDayPanel;
+    public  GameObject FailureScreenFaith;
+    public GameObject FailureScreenStress;
     public GameObject SuccessScreen;
 
     public Text InfoText;
 
     public GameObject MainUIPanel;
     public GameObject NotificationsPanel;
-
-
-
 
     public Text NotificationsText;
     public Text ManagerText;
@@ -140,6 +137,7 @@ public class ViewController : MonoBehaviour
 
     }
 
+    //populates the table.
     public void populateTable()
     {
 
@@ -150,8 +148,9 @@ public class ViewController : MonoBehaviour
 
     }
 
+    
 
-
+    //Requesting a raise for the user and based on a true or false response, View will display something different.
     public void RequestRaise()
     {
         RaiseButton = GameObject.Find("RaiseButton").GetComponent<Button>();
@@ -175,13 +174,15 @@ public class ViewController : MonoBehaviour
         }
 
         DisplayPlayerInfo();
-
+        //Making sure this can only be done once per game.
         RaiseButton.GetComponent<Image>().color = Color.grey;
         RaiseButton.GetComponentInChildren<Text>().text = "You can only request a raise once per game";
         RaiseButton.GetComponent<Button>().interactable = false;
 
     }
 
+
+    //Displaying the manager info.
     public void DisplayManagerInfo()
     {
         ManagerText = GameObject.Find("ManagerText").GetComponent<Text>();
@@ -191,6 +192,9 @@ public class ViewController : MonoBehaviour
 
     }
 
+
+
+    //Displaying any needed notifications to the user.
     public void DisplayNotificaitons()
     {
         NotificationsText = GameObject.Find("NotificationsTxt").GetComponent<Text>();
@@ -307,6 +311,7 @@ public class ViewController : MonoBehaviour
 
     }
 
+   //Displaying different tactic capabilities to the user.
     public void DisplayPossesionPlan()
     {
         PossesionBtn = GameObject.Find("PossesionBtn").GetComponent<Button>();
@@ -333,7 +338,7 @@ public class ViewController : MonoBehaviour
     }
 
 
-
+    // The player stats at the bottom of the screen in the homepage are displayed.
     public void UpdatePlayerInfo()
     {
         GameWeekTxt = GameObject.Find("GameWeekTxt").GetComponent<Text>();
@@ -347,7 +352,7 @@ public class ViewController : MonoBehaviour
     }
 
 
-
+    //Taking in user input to create a manager.
 
     public void CreateManager()
     {
@@ -363,7 +368,7 @@ public class ViewController : MonoBehaviour
 
     }
 
-
+    //Displaying the stats of each team when they are selecting a team.
     public void ChangeTeam()
     {
         string[] TeamSelectInfo = new string[5];
@@ -394,7 +399,7 @@ public class ViewController : MonoBehaviour
 
     }
 
-
+    //Displaying  the faith to the user, colour changes based on values.
     public void DisplayFaithPanel()
     {
         BoardText = GameObject.Find("BoardText").GetComponent<Text>();
@@ -445,22 +450,23 @@ public class ViewController : MonoBehaviour
 
     }
 
-
+    //Restarts the game.
     public void Resign()
     {
 
         MyModel.RestartGame();
     }
 
+
+    //Displaying the player stats.
     public void DisplayPlayerStats()
     {
         DisplayPlayerInfo();
         DisplayFaithPanel();
-
-
-
     }
 
+
+    //restarts the game.
     public void TriggerRestart()
     {
     
@@ -470,6 +476,8 @@ public class ViewController : MonoBehaviour
     }
 
 
+
+    // Displays different screens based on if any of the fail or win conditioins have been set.
     public void CheckLoss()
     {
 
