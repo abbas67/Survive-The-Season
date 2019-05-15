@@ -129,7 +129,7 @@ public class ViewController : MonoBehaviour
             ScoutReportInfo = MyModel.prepareTeams(GameWeek);
             ScoutReportTitle.text = ScoutReportInfo[0];
             ScoutReportText.text = ScoutReportInfo[1];
-            ScoutReportDetails.text = ScoutReportInfo[2];
+           // ScoutReportDetails.text = ScoutReportInfo[2];
 
 
         }
@@ -535,10 +535,10 @@ public class ViewController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     //MyModel.TeamManagedID = 3;
+
         //only one that should be there after testing
         MyModel.InitModel();
-       // MyModel.selectSquad();
+      
 
 
     }

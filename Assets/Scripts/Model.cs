@@ -400,7 +400,7 @@ public class Model : MonoBehaviour
     public int CurrentTeamPressure;
 
 
-    
+
 
     // Used for matchday preparation.
     int[] HomeTeams = new int[] { 0, 2, 4, 6, 8, 10 };
@@ -425,7 +425,7 @@ public class Model : MonoBehaviour
 
 
 
-   
+
 
     //Taking in user input and assigning them to values to store for later.
     public void ManagerCreate(string NameInput, string NatInput)
@@ -487,7 +487,7 @@ public class Model : MonoBehaviour
     public void InitialiseStarting11()
     {
 
- 
+
         int ButtonID = 0;
         Starting11.Clear();
 
@@ -504,7 +504,7 @@ public class Model : MonoBehaviour
         for (int i = 0; i < CBpressed.Count(); i++)
         {
             CBpressed[i] = false;
-      
+
             CBTracker[i].GetComponent<Image>().color = Color.white;
             CentreBacks[i].Starting = false;
             totalCB = 0;
@@ -606,7 +606,7 @@ public class Model : MonoBehaviour
 
             }
 
-  
+
 
         }
 
@@ -763,7 +763,7 @@ public class Model : MonoBehaviour
 
             }
 
-  
+
 
         }
 
@@ -818,7 +818,7 @@ public class Model : MonoBehaviour
 
 
     // Players are allowed to select as many players in this position as they want as long as there is less than 11 players already in the starting lineup.
-public void SelectST(int ButtonID)
+    public void SelectST(int ButtonID)
     {
 
 
@@ -1105,7 +1105,7 @@ public void SelectST(int ButtonID)
             buttonPressedTracker[ButtonID] = false;
         }
 
-         else if (buttonPressedTracker[ButtonID] == true && Starting11.Count != 11)
+        else if (buttonPressedTracker[ButtonID] == true && Starting11.Count != 11)
         {
             RemoveFromLineup(MidFielders[ButtonID].PlayerID);
             MFTracker[ButtonID].GetComponent<Image>().color = Color.white;
@@ -1374,7 +1374,7 @@ public void SelectST(int ButtonID)
         if (GameWeek == 22)
         {
             return 3;
-                    
+
         }
         //Nothing is to happen.
         else return 2;
@@ -1588,9 +1588,9 @@ public void SelectST(int ButtonID)
         SortedPlayers = playerinfo.OrderByDescending(x => x.Goals).ToList();
 
 
-        ScorerPositionHeader0 = GameObject.Find("ScorerPositionHeader (0)").GetComponent<Text>(); 
+        ScorerPositionHeader0 = GameObject.Find("ScorerPositionHeader (0)").GetComponent<Text>();
         ScorerNameHeader0 = GameObject.Find("ScorerNameHeader (0)").GetComponent<Text>();
-        ScorerTeamHeader0 = GameObject.Find("ScorerTeamHeader (0)").GetComponent<Text>(); 
+        ScorerTeamHeader0 = GameObject.Find("ScorerTeamHeader (0)").GetComponent<Text>();
         ScorerGoalsScored0 = GameObject.Find("ScorerGoalsScored (0)").GetComponent<Text>();
 
         ScorerPositionList.Add(ScorerPositionHeader0);
@@ -2340,7 +2340,7 @@ public void SelectST(int ButtonID)
 
     }
 
-   //returning faith stats to the view/controller/
+    //returning faith stats to the view/controller/
 
     public int[] getFaith()
     {
@@ -2587,7 +2587,7 @@ public void SelectST(int ButtonID)
     }
 
 
-   
+
     //Setting the ID of the teams to play each other based on the Game week.
     public void AwayFixtures(int GameWeek)
     {
@@ -3293,9 +3293,9 @@ public void SelectST(int ButtonID)
         ToBeReturned[0] = (teaminfo[MatchStats[playerTrack].HomeID].Name + "  " + MatchStats[playerTrack].HomeGoals + " VS " + teaminfo[MatchStats[playerTrack].AwayID].Name + "  " + MatchStats[playerTrack].AwayGoals);
         ToBeReturned[1] = ("Match Week: " + week);
 
-        ToBeReturned[2] = ("Home Fouls: " + MatchStats[playerTrack].HomeFouls +"\n " + " Away Fouls: " + MatchStats[playerTrack].AwayFouls);
+        ToBeReturned[2] = ("Home Fouls: " + MatchStats[playerTrack].HomeFouls + "\n " + " Away Fouls: " + MatchStats[playerTrack].AwayFouls);
 
-        ToBeReturned[3] = ("Home Scorers: " + MatchStats[playerTrack].HomeScorers +"\n " + " Away Scorers: " + MatchStats[playerTrack].AwayScorers);
+        ToBeReturned[3] = ("Home Scorers: " + MatchStats[playerTrack].HomeScorers + "\n " + " Away Scorers: " + MatchStats[playerTrack].AwayScorers);
         ToBeReturned[4] = ("Home Yellows: " + MatchStats[playerTrack].HomeYellows + " Home Reds: " + MatchStats[playerTrack].HomeReds + "\n " + " Away Yellows: " + MatchStats[playerTrack].AwayYellows + " Away Reds: " + MatchStats[playerTrack].AwayReds);
 
         return ToBeReturned;
@@ -3352,7 +3352,7 @@ public void SelectST(int ButtonID)
         //Slightly weaker teams should opt for pressure or counter depending on which they can execute better.
         int difference = HomeBasicOverall - AwayBasicOverall;
 
-        if (difference > 4)
+        if (difference > 8)
         {
             homeweak = true;
 
@@ -3360,7 +3360,7 @@ public void SelectST(int ButtonID)
 
         difference = AwayBasicOverall - HomeBasicOverall;
 
-        if (difference < 4)
+        if (difference > 8)
         {
             awayweak = false;
         }
@@ -3511,8 +3511,8 @@ public void SelectST(int ButtonID)
             AwayTactic = 0;
             //Firstly checking that each team will employ an appropiate gameplan against their opposition.
 
-           int HomeBasicOverall = (teaminfo[MatchInfo[i].HomeID].Attack + teaminfo[MatchInfo[i].HomeID].Defence) / 2;
-           int AwayBasicOverall = (teaminfo[MatchInfo[i].AwayID].Attack + teaminfo[MatchInfo[i].AwayID].Defence) / 2;
+            int HomeBasicOverall = (teaminfo[MatchInfo[i].HomeID].Attack + teaminfo[MatchInfo[i].HomeID].Defence) / 2;
+            int AwayBasicOverall = (teaminfo[MatchInfo[i].AwayID].Attack + teaminfo[MatchInfo[i].AwayID].Defence) / 2;
 
 
             // weaker teams will automatically opt for the counter option as catching the opposition on a break will be their best chance for success.
@@ -3655,76 +3655,66 @@ public void SelectST(int ButtonID)
 
 
             // Dynamically choosing the scorers of each goal.
-
-            List<PlayerInfo> likelyScorers = new List<PlayerInfo>();
+            //temporary list used to hold possibly scorers.
             List<PlayerInfo> tempList = new List<PlayerInfo>();
 
-            //Each players morale will play a big part in how often they score, followed by their shooting stats
-            //Starting11.OrderBy(s => s.Morale);
+
+
+            //Sorting the list so that the players that are most likely to score are at the top of the list.
+            tempList = Starting11.OrderByDescending(s => s.Shooting).ThenBy(s => s.Overall).ToList();
 
 
 
-            tempList = Starting11.OrderByDescending(s => s.Overall).ToList();
-    
 
+            //Generating scorers for user managed teams
 
-            if (TeamManagedID == MatchInfo[i].HomeID)
+            if (MatchInfo[i].HomeID == TeamManagedID)
             {
-                for (int j = 0; j < tempList.Count(); j++)
+                Debug.Log("Baller alert");
+
+                for (int k = 0; k < tempList.Count(); k++)
                 {
-                    Debug.Log(tempList[j].Name + " " + tempList[j].Overall);
+                    Debug.Log(tempList[k].Name + " " + tempList[k].Overall);
                 }
 
+                int GoalsToAllocate = MatchInfo[i].HomeGoals;
 
-                for (int j = 0; j <= MatchInfo[i].HomeGoals ; j++)
+
+                while (GoalsToAllocate != 0)
                 {
+                    int LikelyScorer = RandomNumber(0, 5);
+                    //picking a likely scorer and giving them a goal and improving their form.
+                    playerinfo[tempList[LikelyScorer].PlayerID].Goals++;
+                    playerinfo[tempList[LikelyScorer].PlayerID].Form = playerinfo[tempList[LikelyScorer].PlayerID].Form + RandomNumber(0, 3);
+                    MatchInfo[i].HomeScorers += playerinfo[tempList[LikelyScorer].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
 
 
-                    if (playerinfo[tempList[j].PlayerID - 1].Position != "GK" && playerinfo[tempList[j].PlayerID - 1].Position != "CB")
-                    {
-                        MatchInfo[i].HomeScorers += playerinfo[tempList[j].PlayerID - 1].Name + " " + RandomNumber(0, 90).ToString() + "', ";
+                    Debug.Log(playerinfo[tempList[LikelyScorer].PlayerID].Name + " banged one in and now has this num of goals: " + playerinfo[tempList[LikelyScorer].PlayerID].Goals);
 
-                        Debug.Log(playerinfo[tempList[j].PlayerID - 1].Name + " " + playerinfo[tempList[j].PlayerID - 1].Goals + " Added");
-
-                        playerinfo[tempList[j].PlayerID - 1].Goals++;
-                        Debug.Log(playerinfo[tempList[j].PlayerID - 1].Name + " GOT THE GOAL");
-
-                        Debug.Log(playerinfo[tempList[j].PlayerID - 1].Name);
-
-                        playerinfo[tempList[j].PlayerID - 1].Form = playerinfo[tempList[j].PlayerID - 1].Form + RandomNumber(0, 5);
-                    }
-                }
-
-                tempList.Clear();
-
-                for (int j = 0; j <= 275; j++)
-                {
-                    if (playerinfo[j].TeamID == MatchInfo[i].AwayID && playerinfo[j].Position != "GK" && playerinfo[j].Position != "CB")
-                    {
-
-                        tempList.Add(playerinfo[j]);
-                        // Debug.Log(playerinfo[j].Name);
-
-                    }
-
+                    GoalsToAllocate--;
                 }
 
 
 
-                tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ThenBy(s => s.Form).ToList();
+                tempList = returnSquad(MatchInfo[i].AwayID);
+                //finding likely players in the team to score.
+                tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ToList();
 
+                int AwayGoalsToAllocate = MatchInfo[i].AwayGoals;
 
-
-                for (int j = 0; j < MatchInfo[i].AwayGoals; j++)
+                while (AwayGoalsToAllocate != 0)
                 {
+                    int LikelyScorer = RandomNumber(0, 5);
+                    //picking a likely scorer and giving them a goal and improving their form.
+                    playerinfo[tempList[LikelyScorer].PlayerID].Goals++;
+                    playerinfo[tempList[LikelyScorer].PlayerID].Form = playerinfo[tempList[LikelyScorer].PlayerID].Form + RandomNumber(0, 3);
+                    MatchInfo[i].AwayScorers += playerinfo[tempList[LikelyScorer].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
 
-                    if (playerinfo[tempList[j].PlayerID].Position != "GK" && playerinfo[tempList[j].PlayerID].Position != "CB")
-                    {
-                        playerinfo[tempList[j].PlayerID].Goals++;
-                        playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
-                        MatchInfo[i].AwayScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
-                    }
+                    Debug.Log(playerinfo[tempList[LikelyScorer].PlayerID].Name + " banged one in and now has this num of goals: " + playerinfo[tempList[LikelyScorer].PlayerID].Goals);
+
+                    AwayGoalsToAllocate--;
                 }
+
 
 
 
@@ -3733,142 +3723,132 @@ public void SelectST(int ButtonID)
             }
 
 
-            else if (TeamManagedID == MatchInfo[i].AwayID)
+            //Generating scorers for user managed teams
+
+            if (MatchInfo[i].AwayID == TeamManagedID)
             {
-
-                for (int j = 0; j < tempList.Count(); j++)
+                Debug.Log("Baller alert");
+                for (int k = 0; k < tempList.Count(); k++)
                 {
-                    Debug.Log(tempList[j].Name + " " + tempList[j].Overall);
+                    Debug.Log(tempList[k].Name + " " + tempList[k].Overall);
+                }
+
+                int GoalsToAllocate = MatchInfo[i].AwayGoals;
+
+                while (GoalsToAllocate != 0)
+                {
+                    int LikelyScorer = RandomNumber(0, 5);
+                    //picking a likely scorer and giving them a goal and improving their form.
+                    playerinfo[tempList[LikelyScorer].PlayerID].Goals++;
+                    playerinfo[tempList[LikelyScorer].PlayerID].Form = playerinfo[tempList[LikelyScorer].PlayerID].Form + RandomNumber(0, 3);
+                    MatchInfo[i].AwayScorers += playerinfo[tempList[LikelyScorer].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
+
+                    Debug.Log(playerinfo[tempList[LikelyScorer].PlayerID].Name + " banged one in and now has this num of goals: " + playerinfo[tempList[LikelyScorer].PlayerID].Goals);
+
+                    GoalsToAllocate--;
                 }
 
 
-                for (int j = 0; j <= MatchInfo[i].AwayGoals; j++)
+             
+
+                tempList = returnSquad(MatchInfo[i].HomeID);
+                //finding likely players in the team to score.
+                tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ToList();
+
+
+
+                int HomeGoalsToAllocate = MatchInfo[i].HomeGoals;
+
+                while (HomeGoalsToAllocate != 0)
                 {
-                    if (playerinfo[tempList[j].PlayerID - 1].Position != "GK" && playerinfo[tempList[j].PlayerID - 1].Position != "CB")
-                    {
-                        Debug.Log(playerinfo[tempList[j].PlayerID - 1].Name + " " + playerinfo[tempList[j].PlayerID - 1].Overall + " Added");
+                    int LikelyScorer = RandomNumber(0, 5);
+                    //picking a likely scorer and giving them a goal and improving their form.
+                    playerinfo[tempList[LikelyScorer].PlayerID].Goals++;
+                    playerinfo[tempList[LikelyScorer].PlayerID].Form = playerinfo[tempList[LikelyScorer].PlayerID].Form + RandomNumber(0, 3);
+                    MatchInfo[i].HomeScorers += playerinfo[tempList[LikelyScorer].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
 
-                        playerinfo[tempList[j].PlayerID - 1].Goals++;
-                        Debug.Log(playerinfo[tempList[j].PlayerID - 1].Name + " GOT THE GOAL");
+                    Debug.Log(playerinfo[tempList[LikelyScorer].PlayerID].Name + " banged one in and now has this num of goals: " + playerinfo[tempList[LikelyScorer].PlayerID].Goals);
 
-                        playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID - 1].Form + RandomNumber(0, 5);
-                        MatchInfo[i].AwayScorers += playerinfo[tempList[j].PlayerID - 1].Name + " " + RandomNumber(0, 90).ToString() + "', ";
-
-                    }
-                
-                 
+                    HomeGoalsToAllocate--;
                 }
-
-                tempList.Clear();
-
-                for (int j = 0; j <= 275; j++)
-                {
-                    if (playerinfo[j].TeamID == MatchInfo[i].HomeID && playerinfo[j].Position != "GK" && playerinfo[j].Position != "CB")
-                    {
-                        tempList.Add(playerinfo[j]);
-                    }
-                }
-
-                tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ThenBy(s => s.Form).ToList();
-
-
-  
-                for (int j = 0; j < MatchInfo[i].HomeGoals; j++)
-                {
-                    if (playerinfo[tempList[j].PlayerID].Position != "GK" && playerinfo[tempList[j].PlayerID].Position != "CB")
-                    {
-                        playerinfo[tempList[j].PlayerID].Goals++;
-                        playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
-
-                        MatchInfo[i].HomeScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
-                    }
-
-                }
-
 
             }
 
-            else if (TeamManagedID == MatchInfo[i].AwayID && TeamManagedID == MatchInfo[i].HomeID)
+
+
+            //Generating scorers for none user managed teams
+            if (MatchInfo[i].AwayID != TeamManagedID && MatchInfo[i].HomeID != TeamManagedID)
             {
+
+                tempList = returnSquad(MatchInfo[i].HomeID);
+                //finding likely players in the team to score.
+                tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ToList();
+
               
 
-                for (int j = 0; j <= 275; j++)
+                int HomeGoalsToAllocate = MatchInfo[i].HomeGoals;
+
+                while (HomeGoalsToAllocate != 0)
                 {
-                    if (playerinfo[j].TeamID == MatchInfo[i].HomeID && playerinfo[j].Position != "GK" && playerinfo[j].Position != "CB")
-                    {
+                    int LikelyScorer = RandomNumber(0, 5);
+                    //picking a likely scorer and giving them a goal and improving their form.
+                    playerinfo[tempList[LikelyScorer].PlayerID].Goals++;
+                    playerinfo[tempList[LikelyScorer].PlayerID].Form = playerinfo[tempList[LikelyScorer].PlayerID].Form + RandomNumber(0, 3);
+                    MatchInfo[i].HomeScorers += playerinfo[tempList[LikelyScorer].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
 
-                        tempList.Add(playerinfo[j]);
+                    Debug.Log(playerinfo[tempList[LikelyScorer].PlayerID].Name + " banged one in and now has this num of goals: " + playerinfo[tempList[LikelyScorer].PlayerID].Goals);
 
-                    }
-
-                }
-
-               tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ThenBy(s => s.Form).ToList();
-
-                for (int j = 0; j <= MatchInfo[i].HomeGoals; j++)
-                {
-                    if (playerinfo[tempList[j].PlayerID].Position != "GK" && playerinfo[tempList[j].PlayerID].Position != "CB")
-                    {
-                        playerinfo[tempList[j].PlayerID].Goals++;
-                        playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
-
-                        MatchInfo[i].HomeScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
-                    }
-            
+                    HomeGoalsToAllocate--;
                 }
 
 
-                tempList.Clear();
 
 
-                //Now for the away team.
 
-                for (int j = 0; j <= 275; j++)
+                tempList = returnSquad(MatchInfo[i].AwayID);
+                  //finding likely players in the team to score.
+                tempList = tempList.OrderByDescending(s => s.Overall).ThenBy(s => s.Shooting).ToList();
+
+                int AwayGoalsToAllocate = MatchInfo[i].AwayGoals;
+
+                while (AwayGoalsToAllocate != 0)
                 {
-                    if (playerinfo[j].TeamID == MatchInfo[i].AwayID && playerinfo[j].Position != "GK" && playerinfo[j].Position != "CB")
-                    {
+                    int LikelyScorer = RandomNumber(0, 5);
+                    //picking a likely scorer and giving them a goal and improving their form.
+                    playerinfo[tempList[LikelyScorer].PlayerID].Goals++;
+                    playerinfo[tempList[LikelyScorer].PlayerID].Form = playerinfo[tempList[LikelyScorer].PlayerID].Form + RandomNumber(0, 3);
+                    MatchInfo[i].AwayScorers += playerinfo[tempList[LikelyScorer].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
 
-                        tempList.Add(playerinfo[j]);
+                    Debug.Log(playerinfo[tempList[LikelyScorer].PlayerID].Name + " banged one in and now has this num of goals: " + playerinfo[tempList[LikelyScorer].PlayerID].Goals);
 
-                    }
-
+                    AwayGoalsToAllocate--;
                 }
+   
 
-                tempList = tempList.OrderByDescending(s => s.Star).ThenBy(s => s.Morale).ThenBy(s => s.Form).ToList();
-
-
-                for (int j = 0; j <= MatchInfo[i].AwayGoals; j++)
-                {
-                    if (playerinfo[tempList[j].PlayerID].Position != "GK" && playerinfo[tempList[j].PlayerID].Position != "CB")
-                    {
-                        playerinfo[tempList[j].PlayerID].Goals++;
-                        playerinfo[tempList[j].PlayerID].Form = playerinfo[tempList[j].PlayerID].Form + RandomNumber(0, 5);
-
-                        MatchInfo[i].AwayScorers += playerinfo[tempList[j].PlayerID].Name + " " + RandomNumber(0, 90).ToString() + "', ";
-                    }
-                }
-
+              
 
             }
 
 
-            //Calculating the amount of fouls and bookings per game.
 
 
-            //The overall agression of each team is what the foul count is based on.
+                //Calculating the amount of fouls and bookings per game.
+
+
+                //The overall agression of each team is what the foul count is based on.
             int awayFoulCounter = 0;
             for (int j = 0; j < playerinfo.Count(); j++)
             {
 
                 if (playerinfo[j].TeamID == MatchInfo[i].AwayID)
                 {
-                   
+
                     awayFoulCounter = awayFoulCounter + playerinfo[j].Agression;
 
                 }
 
             }
-         
+
             awayFoulCounter = awayFoulCounter / 23;
 
             //The more aggressive a team is, the more fouls they will have.
@@ -3902,7 +3882,7 @@ public void SelectST(int ButtonID)
                 }
 
             }
-         
+
 
             int HomeFoulCounter = 0;
             for (int j = 0; j < playerinfo.Count(); j++)
@@ -3975,7 +3955,7 @@ public void SelectST(int ButtonID)
 
             }
 
- 
+
             //Adding a win to the winning team
             //And a loss to the losing side.
             if (MatchInfo[i].HomeGoals > MatchInfo[i].AwayGoals)
@@ -3996,7 +3976,7 @@ public void SelectST(int ButtonID)
 
                 if (TeamManagedID == MatchInfo[i].HomeID)
                 {
-     
+
                     MatchDayEffects(true);
                 }
 
@@ -4041,20 +4021,29 @@ public void SelectST(int ButtonID)
 
     public void MatchDayEffects(bool Win)
     {
-      
+
         if (Win == false)
         {
             //A loss will result in every player that the user chose to start the game to have a reduced morale.
             //The manager will also gain some stress
             DecreaseFanFaith();
             DecreaseBoardFaith();
-            ManStress = ManStress + 3;
+            ManStress = ManStress + RandomNumber(0,10);
+
 
             for (int i = 0; i < Starting11.Count(); i++)
             {
-                playerinfo[Starting11[i].PlayerID].Morale = playerinfo[Starting11[i].PlayerID].Morale - 5;
+                playerinfo[Starting11[i].PlayerID].Morale = playerinfo[Starting11[i].PlayerID].Morale - RandomNumber(0,5);
 
             }
+
+            for (int i = 0; i < SelectedSquad.Count(); i++)
+            {
+                playerinfo[SelectedSquad[i].PlayerID].Morale = playerinfo[SelectedSquad[i].PlayerID].Morale - RandomNumber(0, 5);
+
+            }
+
+
         }
 
         //A loss will result in every player that the user chose to start the game to have an improved morale.
@@ -4064,48 +4053,48 @@ public void SelectST(int ButtonID)
         {
             IncreaseFanFaith();
             IncreaseBoardFaith();
-            ManStress = ManStress - 3;
+            ManStress = ManStress - RandomNumber(0, 12);
 
-            for (int i = 0; i < Starting11.Count(); i++)
+            for (int i = 0; i < SelectedSquad.Count(); i++)
             {
-                playerinfo[Starting11[i].PlayerID].Morale = playerinfo[Starting11[i].PlayerID].Morale + 5;
+                playerinfo[SelectedSquad[i].PlayerID].Morale = playerinfo[SelectedSquad[i].PlayerID].Morale + RandomNumber(0, 5);
 
             }
         }
-     
+
 
         //If a players morale is less than 50 their stats should detoriate by random amounts.
 
-        for (int i = 0; i < Starting11.Count(); i++)
+        for (int i = 0; i < SelectedSquad.Count(); i++)
         {
 
-            if (playerinfo[Starting11[i].PlayerID].Morale < 50)
+            if (playerinfo[SelectedSquad[i].PlayerID].Morale < 50)
             {
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Passing - RandomNumber(0,10);
+                playerinfo[SelectedSquad[i].PlayerID].Passing = playerinfo[SelectedSquad[i].PlayerID].Passing - RandomNumber(0, 10);
 
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Shooting - RandomNumber(0, 10);
+                playerinfo[SelectedSquad[i].PlayerID].Passing = playerinfo[SelectedSquad[i].PlayerID].Shooting - RandomNumber(0, 10);
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Tackling - RandomNumber(0, 10);
+                playerinfo[SelectedSquad[i].PlayerID].Passing = playerinfo[SelectedSquad[i].PlayerID].Tackling - RandomNumber(0, 10);
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Dribbling - RandomNumber(0, 10);
+                playerinfo[SelectedSquad[i].PlayerID].Passing = playerinfo[SelectedSquad[i].PlayerID].Dribbling - RandomNumber(0, 10);
 
             }
 
 
             //If a players morale is more than 60 then the players stats should improve by random amounts.
-            if (playerinfo[Starting11[i].PlayerID].Morale > 60)
+            if (playerinfo[SelectedSquad[i].PlayerID].Morale > 60)
             {
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Passing + RandomNumber(0, 5);
+                playerinfo[SelectedSquad[i].PlayerID].Passing = playerinfo[SelectedSquad[i].PlayerID].Passing + RandomNumber(0, 10);
 
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Shooting + RandomNumber(0, 5);
+                playerinfo[SelectedSquad[i].PlayerID].Passing = playerinfo[SelectedSquad[i].PlayerID].Shooting + RandomNumber(0, 10);
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Tackling + RandomNumber(0, 5);
+                playerinfo[SelectedSquad[i].PlayerID].Passing = playerinfo[SelectedSquad[i].PlayerID].Tackling + RandomNumber(0, 10);
 
-                playerinfo[Starting11[i].PlayerID].Passing = playerinfo[Starting11[i].PlayerID].Dribbling + RandomNumber(0, 5);
+                playerinfo[SelectedSquad[i].PlayerID].Passing = playerinfo[SelectedSquad[i].PlayerID].Dribbling + RandomNumber(0, 10);
 
             }
 
@@ -4130,7 +4119,7 @@ public void SelectST(int ButtonID)
     public static int RandomNumber(int min, int max)
     {
         lock (syncLock)
-        { 
+        {
             return UnityEngine.Random.Range(min, max);
         }
     }
@@ -4163,6 +4152,30 @@ public void SelectST(int ButtonID)
 
 
     }
+
+
+    //Returns a list of a players with the same teamID as the one passed in.
+    public List<PlayerInfo> returnSquad(int TeamID)
+    {
+        List<PlayerInfo> ReturnedSquad = new List<PlayerInfo>();
+
+
+        for (int i = 0; i <= 275; i++)
+        {
+            if (playerinfo[i].TeamID == TeamID && playerinfo[i].Position != "GK")
+            {
+               ReturnedSquad.Add(playerinfo[i]);
+            }
+
+        }
+
+
+        return ReturnedSquad;
+    }
+
+
+
+
 
 
 
@@ -4261,32 +4274,31 @@ public void SelectST(int ButtonID)
 
         string[] ReturnThis = new string[2];
 
-        string[] Situations = new string[6];
+        string[] Situations = new string[8];
 
-        Situations[0] = "Your wife has left you due to you being distant, she has taken the kids. This may impact your stress level even more";
+        Situations[0] = "Your wife has left you due to you being distant, she has taken the kids. This may impact your stress level even more.";
 
         Situations[1] = "You have made a poor financial decision by buying a sports car you cannot afford, your wife is raging.";
 
-        Situations[2] = "You have began chainsmoking to deal with the stress";
+        Situations[2] = "You have began chainsmoking to deal with the stress.";
 
-        Situations[3] = "You have began a massive losing streak on Fifa, sucks to be you";
+        Situations[3] = "You have dropped your phone and smashed your screen, you are raging.";
 
-        Situations[4] = "You have dropped your phone and smashed your screen, you are raging";
-
+        Situations[4] = "Your hair has began to fall out.";
 
         Situations[5] = "You are feeling fine and your stress is at a managable but not an ideal level.";
 
-        Situations[6] = "You are feeling great and decided to treat your family to a night at the cinema";
+        Situations[6] = "You are feeling great and decided to treat your family to a night at the cinema.";
 
-        Situations[7] = "You are feeling great and decided to treat your family to a day at the beach";
+        Situations[7] = "You are feeling great and decided to treat your family to a day at the beach.";
 
-
+    
 
         if (Enumerable.Range(35, 55).Contains(Stress))
         {
 
-            ReturnThis[0] = Situations[3];
-            ReturnThis[1] = RandomNumber(0, 1).ToString();
+            ReturnThis[0] = Situations[5];
+            ReturnThis[1] = RandomNumber(0, 0).ToString();
 
         }
 
